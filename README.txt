@@ -61,7 +61,7 @@ RCC: Error in 'toMOTko.qrc': Cannot find file 'i18n/de/toMOTko.qm'
 
 To build the Makefile, in scratchbox (1) :
 
-> /opt/qt4-maemo5/bin/make toMOTko.pro
+> /opt/qt4-maemo5/bin/qmake toMOTko.pro
 
 To build the executable, in scratchbox (1) :
 

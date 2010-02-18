@@ -30,65 +30,65 @@ public:
     SearchDialog( Controller* controller, QWidget* parent = 0 );
     ~SearchDialog();
 
-    QSize sizeHint() const;
+//    QSize sizeHint() const;
 
 public slots:
 
-    void show();
-    void updateFonts();
-    void retranslateUi();
-    void setDigraphEnabled( bool isDigraphEnabled );
+//    void show();
+//    void updateFonts();
+//    void retranslateUi();
+//    void setDigraphEnabled( bool isDigraphEnabled );
 
 signals:
 
-    void showTermRequested( const TermKey& termKey );
-    void termsRemoved();
+//    void showTermRequested( const TermKey& termKey );
+//    void termsRemoved();
 
 private slots:
 
-    void search();
-    void reset();
-    void goResultVocab();
-    void editResultTerm();
-    void removeResultTerms();
-    void updateUi();
+//    void search();
+//    void reset();
+//    void goResultVocab();
+//    void editResultTerm();
+//    void removeResultTerms();
+//    void updateUi();
     
 private:
 
-    void init();
-    uint getSelectedTermCount() const;
-    void doRemoveTerms( bool allowSelectTrans = true, bool confirmBeforeRemove = true );
+//    void init();
+//    uint getSelectedTermCount() const;
+//    void doRemoveTerms( bool allowSelectTrans = true, bool confirmBeforeRemove = true );
 
     Controller*             controller;
 
-    QVBoxLayout*            mainLayout;
-
-    QWidget*                queryPanel;
-    QHBoxLayout*            queryPanelLayout;
-
-    HistoryField*           queryField;
-    QPushButton*            searchButton;
-    QPushButton*            resetButton;
-
-    QWidget*                resultsHeaderPanel;
-    QHBoxLayout*            resultsHeaderPanelLayout;
-    
-    QLabel*                 resultsHeaderLabel;
-    QLabel*                 resultsCounterLabel;
-
-    QTreeWidget*          resultsListView;
-
-    QWidget*                resultsButtonsPanel;
-    QHBoxLayout*            resultsButtonsPanelLayout;
-    QPushButton*            goResultVocabButton;
-    QPushButton*            editResultTermButton;
-    QPushButton*            removeResultTermButton;
-
-#if defined(Q_WS_HILDON)
-    QWidget*                windowButtonsPanel;
-    QHBoxLayout*            windowButtonsPanelLayout;
-    QPushButton*            closeButton;
-#endif
+//    QVBoxLayout*            mainLayout;
+//
+//    QWidget*                queryPanel;
+//    QHBoxLayout*            queryPanelLayout;
+//
+//    HistoryField*           queryField;
+//    QPushButton*            searchButton;
+//    QPushButton*            resetButton;
+//
+//    QWidget*                resultsHeaderPanel;
+//    QHBoxLayout*            resultsHeaderPanelLayout;
+//    
+//    QLabel*                 resultsHeaderLabel;
+//    QLabel*                 resultsCounterLabel;
+//
+//    QTreeWidget*          resultsListView;
+//
+//    QWidget*                resultsButtonsPanel;
+//    QHBoxLayout*            resultsButtonsPanelLayout;
+//    QPushButton*            goResultVocabButton;
+//    QPushButton*            editResultTermButton;
+//    QPushButton*            removeResultTermButton;
+//
+//#if defined(Q_WS_HILDON)
+//    QWidget*                windowButtonsPanel;
+//    QHBoxLayout*            windowButtonsPanelLayout;
+//    QPushButton*            closeButton;
+//#endif
 
 };
 

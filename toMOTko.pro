@@ -15,22 +15,22 @@ RC_FILE     =   toMOTko.rc
 HEADERS     +=  src/Base.h \
                 src/Util.h \
                 src/BilingualKey.h \
-                src/DigraphLineEdit.h \
-                src/HelpBrowser.h \
-                src/ScrollableLineEdit.h \
-                src/ScrollableMultiLineEdit.h \
-                src/DigraphMultiLineEdit.h \
+                #src/DigraphLineEdit.h \
+                #src/HelpBrowser.h \
+                #src/ScrollableLineEdit.h \
+                #src/ScrollableMultiLineEdit.h \
+                #src/DigraphMultiLineEdit.h \
                 src/Sequence.h \
                 src/Preferences.h \
-                src/PropertiesPanel.h \
-                src/TermDialog.h \
-                src/TranslationSelectionDialog.h \
-                src/ResultListItem.h \
-                src/HistoryField.h \
+                #src/PropertiesPanel.h \
+                #src/TermDialog.h \
+                #src/TranslationSelectionDialog.h \
+                #src/ResultListItem.h \
+                #src/HistoryField.h \
                 src/SearchDialog.h \
-                src/KeyActionListViewItem.h \
-                src/SequenceDialog.h \
-                src/SequenceListItem.h \
+                #src/KeyActionListViewItem.h \
+                #src/SequenceDialog.h \
+                #src/SequenceListItem.h \
                 src/PreferencesDialog.h \
                 src/Controller.h \
                 src/MainWindow.h \
@@ -40,14 +40,14 @@ HEADERS     +=  src/Base.h \
                 src/Term.h \
                 src/TermKey.h \
                 src/Folder.h \
-                src/TermListItem.h \
+                #src/TermListItem.h \
                 src/StandbyTerm.h \
                 src/TermScheduler.h \
                 src/Translation.h \
-                src/VocabTreeView.h \
-                src/TreeItem.h \
-                src/VocabTreeItem.h \
-                src/FolderTreeItem.h \
+                #src/VocabTreeView.h \
+                #src/TreeItem.h \
+                #src/VocabTreeItem.h \
+                #src/FolderTreeItem.h \
                 src/FolderParser.h \
                 src/VocabParser.h \
                 src/Vocabulary.h \
@@ -60,21 +60,21 @@ HEADERS     +=  src/Base.h \
 
 SOURCES     +=  src/Util.cpp \ 
                 src/BilingualKey.cpp \
-                src/DigraphLineEdit.cpp \
-                src/HelpBrowser.cpp \
-                src/ScrollableLineEdit.cpp \
-                src/ScrollableMultiLineEdit.cpp \
-                src/DigraphMultiLineEdit.cpp \
+                #src/DigraphLineEdit.cpp \
+                #src/HelpBrowser.cpp \
+                #src/ScrollableLineEdit.cpp \
+                #src/ScrollableMultiLineEdit.cpp \
+                #src/DigraphMultiLineEdit.cpp \
                 src/Sequence.cpp \
                 src/Preferences.cpp \
-                src/PropertiesPanel.cpp \
-                src/TermDialog.cpp \
-                src/TranslationSelectionDialog.cpp \
-                src/ResultListItem.cpp \
-                src/HistoryField.cpp \
+                #src/PropertiesPanel.cpp \
+                #src/TermDialog.cpp \
+                #src/TranslationSelectionDialog.cpp \
+                #src/ResultListItem.cpp \
+                #src/HistoryField.cpp \
                 src/SearchDialog.cpp \
-                src/SequenceDialog.cpp \
-                src/SequenceListItem.cpp \
+                #src/SequenceDialog.cpp \
+                #src/SequenceListItem.cpp \
                 src/PreferencesDialog.cpp \
                 src/Controller.cpp \
                 src/main.cpp \
@@ -85,14 +85,14 @@ SOURCES     +=  src/Util.cpp \
                 src/Term.cpp \
                 src/TermKey.cpp \
                 src/Folder.cpp \
-                src/TermListItem.cpp \
+                #src/TermListItem.cpp \
                 src/StandbyTerm.cpp \
                 src/TermScheduler.cpp \
                 src/Translation.cpp \
-                src/VocabTreeView.cpp \
-                src/TreeItem.cpp \
-                src/VocabTreeItem.cpp \
-                src/FolderTreeItem.cpp \
+                #src/VocabTreeView.cpp \
+                #src/TreeItem.cpp \
+                #src/VocabTreeItem.cpp \
+                #src/FolderTreeItem.cpp \
                 src/FolderParser.cpp \
                 src/VocabParser.cpp \
                 src/Vocabulary.cpp \
