@@ -11,6 +11,7 @@
 #include <QCheckBox>
 #include <QComboBox>
 #include <QDialog>
+#include <QFrame>
 #include <QGridLayout>
 #include <QHBoxLayout>
 #include <QHeaderView>
@@ -94,30 +95,53 @@ private:
 
     Preferences*                prefs;
 
-    QVBoxLayout*                mainLayout;
-//    QTabWidget*                 tab;
-//
-//    QWidget*                    languagePage;
-//    QWidget*                    quizPage;
-//    QWidget*                    fontPage;
-//#if defined(Q_WS_HILDON)
-//    QScrollArea*                interfacePage;
-//    QWidget*                    interfacePageBox;
-//#else
-//    QWidget*                    interfacePage;
-//#endif
-//
+    QHBoxLayout*                mainLayout;
+
+    QWidget*                    bodyPanel;
+    QVBoxLayout*                bodyPanelLayout;
+
+    //QWidget*                    labelsPanel;
+    //QVBoxLayout*                labelsPanelLayout;
+
+    //QWidget*                    fieldsPanel;
+    //QVBoxLayout*                fieldsPanelLayout;
+
+
+    QWidget*                    languagePage;
+    QVBoxLayout*                languagePageLayout;
+    QFrame*                     languagePageSeparator;
+    QLabel*                     languagePageLabel;
+
+    QWidget*                    quizPage;
+    QVBoxLayout*                quizPageLayout;
+    QFrame*                     quizPageSeparator;
+    QLabel*                     quizPageLabel;
+
+    QWidget*                    fontPage;
+    QVBoxLayout*                fontPageLayout;
+    QFrame*                     fontPageSeparator;
+    QLabel*                     fontPageLabel;
+
+    QWidget*                    interfacePage;
+    QVBoxLayout*                interfacePageLayout;
+    QFrame*                     interfacePageSeparator;
+    QLabel*                     interfacePageLabel;
+
+
 //    QVBoxLayout*                languageLayout;
 //
 //    QWidget*                    languagesPanel;
 //    QVBoxLayout*                languagesPanelLayout;
 //
 //    QTreeWidget*                studyLanguagesListView;
-//
-//    QVBoxLayout*                quizLayout;
-//
-    QGroupBox*                  quizLengthOptionsPanel;
-    QVBoxLayout*                quizLengthOptionsPanelLayout;
+
+    QWidget*                    quizLengthPanel;
+    QHBoxLayout*                quizLengthPanelLayout;
+
+    QLabel*                     quizLengthLabel;
+
+    QWidget*                    quizLengthSliderPanel;
+    QVBoxLayout*                quizLengthSliderPanelLayout;
 //    QGroupBox*                  revealingOptionsPanel;
 //    QHBoxLayout*                revealingOptionsPanelLayout;
 //
@@ -140,8 +164,6 @@ private:
     QLabel*                     quizLengthMediumLabel;
     QLabel*                     quizLengthLongestLabel;
    
-//    QVBoxLayout*                fontPageLayout;
-//    QVBoxLayout*                interfacePageLayout;
 //    QHBoxLayout*                keyboardAccelButtonPanelLayout;
 //
 //    QWidget*                    labelsFontPanel;
@@ -201,7 +223,7 @@ private:
 //    QPushButton*                resetAccelKeyButton;
 
     QWidget*                    bottomButtonsPanel;
-    QHBoxLayout*                bottomButtonsPanelLayout;
+    QVBoxLayout*                bottomButtonsPanelLayout;
     QPushButton*                acceptButton;
     QPushButton*                cancelButton;
 

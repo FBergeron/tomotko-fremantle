@@ -23,16 +23,25 @@ PreferencesDialog::~PreferencesDialog() {
 }
 
 void PreferencesDialog::init() {
-    //setWindowFlags( Qt::Window );
     setModal( true ); 
 
-//    tab = new QTabWidget();
-//
-//    quizPage = new QWidget();
-//
-    quizLengthOptionsPanel = new QGroupBox( tr( "Length" ) );
-    quizLengthOptionsPanelLayout = new QVBoxLayout();
-    quizLengthOptionsPanel->setLayout( quizLengthOptionsPanelLayout );
+    quizPage = new QWidget();
+    quizPageLayout = new QVBoxLayout();
+    quizPageLayout->setContentsMargins( 0, 0, 0, 0 );
+    quizPage->setLayout( quizPageLayout );
+  
+    quizPageLabel = new QLabel( tr( "Quiz" ) );
+
+    quizLengthPanel = new QWidget();
+    quizLengthPanelLayout = new QHBoxLayout();
+    quizLengthPanelLayout->setContentsMargins( 0, 0, 0, 0 );
+    quizLengthPanel->setLayout( quizLengthPanelLayout );
+
+    quizLengthLabel = new QLabel( tr( "Length" ) );
+
+    quizLengthSliderPanel = new QWidget();
+    quizLengthSliderPanelLayout = new QVBoxLayout();
+    quizLengthSliderPanel->setLayout( quizLengthSliderPanelLayout );
 
 //    revealingOptionsPanel = new QGroupBox( tr( "RevealingOrders" ) );
 //    revealingOptionsPanel->setSizePolicy( QSizePolicy( QSizePolicy::Preferred, QSizePolicy::Maximum ) );
@@ -80,35 +89,45 @@ void PreferencesDialog::init() {
     quizLengthSlider->setTickPosition( QSlider::TicksBothSides );
     quizLengthSlider->setFocusPolicy( Qt::StrongFocus );
 
-    quizLengthOptionsPanelLayout->addWidget( quizLengthSlider );
+    quizLengthSliderPanelLayout->addWidget( quizLengthSlider );
     quizLengthLabelsPanel = new QWidget();
     quizLengthLabelsPanelLayout = new QHBoxLayout();
     quizLengthLabelsPanelLayout->setContentsMargins( 0, 0, 0, 0 );
     quizLengthLabelsPanel->setLayout( quizLengthLabelsPanelLayout );
-    quizLengthOptionsPanelLayout->addWidget( quizLengthLabelsPanel );
+    quizLengthSliderPanelLayout->addWidget( quizLengthLabelsPanel );
 
-//    quizLengthShortestLabel = new QLabel( tr( "QuizLengthShortest" ) );
-//    quizLengthMediumLabel = new QLabel( tr( "QuizLengthMedium" ) );
-//    quizLengthMediumLabel->setAlignment( Qt::AlignCenter );
-//    quizLengthLongestLabel = new QLabel( tr( "QuizLengthLongest" ) );
-//    quizLengthLongestLabel->setAlignment( Qt::AlignRight );
-//    quizLengthLabelsPanelLayout->addWidget( quizLengthShortestLabel );
-//    quizLengthLabelsPanelLayout->addWidget( quizLengthMediumLabel );
-//    quizLengthLabelsPanelLayout->addWidget( quizLengthLongestLabel );
-//
+    quizLengthShortestLabel = new QLabel( tr( "QuizLengthShortest" ) );
+    quizLengthMediumLabel = new QLabel( tr( "QuizLengthMedium" ) );
+    quizLengthMediumLabel->setAlignment( Qt::AlignCenter );
+    quizLengthLongestLabel = new QLabel( tr( "QuizLengthLongest" ) );
+    quizLengthLongestLabel->setAlignment( Qt::AlignRight );
+    quizLengthLabelsPanelLayout->addWidget( quizLengthShortestLabel );
+    quizLengthLabelsPanelLayout->addWidget( quizLengthMediumLabel );
+    quizLengthLabelsPanelLayout->addWidget( quizLengthLongestLabel );
+
+    quizLengthPanelLayout->addWidget( quizLengthLabel );
+    quizLengthPanelLayout->addWidget( quizLengthSliderPanel );
+
 //    quizLengthSlider->setValue( prefs->getQuizLength() ); 
 //
-//    quizLayout = new QVBoxLayout();
-//    quizPage->setLayout( quizLayout );
 
-    //quizLayout->addWidget( quizLengthOptionsPanel );
-    //mainLayout->addWidget( quizLengthOptionsPanel );
+    quizPageSeparator = new QFrame();
+    quizPageSeparator->setFrameStyle( QFrame::HLine );
 
-//    quizLayout->addWidget( revealingOptionsPanel );
-//    quizLayout->addStretch();
-//
-//    fontPage = new QWidget();
-//
+    quizPageLayout->addWidget( quizPageLabel );
+    quizPageLayout->addWidget( quizLengthPanel );
+    quizPageLayout->addWidget( quizPageSeparator );
+
+//    quizPageLayout->addWidget( revealingOptionsPanel );
+//    quizPageLayout->addStretch();
+
+    fontPage = new QWidget();
+    fontPageLayout = new QVBoxLayout();
+    fontPageLayout->setContentsMargins( 0, 0, 0, 0 );
+    fontPage->setLayout( fontPageLayout );
+
+    fontPageLabel = new QLabel( tr( "Fonts" ) );
+
 //    fontsPanel = new QWidget();
 //    fontsPanelLayout = new QVBoxLayout();
 //    fontsPanelLayout->setContentsMargins( 0, 0, 0, 0 );
@@ -167,20 +186,21 @@ void PreferencesDialog::init() {
 //    fontOverridesBox->setLayout( fontOverridesBoxLayout );
 //    initFontOverrides();
 //    fontOverridesScrollView->setWidget( fontOverridesBox );
-//
-//    fontPageLayout = new QVBoxLayout();
-//    fontPageLayout->addWidget( fontsPanel );
-//    fontPageLayout->addStretch();
-//    fontPage->setLayout( fontPageLayout );
-//
-//#if defined(Q_WS_HILDON)
-//    interfacePage = new QScrollArea();
-//    //interfacePage->setWidgetResizable( true );
-//    interfacePageBox = new QWidget();
-//#else
-//    interfacePage = new QWidget();
-//#endif
-//
+
+    fontPageSeparator = new QFrame();
+    fontPageSeparator->setFrameStyle( QFrame::HLine );
+
+    fontPageLayout->addWidget( fontPageLabel );
+    //fontPageLayout->addWidget( fontsPanel );
+    fontPageLayout->addWidget( fontPageSeparator );
+
+    interfacePage = new QWidget();
+    interfacePageLayout = new QVBoxLayout();
+    interfacePageLayout->setContentsMargins( 0, 0, 0, 0 );
+    interfacePage->setLayout( interfacePageLayout );
+
+    interfacePageLabel = new QLabel( tr( "Interface" ) );
+
 //    miscInterfaceOptionsPanel = new QWidget();
 //    miscInterfaceOptionsPanelLayout = new QGridLayout();
 //    miscInterfaceOptionsPanelLayout->setContentsMargins( 0, 0, 0, 0 );
@@ -231,7 +251,6 @@ void PreferencesDialog::init() {
 //        keyboardAccelListView->addTopLevelItem( actionItem );
 //    }
 //    connect( keyboardAccelListView, SIGNAL( currentItemChanged( QTreeWidgetItem*, QTreeWidgetItem* ) ), this, SLOT( cancelSetAccelKey() ) );
-//    connect( tab, SIGNAL( currentChanged( int ) ), this, SLOT( cancelSetAccelKey() ) );
 //    keyboardAccelPanelLayout->addWidget( keyboardAccelListView );
 //
 //    keyboardAccelButtonPanel = new QWidget();
@@ -250,19 +269,23 @@ void PreferencesDialog::init() {
 //    connect( clearAccelKeyButton, SIGNAL( clicked() ), this, SLOT( clearAccelKey() ) );
 //    connect( setAccelKeyButton, SIGNAL( clicked() ), this, SLOT( setAccelKey() ) );
 //    connect( resetAccelKeyButton, SIGNAL( clicked() ), this, SLOT( resetAccelKey() ) );
-//
-//    interfacePageLayout = new QVBoxLayout();
+
+
+    interfacePageSeparator = new QFrame();
+    interfacePageSeparator->setFrameStyle( QFrame::HLine );
+
+    interfacePageLayout->addWidget( interfacePageLabel );
 //    interfacePageLayout->addWidget( miscInterfaceOptionsPanel );
 //    interfacePageLayout->addWidget( keyboardAccelPanel, 1 );
-//#if defined(Q_WS_HILDON)
-//    interfacePageBox->setLayout( interfacePageLayout );
-//    interfacePage->setWidget( interfacePageBox );
-//#else
-//    interfacePage->setLayout( interfacePageLayout );
-//#endif
-//
-//    languagePage = new QWidget();
-//
+    interfacePageLayout->addWidget( interfacePageSeparator );
+
+    languagePage = new QWidget();
+    languagePageLayout = new QVBoxLayout();
+    languagePageLayout->setContentsMargins( 0, 0, 0, 0 );
+    languagePage->setLayout( languagePageLayout );
+
+    languagePageLabel = new QLabel( tr( "Languages" ) );
+
 //    languagesPanel = new QWidget();
 //    languagesPanelLayout = new QVBoxLayout();
 //    languagesPanelLayout->setContentsMargins( 0, 0, 0, 0 );
@@ -279,14 +302,21 @@ void PreferencesDialog::init() {
 //
 //    languageLayout = new QVBoxLayout();
 //    languagePage->setLayout( languageLayout );
+
+    languagePageSeparator = new QFrame();
+    languagePageSeparator->setFrameStyle( QFrame::HLine );
+
+    languagePageLayout->addWidget( languagePageLabel );
 //    languageLayout->addWidget( languagesPanel, 1 );
+    languagePageLayout->addWidget( languagePageSeparator );
+
 //    tab->addTab( quizPage, tr( "Quiz" ) );
 //    tab->addTab( languagePage, tr( "Languages" ) );
 //    tab->addTab( fontPage, tr( "Fonts" ) );
 //    tab->addTab( interfacePage, tr( "Interface" ) );
 
     bottomButtonsPanel = new QWidget();
-    bottomButtonsPanelLayout = new QHBoxLayout();
+    bottomButtonsPanelLayout = new QVBoxLayout();
     bottomButtonsPanelLayout->setContentsMargins( 0, 0, 0, 0 );
     bottomButtonsPanel->setLayout( bottomButtonsPanelLayout );
 
@@ -299,9 +329,23 @@ void PreferencesDialog::init() {
     bottomButtonsPanelLayout->addWidget( acceptButton );
     bottomButtonsPanelLayout->addWidget( cancelButton );
 
-    mainLayout = new QVBoxLayout();
-    mainLayout->addWidget( quizLengthOptionsPanel );
+    mainLayout = new QHBoxLayout();
+
+    bodyPanel = new QWidget();
+    bodyPanelLayout = new QVBoxLayout();
+    bodyPanelLayout->setContentsMargins( 0, 0, 0, 0 );
+    bodyPanel->setLayout( bodyPanelLayout );
+
+    //bodyPanelLayout->addWidget( quizLengthSliderPanel );
+    bodyPanelLayout->addWidget( quizPage );
+    bodyPanelLayout->addWidget( languagePage );
+    bodyPanelLayout->addWidget( fontPage );
+    bodyPanelLayout->addWidget( interfacePage );
+
+    mainLayout->addWidget( bodyPanel );
     mainLayout->addWidget( bottomButtonsPanel );
+
+
     setLayout( mainLayout );
 
     setWindowTitle( tr( "Preferences..." ) );
