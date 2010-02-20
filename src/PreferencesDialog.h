@@ -73,9 +73,9 @@ private slots:
 //    void setAccelKey();
 //    void resetAccelKey();
 //    void cancelSetAccelKey();
-//    void addSequence();
-//    void removeSequence();
-//    void updateUi();
+    void addSequence();
+    void removeSequence();
+    void updateUi();
 
 private:
 
@@ -83,13 +83,13 @@ private:
 //    void initFontFamilyValues( QComboBox* comboBox, bool withEmptyEntry = false ) const;
 //    void initFontSizeValues( QComboBox* comboBox, bool withEmptyEntry = false ) const;
 //    void initFontOverrides();
-//    void initSequences();
+    void initSequences();
 //    void initStudyLanguageValues() const;
 //    void selectFontFamily( QComboBox* comboBox, const QString& fontFamily );
 //    void selectFontSize( QComboBox* comboBox, int fontSizeModifier, bool withEmptyEntry = false );
 //    void selectLanguage( QComboBox* comboBox, const QString& langCode );
 //    bool isRevealingSequenceSelectionValid() const;
-//    bool isRevealingSequenceDefined( const QString& seqStr ) const;
+    bool isRevealingSequenceDefined( const QString& seqStr ) const;
 //    bool isStudyLanguageSelectionValid() const;
 //    void keyPressEvent( QKeyEvent *evt );
 
@@ -97,6 +97,7 @@ private:
 
     QHBoxLayout*                mainLayout;
 
+    QScrollArea*                bodyWrapper;
     QWidget*                    bodyPanel;
     QVBoxLayout*                bodyPanelLayout;
 
@@ -142,17 +143,20 @@ private:
 
     QWidget*                    quizLengthSliderPanel;
     QVBoxLayout*                quizLengthSliderPanelLayout;
-//    QGroupBox*                  revealingOptionsPanel;
-//    QHBoxLayout*                revealingOptionsPanelLayout;
-//
-//    QWidget*                    sequencesViewPanel;
-//    QVBoxLayout*                sequencesViewPanelLayout;
-//    QTreeWidget*                sequencesView;
-//    QWidget*                    sequencesViewButtons;
-//    QHBoxLayout*                sequencesViewButtonsLayout;
-//    QPushButton*                addSequenceButton;
-//    QPushButton*                removeSequenceButton;
-//
+
+    QLabel*                     sequencesLabel;
+
+    QWidget*                    revealingOptionsPanel;
+    QHBoxLayout*                revealingOptionsPanelLayout;
+
+    QWidget*                    sequencesViewPanel;
+    QVBoxLayout*                sequencesViewPanelLayout;
+    QTreeWidget*                sequencesView;
+    QWidget*                    sequencesViewButtons;
+    QHBoxLayout*                sequencesViewButtonsLayout;
+    QPushButton*                addSequenceButton;
+    QPushButton*                removeSequenceButton;
+
 //    QGroupBox*                  sequencesLabelBox;
 //    QVBoxLayout*                sequencesLabelBoxLayout;
 //    QLabel*                     sequencesLabel;

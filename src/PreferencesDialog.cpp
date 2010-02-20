@@ -24,7 +24,7 @@ PreferencesDialog::~PreferencesDialog() {
 
 void PreferencesDialog::init() {
     setModal( true ); 
-
+    
     quizPage = new QWidget();
     quizPageLayout = new QVBoxLayout();
     quizPageLayout->setContentsMargins( 0, 0, 0, 0 );
@@ -43,37 +43,40 @@ void PreferencesDialog::init() {
     quizLengthSliderPanelLayout = new QVBoxLayout();
     quizLengthSliderPanel->setLayout( quizLengthSliderPanelLayout );
 
-//    revealingOptionsPanel = new QGroupBox( tr( "RevealingOrders" ) );
+    revealingOptionsPanel = new QWidget();
 //    revealingOptionsPanel->setSizePolicy( QSizePolicy( QSizePolicy::Preferred, QSizePolicy::Maximum ) );
-//    revealingOptionsPanelLayout = new QHBoxLayout();
-//    revealingOptionsPanel->setLayout( revealingOptionsPanelLayout );
-//  
-//    sequencesViewPanel = new QWidget(); 
-//    sequencesViewPanelLayout = new QVBoxLayout();
-//    sequencesViewPanelLayout->setContentsMargins( 0, 10, 0, 0 );
-//    sequencesViewPanel->setLayout( sequencesViewPanelLayout );
-//    revealingOptionsPanelLayout->addWidget( sequencesViewPanel );
-//    sequencesView = new QTreeWidget();
-//    sequencesView->headerItem()->setHidden( true );
-//    sequencesViewPanelLayout->addWidget( sequencesView );
-//    sequencesViewButtons = new QWidget();
-//    sequencesViewButtonsLayout = new QHBoxLayout();
-//    sequencesViewButtonsLayout->setContentsMargins( 0, 0, 0, 0 );
-//    sequencesViewButtons->setLayout( sequencesViewButtonsLayout );
-//    sequencesViewPanelLayout->addWidget( sequencesViewButtons );
-//    addSequenceButton = new QPushButton( "+" );
-//    //sequencesViewButtonsLayout->addStretch();
-//    sequencesViewButtonsLayout->addWidget( addSequenceButton );
-//    addSequenceButton->setToolTip( tr( "Add revealing sequence" ) );
-//    connect( addSequenceButton, SIGNAL( clicked() ), this, SLOT( addSequence() ) );
-//    removeSequenceButton = new QPushButton( "-" );
-//    sequencesViewButtonsLayout->addWidget( removeSequenceButton );
-//    removeSequenceButton->setToolTip( tr( "Remove revealing sequence" ) );
-//    connect( removeSequenceButton, SIGNAL( clicked() ), this, SLOT( removeSequence() ) );
-//
-//    initSequences();
-//    connect( sequencesView, SIGNAL( itemSelectionChanged() ), this, SLOT( updateUi() ) );
-//
+    revealingOptionsPanelLayout = new QHBoxLayout();
+    revealingOptionsPanel->setLayout( revealingOptionsPanelLayout );
+
+    sequencesLabel = new QLabel( tr( "RevealingOrders" ) );
+    revealingOptionsPanelLayout->addWidget( sequencesLabel );
+
+    sequencesViewPanel = new QWidget(); 
+    sequencesViewPanelLayout = new QVBoxLayout();
+    sequencesViewPanelLayout->setContentsMargins( 0, 10, 0, 0 );
+    sequencesViewPanel->setLayout( sequencesViewPanelLayout );
+    revealingOptionsPanelLayout->addWidget( sequencesViewPanel );
+    sequencesView = new QTreeWidget();
+    sequencesView->headerItem()->setHidden( true );
+    sequencesViewPanelLayout->addWidget( sequencesView );
+    sequencesViewButtons = new QWidget();
+    sequencesViewButtonsLayout = new QHBoxLayout();
+    sequencesViewButtonsLayout->setContentsMargins( 0, 0, 0, 0 );
+    sequencesViewButtons->setLayout( sequencesViewButtonsLayout );
+    sequencesViewPanelLayout->addWidget( sequencesViewButtons );
+    addSequenceButton = new QPushButton( "+" );
+    //sequencesViewButtonsLayout->addStretch();
+    sequencesViewButtonsLayout->addWidget( addSequenceButton );
+    addSequenceButton->setToolTip( tr( "Add revealing sequence" ) );
+    connect( addSequenceButton, SIGNAL( clicked() ), this, SLOT( addSequence() ) );
+    removeSequenceButton = new QPushButton( "-" );
+    sequencesViewButtonsLayout->addWidget( removeSequenceButton );
+    removeSequenceButton->setToolTip( tr( "Remove revealing sequence" ) );
+    connect( removeSequenceButton, SIGNAL( clicked() ), this, SLOT( removeSequence() ) );
+
+    initSequences();
+    connect( sequencesView, SIGNAL( itemSelectionChanged() ), this, SLOT( updateUi() ) );
+
 //    sequencesLabelBox = new QGroupBox( tr( "QuizWindow" ) );
 //    sequencesLabelBoxLayout = new QVBoxLayout();
 //    sequencesLabelBox->setLayout( sequencesLabelBoxLayout );
@@ -116,6 +119,7 @@ void PreferencesDialog::init() {
 
     quizPageLayout->addWidget( quizPageLabel );
     quizPageLayout->addWidget( quizLengthPanel );
+    quizPageLayout->addWidget( revealingOptionsPanel );
     quizPageLayout->addWidget( quizPageSeparator );
 
 //    quizPageLayout->addWidget( revealingOptionsPanel );
@@ -331,6 +335,9 @@ void PreferencesDialog::init() {
 
     mainLayout = new QHBoxLayout();
 
+    bodyWrapper = new QScrollArea();
+    bodyWrapper->setVerticalScrollBarPolicy( Qt::ScrollBarAlwaysOff );
+
     bodyPanel = new QWidget();
     bodyPanelLayout = new QVBoxLayout();
     bodyPanelLayout->setContentsMargins( 0, 0, 0, 0 );
@@ -342,15 +349,16 @@ void PreferencesDialog::init() {
     bodyPanelLayout->addWidget( fontPage );
     bodyPanelLayout->addWidget( interfacePage );
 
-    mainLayout->addWidget( bodyPanel );
-    mainLayout->addWidget( bottomButtonsPanel );
+    bodyWrapper->setWidget( bodyPanel );
 
+    mainLayout->addWidget( bodyWrapper  );
+    mainLayout->addWidget( bottomButtonsPanel );
 
     setLayout( mainLayout );
 
     setWindowTitle( tr( "Preferences..." ) );
 
-//    updateUi();
+    updateUi();
 }
 
 //void PreferencesDialog::initFontFamilyValues( QComboBox* comboBox, bool withEmptyEntry /*= false*/ ) const {
@@ -399,16 +407,16 @@ void PreferencesDialog::init() {
 //    fontOverridesBoxFiller = new QWidget();
 //    fontOverridesBoxLayout->addWidget( fontOverridesBoxFiller, 1 );
 //}
-//
-//void PreferencesDialog::initSequences() {
-//    int seqCount = prefs->getRevealingSequenceCount();
-//    for( int i = 0; i < seqCount; i++ ) {
-//        Sequence seq = prefs->getRevealingSequenceAt( i );
-//        SequenceListItem* item = new SequenceListItem( sequencesView, seq.toHumanReadableString(), seq ); 
-//        item->setOn( seq.isEnabled() );
-//    }
-//}
-//
+
+void PreferencesDialog::initSequences() {
+    int seqCount = prefs->getRevealingSequenceCount();
+    for( int i = 0; i < seqCount; i++ ) {
+        Sequence seq = prefs->getRevealingSequenceAt( i );
+        SequenceListItem* item = new SequenceListItem( sequencesView, seq.toHumanReadableString(), seq ); 
+        item->setOn( seq.isEnabled() );
+    }
+}
+
 //void PreferencesDialog::initStudyLanguageValues() const {
 //    int studyLanguageListLength = sizeof( studyLanguageList ) / sizeof( QString );
 //    for( int i = 0; i < studyLanguageListLength; i++ ) {
@@ -534,10 +542,10 @@ void PreferencesDialog::accept() {
     QDialog::accept();
 }
 
-//void PreferencesDialog::updateUi() {
-//    removeSequenceButton->setEnabled( sequencesView->currentItem() ); 
-//}
-//
+void PreferencesDialog::updateUi() {
+    removeSequenceButton->setEnabled( sequencesView->currentItem() ); 
+}
+
 //bool PreferencesDialog::isRevealingSequenceSelectionValid() const {
 //    for( int i = 0; i < sequencesView->topLevelItemCount(); i++ ) {
 //        SequenceListItem* item = (SequenceListItem*)sequencesView->topLevelItem( i );
@@ -548,17 +556,17 @@ void PreferencesDialog::accept() {
 //
 //    return( false );
 //}
-//
-//bool PreferencesDialog::isRevealingSequenceDefined( const QString& seqStr ) const {
-//    for( int i = 0; i < sequencesView->topLevelItemCount(); i++ ) {
-//        SequenceListItem* item = (SequenceListItem*)sequencesView->topLevelItem( i );
-//        if( item->getSequence().toHumanReadableString() == seqStr )
-//            return( true );
-//    }
-//
-//    return( false );
-//}
-//
+
+bool PreferencesDialog::isRevealingSequenceDefined( const QString& seqStr ) const {
+    for( int i = 0; i < sequencesView->topLevelItemCount(); i++ ) {
+        SequenceListItem* item = (SequenceListItem*)sequencesView->topLevelItem( i );
+        if( item->getSequence().toHumanReadableString() == seqStr )
+            return( true );
+    }
+
+    return( false );
+}
+
 //bool PreferencesDialog::isStudyLanguageSelectionValid() const {
 //    int checkedLangCount = 0;
 //    for( int i = 0; i < studyLanguagesListView->topLevelItemCount(); i++ ) {
@@ -751,31 +759,25 @@ void PreferencesDialog::accept() {
 //        setAccelKey();
 //    }
 //}
-//
-//void PreferencesDialog::addSequence() {
-//    SequenceDialog dialog( prefs, this );
-//#if defined(WINCE)
-//    dialog.showMaximized();
-//#elif defined(Q_WS_HILDON)
-//    dialog.showFullScreen();
-//#else
-//    dialog.show();
-//#endif
-//    int result = dialog.exec();
-//    if( result ) {
-//        Sequence sequence = dialog.getSequence();
-//        // Just add new sequence.  Ignore duplicates.
-//        if( !isRevealingSequenceDefined( sequence.toHumanReadableString() ) ) {
-//            SequenceListItem* item = new SequenceListItem( sequencesView, sequence.toHumanReadableString(), sequence ); 
-//            item->setOn( true );
-//        }
-//    }
-//}
-//
-//void PreferencesDialog::removeSequence() {
-//    QTreeWidgetItem* currSeqItem = sequencesView->currentItem();
-//    if( currSeqItem ) {
-//        delete( currSeqItem );
-//        updateUi();
-//    }
-//}
+
+void PreferencesDialog::addSequence() {
+    SequenceDialog dialog( prefs, this );
+    dialog.show();
+    int result = dialog.exec();
+    if( result ) {
+        Sequence sequence = dialog.getSequence();
+        // Just add new sequence.  Ignore duplicates.
+        if( !isRevealingSequenceDefined( sequence.toHumanReadableString() ) ) {
+            SequenceListItem* item = new SequenceListItem( sequencesView, sequence.toHumanReadableString(), sequence ); 
+            item->setOn( true );
+        }
+    }
+}
+
+void PreferencesDialog::removeSequence() {
+    QTreeWidgetItem* currSeqItem = sequencesView->currentItem();
+    if( currSeqItem ) {
+        delete( currSeqItem );
+        updateUi();
+    }
+}
