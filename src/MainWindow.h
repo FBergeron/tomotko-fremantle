@@ -23,7 +23,7 @@
 #include <QTranslator>
 #include <QStackedWidget>
 #include "Controller.h"
-//#include "HelpBrowser.h"
+#include "HelpBrowser.h"
 #include "PreferencesDialog.h"
 #include "QuizFrame.h"
 #include "VocabularyManagerFrame.h"
@@ -52,7 +52,7 @@ public:
 public slots:
 
     //void updateMenus( QTreeWidgetItem* currItem );
-    //void updateFonts();
+    void updateFonts();
     //void setDigraphEnabled( bool isEnabled );
     //void retranslateUi();
     //void switchLanguage( const QString& language );
@@ -65,7 +65,7 @@ protected:
 private slots:
 
     void about();
-    //void help();
+    void help();
     //void startQuiz();
     //void showQuiz();
     //void invokeVocabularyManager();
@@ -76,7 +76,7 @@ private slots:
     //void cut();
     //void paste();
     //void toggleLanguageFilter();
-    //void quit();
+    void quit();
     //void setFirstLanguage( const QString& lang );
     //void setTestLanguage( const QString& lang );
     //void switchFirstAndTestLanguages();
@@ -116,7 +116,7 @@ private:
     //QAction*                pasteAction;
 
     QAction*                aboutAction;
-    //QAction*                helpAction;
+    QAction*                helpAction;
 
     //QActionGroup*           languageActionGroup;
 

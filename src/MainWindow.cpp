@@ -186,12 +186,12 @@ MainWindow::MainWindow( QApplication& app, Controller* controller )
     menuBar()->addMenu( mainMenu );
     menuBar()->addAction( action[ ACTION_PREFERENCES ] );
 
-    //helpMenu = new QMenu( tr( "?" ), this );
-    //helpMenuAction = menuBar()->addMenu( helpMenu );
-    //helpAction = Util::createAction( tr( "Help..." ), help_xpm, this, SLOT( help() ) );
-    //helpMenu->addAction( helpAction );
-    //helpMenu->addSeparator();
-    //
+    helpAction = Util::createAction( tr( "Help..." ), help_xpm, this, SLOT( help() ) );
+    menuBar()->addAction( helpAction );
+
+    aboutAction = Util::createAction( tr( "About..." ), about_xpm, this, SLOT( about() ) );
+    mainMenu->addAction( aboutAction );
+    
     //languageActionGroup = new QActionGroup( this ); 
     //QDir i18nDir( ":/i18n" );
     //QStringList langDirs = i18nDir.entryList();
@@ -238,8 +238,6 @@ MainWindow::MainWindow( QApplication& app, Controller* controller )
     //}
     //
     //helpMenu->addSeparator();
-    aboutAction = Util::createAction( tr( "About..." ), about_xpm, this, SLOT( about() ) );
-    mainMenu->addAction( aboutAction );
 
     //connect( quizFrame, SIGNAL( quizHidden() ), control, SLOT( concludeQuiz() ) );
 
@@ -253,7 +251,7 @@ MainWindow::MainWindow( QApplication& app, Controller* controller )
 
     setWindowTitle( "toMOTko" );
 
-    //updateFonts();
+    updateFonts();
 
     //connect( languageActionGroup, SIGNAL( triggered( QAction* ) ), this, SLOT( switchLanguage( QAction* ) ) );
 }
@@ -288,18 +286,18 @@ Controller* MainWindow::controller() {
 //    }
 //}
 
-//void MainWindow::updateFonts() {
-//    QFont labelsFont( control->getPreferences().getLabelsFont() ); 
-//
-//    qApp->setFont( labelsFont );
-//    firstLanguageComboBox->setFont( labelsFont );
-//    testLanguageComboBox->setFont( labelsFont );
-//    progressBar->setFont( labelsFont );
-//
-//    quizFrame->updateFonts();
-//    vocabManagerFrame->updateFonts();
-//}
-//
+void MainWindow::updateFonts() {
+    QFont labelsFont( control->getPreferences().getLabelsFont() ); 
+
+    qApp->setFont( labelsFont );
+    //firstLanguageComboBox->setFont( labelsFont );
+    //testLanguageComboBox->setFont( labelsFont );
+    //progressBar->setFont( labelsFont );
+
+    //quizFrame->updateFonts();
+    //vocabManagerFrame->updateFonts();
+}
+
 //bool MainWindow::isDigraphEnabled() const {
 //    return( vocabManagerFrame->isDigraphEnabled() );
 //}
@@ -390,10 +388,10 @@ void MainWindow::about() {
     //QMaemo5InformationBox::information( this, "This is a <b>Test</b>", QMaemo5InformationBox::DefaultTimeout );
 }
 
-//void MainWindow::help() {
-//    HelpBrowser::showPage( "toMOTko.html" );
-//}
-//
+void MainWindow::help() {
+    HelpBrowser::showPage( "toMOTko.html" );
+}
+
 //void MainWindow::startQuiz() {
 //    if( mainPanel->currentWidget() == quizFrame ) 
 //        quizFrame->restartQuiz();
@@ -453,9 +451,8 @@ void MainWindow::preferences() {
     dialog.show();
     int result = dialog.exec();
     if( result ) {
-cerr << "ok" << endl;
-//        // Check if different from previous value before updating.
-//        updateFonts();
+        // Check if different from previous value before updating.
+        updateFonts();
 //        switchLanguage( control->getPreferences().getInterfaceLanguage() );
 //        //if( mainPanel->currentWidget() == quizFrame ) {
 //        //    // Update the quiz.  May be tricky if the current term has no data for the current first/test languages.
@@ -509,11 +506,11 @@ cerr << "ok" << endl;
 //    setLanguageFilterEnabled( !action[ ACTION_SHOW_ALL_GLOSSARIES_AND_TERMS ]->isChecked() );
 //    vocabManagerFrame->updateShownItems();
 //}
-//
-//void MainWindow::quit() {
-//    close();
-//}
-//
+
+void MainWindow::quit() {
+    close();
+}
+
 //void MainWindow::setLanguageFilterEnabled( bool isEnabled ) {
 //    action[ ACTION_SHOW_ALL_GLOSSARIES_AND_TERMS ]->setChecked( !isEnabled );
 //    control->getPreferences().setLanguageFilterEnabled( isEnabled );

@@ -447,74 +447,74 @@ void PreferencesDialog::accept() {
 
     prefs->setQuizLength( quizLengthSlider->value() );
 
-//    prefs->clearRevealingSequences();
-//    for( int i = 0; i < sequencesView->topLevelItemCount(); i++ ) {
-//        SequenceListItem* item = (SequenceListItem*)sequencesView->topLevelItem( i );
-//        bool isChecked = ( item->checkState( 0 ) != Qt::Unchecked );
-//        Sequence seq = item->getSequence();
-//        seq.setEnabled( isChecked );
-//        prefs->addRevealingSequence( seq );
-//    }
-//
-//    prefs->setLabelsFontFamily( labelsFontFamilyComboBox->currentText() );
-//    int fontSizeNameListLength = sizeof( fontSizeNameList ) / sizeof( QString );
-//    int labelsFontSizeModifier =  labelsFontSizeComboBox->currentIndex() - ( fontSizeNameListLength - 1 ) / 2;
-//    prefs->setLabelsFontSizeModifier( labelsFontSizeModifier );
-//
-//    prefs->setFontFamily( fontFamilyComboBox->currentText() );
-//    int fontSizeModifier =  fontSizeComboBox->currentIndex() - ( fontSizeNameListLength - 1 ) / 2;
-//    prefs->setFontSizeModifier( fontSizeModifier );
-//
-//    prefs->clearFontOverrideFamilies();
-//    prefs->clearFontOverrideSizes();
-//    int fontOverrideCount = fontOverrideLabels.count();
-//    for( int i = 0; i < fontOverrideCount; i++ ) {
-//        const QString& language = Util::getLanguageCode( fontOverrideLabels.at( i )->text() );
-//        if( fontOverrideFamilyComboBoxes.at( i )->currentIndex() > 0 )
-//            prefs->setFontOverrideFamily( language, fontOverrideFamilyComboBoxes.at( i )->currentText() );
-//        if( fontOverrideSizeComboBoxes.at( i )->currentIndex() > 0 ) {
-//            int fontSizeModifier =  ( fontOverrideSizeComboBoxes.at( i )->currentIndex() - 1 ) - ( fontSizeNameListLength - 1 ) / 2;
-//            prefs->setFontOverrideSize( language, fontSizeModifier );
-//        }
-//    }
-//
-//    bool firstLanguageExists = false;
-//    bool testLanguageExists = false;
-//    prefs->clearStudyLanguages();
-//    for( int i = 0; i < studyLanguagesListView->topLevelItemCount(); i++ ) {
-//        QTreeWidgetItem* item = studyLanguagesListView->topLevelItem( i );
-//        bool isChecked = ( item->checkState( 0 ) != Qt::Unchecked );
-//        if( isChecked ) {
-//            QString langCode( Util::getLanguageCode( item->text( 0 ) ) );
-//            prefs->addStudyLanguage( langCode );
-//            if( !firstLanguageExists )
-//                firstLanguageExists = ( prefs->getFirstLanguage() == langCode );
-//            if( !testLanguageExists )
-//                testLanguageExists = (prefs->getTestLanguage() == langCode );
-//        }
-//    }
-//    if( !firstLanguageExists )
-//        prefs->setFirstLanguage( QString( "" ) );
-//    if( !testLanguageExists )
-//        prefs->setTestLanguage( QString( "" ) );
-//
-//    bool isDigraphEnabled = ( digraphCheckBox->checkState() != Qt::Unchecked );
-//    prefs->setDigraphEnabled( isDigraphEnabled );
-//
-//    bool isQuizButtonHiddenChecked = ( hideQuizButtonCheckBox->checkState() != Qt::Unchecked );
-//    prefs->setQuizButtonsHidden( isQuizButtonHiddenChecked );
-//
-//    bool isAltInTermListShownChecked = ( showAltTextInTermListCheckBox->checkState() != Qt::Unchecked );
-//    prefs->setAltInTermListShown( isAltInTermListShownChecked );
-//
-//    if( keyboardAccelModified ) {
-//        for( int i = 0; i < keyboardAccelListView->topLevelItemCount(); i++ ) {
-//            KeyActionListViewItem* item = (KeyActionListViewItem*)keyboardAccelListView->topLevelItem( i );
-//            QAction *action = item->getAction();
-//            action->setShortcut( item->getKey() );
-//            prefs->setAccelerator( item->getActionIndex(), item->getKey() );
-//        }
-//    }
+    prefs->clearRevealingSequences();
+    for( int i = 0; i < sequencesView->topLevelItemCount(); i++ ) {
+        SequenceListItem* item = (SequenceListItem*)sequencesView->topLevelItem( i );
+        bool isChecked = ( item->checkState( 0 ) != Qt::Unchecked );
+        Sequence seq = item->getSequence();
+        seq.setEnabled( isChecked );
+        prefs->addRevealingSequence( seq );
+    }
+
+    prefs->setLabelsFontFamily( labelsFontFamilyComboBox->currentText() );
+    int fontSizeNameListLength = sizeof( fontSizeNameList ) / sizeof( QString );
+    int labelsFontSizeModifier =  labelsFontSizeComboBox->currentIndex() - ( fontSizeNameListLength - 1 ) / 2;
+    prefs->setLabelsFontSizeModifier( labelsFontSizeModifier );
+
+    prefs->setFontFamily( fontFamilyComboBox->currentText() );
+    int fontSizeModifier =  fontSizeComboBox->currentIndex() - ( fontSizeNameListLength - 1 ) / 2;
+    prefs->setFontSizeModifier( fontSizeModifier );
+
+    prefs->clearFontOverrideFamilies();
+    prefs->clearFontOverrideSizes();
+    int fontOverrideCount = fontOverrideLabels.count();
+    for( int i = 0; i < fontOverrideCount; i++ ) {
+        const QString& language = Util::getLanguageCode( fontOverrideLabels.at( i )->text() );
+        if( fontOverrideFamilyComboBoxes.at( i )->currentIndex() > 0 )
+            prefs->setFontOverrideFamily( language, fontOverrideFamilyComboBoxes.at( i )->currentText() );
+        if( fontOverrideSizeComboBoxes.at( i )->currentIndex() > 0 ) {
+            int fontSizeModifier =  ( fontOverrideSizeComboBoxes.at( i )->currentIndex() - 1 ) - ( fontSizeNameListLength - 1 ) / 2;
+            prefs->setFontOverrideSize( language, fontSizeModifier );
+        }
+    }
+
+    bool firstLanguageExists = false;
+    bool testLanguageExists = false;
+    prefs->clearStudyLanguages();
+    for( int i = 0; i < studyLanguagesListView->topLevelItemCount(); i++ ) {
+        QTreeWidgetItem* item = studyLanguagesListView->topLevelItem( i );
+        bool isChecked = ( item->checkState( 0 ) != Qt::Unchecked );
+        if( isChecked ) {
+            QString langCode( Util::getLanguageCode( item->text( 0 ) ) );
+            prefs->addStudyLanguage( langCode );
+            if( !firstLanguageExists )
+                firstLanguageExists = ( prefs->getFirstLanguage() == langCode );
+            if( !testLanguageExists )
+                testLanguageExists = (prefs->getTestLanguage() == langCode );
+        }
+    }
+    if( !firstLanguageExists )
+        prefs->setFirstLanguage( QString( "" ) );
+    if( !testLanguageExists )
+        prefs->setTestLanguage( QString( "" ) );
+
+    bool isDigraphEnabled = ( digraphCheckBox->checkState() != Qt::Unchecked );
+    prefs->setDigraphEnabled( isDigraphEnabled );
+
+    bool isQuizButtonHiddenChecked = ( hideQuizButtonCheckBox->checkState() != Qt::Unchecked );
+    prefs->setQuizButtonsHidden( isQuizButtonHiddenChecked );
+
+    bool isAltInTermListShownChecked = ( showAltTextInTermListCheckBox->checkState() != Qt::Unchecked );
+    prefs->setAltInTermListShown( isAltInTermListShownChecked );
+
+    if( keyboardAccelModified ) {
+        for( int i = 0; i < keyboardAccelListView->topLevelItemCount(); i++ ) {
+            KeyActionListViewItem* item = (KeyActionListViewItem*)keyboardAccelListView->topLevelItem( i );
+            QAction *action = item->getAction();
+            action->setShortcut( item->getKey() );
+            prefs->setAccelerator( item->getActionIndex(), item->getKey() );
+        }
+    }
 
     QDialog::accept();
 }

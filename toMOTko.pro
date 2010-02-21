@@ -16,7 +16,7 @@ HEADERS     +=  src/Base.h \
                 src/Util.h \
                 src/BilingualKey.h \
                 #src/DigraphLineEdit.h \
-                #src/HelpBrowser.h \
+                src/HelpBrowser.h \
                 #src/ScrollableLineEdit.h \
                 #src/ScrollableMultiLineEdit.h \
                 #src/DigraphMultiLineEdit.h \
@@ -61,7 +61,7 @@ HEADERS     +=  src/Base.h \
 SOURCES     +=  src/Util.cpp \ 
                 src/BilingualKey.cpp \
                 #src/DigraphLineEdit.cpp \
-                #src/HelpBrowser.cpp \
+                src/HelpBrowser.cpp \
                 #src/ScrollableLineEdit.cpp \
                 #src/ScrollableMultiLineEdit.cpp \
                 #src/DigraphMultiLineEdit.cpp \
