@@ -5,6 +5,8 @@ Make PreferencesDialog work.
     Move the Ok/Cancel buttons on the right.
     Remake the SequenceDialog.  It will probably depend on the QuizFrame too.
     I have hidden the scrollbar of bodyWrapper.  Not sure if it's a good idea.  What's the standard way to do that on Maemo?
+    Replace ListView by a sequence of checkboxes for keyboard accelerators and languages of study.
+    Position the scrollbar the right place, if possible, when invalid values are detected.
 Use standard constants for margin, alignment, etc.
 Use standard layout as much as possible.
 

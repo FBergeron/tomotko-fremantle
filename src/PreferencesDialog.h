@@ -60,19 +60,19 @@ protected slots:
 
 protected:
 
-//    virtual void resizeEvent( QResizeEvent* evt );
+    virtual void resizeEvent( QResizeEvent* evt );
 
 private slots:
 
-//    void resetDefaultLabelsFont();
-//    void resetDefaultFont();
+    void resetDefaultLabelsFont();
+    void resetDefaultFont();
 //    void addFontOverride( const QString& language );
 //    void removeFontOverride( const QString& language );
 //    void updateFontOverride( QTreeWidgetItem* item, int column );
-//    void clearAccelKey();
-//    void setAccelKey();
-//    void resetAccelKey();
-//    void cancelSetAccelKey();
+    void clearAccelKey();
+    void setAccelKey();
+    void resetAccelKey();
+    void cancelSetAccelKey();
     void addSequence();
     void removeSequence();
     void updateUi();
@@ -80,18 +80,18 @@ private slots:
 private:
 
     void init();
-//    void initFontFamilyValues( QComboBox* comboBox, bool withEmptyEntry = false ) const;
-//    void initFontSizeValues( QComboBox* comboBox, bool withEmptyEntry = false ) const;
-//    void initFontOverrides();
+    void initFontFamilyValues( QComboBox* comboBox, bool withEmptyEntry = false ) const;
+    void initFontSizeValues( QComboBox* comboBox, bool withEmptyEntry = false ) const;
+    void initFontOverrides();
     void initSequences();
-//    void initStudyLanguageValues() const;
-//    void selectFontFamily( QComboBox* comboBox, const QString& fontFamily );
-//    void selectFontSize( QComboBox* comboBox, int fontSizeModifier, bool withEmptyEntry = false );
-//    void selectLanguage( QComboBox* comboBox, const QString& langCode );
-//    bool isRevealingSequenceSelectionValid() const;
+    void initStudyLanguageValues() const;
+    void selectFontFamily( QComboBox* comboBox, const QString& fontFamily );
+    void selectFontSize( QComboBox* comboBox, int fontSizeModifier, bool withEmptyEntry = false );
+    void selectLanguage( QComboBox* comboBox, const QString& langCode );
+    bool isRevealingSequenceSelectionValid() const;
     bool isRevealingSequenceDefined( const QString& seqStr ) const;
-//    bool isStudyLanguageSelectionValid() const;
-//    void keyPressEvent( QKeyEvent *evt );
+    bool isStudyLanguageSelectionValid() const;
+    void keyPressEvent( QKeyEvent *evt );
 
     Preferences*                prefs;
 
@@ -100,13 +100,6 @@ private:
     QScrollArea*                bodyWrapper;
     QWidget*                    bodyPanel;
     QVBoxLayout*                bodyPanelLayout;
-
-    //QWidget*                    labelsPanel;
-    //QVBoxLayout*                labelsPanelLayout;
-
-    //QWidget*                    fieldsPanel;
-    //QVBoxLayout*                fieldsPanelLayout;
-
 
     QWidget*                    languagePage;
     QVBoxLayout*                languagePageLayout;
@@ -128,13 +121,10 @@ private:
     QFrame*                     interfacePageSeparator;
     QLabel*                     interfacePageLabel;
 
+    QWidget*                    languagesPanel;
+    QVBoxLayout*                languagesPanelLayout;
 
-//    QVBoxLayout*                languageLayout;
-//
-//    QWidget*                    languagesPanel;
-//    QVBoxLayout*                languagesPanelLayout;
-//
-//    QTreeWidget*                studyLanguagesListView;
+    QTreeWidget*                studyLanguagesListView;
 
     QWidget*                    quizLengthPanel;
     QHBoxLayout*                quizLengthPanelLayout;
@@ -144,10 +134,13 @@ private:
     QWidget*                    quizLengthSliderPanel;
     QVBoxLayout*                quizLengthSliderPanelLayout;
 
-    QLabel*                     sequencesLabel;
+    QLabel*                     revealingOptionsLabel;
 
     QWidget*                    revealingOptionsPanel;
-    QHBoxLayout*                revealingOptionsPanelLayout;
+    QVBoxLayout*                revealingOptionsPanelLayout;
+
+    QWidget*                    sequencesPanel;
+    QHBoxLayout*                sequencesPanelLayout;
 
     QWidget*                    sequencesViewPanel;
     QVBoxLayout*                sequencesViewPanelLayout;
@@ -157,9 +150,10 @@ private:
     QPushButton*                addSequenceButton;
     QPushButton*                removeSequenceButton;
 
-//    QGroupBox*                  sequencesLabelBox;
-//    QVBoxLayout*                sequencesLabelBoxLayout;
-//    QLabel*                     sequencesLabel;
+    QWidget*                    sequencesLabelBox;
+    QVBoxLayout*                sequencesLabelBoxLayout;
+    QLabel*                     sequencesLabelHeader;
+    QLabel*                     sequencesLabel;
 
     QSlider*                    quizLengthSlider;
     QWidget*                    quizLengthLabelsPanel;
@@ -168,63 +162,53 @@ private:
     QLabel*                     quizLengthMediumLabel;
     QLabel*                     quizLengthLongestLabel;
    
-//    QHBoxLayout*                keyboardAccelButtonPanelLayout;
-//
-//    QWidget*                    labelsFontPanel;
-//    QHBoxLayout*                labelsFontPanelLayout;
-//    QLabel*                     labelsFontLabel;
-//    QComboBox*                  labelsFontFamilyComboBox;
-//    QComboBox*                  labelsFontSizeComboBox;
-//    QPushButton*                resetDefaultLabelsFontButton;
-//
-//    QWidget*                    fontsPanel;
-//    QVBoxLayout*                fontsPanelLayout;
-//
-//    QWidget*                    fontPanel;
-//    QHBoxLayout*                fontPanelLayout;
-//    QLabel*                     fontLabel;
-//    QComboBox*                  fontFamilyComboBox;
-//    QComboBox*                  fontSizeComboBox;
-//    QPushButton*                resetDefaultFontButton;
-//
-//    QGroupBox*                  fontOverridesPanel;
-//    QVBoxLayout*                fontOverridesPanelLayout;
-//    QScrollArea*                fontOverridesScrollView;
-//    QWidget*                    fontOverridesBox;
-//    QVBoxLayout*                fontOverridesBoxLayout;
-//    QWidget*                    fontOverridesBoxFiller;
-//
-//    QList<QWidget*>             fontOverrideBoxes;
-//    QList<QLabel*>              fontOverrideLabels;
-//    QList<QComboBox*>           fontOverrideFamilyComboBoxes;
-//    QList<QComboBox*>           fontOverrideSizeComboBoxes;
-//
-//    QWidget*                    miscInterfaceOptionsPanel;
-//    QGridLayout*                miscInterfaceOptionsPanelLayout;
-//
-//    QGroupBox*                  digraphPanel;
-//    QVBoxLayout*                digraphPanelLayout;
-//    QCheckBox*                  digraphCheckBox;
-//
-//    QGroupBox*                  hideQuizButtonPanel;
-//    QVBoxLayout*                hideQuizButtonPanelLayout;
-//    QCheckBox*                  hideQuizButtonCheckBox;
-//
-//    QGroupBox*                  showAltTextInTermListPanel;
-//    QVBoxLayout*                showAltTextInTermListPanelLayout;
-//    QCheckBox*                  showAltTextInTermListCheckBox;
-//
-//    QGroupBox*                  keyboardAccelPanel;
-//    QVBoxLayout*                keyboardAccelPanelLayout;
-//
+    QHBoxLayout*                keyboardAccelButtonPanelLayout;
+
+    QWidget*                    labelsFontPanel;
+    QHBoxLayout*                labelsFontPanelLayout;
+    QLabel*                     labelsFontLabel;
+    QComboBox*                  labelsFontFamilyComboBox;
+    QComboBox*                  labelsFontSizeComboBox;
+    QPushButton*                resetDefaultLabelsFontButton;
+
+    QWidget*                    fontsPanel;
+    QVBoxLayout*                fontsPanelLayout;
+
+    QWidget*                    fontPanel;
+    QHBoxLayout*                fontPanelLayout;
+    QLabel*                     fontLabel;
+    QComboBox*                  fontFamilyComboBox;
+    QComboBox*                  fontSizeComboBox;
+    QPushButton*                resetDefaultFontButton;
+
+    QWidget*                    fontOverridesPanel;
+    QVBoxLayout*                fontOverridesPanelLayout;
+
+    QLabel*                     fontOverridesLabel;
+
+    QList<QWidget*>             fontOverrideBoxes;
+    QList<QLabel*>              fontOverrideLabels;
+    QList<QComboBox*>           fontOverrideFamilyComboBoxes;
+    QList<QComboBox*>           fontOverrideSizeComboBoxes;
+
+    QCheckBox*                  digraphCheckBox;
+
+    QCheckBox*                  hideQuizButtonCheckBox;
+
+    QCheckBox*                  showAltTextInTermListCheckBox;
+
+    QWidget*                    keyboardAccelPanel;
+    QVBoxLayout*                keyboardAccelPanelLayout;
+
+    QLabel*                     keyboardAccelLabel;
     QTreeWidgetItem*            grabAccelKeyFor;
-//    QTreeWidget*                keyboardAccelListView;
+    QTreeWidget*                keyboardAccelListView;
     bool                        keyboardAccelModified;
-//
-//    QWidget*                    keyboardAccelButtonPanel;
-//    QPushButton*                clearAccelKeyButton;
-//    QPushButton*                setAccelKeyButton;
-//    QPushButton*                resetAccelKeyButton;
+
+    QWidget*                    keyboardAccelButtonPanel;
+    QPushButton*                clearAccelKeyButton;
+    QPushButton*                setAccelKeyButton;
+    QPushButton*                resetAccelKeyButton;
 
     QWidget*                    bottomButtonsPanel;
     QVBoxLayout*                bottomButtonsPanelLayout;
