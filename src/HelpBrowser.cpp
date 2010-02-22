@@ -10,23 +10,19 @@ HelpBrowser::HelpBrowser( const QString& path, const QString& page, QWidget* par
     textBrowser->document()->setDefaultStyleSheet( stylesheet );
     homeButton = new QPushButton( tr( "Home" ) );
     backButton = new QPushButton( tr( "Back" ) );
-    closeButton = new QPushButton( tr( "Close" ) );
-    //closeButton->setShortcut( tr( "Esc" ) );
 
-    QHBoxLayout* buttonLayout = new QHBoxLayout();
+    QVBoxLayout* buttonLayout = new QVBoxLayout();
     buttonLayout->addWidget( homeButton );
-    buttonLayout->addWidget( backButton );
     buttonLayout->addStretch();
-    buttonLayout->addWidget( closeButton );
+    buttonLayout->addWidget( backButton );
 
-    QVBoxLayout* mainLayout = new QVBoxLayout();
-    mainLayout->addLayout( buttonLayout );
+    QHBoxLayout* mainLayout = new QHBoxLayout();
     mainLayout->addWidget( textBrowser );
+    mainLayout->addLayout( buttonLayout );
     setLayout( mainLayout );
 
     connect( homeButton, SIGNAL( clicked() ), textBrowser, SLOT( home() ) );
     connect( backButton, SIGNAL( clicked() ), textBrowser, SLOT( backward() ) );
-    connect( closeButton, SIGNAL( clicked() ), this, SLOT( close() ) );
     connect( textBrowser, SIGNAL( sourceChanged( const QUrl& ) ), this, SLOT( updateWindowTitle() ) );
     connect( textBrowser, SIGNAL( anchorClicked( const QUrl& ) ), this, SLOT( openLink( const QUrl& ) ) );
 

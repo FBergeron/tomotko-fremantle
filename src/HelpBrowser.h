@@ -32,7 +32,6 @@ private:
     QTextBrowser*   textBrowser;
     QPushButton*    homeButton;
     QPushButton*    backButton;
-    QPushButton*    closeButton;
 
 };
 
