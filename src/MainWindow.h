@@ -54,13 +54,12 @@ public slots:
     //void updateMenus( QTreeWidgetItem* currItem );
     void updateFonts();
     //void setDigraphEnabled( bool isEnabled );
-    //void retranslateUi();
-    //void switchLanguage( const QString& language );
-    //void switchLanguage( QAction* langAction );
+    void retranslateUi();
+    void switchLanguage( const QString& language );
 
 protected:
 
-    //void closeEvent( QCloseEvent* );
+    void closeEvent( QCloseEvent* );
 
 private slots:
 
@@ -91,7 +90,7 @@ private:
     //void selectLanguage( QComboBox* comboBox, const QString& langCode );
     //void updateLanguageSelector( QComboBox* comboBox );
 
-    QMap<QString,QString>   availableLanguages;
+    //QMap<QString,QString>   availableLanguages;  // Have been relocated to PreferencesDialog.
 
     QApplication&           app;
     Controller*             control;
@@ -117,8 +116,6 @@ private:
 
     QAction*                aboutAction;
     QAction*                helpAction;
-
-    //QActionGroup*           languageActionGroup;
 
     //QWidget*                languageSelectorPanel;
     //QAction*                languageSelectorAction;

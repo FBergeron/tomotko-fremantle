@@ -24,6 +24,7 @@
 #include <QSlider>
 #include <QString>
 #include <QTabWidget>
+#include <QTranslator>
 #include <QTreeWidget>
 #include <QVBoxLayout>
 #include <QGroupBox>
@@ -94,6 +95,8 @@ private:
     void keyPressEvent( QKeyEvent *evt );
 
     Preferences*                prefs;
+
+    QMap<QString,QString>       availableLanguages;
 
     QHBoxLayout*                mainLayout;
 
@@ -209,6 +212,11 @@ private:
     QPushButton*                clearAccelKeyButton;
     QPushButton*                setAccelKeyButton;
     QPushButton*                resetAccelKeyButton;
+
+    QWidget*                    interfaceLanguagePanel;
+    QHBoxLayout*                interfaceLanguagePanelLayout;
+    QLabel*                     interfaceLanguageLabel;
+    QComboBox*                  interfaceLanguageField;
 
     QWidget*                    bottomButtonsPanel;
     QVBoxLayout*                bottomButtonsPanelLayout;

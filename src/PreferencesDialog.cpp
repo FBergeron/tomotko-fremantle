@@ -1,4 +1,10 @@
 #include "PreferencesDialog.h"
+#include "icons/flag_en.xpm"
+#include "icons/flag_es.xpm"
+#include "icons/flag_fr.xpm"
+#include "icons/flag_ja.xpm"
+#include "icons/flag_zh.xpm"
+#include "icons/flag_de.xpm"
 
 const QString PreferencesDialog::fontSizeNameList[] = { 
     QT_TR_NOOP( "VerySmall" ), QT_TR_NOOP( "Small" ), QT_TR_NOOP( "Medium" ), QT_TR_NOOP( "Large" ), QT_TR_NOOP( "VeryLarge" ) 
@@ -219,6 +225,58 @@ void PreferencesDialog::init() {
     showAltTextInTermListCheckBox = new QCheckBox( tr( "ShowAltInTermList" ) );
     showAltTextInTermListCheckBox->setChecked( prefs->isAltInTermListShown() ? Qt::Checked : Qt::Unchecked );
 
+    interfaceLanguagePanel = new QWidget();
+    interfaceLanguagePanelLayout = new QHBoxLayout();
+    interfaceLanguagePanelLayout->setContentsMargins( 0, 0, 0, 0 );
+    interfaceLanguagePanel->setLayout( interfaceLanguagePanelLayout );
+
+    interfaceLanguageLabel = new QLabel( tr( "InterfaceLanguage" ) );
+    interfaceLanguageField = new QComboBox();
+    //languageActionGroup = new QActionGroup( this ); 
+    QDir i18nDir( ":/i18n" );
+    QStringList langDirs = i18nDir.entryList();
+    QStringList sortedLanguages;
+    for( int i = 0; i < langDirs.count(); i++ ) {
+        if( langDirs[ i ] == QString( "." ) || langDirs[ i ] == QString( ".." ) )
+            continue;
+        QString locale = langDirs[ i ];
+        QString langDirStr = ":/i18n/" + QString( locale );
+        QDir langDir( langDirStr );
+        if( langDir.exists( QString( "toMOTko.qm" ) ) ) {
+            QTranslator translator( this );
+            translator.load( QString( "toMOTko.qm" ), langDirStr );
+            QString language = translator.translate( "QObject", locale.toLatin1().data() );
+            sortedLanguages.append( language );
+            availableLanguages[ language ] = locale;
+        }
+    }
+    sortedLanguages.sort();
+    for( int i = 0; i < sortedLanguages.count(); i++ ) {
+        QIcon icon;
+        // Refactor this if later.  Look at createAction() method for hint (maybe).
+        QString langCode = availableLanguages[ sortedLanguages[ i ] ];
+        if( langCode == QString( "en" ) )
+            icon = QIcon( QPixmap( flag_en_xpm ) );
+        else if( langCode == QString( "es" ) )
+            icon = QIcon( QPixmap( flag_es_xpm ) );
+        else if( langCode == QString( "fr" ) )
+            icon = QIcon( QPixmap( flag_fr_xpm ) );
+        else if( langCode == QString( "ja" ) )
+            icon = QIcon( QPixmap( flag_ja_xpm ) );
+        else if( langCode == QString( "zh" ) )
+            icon = QIcon( QPixmap( flag_zh_xpm ) );
+        else if( langCode == QString( "de" ) )
+            icon = QIcon( QPixmap( flag_de_xpm ) );
+
+        interfaceLanguageField->addItem( icon, sortedLanguages[ i ] );
+
+        if( prefs->getInterfaceLanguage() == availableLanguages[ sortedLanguages[ i ] ] )
+            interfaceLanguageField->setCurrentIndex( i );
+    }
+
+    interfaceLanguagePanelLayout->addWidget( interfaceLanguageLabel );
+    interfaceLanguagePanelLayout->addWidget( interfaceLanguageField );
+
     keyboardAccelPanel = new QWidget();
     keyboardAccelPanelLayout = new QVBoxLayout();
     keyboardAccelPanel->setLayout( keyboardAccelPanelLayout );
@@ -265,6 +323,7 @@ void PreferencesDialog::init() {
     interfacePageSeparator->setFrameStyle( QFrame::HLine );
 
     interfacePageLayout->addWidget( interfacePageLabel );
+    interfacePageLayout->addWidget( interfaceLanguagePanel );
     interfacePageLayout->addWidget( keyboardAccelPanel );
     interfacePageLayout->addWidget( digraphCheckBox );
     interfacePageLayout->addWidget( hideQuizButtonCheckBox );
@@ -515,6 +574,9 @@ void PreferencesDialog::accept() {
             prefs->setAccelerator( item->getActionIndex(), item->getKey() );
         }
     }
+
+    QString interfaceLanguage = availableLanguages[ interfaceLanguageField->currentText() ];
+    prefs->setInterfaceLanguage( interfaceLanguage );
 
     QDialog::accept();
 }

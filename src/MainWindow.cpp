@@ -24,12 +24,6 @@
 #include "icons/removeItem.xpm"
 #include "icons/checkAllTerms.xpm"
 #include "icons/inverseCheckedTerms.xpm"
-#include "icons/flag_en.xpm"
-#include "icons/flag_es.xpm"
-#include "icons/flag_fr.xpm"
-#include "icons/flag_ja.xpm"
-#include "icons/flag_zh.xpm"
-#include "icons/flag_de.xpm"
 
 MainWindow::MainWindow( QApplication& app, Controller* controller )
     : QMainWindow( 0/*, WDestructiveClose*/ ), app( app ), control( controller ) {
@@ -192,53 +186,6 @@ MainWindow::MainWindow( QApplication& app, Controller* controller )
     aboutAction = Util::createAction( tr( "About..." ), about_xpm, this, SLOT( about() ) );
     mainMenu->addAction( aboutAction );
     
-    //languageActionGroup = new QActionGroup( this ); 
-    //QDir i18nDir( ":/i18n" );
-    //QStringList langDirs = i18nDir.entryList();
-    //QStringList sortedLanguages;
-    //for( int i = 0; i < langDirs.count(); i++ ) {
-    //    if( langDirs[ i ] == QString( "." ) || langDirs[ i ] == QString( ".." ) )
-    //        continue;
-    //    QString locale = langDirs[ i ];
-    //    QString langDirStr = ":/i18n/" + QString( locale );
-    //    QDir langDir( langDirStr );
-    //    if( langDir.exists( QString( "toMOTko.qm" ) ) ) {
-    //        QTranslator translator( this );
-    //        translator.load( QString( "toMOTko.qm" ), langDirStr );
-    //        QString language = translator.translate( "QObject", locale.toLatin1().data() );
-    //        sortedLanguages.append( language );
-    //        availableLanguages[ language ] = locale;
-    //    }
-    //}
-    //sortedLanguages.sort();
-    //for( int i = 0; i < sortedLanguages.count(); i++ ) {
-    //    QAction* langAction = new QAction( this );
-    //    langAction->setCheckable( true );
-    //    langAction->setText( sortedLanguages[ i ] );
-    //    
-    //    // Refactor this if later.  Look at createAction() method for hint (maybe).
-    //    QString langCode = availableLanguages[ sortedLanguages[ i ] ];
-    //    if( langCode == QString( "en" ) )
-    //        langAction->setIcon( QIcon( QPixmap( flag_en_xpm ) ) );
-    //    else if( langCode == QString( "es" ) )
-    //        langAction->setIcon( QIcon( QPixmap( flag_es_xpm ) ) );
-    //    else if( langCode == QString( "fr" ) )
-    //        langAction->setIcon( QIcon( QPixmap( flag_fr_xpm ) ) );
-    //    else if( langCode == QString( "ja" ) )
-    //        langAction->setIcon( QIcon( QPixmap( flag_ja_xpm ) ) );
-    //    else if( langCode == QString( "zh" ) )
-    //        langAction->setIcon( QIcon( QPixmap( flag_zh_xpm ) ) );
-    //    else if( langCode == QString( "de" ) )
-    //        langAction->setIcon( QIcon( QPixmap( flag_de_xpm ) ) );
-
-    //    helpMenu->addAction( langAction );
-    //    languageActionGroup->addAction( langAction );
-    //    if( controller->getPreferences().getInterfaceLanguage() == availableLanguages[ sortedLanguages[ i ] ] )
-    //        langAction->setChecked( true );
-    //}
-    //
-    //helpMenu->addSeparator();
-
     //connect( quizFrame, SIGNAL( quizHidden() ), control, SLOT( concludeQuiz() ) );
 
     //mainPanel->addWidget( quizFrame );
@@ -252,8 +199,6 @@ MainWindow::MainWindow( QApplication& app, Controller* controller )
     setWindowTitle( "toMOTko" );
 
     updateFonts();
-
-    //connect( languageActionGroup, SIGNAL( triggered( QAction* ) ), this, SLOT( switchLanguage( QAction* ) ) );
 }
 
 MainWindow::~MainWindow() {
@@ -305,58 +250,58 @@ void MainWindow::updateFonts() {
 //void MainWindow::setDigraphEnabled( bool isEnabled ) {
 //    vocabManagerFrame->setDigraphEnabled( isEnabled );
 //}
-//
-//void MainWindow::retranslateUi() {
+
+void MainWindow::retranslateUi() {
 //    actionsMenuAction->setText( tr( "Actions" ) );
 //    editionMenuAction->setText( tr( "Edition" ) );
 //
-//    // Could use a loop here.
-//    action[ ACTION_REVEAL ]->setText( tr( "Reveal" ) );
-//    action[ ACTION_RIGHT_ANSWER ]->setText( tr( "RightAnswer" ) );
-//    action[ ACTION_WRONG_ANSWER ]->setText( tr( "WrongAnswer" ) );
-//    action[ ACTION_EDIT_QUIZ_TERM ]->setText( tr( "EditQuizTerm" ) );
-//    action[ ACTION_START_QUIZ ]->setText( tr( "StartQuiz" ) );
-//    action[ ACTION_MANAGE_GLOSSARIES ]->setText( tr( "ManageGlossaries" ) );
-//    action[ ACTION_IMPORT ]->setText( tr( "Import..." ) );
-//    action[ ACTION_EXPORT ]->setText( tr( "Export..." ) );
-//    action[ ACTION_SHOW_ALL_GLOSSARIES_AND_TERMS ]->setText( tr( "ShowAllGlossariesAndTerms" ) );
-//    action[ ACTION_PREFERENCES ]->setText( tr( "Preferences..." ) );
-//    action[ ACTION_QUIT ]->setText( tr( "Quit" ) );
-//    action[ ACTION_ADD_FOLDER ]->setText( tr( "AddFolder" ) );
-//    action[ ACTION_ADD_GLOSSARY ]->setText( tr( "AddGlossary" ) );
-//    action[ ACTION_REMOVE_ITEM ]->setText( tr( "RemoveItem" ) );
-//    action[ ACTION_ADD_TERM ]->setText( tr( "AddTerm" ) );
-//    action[ ACTION_EDIT_TERM ]->setText( tr( "EditTerm" ) );
-//    action[ ACTION_REMOVE_TERMS ]->setText( tr( "RemoveTerm" ) );
-//    action[ ACTION_CHECK_ALL_TERMS ]->setText( tr( "CheckAllTerms" ) );
-//    action[ ACTION_INVERSE_CHECKED_TERMS ]->setText( tr( "InverseCheckedTerms" ) );
-//    action[ ACTION_MAXIMIZE ]->setText( tr( "Maximize" ) );
-//    action[ ACTION_SEARCH ]->setText( tr( "Search..." ) );
-//
+    // Could use a loop here.
+    action[ ACTION_REVEAL ]->setText( tr( "Reveal" ) );
+    action[ ACTION_RIGHT_ANSWER ]->setText( tr( "RightAnswer" ) );
+    action[ ACTION_WRONG_ANSWER ]->setText( tr( "WrongAnswer" ) );
+    action[ ACTION_EDIT_QUIZ_TERM ]->setText( tr( "EditQuizTerm" ) );
+    action[ ACTION_START_QUIZ ]->setText( tr( "StartQuiz" ) );
+    action[ ACTION_MANAGE_GLOSSARIES ]->setText( tr( "ManageGlossaries" ) );
+    action[ ACTION_IMPORT ]->setText( tr( "Import..." ) );
+    action[ ACTION_EXPORT ]->setText( tr( "Export..." ) );
+    action[ ACTION_SHOW_ALL_GLOSSARIES_AND_TERMS ]->setText( tr( "ShowAllGlossariesAndTerms" ) );
+    action[ ACTION_PREFERENCES ]->setText( tr( "Preferences..." ) );
+    action[ ACTION_QUIT ]->setText( tr( "Quit" ) );
+    action[ ACTION_ADD_FOLDER ]->setText( tr( "AddFolder" ) );
+    action[ ACTION_ADD_GLOSSARY ]->setText( tr( "AddGlossary" ) );
+    action[ ACTION_REMOVE_ITEM ]->setText( tr( "RemoveItem" ) );
+    action[ ACTION_ADD_TERM ]->setText( tr( "AddTerm" ) );
+    action[ ACTION_EDIT_TERM ]->setText( tr( "EditTerm" ) );
+    action[ ACTION_REMOVE_TERMS ]->setText( tr( "RemoveTerm" ) );
+    action[ ACTION_CHECK_ALL_TERMS ]->setText( tr( "CheckAllTerms" ) );
+    action[ ACTION_INVERSE_CHECKED_TERMS ]->setText( tr( "InverseCheckedTerms" ) );
+    action[ ACTION_MAXIMIZE ]->setText( tr( "Maximize" ) );
+    action[ ACTION_SEARCH ]->setText( tr( "Search..." ) );
+
 //    cutAction->setText( QObject::tr( "Cut" ) );
 //    copyAction->setText( QObject::tr( "Copy" ) );
 //    pasteAction->setText( QObject::tr( "Paste" ) );
-//
-//    helpAction->setText( tr( "Help..." ) );
-//    aboutAction->setText( tr( "About..." ) );
-//    
+
+    helpAction->setText( tr( "Help..." ) );
+    aboutAction->setText( tr( "About..." ) );
+    
 //    updateFirstLanguageValues();
 //    updateTestLanguageValues();
 //
 //    quizFrame->retranslateUi();
 //    vocabManagerFrame->retranslateUi();
-//}
-//
-//void MainWindow::switchLanguage( const QString& language ) {
-//    qApp->removeTranslator( translator );
-//    QString transDir = ":/i18n/" + language;
-//    if( translator->load( "toMOTko", transDir ) )
-//        qApp->installTranslator( translator );
-//    else
-//        cerr << "Could not load translation files in directory " << qPrintable( transDir ) << endl;
-//    retranslateUi();
-//}
-//
+}
+
+void MainWindow::switchLanguage( const QString& language ) {
+    qApp->removeTranslator( translator );
+    QString transDir = ":/i18n/" + language;
+    if( translator->load( "toMOTko", transDir ) )
+        qApp->installTranslator( translator );
+    else
+        cerr << "Could not load translation files in directory " << qPrintable( transDir ) << endl;
+    retranslateUi();
+}
+
 //void MainWindow::toggleMaximize( bool isOn ) {
 //    if( mainPanel->currentWidget() == quizFrame )
 //        quizFrame->toggleMaximizeComment( isOn );
@@ -368,19 +313,13 @@ void MainWindow::updateFonts() {
 //    if( mainPanel->currentWidget() == vocabManagerFrame )
 //        vocabManagerFrame->search();
 //}
-//
-//void MainWindow::switchLanguage( QAction* langAction ) {
-//    QString language = availableLanguages[ langAction->text() ];
-//    switchLanguage( language );
-//    control->getPreferences().setInterfaceLanguage( language );
-//}
-//
-//void MainWindow::closeEvent( QCloseEvent* ce ) {
-//    bool isOk = vocabManagerFrame->saveData();
-//    if( !isOk )
-//        QMessageBox::warning( this, QObject::tr( "Error" ), QObject::tr( "ErrorSavingData" ) );
-//    ce->accept();
-//}
+
+void MainWindow::closeEvent( QCloseEvent* ce ) {
+    bool isOk = vocabManagerFrame->saveData();
+    if( !isOk )
+        QMessageBox::warning( this, QObject::tr( "Error" ), QObject::tr( "ErrorSavingData" ) );
+    ce->accept();
+}
 
 void MainWindow::about() {
     QMessageBox::about( this, tr( "AboutToMOTko..." ), tr( "AboutMessage" ) );
@@ -453,11 +392,11 @@ void MainWindow::preferences() {
     if( result ) {
         // Check if different from previous value before updating.
         updateFonts();
-//        switchLanguage( control->getPreferences().getInterfaceLanguage() );
-//        //if( mainPanel->currentWidget() == quizFrame ) {
-//        //    // Update the quiz.  May be tricky if the current term has no data for the current first/test languages.
-//        //}
-//        //else if( mainPanel->currentWidget() == vocabManagerFrame )
+        switchLanguage( control->getPreferences().getInterfaceLanguage() );
+        //if( mainPanel->currentWidget() == quizFrame ) {
+        //    // Update the quiz.  May be tricky if the current term has no data for the current first/test languages.
+        //}
+        //else if( mainPanel->currentWidget() == vocabManagerFrame )
 //        updateFirstLanguageValues();
 //        updateTestLanguageValues();
 //        setDigraphEnabled( control->getPreferences().isDigraphEnabled() );

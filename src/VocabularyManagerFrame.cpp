@@ -266,12 +266,12 @@ VocabularyManagerFrame::~VocabularyManagerFrame() {
 //void VocabularyManagerFrame::loadData() {
 //    controller->loadData(); // If this returns false, handle the error.
 //}
-//
-//bool VocabularyManagerFrame::saveData() {
-//    bool isOk = controller->saveData();
-//    return( isOk );
-//}
-//
+
+bool VocabularyManagerFrame::saveData() {
+    bool isOk = controller->saveData();
+    return( isOk );
+}
+
 //bool VocabularyManagerFrame::isExportAllowed() const {
 //    TreeItem* selectedItem = (TreeItem*)vocabTreeView->currentItem();
 //    if( selectedItem->isFolder() ) {

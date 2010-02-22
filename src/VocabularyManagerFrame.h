@@ -42,8 +42,8 @@ public:
 //    void updateShownItems();
 //
 //    void loadData();
-//    bool saveData();
-//
+    bool saveData();
+
 //    bool isExportAllowed() const;
 //    bool isImportAllowed() const;
 //
