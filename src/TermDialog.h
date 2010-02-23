@@ -108,10 +108,10 @@ private:
     QPushButton*            setImageButton;
     QPushButton*            clearImageButton;
 
-    QWidget*                bottomButtonsPanel;
-    QHBoxLayout*            bottomButtonsPanelLayout;
-    QPushButton*            acceptButton;
-    QPushButton*            cancelButton;
+//    QWidget*                bottomButtonsPanel;
+//    QHBoxLayout*            bottomButtonsPanelLayout;
+//    QPushButton*            acceptButton;
+//    QPushButton*            cancelButton;
 
     Vocabulary&             vocab;
     Controller*             controller;

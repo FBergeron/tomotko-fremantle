@@ -82,7 +82,7 @@ MainWindow::MainWindow( QApplication& app, Controller* controller )
     quizFrame = new QuizFrame( control );
 
     vocabManagerFrame = new VocabularyManagerFrame( control );
-    //vocabManagerFrame->setDigraphEnabled( prefs.isDigraphEnabled() ); 
+    vocabManagerFrame->setDigraphEnabled( prefs.isDigraphEnabled() ); 
 
     action[ ACTION_REVEAL ] = Util::createAction( tr( "Reveal" ), eye_xpm, 
         quizFrame, SLOT( reveal() ), prefs.getAccelerator( ACTION_REVEAL ) );
@@ -157,24 +157,12 @@ MainWindow::MainWindow( QApplication& app, Controller* controller )
     //actionsMenu->addAction( action[ ACTION_IMPORT ] );
     //actionsMenu->addAction( action[ ACTION_EXPORT ] );
 
-    //actionsMenu->addSeparator();
-
-    //actionsMenu->addAction( action[ ACTION_PREFERENCES ] );
-
-    //actionsMenu->addSeparator();
-
-    //actionsMenu->addAction( action[ ACTION_QUIT ] );
-
     //editionMenu = new QMenu( tr( "Edition" ), this );
     //editionMenuAction = menuBar()->addMenu( editionMenu );
 
     //editionMenu->addAction( cutAction );
     //editionMenu->addAction( copyAction );
     //editionMenu->addAction( pasteAction );
-
-    //editionMenu->addSeparator();
-
-    //editionMenu->addAction( action[ ACTION_SEARCH ] );
 
     mainMenu = new QMenu( this );
     menuBar()->addMenu( mainMenu );
@@ -185,16 +173,19 @@ MainWindow::MainWindow( QApplication& app, Controller* controller )
 
     aboutAction = Util::createAction( tr( "About..." ), about_xpm, this, SLOT( about() ) );
     mainMenu->addAction( aboutAction );
-    
+   
+    mainMenu->addAction( action[ ACTION_START_QUIZ ] );
+    mainMenu->addAction( action[ ACTION_SEARCH ] );
+    mainMenu->addAction( action[ ACTION_QUIT ] );
     //connect( quizFrame, SIGNAL( quizHidden() ), control, SLOT( concludeQuiz() ) );
 
-    //mainPanel->addWidget( quizFrame );
-    //mainPanel->addWidget( vocabManagerFrame );
+    mainPanel->addWidget( quizFrame );
+    mainPanel->addWidget( vocabManagerFrame );
 
     //connect( vocabManagerFrame, SIGNAL( selectionChanged( QTreeWidgetItem* ) ), this, SLOT( updateMenus( QTreeWidgetItem* ) ) );
-    //setCentralWidget( mainPanel );
+    setCentralWidget( mainPanel );
     //setLanguageFilterEnabled( controller->getPreferences().isLanguageFilterEnabled() );
-    //invokeVocabularyManager();
+    invokeVocabularyManager();
 
     setWindowTitle( "toMOTko" );
 
@@ -308,11 +299,11 @@ void MainWindow::switchLanguage( const QString& language ) {
 //    else if( mainPanel->currentWidget() == vocabManagerFrame )
 //        vocabManagerFrame->toggleMaximizeDetails( isOn );
 //}
-//
-//void MainWindow::search() {
-//    if( mainPanel->currentWidget() == vocabManagerFrame )
-//        vocabManagerFrame->search();
-//}
+
+void MainWindow::search() {
+    if( mainPanel->currentWidget() == vocabManagerFrame )
+        vocabManagerFrame->search();
+}
 
 void MainWindow::closeEvent( QCloseEvent* ce ) {
     bool isOk = vocabManagerFrame->saveData();
@@ -331,48 +322,48 @@ void MainWindow::help() {
     HelpBrowser::showPage( "toMOTko.html" );
 }
 
-//void MainWindow::startQuiz() {
-//    if( mainPanel->currentWidget() == quizFrame ) 
-//        quizFrame->restartQuiz();
-//    else {
-//        bool resumeQuiz = false;
-//        if( control->isResumableQuizAvailable() ) {
-//            QMessageBox msgBox( QObject::tr( "Information" ), tr( "ConfirmResumeQuiz" ),
-//                QMessageBox::Warning,
-//                QMessageBox::Yes | QMessageBox::Default | QMessageBox::Escape,
-//                QMessageBox::No,
-//                QMessageBox::NoButton,
-//                this );
-//            msgBox.setButtonText( QMessageBox::Yes, tr( "Yes" ) );
-//            msgBox.setButtonText( QMessageBox::No, tr( "No" ) );
-//        
-//            int response = msgBox.exec();
-//            resumeQuiz = ( response == QMessageBox::Yes );
-//        }
-//        showQuiz();
-//        if( resumeQuiz )
-//            quizFrame->resumeQuiz();
-//        else
-//            quizFrame->startQuiz();
-//    }
-//}
-//
-//void MainWindow::showQuiz() {
-//    mainPanel->setCurrentIndex( frameQuizIndex );
+void MainWindow::startQuiz() {
+    if( mainPanel->currentWidget() == quizFrame ) 
+        quizFrame->restartQuiz();
+    else {
+        bool resumeQuiz = false;
+        if( control->isResumableQuizAvailable() ) {
+            QMessageBox msgBox( QObject::tr( "Information" ), tr( "ConfirmResumeQuiz" ),
+                QMessageBox::Warning,
+                QMessageBox::Yes | QMessageBox::Default | QMessageBox::Escape,
+                QMessageBox::No,
+                QMessageBox::NoButton,
+                this );
+            msgBox.setButtonText( QMessageBox::Yes, tr( "Yes" ) );
+            msgBox.setButtonText( QMessageBox::No, tr( "No" ) );
+        
+            int response = msgBox.exec();
+            resumeQuiz = ( response == QMessageBox::Yes );
+        }
+        showQuiz();
+        if( resumeQuiz )
+            quizFrame->resumeQuiz();
+        else
+            quizFrame->startQuiz();
+    }
+}
+
+void MainWindow::showQuiz() {
+    mainPanel->setCurrentIndex( frameQuizIndex );
 //    updateMenus( NULL );
 //    toolBar->setVisible( false );
 //    progressBar->setVisible( true );
 //    languageSelectorAction->setVisible( false );
-//}
-//
-//void MainWindow::invokeVocabularyManager() {
-//    mainPanel->setCurrentIndex( frameVocabManagerIndex );
-//    updateMenus( NULL );
-//    toolBar->setVisible( true );
-//    progressBar->setVisible( false );
-//    languageSelectorAction->setVisible( true );
-//}
-//
+}
+
+void MainWindow::invokeVocabularyManager() {
+    mainPanel->setCurrentIndex( frameVocabManagerIndex );
+    //updateMenus( NULL );
+    //toolBar->setVisible( true );
+    //progressBar->setVisible( false );
+    //languageSelectorAction->setVisible( true );
+}
+
 //void MainWindow::importData() {
 //    vocabManagerFrame->importData();
 //    // Some study languages in the preferences may have been added after the import

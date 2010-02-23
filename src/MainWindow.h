@@ -65,9 +65,9 @@ private slots:
 
     void about();
     void help();
-    //void startQuiz();
-    //void showQuiz();
-    //void invokeVocabularyManager();
+    void startQuiz();
+    void showQuiz();
+    void invokeVocabularyManager();
     //void importData();
     //void exportData();
     void preferences();
@@ -80,7 +80,7 @@ private slots:
     //void setTestLanguage( const QString& lang );
     //void switchFirstAndTestLanguages();
     //void toggleMaximize( bool isOn ); 
-    //void search();
+    void search();
     
 private:
 

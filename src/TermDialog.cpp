@@ -147,24 +147,24 @@ void TermDialog::init() {
     imageBoxLayout->addWidget( image, 1 );
     imageBoxLayout->addWidget( imageButtonsPanel );
 
-    bottomButtonsPanel = new QWidget();
-    bottomButtonsPanelLayout = new QHBoxLayout();
-    bottomButtonsPanelLayout->setContentsMargins( 0, 0, 0, 0 );
-    bottomButtonsPanel->setLayout( bottomButtonsPanelLayout );
-
-    acceptButton = new QPushButton( tr( "Ok" ) );
-    connect( acceptButton, SIGNAL( clicked() ), this, SLOT( accept() ) );
-    cancelButton = new QPushButton( tr( "Cancel" ) );
-    connect( cancelButton, SIGNAL( clicked() ), this, SLOT( reject() ) );
-
-    bottomButtonsPanelLayout->addStretch();
-    bottomButtonsPanelLayout->addWidget( acceptButton );
-    bottomButtonsPanelLayout->addWidget( cancelButton );
+//    bottomButtonsPanel = new QWidget();
+//    bottomButtonsPanelLayout = new QHBoxLayout();
+//    bottomButtonsPanelLayout->setContentsMargins( 0, 0, 0, 0 );
+//    bottomButtonsPanel->setLayout( bottomButtonsPanelLayout );
+//
+//    acceptButton = new QPushButton( tr( "Ok" ) );
+//    connect( acceptButton, SIGNAL( clicked() ), this, SLOT( accept() ) );
+//    cancelButton = new QPushButton( tr( "Cancel" ) );
+//    connect( cancelButton, SIGNAL( clicked() ), this, SLOT( reject() ) );
+//
+//    bottomButtonsPanelLayout->addStretch();
+//    bottomButtonsPanelLayout->addWidget( acceptButton );
+//    bottomButtonsPanelLayout->addWidget( cancelButton );
 
     mainLayout->setMenuBar( menuBar );
     mainLayout->addWidget( topPanel );
     mainLayout->addWidget( commentBox, 1 );
-    mainLayout->addWidget( bottomButtonsPanel );
+//    mainLayout->addWidget( bottomButtonsPanel );
     mainLayout->activate();
 
     setWindowTitle( tr( "EditTerm" ) );

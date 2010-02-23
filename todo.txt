@@ -9,6 +9,7 @@ Make PreferencesDialog work.
     Replace ListView by a sequence of checkboxes for keyboard accelerators and languages of study.
     Position the scrollbar the right place, if possible, when invalid values are detected.
     The Done button in the About window is not localized.
+In TermDialog, should I use a ScrollPane and readd the Ok/Cancel buttons?  Or should I always save the data when we close the window?
 Use standard constants for margin, alignment, etc.
 Use standard layout as much as possible.
 
