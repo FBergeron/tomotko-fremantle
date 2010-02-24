@@ -925,15 +925,15 @@ QString Controller::convertPath( const QString& path, QMap<int,Folder*>& newFold
 }
 
 bool Controller::saveData() {
-//    if( !deleteItemsMarkedForDeletion( vocabTree ) ) {
-//        // Just write a warning message.  We don't return( false ) here
-//        // because we want to try to save the new data, at least.
-//        cerr << "Could not delete all items marked for deletion." << endl;
-//    }
-//    if( !saveFolder( vocabTree, applicationDirName ) )
-//        return( false );
-//    if( !saveMarkedItems( vocabTree ) )
-//        return( false );
+    if( !deleteItemsMarkedForDeletion( vocabTree ) ) {
+        // Just write a warning message.  We don't return( false ) here
+        // because we want to try to save the new data, at least.
+        cerr << "Could not delete all items marked for deletion." << endl;
+    }
+    if( !saveFolder( vocabTree, applicationDirName ) )
+        return( false );
+    if( !saveMarkedItems( vocabTree ) )
+        return( false );
     return( prefs.save() );
 }
 

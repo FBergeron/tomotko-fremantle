@@ -9,6 +9,11 @@ Make PreferencesDialog work.
     Replace ListView by a sequence of checkboxes for keyboard accelerators and languages of study.
     Position the scrollbar the right place, if possible, when invalid values are detected.
     The Done button in the About window is not localized.
+Remove Glossary/Folder Title Label.  Instead, we should edit/rename a folder/glossary invoking a dialog.
+Add tabpanel for other data.  There is not enough space to fit everything in.  Have one for content, description, dates, etc.
+The language selector should be removed from VocabularyManagerFrame and set in a special dialog invocable from main menu.
+Should we remove tooltips everywhere?
+Implement contextual menu for Import, Export, Cut, Copy, Paste
 In TermDialog, should I use a ScrollPane and readd the Ok/Cancel buttons?  Or should I always save the data when we close the window?
 Use standard constants for margin, alignment, etc.
 Use standard layout as much as possible.

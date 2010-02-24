@@ -104,6 +104,11 @@ private slots:
 
 private:
 
+    void updateFirstLanguageValues();
+    void updateTestLanguageValues();
+    void selectLanguage( QComboBox* comboBox, const QString& langCode ); 
+    void updateLanguageSelector( QComboBox* comboBox );
+
     FolderTreeItem* addFolder( Folder* folder, QMap<int,Vocabulary>* vocabularies = NULL );
     VocabTreeItem* addVocab( Vocabulary* vocab );
 
@@ -137,6 +142,13 @@ private:
     QWidget*                treePanel;
     QVBoxLayout*            treePanelLayout;
     
+    QWidget*                languageSelectorPanel;
+    QAction*                languageSelectorAction;
+    QHBoxLayout*            languageSelectorPanelLayout;
+    QComboBox*              firstLanguageComboBox;
+    QLabel*                 languageSelectorLabel;
+    QComboBox*              testLanguageComboBox;
+
     QWidget*                treeButtonPanel;
     QHBoxLayout*            treeButtonPanelLayout;
     QPushButton*            addFolderButton;

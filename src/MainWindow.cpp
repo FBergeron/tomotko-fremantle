@@ -10,7 +10,7 @@
 #include "icons/editcut.xpm"
 #include "icons/editcopy.xpm"
 #include "icons/editpaste.xpm"
-#include "icons/blueArrow.xpm"
+//#include "icons/blueArrow.xpm"
 #include "icons/eye.xpm"
 #include "icons/goodAns.xpm"
 #include "icons/badAns.xpm"
@@ -41,27 +41,27 @@ MainWindow::MainWindow( QApplication& app, Controller* controller )
     //toolBar->setMovable( false );
     //addToolBar( toolBar );
 
-    //languageSelectorPanel = new QWidget();
-    //languageSelectorPanelLayout = new QHBoxLayout();
-    //languageSelectorPanel->setLayout( languageSelectorPanelLayout );
+//    languageSelectorPanel = new QWidget();
+//    languageSelectorPanelLayout = new QHBoxLayout();
+//    languageSelectorPanel->setLayout( languageSelectorPanelLayout );
+//
+//    firstLanguageComboBox = new QComboBox();
+//    languageSelectorLabel = new QLabel();
+//    languageSelectorLabel->setPixmap( QPixmap( blueArrow_xpm ) );
+//    testLanguageComboBox = new QComboBox();
+//
+//    languageSelectorPanelLayout->addWidget( firstLanguageComboBox );
+//    languageSelectorPanelLayout->addWidget( languageSelectorLabel );
+//    languageSelectorPanelLayout->addWidget( testLanguageComboBox );
+//
+//    updateFirstLanguageValues();
+//    updateTestLanguageValues();
+//    connect( firstLanguageComboBox, SIGNAL( activated( const QString& ) ), this, SLOT( setFirstLanguage( const QString& ) ) );
+//    connect( testLanguageComboBox, SIGNAL( activated( const QString& ) ), this, SLOT( setTestLanguage( const QString& ) ) );
 
-    //firstLanguageComboBox = new QComboBox();
-    //languageSelectorLabel = new QLabel();
-    //languageSelectorLabel->setPixmap( QPixmap( blueArrow_xpm ) );
-    //testLanguageComboBox = new QComboBox();
-
-    //languageSelectorPanelLayout->addWidget( firstLanguageComboBox );
-    //languageSelectorPanelLayout->addWidget( languageSelectorLabel );
-    //languageSelectorPanelLayout->addWidget( testLanguageComboBox );
-
-    //updateFirstLanguageValues();
-    //updateTestLanguageValues();
-    //connect( firstLanguageComboBox, SIGNAL( activated( const QString& ) ), this, SLOT( setFirstLanguage( const QString& ) ) );
-    //connect( testLanguageComboBox, SIGNAL( activated( const QString& ) ), this, SLOT( setTestLanguage( const QString& ) ) );
-
-    //copyAction = Util::createAction( QApplication::translate( "QObject", "Copy" ), editcopy_xpm, this, SLOT( copy() ), QKeySequence( Qt::CTRL + Qt::Key_C ) );
-    //cutAction = Util::createAction( QApplication::translate( "QObject", "Cut" ), editcut_xpm, this, SLOT( cut() ), QKeySequence( Qt::CTRL + Qt::Key_X ) );
-    //pasteAction = Util::createAction( QApplication::translate( "QObject", "Paste" ), editpaste_xpm, this, SLOT( paste() ), QKeySequence( Qt::CTRL + Qt::Key_V ) );
+    copyAction = Util::createAction( QApplication::translate( "QObject", "Copy" ), editcopy_xpm, this, SLOT( copy() ), QKeySequence( Qt::CTRL + Qt::Key_C ) );
+    cutAction = Util::createAction( QApplication::translate( "QObject", "Cut" ), editcut_xpm, this, SLOT( cut() ), QKeySequence( Qt::CTRL + Qt::Key_X ) );
+    pasteAction = Util::createAction( QApplication::translate( "QObject", "Paste" ), editpaste_xpm, this, SLOT( paste() ), QKeySequence( Qt::CTRL + Qt::Key_V ) );
 
     //progressBar = new QProgressBar();
     //progressBar->setMaximumWidth( 160 );
@@ -69,11 +69,9 @@ MainWindow::MainWindow( QApplication& app, Controller* controller )
     //progressBar->setVisible( false );
 
     //languageSelectorAction = toolBar->addWidget( languageSelectorPanel );
-    //toolBar->addSeparator();
     //toolBar->addAction( copyAction );
     //toolBar->addAction( cutAction );
     //toolBar->addAction( pasteAction );
-    //toolBar->addSeparator();
 
     //statusBar()->addPermanentWidget( progressBar );
 
@@ -166,23 +164,25 @@ MainWindow::MainWindow( QApplication& app, Controller* controller )
 
     mainMenu = new QMenu( this );
     menuBar()->addMenu( mainMenu );
-    menuBar()->addAction( action[ ACTION_PREFERENCES ] );
 
     helpAction = Util::createAction( tr( "Help..." ), help_xpm, this, SLOT( help() ) );
-    menuBar()->addAction( helpAction );
 
     aboutAction = Util::createAction( tr( "About..." ), about_xpm, this, SLOT( about() ) );
-    mainMenu->addAction( aboutAction );
-   
+
     mainMenu->addAction( action[ ACTION_START_QUIZ ] );
     mainMenu->addAction( action[ ACTION_SEARCH ] );
+    mainMenu->addAction( action[ ACTION_IMPORT ] );
+    mainMenu->addAction( action[ ACTION_EXPORT ] );
+    mainMenu->addAction( action[ ACTION_PREFERENCES ] );
+    mainMenu->addAction( aboutAction );
+    mainMenu->addAction( helpAction );
     mainMenu->addAction( action[ ACTION_QUIT ] );
-    //connect( quizFrame, SIGNAL( quizHidden() ), control, SLOT( concludeQuiz() ) );
+    connect( quizFrame, SIGNAL( quizHidden() ), control, SLOT( concludeQuiz() ) );
 
     mainPanel->addWidget( quizFrame );
     mainPanel->addWidget( vocabManagerFrame );
 
-    //connect( vocabManagerFrame, SIGNAL( selectionChanged( QTreeWidgetItem* ) ), this, SLOT( updateMenus( QTreeWidgetItem* ) ) );
+    connect( vocabManagerFrame, SIGNAL( selectionChanged( QTreeWidgetItem* ) ), this, SLOT( updateMenus( QTreeWidgetItem* ) ) );
     setCentralWidget( mainPanel );
     //setLanguageFilterEnabled( controller->getPreferences().isLanguageFilterEnabled() );
     invokeVocabularyManager();
@@ -204,23 +204,23 @@ Controller* MainWindow::controller() {
     return( control );
 }
 
-//void MainWindow::updateMenus( QTreeWidgetItem* /* currItem */ ) {
-//    action[ ACTION_START_QUIZ ]->setText( mainPanel->currentWidget() == quizFrame ? tr( "RestartQuiz" ) : tr( "StartQuiz" ) );
-//    action[ ACTION_MANAGE_GLOSSARIES ]->setEnabled( mainPanel->currentWidget() != vocabManagerFrame ); 
-//    if( mainPanel->currentWidget() == vocabManagerFrame ) {
+void MainWindow::updateMenus( QTreeWidgetItem* /* currItem */ ) {
+    action[ ACTION_START_QUIZ ]->setText( mainPanel->currentWidget() == quizFrame ? tr( "RestartQuiz" ) : tr( "StartQuiz" ) );
+    action[ ACTION_MANAGE_GLOSSARIES ]->setEnabled( mainPanel->currentWidget() != vocabManagerFrame ); 
+    if( mainPanel->currentWidget() == vocabManagerFrame ) {
 //        if( !menuBar()->actions().contains( editionMenuAction ) )
 //            menuBar()->insertAction( helpMenuAction, editionMenuAction );
-//        action[ ACTION_SHOW_ALL_GLOSSARIES_AND_TERMS ]->setEnabled( true );
-//        action[ ACTION_IMPORT ]->setEnabled( vocabManagerFrame->isImportAllowed() );
-//        action[ ACTION_EXPORT ]->setEnabled( vocabManagerFrame->isExportAllowed() );
-//    }
-//    else {
+        action[ ACTION_SHOW_ALL_GLOSSARIES_AND_TERMS ]->setEnabled( true );
+        action[ ACTION_IMPORT ]->setEnabled( vocabManagerFrame->isImportAllowed() );
+        action[ ACTION_EXPORT ]->setEnabled( vocabManagerFrame->isExportAllowed() );
+    }
+    else {
 //        menuBar()->removeAction( editionMenuAction );
-//        action[ ACTION_SHOW_ALL_GLOSSARIES_AND_TERMS ]->setEnabled( false );
-//        action[ ACTION_IMPORT ]->setEnabled( false );
-//        action[ ACTION_EXPORT ]->setEnabled( false );
-//    }
-//}
+        action[ ACTION_SHOW_ALL_GLOSSARIES_AND_TERMS ]->setEnabled( false );
+        action[ ACTION_IMPORT ]->setEnabled( false );
+        action[ ACTION_EXPORT ]->setEnabled( false );
+    }
+}
 
 void MainWindow::updateFonts() {
     QFont labelsFont( control->getPreferences().getLabelsFont() ); 
@@ -234,13 +234,13 @@ void MainWindow::updateFonts() {
     //vocabManagerFrame->updateFonts();
 }
 
-//bool MainWindow::isDigraphEnabled() const {
-//    return( vocabManagerFrame->isDigraphEnabled() );
-//}
-//
-//void MainWindow::setDigraphEnabled( bool isEnabled ) {
-//    vocabManagerFrame->setDigraphEnabled( isEnabled );
-//}
+bool MainWindow::isDigraphEnabled() const {
+    return( vocabManagerFrame->isDigraphEnabled() );
+}
+
+void MainWindow::setDigraphEnabled( bool isEnabled ) {
+    vocabManagerFrame->setDigraphEnabled( isEnabled );
+}
 
 void MainWindow::retranslateUi() {
 //    actionsMenuAction->setText( tr( "Actions" ) );
@@ -364,17 +364,17 @@ void MainWindow::invokeVocabularyManager() {
     //languageSelectorAction->setVisible( true );
 }
 
-//void MainWindow::importData() {
-//    vocabManagerFrame->importData();
-//    // Some study languages in the preferences may have been added after the import
-//    // so we need to update the language selectors.
+void MainWindow::importData() {
+    vocabManagerFrame->importData();
+    // Some study languages in the preferences may have been added after the import
+    // so we need to update the language selectors.
 //    updateFirstLanguageValues();
 //    updateTestLanguageValues();
-//}
-//
-//void MainWindow::exportData() {
-//    vocabManagerFrame->exportData();
-//}
+}
+
+void MainWindow::exportData() {
+    vocabManagerFrame->exportData();
+}
 
 void MainWindow::preferences() {
     PreferencesDialog dialog( this, &(control->getPreferences()) );
@@ -396,42 +396,42 @@ void MainWindow::preferences() {
     }
 }
 
-//void MainWindow::cut() {
-//    QWidget* widget = qApp->focusWidget();
-//    if( widget ) {
-//        if( widget->inherits( "QLineEdit" ) )
-//            ((QLineEdit*)widget)->cut();
-//        else if( widget->inherits( "QTextEdit" ) )
-//            ((QTextEdit*)widget)->cut();
-//        else if( mainPanel->currentWidget() == vocabManagerFrame )
-//            vocabManagerFrame->cut();
-//    }
-//}
-//
-//void MainWindow::copy() {
-//    QWidget* widget = qApp->focusWidget();
-//    if( widget ) {
-//        if( widget->inherits( "QLineEdit" ) )
-//            ((QLineEdit*)widget)->copy();
-//        else if( widget->inherits( "QTextEdit" ) )
-//            ((QTextEdit*)widget)->copy();
-//        else if( mainPanel->currentWidget() == vocabManagerFrame )
-//                vocabManagerFrame->copy();
-//    }
-//}
-//
-//void MainWindow::paste() {
-//    QWidget* widget = qApp->focusWidget();
-//    if( widget ) {
-//        if( widget->inherits( "QLineEdit" ) )
-//            ((QLineEdit*)widget)->paste();
-//        else if( widget->inherits( "QTextEdit" ) )
-//            ((QTextEdit*)widget)->paste();
-//        else if( mainPanel->currentWidget() == vocabManagerFrame )
-//            vocabManagerFrame->paste();
-//    }
-//}
-//
+void MainWindow::cut() {
+    QWidget* widget = qApp->focusWidget();
+    if( widget ) {
+        if( widget->inherits( "QLineEdit" ) )
+            ((QLineEdit*)widget)->cut();
+        else if( widget->inherits( "QTextEdit" ) )
+            ((QTextEdit*)widget)->cut();
+        else if( mainPanel->currentWidget() == vocabManagerFrame )
+            vocabManagerFrame->cut();
+    }
+}
+
+void MainWindow::copy() {
+    QWidget* widget = qApp->focusWidget();
+    if( widget ) {
+        if( widget->inherits( "QLineEdit" ) )
+            ((QLineEdit*)widget)->copy();
+        else if( widget->inherits( "QTextEdit" ) )
+            ((QTextEdit*)widget)->copy();
+        else if( mainPanel->currentWidget() == vocabManagerFrame )
+                vocabManagerFrame->copy();
+    }
+}
+
+void MainWindow::paste() {
+    QWidget* widget = qApp->focusWidget();
+    if( widget ) {
+        if( widget->inherits( "QLineEdit" ) )
+            ((QLineEdit*)widget)->paste();
+        else if( widget->inherits( "QTextEdit" ) )
+            ((QTextEdit*)widget)->paste();
+        else if( mainPanel->currentWidget() == vocabManagerFrame )
+            vocabManagerFrame->paste();
+    }
+}
+
 //void MainWindow::toggleLanguageFilter() {
 //    setLanguageFilterEnabled( !action[ ACTION_SHOW_ALL_GLOSSARIES_AND_TERMS ]->isChecked() );
 //    vocabManagerFrame->updateShownItems();

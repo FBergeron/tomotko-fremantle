@@ -8,6 +8,7 @@
 #include "icons/checkAllTerms.xpm"
 #include "icons/inverseCheckedTerms.xpm"
 #include "icons/maximize.xpm"
+#include "icons/blueArrow.xpm"
 
 VocabularyManagerFrame::VocabularyManagerFrame( Controller* controller, QWidget* parent /*= 0*/ )
     : QWidget( parent ), searchDialog( NULL ), controller( controller ) {
@@ -18,6 +19,24 @@ VocabularyManagerFrame::VocabularyManagerFrame( Controller* controller, QWidget*
     treePanelLayout = new QVBoxLayout();
     treePanelLayout->setContentsMargins( 0, 0, 0, 0 );
 
+    languageSelectorPanel = new QWidget();
+    languageSelectorPanelLayout = new QHBoxLayout();
+    languageSelectorPanel->setLayout( languageSelectorPanelLayout );
+
+    firstLanguageComboBox = new QComboBox();
+    languageSelectorLabel = new QLabel();
+    languageSelectorLabel->setPixmap( QPixmap( blueArrow_xpm ) );
+    testLanguageComboBox = new QComboBox();
+
+    languageSelectorPanelLayout->addWidget( firstLanguageComboBox );
+    languageSelectorPanelLayout->addWidget( languageSelectorLabel );
+    languageSelectorPanelLayout->addWidget( testLanguageComboBox );
+
+    updateFirstLanguageValues();
+    updateTestLanguageValues();
+    //connect( firstLanguageComboBox, SIGNAL( activated( const QString& ) ), this, SLOT( setFirstLanguage( const QString& ) ) );
+    //connect( testLanguageComboBox, SIGNAL( activated( const QString& ) ), this, SLOT( setTestLanguage( const QString& ) ) );
+
     vocabTreeView = new VocabTreeView( *controller );
     //vocabTreeView->setAnimated( true );
     vocabTreeView->setHeaderLabel( tr( "Glossaries" ) );
@@ -26,6 +45,7 @@ VocabularyManagerFrame::VocabularyManagerFrame( Controller* controller, QWidget*
     treeButtonPanelLayout = new QHBoxLayout();
     treeButtonPanelLayout->setContentsMargins( 0, 0, 0, 0 );
 
+    treePanelLayout->addWidget( languageSelectorPanel );
     treePanelLayout->addWidget( vocabTreeView, 1 );
     treePanelLayout->addWidget( treeButtonPanel );
     treePanel->setLayout( treePanelLayout );
@@ -91,7 +111,7 @@ VocabularyManagerFrame::VocabularyManagerFrame( Controller* controller, QWidget*
     folderDetailsFolderTitlePanelLayout->addWidget( folderDetailsFolderMaximizeDetailsButton );
 
     folderDetailsPropsPanel = new PropertiesPanel( controller->getPreferences(), folderDetailsPanel );
-    //folderDetailsPanelLayout->addWidget( folderDetailsPropsPanel );
+    folderDetailsPanelLayout->addWidget( folderDetailsPropsPanel );
 
     folderDetailsPanel->setLayout( folderDetailsPanelLayout );
 
@@ -757,6 +777,44 @@ void VocabularyManagerFrame::updateTermList() {
     editTermButton->setEnabled( selectedTermCount == 1 );
     removeTermButton->setEnabled( selectedTermCount > 0 );
 }
+
+void VocabularyManagerFrame::updateFirstLanguageValues() {
+    updateLanguageSelector( firstLanguageComboBox );
+    selectLanguage( firstLanguageComboBox, controller->getPreferences().getFirstLanguage() );
+}
+
+void VocabularyManagerFrame::updateTestLanguageValues() {
+    updateLanguageSelector( testLanguageComboBox );
+    selectLanguage( testLanguageComboBox, controller->getPreferences().getTestLanguage() );
+}
+
+void VocabularyManagerFrame::selectLanguage( QComboBox* comboBox, const QString& langCode ) {
+    int itemCount = comboBox->count();
+    for( int i = 0; i < itemCount; i++ ) {
+        if( comboBox->itemText( i ) == QApplication::translate( "QObject", langCode.toLatin1().data() ) ) {
+            comboBox->setCurrentIndex( i );
+            return;
+        }
+    }
+}
+
+void VocabularyManagerFrame::updateLanguageSelector( QComboBox* comboBox ) {
+    QList<QString> studyLanguages = controller->getPreferences().getStudyLanguages();
+    QStringList sortedLanguages;
+    for( int i = 0; i < studyLanguages.size(); i++ ) {
+        QString lang( studyLanguages[ i ] );
+        sortedLanguages.append( QApplication::translate( "QObject", lang.toLatin1().data() ) );
+    }
+    sortedLanguages.sort(); 
+
+    comboBox->clear();
+    comboBox->addItem( QString( "" ) );
+    for( QStringList::ConstIterator it = sortedLanguages.begin(); it != sortedLanguages.end(); it++ ) {
+        QString lang( *it );
+        comboBox->addItem( lang );
+    }
+}
+
 
 FolderTreeItem* VocabularyManagerFrame::addFolder() {
     return( addFolder( NULL ) );

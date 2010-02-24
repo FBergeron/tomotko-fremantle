@@ -47,13 +47,13 @@ public:
 
     Controller* controller();
 
-    //bool isDigraphEnabled() const;
+    bool isDigraphEnabled() const;
 
 public slots:
 
-    //void updateMenus( QTreeWidgetItem* currItem );
+    void updateMenus( QTreeWidgetItem* currItem );
     void updateFonts();
-    //void setDigraphEnabled( bool isEnabled );
+    void setDigraphEnabled( bool isEnabled );
     void retranslateUi();
     void switchLanguage( const QString& language );
 
@@ -68,12 +68,12 @@ private slots:
     void startQuiz();
     void showQuiz();
     void invokeVocabularyManager();
-    //void importData();
-    //void exportData();
+    void importData();
+    void exportData();
     void preferences();
-    //void copy();
-    //void cut();
-    //void paste();
+    void copy();
+    void cut();
+    void paste();
     //void toggleLanguageFilter();
     void quit();
     //void setFirstLanguage( const QString& lang );
@@ -85,10 +85,10 @@ private slots:
 private:
 
     //void setLanguageFilterEnabled( bool isEnabled );
-    //void updateFirstLanguageValues();
-    //void updateTestLanguageValues();
-    //void selectLanguage( QComboBox* comboBox, const QString& langCode );
-    //void updateLanguageSelector( QComboBox* comboBox );
+    //void updateFirstLanguageValues(); Has been relocated to VocabularyManagerFrame
+    //void updateTestLanguageValues(); Has been relocated to VocabularyManagerFrame
+    //void selectLanguage( QComboBox* comboBox, const QString& langCode ); Has been relocated to VocabularyManagerFrame
+    //void updateLanguageSelector( QComboBox* comboBox ); Has been relocated to VocabularyManagerFrame
 
     //QMap<QString,QString>   availableLanguages;  // Have been relocated to PreferencesDialog.
 
@@ -100,29 +100,25 @@ private:
     QuizFrame*              quizFrame;
     VocabularyManagerFrame* vocabManagerFrame;
 
-    //QToolBar*               toolBar;
-
     QMenu*                  mainMenu;
 
     //QMenu*                  actionsMenu;
     //QAction*                actionsMenuAction;
-    //QAction*                helpMenuAction;
-    //QMenu*                  helpMenu;
 
     //QAction*                editionMenuAction;
-    //QAction*                copyAction;
-    //QAction*                cutAction;
-    //QAction*                pasteAction;
+    QAction*                copyAction;
+    QAction*                cutAction;
+    QAction*                pasteAction;
 
     QAction*                aboutAction;
     QAction*                helpAction;
 
-    //QWidget*                languageSelectorPanel;
-    //QAction*                languageSelectorAction;
-    //QHBoxLayout*            languageSelectorPanelLayout;
-    //QComboBox*              firstLanguageComboBox;
-    //QLabel*                 languageSelectorLabel;
-    //QComboBox*              testLanguageComboBox;
+//    QWidget*                languageSelectorPanel;   Has been relocated to VocabularyManagerFrame
+//    QAction*                languageSelectorAction;
+//    QHBoxLayout*            languageSelectorPanelLayout;
+//    QComboBox*              firstLanguageComboBox;
+//    QLabel*                 languageSelectorLabel;
+//    QComboBox*              testLanguageComboBox;
 
     //QProgressBar*           progressBar;
 
