@@ -15,8 +15,13 @@ VocabularyManagerFrame::VocabularyManagerFrame( Controller* controller, QWidget*
 
     mainLayout = new QVBoxLayout();
 
+    leftPanel = new QWidget();
+    leftPanelLayout = new QVBoxLayout();
+    leftPanelLayout->setContentsMargins( 0, 0, 0, 0 );
+    leftPanel->setLayout( leftPanelLayout );
+
     treePanel = new QWidget();
-    treePanelLayout = new QVBoxLayout();
+    treePanelLayout = new QHBoxLayout();
     treePanelLayout->setContentsMargins( 0, 0, 0, 0 );
 
     languageSelectorPanel = new QWidget();
@@ -38,17 +43,21 @@ VocabularyManagerFrame::VocabularyManagerFrame( Controller* controller, QWidget*
     //connect( testLanguageComboBox, SIGNAL( activated( const QString& ) ), this, SLOT( setTestLanguage( const QString& ) ) );
 
     vocabTreeView = new VocabTreeView( *controller );
-    //vocabTreeView->setAnimated( true );
+    vocabTreeView->setAnimated( true );
     vocabTreeView->setHeaderLabel( tr( "Glossaries" ) );
+    vocabTreeView->header()->hide();
 
     treeButtonPanel = new QWidget();
-    treeButtonPanelLayout = new QHBoxLayout();
+    treeButtonPanelLayout = new QVBoxLayout();
     treeButtonPanelLayout->setContentsMargins( 0, 0, 0, 0 );
 
-    treePanelLayout->addWidget( languageSelectorPanel );
+    //treePanelLayout->addWidget( languageSelectorPanel );
     treePanelLayout->addWidget( vocabTreeView, 1 );
     treePanelLayout->addWidget( treeButtonPanel );
     treePanel->setLayout( treePanelLayout );
+
+    leftPanelLayout->addWidget( languageSelectorPanel );
+    leftPanelLayout->addWidget( treePanel, 1 );
 
     addFolderButton = new QPushButton( /*tr( "AddFolder" )*/ );
     addFolderButton->setIcon( QIcon( QPixmap( addFolder_xpm ) ) );
@@ -87,7 +96,7 @@ VocabularyManagerFrame::VocabularyManagerFrame( Controller* controller, QWidget*
     folderDetailsTitle = new QLabel( tr( "Folder" ) );
     folderDetailsFolderHeaderPanelLayout->addWidget( folderDetailsTitle );
     folderDetailsFolderHeaderPanel->setLayout( folderDetailsFolderHeaderPanelLayout );
-    folderDetailsPanelLayout->addWidget( folderDetailsFolderHeaderPanel );
+    //folderDetailsPanelLayout->addWidget( folderDetailsFolderHeaderPanel );
     folderDetailsFolderTitlePanel = new QWidget();
     folderDetailsFolderTitlePanelLayout = new QHBoxLayout();
     folderDetailsFolderTitlePanelLayout->setContentsMargins( 0, 0, 0, 0 );
@@ -124,7 +133,7 @@ VocabularyManagerFrame::VocabularyManagerFrame( Controller* controller, QWidget*
     vocabDetailsVocabHeaderPanelLayout->setContentsMargins( 0, 0, 0, 0 );
     vocabDetailsVocabHeaderPanel->setLayout( vocabDetailsVocabHeaderPanelLayout );
 
-    vocabDetailsPanelLayout->addWidget( vocabDetailsVocabHeaderPanel );
+    //vocabDetailsPanelLayout->addWidget( vocabDetailsVocabHeaderPanel );
     vocabDetailsTitle = new QLabel( tr( "Glossary" ) );
     vocabDetailsVocabHeaderPanelLayout->addWidget( vocabDetailsTitle );
     vocabDetailsVocabTitlePanel = new QWidget();
@@ -156,7 +165,7 @@ VocabularyManagerFrame::VocabularyManagerFrame( Controller* controller, QWidget*
     connect( vocabDetailsTabWidget, SIGNAL( currentChanged( int ) ), vocabDetailsPropsPanel, SLOT( updateCounters() ) ); 
 
     vocabDetailsTermsPanel = new QWidget();
-    vocabDetailsTermsPanelLayout = new QVBoxLayout();
+    vocabDetailsTermsPanelLayout = new QHBoxLayout();
     vocabDetailsTermsPanel->setLayout( vocabDetailsTermsPanelLayout );
     termList = new QTreeWidget();
     termList->header()->setMovable( false );
@@ -170,14 +179,14 @@ VocabularyManagerFrame::VocabularyManagerFrame( Controller* controller, QWidget*
     connect( termList, SIGNAL( itemSelectionChanged() ), this, SLOT( updateTermList() ) ); 
 
     termControlPanel = new QWidget();
-    termControlPanelLayout = new QHBoxLayout();
+    termControlPanelLayout = new QVBoxLayout();
     termControlPanelLayout->setContentsMargins( 0, 0, 0, 0 );
     termControlPanel->setLayout( termControlPanelLayout );
     vocabDetailsTermsPanelLayout->addWidget( termList );
     vocabDetailsTermsPanelLayout->addWidget( termControlPanel );
 
     checkControlPanel = new QWidget();
-    checkControlPanelLayout = new QHBoxLayout();
+    checkControlPanelLayout = new QVBoxLayout();
     checkControlPanelLayout->setContentsMargins( 0, 0, 0, 0 );
     checkControlPanel->setLayout( checkControlPanelLayout );
 
@@ -197,7 +206,7 @@ VocabularyManagerFrame::VocabularyManagerFrame( Controller* controller, QWidget*
     checkControlPanelLayout->addWidget( inverseCheckedTermsButton );
 
     addRemoveTermPanel = new QWidget();
-    addRemoveTermPanelLayout = new QHBoxLayout();
+    addRemoveTermPanelLayout = new QVBoxLayout();
     addRemoveTermPanelLayout->setContentsMargins( 0, 0, 0, 0 );
     addRemoveTermPanel->setLayout( addRemoveTermPanelLayout );
 
@@ -232,7 +241,8 @@ VocabularyManagerFrame::VocabularyManagerFrame( Controller* controller, QWidget*
     detailsPanel->addWidget( vocabDetailsPanel );
 
     splitter = new QSplitter( this );
-    splitter->addWidget( treePanel );
+    //splitter->addWidget( treePanel );
+    splitter->addWidget( leftPanel );
     splitter->addWidget( detailsPanel );
     
     mainLayout->addWidget( splitter );

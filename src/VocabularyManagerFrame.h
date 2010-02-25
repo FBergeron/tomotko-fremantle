@@ -139,8 +139,11 @@ private:
 
     QSplitter*              splitter;
 
+    QWidget*                leftPanel;
+    QVBoxLayout*            leftPanelLayout;
+    
     QWidget*                treePanel;
-    QVBoxLayout*            treePanelLayout;
+    QHBoxLayout*            treePanelLayout;
     
     QWidget*                languageSelectorPanel;
     QAction*                languageSelectorAction;
@@ -150,7 +153,7 @@ private:
     QComboBox*              testLanguageComboBox;
 
     QWidget*                treeButtonPanel;
-    QHBoxLayout*            treeButtonPanelLayout;
+    QVBoxLayout*            treeButtonPanelLayout;
     QPushButton*            addFolderButton;
     QPushButton*            addVocabButton;
     QPushButton*            removeItemButton;
@@ -180,22 +183,22 @@ private:
     QPushButton*            vocabDetailsVocabMaximizeDetailsButton;
     QTabWidget*             vocabDetailsTabWidget;
     QWidget*                vocabDetailsTermsPanel;
-    QVBoxLayout*            vocabDetailsTermsPanelLayout;
+    QHBoxLayout*            vocabDetailsTermsPanelLayout;
     PropertiesPanel*        vocabDetailsPropsPanel;
     QWidget*                vocabDetailsVocabTitlePanel;
     QHBoxLayout*            vocabDetailsVocabTitlePanelLayout;
     QTreeWidget*            termList;
    
     QWidget*                termControlPanel;
-    QHBoxLayout*            termControlPanelLayout;
+    QVBoxLayout*            termControlPanelLayout;
 
     QWidget*                checkControlPanel;
-    QHBoxLayout*            checkControlPanelLayout;
+    QVBoxLayout*            checkControlPanelLayout;
     QPushButton*            checkAllTermsButton;
     QPushButton*            inverseCheckedTermsButton;
 
     QWidget*                addRemoveTermPanel;
-    QHBoxLayout*            addRemoveTermPanelLayout;
+    QVBoxLayout*            addRemoveTermPanelLayout;
     QPushButton*            addTermButton;
     QPushButton*            editTermButton;
     QPushButton*            removeTermButton;
