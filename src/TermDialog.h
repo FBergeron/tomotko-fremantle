@@ -16,6 +16,7 @@
 #include <QPixmap>
 #include <QPushButton>
 #include <QResizeEvent>
+#include <QScrollArea>
 #include <QString>
 #include <QTextEdit>
 #include <QVBoxLayout>
@@ -47,9 +48,9 @@ protected:
 
 private slots:
     
-    void cut();
-    void copy();
-    void paste();
+//    void cut();
+//    void copy();
+//    void paste();
 
     void setImage();
     void clearImage();
@@ -63,9 +64,14 @@ private:
     void initImage( const QString& path );
     void resizeImageBox() const;
 
-    QMenuBar*               menuBar;
+//    QMenuBar*               menuBar;
 
-    QVBoxLayout*            mainLayout;
+    QHBoxLayout*            mainLayout;
+
+    QScrollArea*            bodyWrapper;
+
+    QWidget*                body;
+    QVBoxLayout*            bodyLayout;
 
     QWidget*                topPanel;
     QHBoxLayout*            topPanelLayout;
@@ -108,18 +114,18 @@ private:
     QPushButton*            setImageButton;
     QPushButton*            clearImageButton;
 
-//    QWidget*                bottomButtonsPanel;
-//    QHBoxLayout*            bottomButtonsPanelLayout;
-//    QPushButton*            acceptButton;
-//    QPushButton*            cancelButton;
+    QWidget*                bottomButtonsPanel;
+    QVBoxLayout*            bottomButtonsPanelLayout;
+    QPushButton*            acceptButton;
+    QPushButton*            cancelButton;
 
     Vocabulary&             vocab;
     Controller*             controller;
     Term*                   editedTerm;
 
-    QAction*                cutAction;
-    QAction*                copyAction;
-    QAction*                pasteAction;
+//    QAction*                cutAction;
+//    QAction*                copyAction;
+//    QAction*                pasteAction;
 
     QString                 tempImagePath; // Contains absolute path.
     QPixmap*                pixmap;

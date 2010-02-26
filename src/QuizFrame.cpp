@@ -57,21 +57,21 @@ void QuizFrame::init() {
     revealAllDataButton->setIcon( QIcon( ZPIXMAP( eye_xpm ) ) );
     revealAllDataButton->setIconSize( QSize( 32, 32 ) );
     revealAllDataButton->setEnabled( false );
-    revealAllDataButton->setToolTip( tr( "Reveal" ) );
+    //revealAllDataButton->setToolTip( tr( "Reveal" ) );
     connect( revealAllDataButton, SIGNAL( clicked() ), this, SLOT( reveal() ) );
 
     rightAnswerButton = new QPushButton( /*tr( "RightAnswer" )*/ );
     rightAnswerButton->setIcon( QIcon( ZPIXMAP( goodAns_xpm ) ) ); 
     rightAnswerButton->setIconSize( QSize( 32, 32 ) );
     rightAnswerButton->setEnabled( false );
-    rightAnswerButton->setToolTip( tr( "RightAnswer" ) );
+    //rightAnswerButton->setToolTip( tr( "RightAnswer" ) );
     connect( rightAnswerButton, SIGNAL( clicked() ), this, SLOT( rightAnswer() ) );
 
     wrongAnswerButton = new QPushButton( /*tr( "WrongAnswer" )*/ );
     wrongAnswerButton->setIcon( QIcon( ZPIXMAP( badAns_xpm ) ) );
     wrongAnswerButton->setIconSize( QSize( 32, 32 ) );
     wrongAnswerButton->setEnabled( false );
-    wrongAnswerButton->setToolTip( tr( "WrongAnswer" ) );
+    //wrongAnswerButton->setToolTip( tr( "WrongAnswer" ) );
     connect( wrongAnswerButton, SIGNAL( clicked() ), this, SLOT( wrongAnswer() ) );
 
     answerControlPanelLayout->addWidget( revealAllDataButton );
@@ -83,7 +83,7 @@ void QuizFrame::init() {
     editionButton->setIconSize( QSize( 32, 32 ) );
     editionButton->setMinimumWidth( 100 );
     editionButton->setEnabled( false );
-    editionButton->setToolTip( tr( "EditWord" ) );
+    //editionButton->setToolTip( tr( "EditWord" ) );
     connect( editionButton, SIGNAL( clicked() ), this, SLOT( editCurrentTerm() ) );
 
     controlPanelLayout->addWidget( answerControlPanel, 1 );
@@ -100,7 +100,7 @@ void QuizFrame::init() {
     firstLangTermLineEdit = new ScrollableLineEdit();
     firstLangTermLineEdit->setReadOnly( true );
     firstLangTermButton = new QPushButton( tr( "???" ) );
-    firstLangTermButton->setToolTip( tr( "Reveal" ) );
+    //firstLangTermButton->setToolTip( tr( "Reveal" ) );
     connect( firstLangTermButton, SIGNAL( clicked() ), this, SLOT( revealFirstLangTerm() ) );  
     firstLangTermStack->addWidget( firstLangTermLineEdit );
     firstLangTermStack->addWidget( firstLangTermButton );
@@ -132,7 +132,7 @@ void QuizFrame::init() {
     testLangTermAltLineEdit = new ScrollableLineEdit();
     testLangTermAltLineEdit->setReadOnly( true );
     testLangTermAltButton = new QPushButton( tr( "???" ) );
-    testLangTermAltButton->setToolTip( tr( "Reveal" ) );
+    //testLangTermAltButton->setToolTip( tr( "Reveal" ) );
     connect( testLangTermAltButton, SIGNAL( clicked() ), this, SLOT( revealAltTerm() ) );  
     testLangTermAltStack->addWidget( testLangTermAltLineEdit );
     testLangTermAltStack->addWidget( testLangTermAltButton );
@@ -142,7 +142,7 @@ void QuizFrame::init() {
     testLangTermLineEdit = new ScrollableLineEdit();
     testLangTermLineEdit->setReadOnly( true );
     testLangTermButton = new QPushButton( tr( "???" ) );
-    testLangTermButton->setToolTip( tr( "Reveal" ) );
+    //testLangTermButton->setToolTip( tr( "Reveal" ) );
     connect( testLangTermButton, SIGNAL( clicked() ), this, SLOT( revealTestLangTerm() ) );  
 
     testLangTermStack->addWidget( testLangTermLineEdit );
@@ -168,7 +168,7 @@ void QuizFrame::init() {
     maximizeCommentButton->setCheckable( true );
     maximizeCommentButton->setMaximumHeight( commentLabel->sizeHint().height() > 24 ? commentLabel->sizeHint().height() : 24 );
     maximizeCommentButton->setMaximumWidth( maximizeCommentButton->maximumHeight() );
-    maximizeCommentButton->setToolTip( tr( "MaximizeComment" ) );
+    //maximizeCommentButton->setToolTip( tr( "MaximizeComment" ) );
     connect( maximizeCommentButton, SIGNAL( toggled( bool ) ), this, SLOT( toggleMaximizeComment( bool ) ) );
     commentLabelPanelLayout->addWidget( commentLabel );
     commentLabelPanelLayout->addStretch();
@@ -180,7 +180,7 @@ void QuizFrame::init() {
     commentMultiLineEdit = new ScrollableMultiLineEdit();
     commentMultiLineEdit->setReadOnly( true );
     commentButton = new QPushButton( tr( "???" ) );
-    commentButton->setToolTip( tr( "Reveal" ) );
+    //commentButton->setToolTip( tr( "Reveal" ) );
     connect( commentButton, SIGNAL( clicked() ), this, SLOT( revealComment() ) );  
     commentStack->addWidget( commentMultiLineEdit );
     commentStack->addWidget( commentButton );
@@ -192,7 +192,7 @@ void QuizFrame::init() {
     imageStack = new QStackedWidget();
     imageBoxLayout->addWidget( imageStack );
     imageButton = new QPushButton( tr( "???" ) );
-    imageButton->setToolTip( tr( "Reveal" ) );
+    //imageButton->setToolTip( tr( "Reveal" ) );
     connect( imageButton, SIGNAL( clicked() ), this, SLOT( revealImage() ) );
     image = new QLabel();
     imageStack->addWidget( image );
@@ -240,7 +240,11 @@ void QuizFrame::init() {
     bodyLayout->addWidget( topPanel );
     bodyLayout->addWidget( commentBox, 1 );
     
-    mainLayout->addWidget( body, 1 );
+
+    bodyWrapper = new QScrollArea();
+    bodyWrapper->setWidget( body );
+
+    mainLayout->addWidget( bodyWrapper, 1 );
     mainLayout->addWidget( controlPanel );
     setLayout( mainLayout );
     mainLayout->activate();
@@ -646,20 +650,20 @@ void QuizFrame::retranslateUi() {
     commentLabel->setText( tr( "Examples/Comments" ) );
     commentButton->setText( tr( "???" ) );
     //revealAllDataButton->setText( tr( "Reveal" ) );
-    revealAllDataButton->setToolTip( tr( "Reveal" ) );
+    //revealAllDataButton->setToolTip( tr( "Reveal" ) );
     //rightAnswerButton->setText( tr( "RightAnswer" ) );
-    rightAnswerButton->setToolTip( tr( "RightAnswer" ) );
+    //rightAnswerButton->setToolTip( tr( "RightAnswer" ) );
     //wrongAnswerButton->setText( tr( "WrongAnswer" ) );
-    wrongAnswerButton->setToolTip( tr( "WrongAnswer" ) );
+    //wrongAnswerButton->setToolTip( tr( "WrongAnswer" ) );
     //editionButton->setText( tr( "EditWord" ) );
-    editionButton->setToolTip( tr( "EditWord" ) );
+    //editionButton->setToolTip( tr( "EditWord" ) );
 
-    firstLangTermButton->setToolTip( tr( "Reveal" ) );
-    testLangTermAltButton->setToolTip( tr( "Reveal" ) );
-    testLangTermButton->setToolTip( tr( "Reveal" ) );
-    commentButton->setToolTip( tr( "Reveal" ) );
-    imageButton->setToolTip( tr( "Reveal" ) );
-    maximizeCommentButton->setToolTip( tr( "MaximizeComment" ) );
+    //firstLangTermButton->setToolTip( tr( "Reveal" ) );
+    //testLangTermAltButton->setToolTip( tr( "Reveal" ) );
+    //testLangTermButton->setToolTip( tr( "Reveal" ) );
+    //commentButton->setToolTip( tr( "Reveal" ) );
+    //imageButton->setToolTip( tr( "Reveal" ) );
+    //maximizeCommentButton->setToolTip( tr( "MaximizeComment" ) );
 }
 
 void QuizFrame::hideAnswers() {

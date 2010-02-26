@@ -6,15 +6,16 @@ Make PreferencesDialog work.
     Move the Ok/Cancel buttons on the right.
     Remake the SequenceDialog.  It will probably depend on the QuizFrame too.
     I have hidden the scrollbar of bodyWrapper.  Not sure if it's a good idea.  What's the standard way to do that on Maemo?
-    Replace ListView by a sequence of checkboxes for keyboard accelerators and languages of study.
+    Simplify Revealing Sequences (probably something similar to previous version): Less options is sometimes better :-)
     Position the scrollbar the right place, if possible, when invalid values are detected.
     The Done button in the About window is not localized.
+    The Reset Buttons for fonts do not work on Xephyr.  The problem is that the default font is not available (not installed?).
+        Maybe we need to identify the best font and hardcode it for fremantle.
 Remove Glossary/Folder Title Label.  Instead, we should edit/rename a folder/glossary invoking a dialog.
 Add tabpanel for other data.  There is not enough space to fit everything in.  Have one for content, description, dates, etc.
 The language selector should be removed from VocabularyManagerFrame and set in a special dialog invocable from main menu.
-Should we remove tooltips everywhere?
 Implement contextual menu for Import, Export, Cut, Copy, Paste
 In TermDialog, should I use a ScrollPane and readd the Ok/Cancel buttons?  Or should I always save the data when we close the window?
 Use standard constants for margin, alignment, etc.
 Use standard layout as much as possible.
-
+Review all code and check for comments.

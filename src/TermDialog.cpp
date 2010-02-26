@@ -14,7 +14,7 @@ TermDialog::TermDialog( Vocabulary& vocab, Controller* controller, QWidget* pare
 }
 
 void TermDialog::init() {
-    setWindowFlags( Qt::Window | Qt::WindowMaximizeButtonHint );
+    //setWindowFlags( Qt::Window | Qt::WindowMaximizeButtonHint );
     setModal( true );
 
     Preferences& prefs = controller->getPreferences();
@@ -23,25 +23,30 @@ void TermDialog::init() {
     QString testLang( prefs.getTestLanguage() );
     bool isDigraphEnabled( prefs.isDigraphEnabled() );
 
-    mainLayout = new QVBoxLayout();
+    mainLayout = new QHBoxLayout();
     setLayout( mainLayout );
 
-    menuBar = new QMenuBar( this );
+    body = new QWidget();
+    bodyLayout = new QVBoxLayout();
+    bodyLayout->setContentsMargins( 0, 0, 0, 0 );
+    body->setLayout( bodyLayout );
 
-    QMenu* edition = new QMenu( QApplication::translate( "QObject", "Edition" ), this );
-    menuBar->addMenu( edition );
+//    menuBar = new QMenuBar( this );
 
-    cutAction = Util::createAction( tr( "Cut" ), editcut_xpm, this, SLOT( cut() ), QKeySequence( Qt::CTRL + Qt::Key_X ) );
-    connect( cutAction, SIGNAL( triggered() ), this, SLOT( cut() ) );
-    edition->addAction( cutAction );
+//    QMenu* edition = new QMenu( QApplication::translate( "QObject", "Edition" ), this );
+//    menuBar->addMenu( edition );
 
-    copyAction = Util::createAction( QApplication::translate( "QObject", "Copy" ), editcopy_xpm, this, SLOT( copy() ), QKeySequence( Qt::CTRL + Qt::Key_C ) );
-    connect( copyAction, SIGNAL( triggered() ), this, SLOT( copy() ) );
-    edition->addAction( copyAction );
-
-    pasteAction = Util::createAction( QApplication::translate( "QObject", "Paste" ), editpaste_xpm, this, SLOT( paste() ), QKeySequence( Qt::CTRL + Qt::Key_V ) );
-    connect( pasteAction, SIGNAL( triggered() ), this, SLOT( paste() ) );
-    edition->addAction( pasteAction );
+//    cutAction = Util::createAction( tr( "Cut" ), editcut_xpm, this, SLOT( cut() ), QKeySequence( Qt::CTRL + Qt::Key_X ) );
+//    connect( cutAction, SIGNAL( triggered() ), this, SLOT( cut() ) );
+//    edition->addAction( cutAction );
+//
+//    copyAction = Util::createAction( QApplication::translate( "QObject", "Copy" ), editcopy_xpm, this, SLOT( copy() ), QKeySequence( Qt::CTRL + Qt::Key_C ) );
+//    connect( copyAction, SIGNAL( triggered() ), this, SLOT( copy() ) );
+//    edition->addAction( copyAction );
+//
+//    pasteAction = Util::createAction( QApplication::translate( "QObject", "Paste" ), editpaste_xpm, this, SLOT( paste() ), QKeySequence( Qt::CTRL + Qt::Key_V ) );
+//    connect( pasteAction, SIGNAL( triggered() ), this, SLOT( paste() ) );
+//    edition->addAction( pasteAction );
 
     topPanel = new QWidget();
     topPanelLayout = new QHBoxLayout();
@@ -137,34 +142,39 @@ void TermDialog::init() {
     imageButtonsPanel->setLayout( imageButtonsPanelLayout );
     setImageButton = new QPushButton( tr( "setImage" ) );
     imageButtonsPanelLayout->addWidget( setImageButton );
-    setImageButton->setToolTip( tr( "setImageTooltip" ) );
+    //setImageButton->setToolTip( tr( "setImageTooltip" ) );
     connect( setImageButton, SIGNAL( clicked() ), this, SLOT( setImage() ) );
     clearImageButton = new QPushButton( tr( "clearImage" ) );
     imageButtonsPanelLayout->addWidget( clearImageButton );
-    clearImageButton->setToolTip( tr( "clearImageTooltip" ) );
+    //clearImageButton->setToolTip( tr( "clearImageTooltip" ) );
     connect( clearImageButton, SIGNAL( clicked() ), this, SLOT( clearImage() ) );
 
     imageBoxLayout->addWidget( image, 1 );
     imageBoxLayout->addWidget( imageButtonsPanel );
 
-//    bottomButtonsPanel = new QWidget();
-//    bottomButtonsPanelLayout = new QHBoxLayout();
-//    bottomButtonsPanelLayout->setContentsMargins( 0, 0, 0, 0 );
-//    bottomButtonsPanel->setLayout( bottomButtonsPanelLayout );
-//
-//    acceptButton = new QPushButton( tr( "Ok" ) );
-//    connect( acceptButton, SIGNAL( clicked() ), this, SLOT( accept() ) );
-//    cancelButton = new QPushButton( tr( "Cancel" ) );
-//    connect( cancelButton, SIGNAL( clicked() ), this, SLOT( reject() ) );
-//
-//    bottomButtonsPanelLayout->addStretch();
-//    bottomButtonsPanelLayout->addWidget( acceptButton );
-//    bottomButtonsPanelLayout->addWidget( cancelButton );
+    bottomButtonsPanel = new QWidget();
+    bottomButtonsPanelLayout = new QVBoxLayout();
+    bottomButtonsPanelLayout->setContentsMargins( 0, 0, 0, 0 );
+    bottomButtonsPanel->setLayout( bottomButtonsPanelLayout );
 
-    mainLayout->setMenuBar( menuBar );
-    mainLayout->addWidget( topPanel );
-    mainLayout->addWidget( commentBox, 1 );
-//    mainLayout->addWidget( bottomButtonsPanel );
+    acceptButton = new QPushButton( tr( "Ok" ) );
+    connect( acceptButton, SIGNAL( clicked() ), this, SLOT( accept() ) );
+    cancelButton = new QPushButton( tr( "Cancel" ) );
+    connect( cancelButton, SIGNAL( clicked() ), this, SLOT( reject() ) );
+
+    bottomButtonsPanelLayout->addStretch();
+    bottomButtonsPanelLayout->addWidget( acceptButton );
+    bottomButtonsPanelLayout->addWidget( cancelButton );
+
+    bodyLayout->addWidget( topPanel );
+    bodyLayout->addWidget( commentBox, 1 );
+
+    bodyWrapper = new QScrollArea();
+    bodyWrapper->setWidget( body );
+
+//    mainLayout->setMenuBar( menuBar );
+    mainLayout->addWidget( bodyWrapper );
+    mainLayout->addWidget( bottomButtonsPanel );
     mainLayout->activate();
 
     setWindowTitle( tr( "EditTerm" ) );
@@ -207,35 +217,35 @@ void TermDialog::updateModel() {
     editedTerm->setImagePath( imagePath );
 }
 
-void TermDialog::cut() {
-    QWidget* widget = qApp->focusWidget();
-    if( widget ) {
-        if( widget->inherits( "DigraphLineEdit" ) )
-            ((DigraphLineEdit*)widget)->cut();
-        else if( widget->inherits( "DigraphMultiLineEdit" ) )
-            ((DigraphMultiLineEdit*)widget)->cut();
-    }
-}
-
-void TermDialog::copy() {
-    QWidget* widget = qApp->focusWidget();
-    if( widget != NULL ) {
-        if( widget->inherits( "DigraphLineEdit" ) )
-            ((DigraphLineEdit*)widget)->copy();
-        else if( widget->inherits( "DigraphMultiLineEdit" ) )
-            ((DigraphMultiLineEdit*)widget)->copy();
-    }
-}
-
-void TermDialog::paste() {
-    QWidget* widget = qApp->focusWidget();
-    if( widget != NULL ) {
-        if( widget->inherits( "DigraphLineEdit" ) )
-            ((DigraphLineEdit*)widget)->paste();
-        else if( widget->inherits( "DigraphMultiLineEdit" ) )
-            ((DigraphMultiLineEdit*)widget)->paste();
-    }
-}
+//void TermDialog::cut() {
+//    QWidget* widget = qApp->focusWidget();
+//    if( widget ) {
+//        if( widget->inherits( "DigraphLineEdit" ) )
+//            ((DigraphLineEdit*)widget)->cut();
+//        else if( widget->inherits( "DigraphMultiLineEdit" ) )
+//            ((DigraphMultiLineEdit*)widget)->cut();
+//    }
+//}
+//
+//void TermDialog::copy() {
+//    QWidget* widget = qApp->focusWidget();
+//    if( widget != NULL ) {
+//        if( widget->inherits( "DigraphLineEdit" ) )
+//            ((DigraphLineEdit*)widget)->copy();
+//        else if( widget->inherits( "DigraphMultiLineEdit" ) )
+//            ((DigraphMultiLineEdit*)widget)->copy();
+//    }
+//}
+//
+//void TermDialog::paste() {
+//    QWidget* widget = qApp->focusWidget();
+//    if( widget != NULL ) {
+//        if( widget->inherits( "DigraphLineEdit" ) )
+//            ((DigraphLineEdit*)widget)->paste();
+//        else if( widget->inherits( "DigraphMultiLineEdit" ) )
+//            ((DigraphMultiLineEdit*)widget)->paste();
+//    }
+//}
 
 void TermDialog::setImage() {
     QDir dir = QDir::home();

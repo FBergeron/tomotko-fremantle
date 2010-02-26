@@ -7,6 +7,7 @@
 #include <QMessageBox>
 #include <QMovie>
 #include <QResizeEvent>
+#include <QScrollArea>
 #include <QStackedWidget>
 #include <QTextEdit>
 #include <QWidget>
@@ -105,6 +106,8 @@ private:
     Controller*                 controller;
 
     QHBoxLayout*                mainLayout;
+
+    QScrollArea*                bodyWrapper;
 
     QWidget*                    body;
     QVBoxLayout*                bodyLayout;

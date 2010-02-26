@@ -76,11 +76,11 @@ void PreferencesDialog::init() {
     addSequenceButton = new QPushButton( "+" );
     //sequencesViewButtonsLayout->addStretch();
     sequencesViewButtonsLayout->addWidget( addSequenceButton );
-    addSequenceButton->setToolTip( tr( "Add revealing sequence" ) );
+    //addSequenceButton->setToolTip( tr( "Add revealing sequence" ) );
     connect( addSequenceButton, SIGNAL( clicked() ), this, SLOT( addSequence() ) );
     removeSequenceButton = new QPushButton( "-" );
     sequencesViewButtonsLayout->addWidget( removeSequenceButton );
-    removeSequenceButton->setToolTip( tr( "Remove revealing sequence" ) );
+    //removeSequenceButton->setToolTip( tr( "Remove revealing sequence" ) );
     connect( removeSequenceButton, SIGNAL( clicked() ), this, SLOT( removeSequence() ) );
 
     initSequences();
@@ -324,7 +324,7 @@ void PreferencesDialog::init() {
 
     interfacePageLayout->addWidget( interfacePageLabel );
     interfacePageLayout->addWidget( interfaceLanguagePanel );
-    interfacePageLayout->addWidget( keyboardAccelPanel );
+    //interfacePageLayout->addWidget( keyboardAccelPanel ); // Disabled for Fremantle.
     interfacePageLayout->addWidget( digraphCheckBox );
     interfacePageLayout->addWidget( hideQuizButtonCheckBox );
     interfacePageLayout->addWidget( showAltTextInTermListCheckBox );
@@ -335,21 +335,16 @@ void PreferencesDialog::init() {
     languagePageLayout->setContentsMargins( 0, 0, 0, 0 );
     languagePage->setLayout( languagePageLayout );
 
-    languagePageLabel = new QLabel( tr( "Languages" ) );
+    languagePageLabel = new QLabel( tr( "StudyLanguages" ) );
 
     languagesPanel = new QWidget();
     languagesPanelLayout = new QVBoxLayout();
     languagesPanelLayout->setContentsMargins( 0, 0, 0, 0 );
     languagesPanel->setLayout( languagesPanelLayout );
-
-    studyLanguagesListView = new QTreeWidget();
-    studyLanguagesListView->setColumnCount( 1 );
-    languagesPanelLayout->addWidget( studyLanguagesListView );
-    studyLanguagesListView->setHeaderLabel( tr( "StudyLanguages" ) );
    
     initStudyLanguageValues();
 
-    connect( studyLanguagesListView, SIGNAL( itemChanged( QTreeWidgetItem*, int ) ), this, SLOT( updateFontOverride( QTreeWidgetItem*, int ) ) );
+    //connect( studyLanguagesListView, SIGNAL( itemChanged( QTreeWidgetItem*, int ) ), this, SLOT( updateFontOverride( QTreeWidgetItem*, int ) ) );
 
     languagePageSeparator = new QFrame();
     languagePageSeparator->setFrameStyle( QFrame::HLine );
@@ -453,14 +448,14 @@ void PreferencesDialog::initSequences() {
     }
 }
 
-void PreferencesDialog::initStudyLanguageValues() const {
+void PreferencesDialog::initStudyLanguageValues() {
     int studyLanguageListLength = sizeof( studyLanguageList ) / sizeof( QString );
     for( int i = 0; i < studyLanguageListLength; i++ ) {
         bool isStudied( prefs->isStudyLanguage( studyLanguageList[ i ] ) );
-        QTreeWidgetItem* lang = new QTreeWidgetItem( studyLanguagesListView );
-        lang->setCheckState( 0, isStudied ? Qt::Checked : Qt::Unchecked );
-        lang->setText( 0, QApplication::translate( "QObject", studyLanguageList[ i ].toLatin1().data() ) );
-        studyLanguagesListView->addTopLevelItem( lang );
+        QCheckBox* languageCheckBox = new QCheckBox( QApplication::translate( "QObject", studyLanguageList[ i ].toLatin1().data() ) );
+        languageCheckBox->setCheckState( isStudied ? Qt::Checked : Qt::Unchecked );
+        languagesPanelLayout->addWidget( languageCheckBox );
+        studyLanguagesItem.append( languageCheckBox );
     }
 }
 
@@ -540,11 +535,12 @@ void PreferencesDialog::accept() {
     bool firstLanguageExists = false;
     bool testLanguageExists = false;
     prefs->clearStudyLanguages();
-    for( int i = 0; i < studyLanguagesListView->topLevelItemCount(); i++ ) {
-        QTreeWidgetItem* item = studyLanguagesListView->topLevelItem( i );
-        bool isChecked = ( item->checkState( 0 ) != Qt::Unchecked );
+    int studyLanguageItemCount = studyLanguagesItem.count();
+    for( int i = 0; i < studyLanguageItemCount; i++ ) {
+        QCheckBox* languageCheckBox = studyLanguagesItem.at( i );
+        bool isChecked = ( languageCheckBox->checkState() != Qt::Unchecked );
         if( isChecked ) {
-            QString langCode( Util::getLanguageCode( item->text( 0 ) ) );
+            QString langCode( Util::getLanguageCode( languageCheckBox->text() ) );
             prefs->addStudyLanguage( langCode );
             if( !firstLanguageExists )
                 firstLanguageExists = ( prefs->getFirstLanguage() == langCode );
@@ -608,9 +604,10 @@ bool PreferencesDialog::isRevealingSequenceDefined( const QString& seqStr ) cons
 
 bool PreferencesDialog::isStudyLanguageSelectionValid() const {
     int checkedLangCount = 0;
-    for( int i = 0; i < studyLanguagesListView->topLevelItemCount(); i++ ) {
-        QTreeWidgetItem* item = studyLanguagesListView->topLevelItem( i );
-        bool isChecked = ( item->checkState( 0 ) != Qt::Unchecked );
+    int studyLanguageItemCount = studyLanguagesItem.count();
+    for( int i = 0; i < studyLanguageItemCount; i++ ) {
+        QCheckBox* languageCheckBox = studyLanguagesItem.at( i );
+        bool isChecked = ( languageCheckBox->checkState() != Qt::Unchecked );
         if( isChecked )
             checkedLangCount++;
     }

@@ -88,6 +88,7 @@ private slots:
 
     FolderTreeItem* addFolder();
     VocabTreeItem* addVocab();
+    void editItem();
     void removeItem();
     void checkAllTerms();
     void inverseCheckedTerms();
@@ -156,6 +157,7 @@ private:
     QVBoxLayout*            treeButtonPanelLayout;
     QPushButton*            addFolderButton;
     QPushButton*            addVocabButton;
+    QPushButton*            editItemButton;
     QPushButton*            removeItemButton;
     VocabTreeView*          vocabTreeView;
     FolderTreeItem*         vocabTreeRoot;

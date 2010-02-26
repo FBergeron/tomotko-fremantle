@@ -85,7 +85,7 @@ private:
     void initFontSizeValues( QComboBox* comboBox, bool withEmptyEntry = false ) const;
     void initFontOverrides();
     void initSequences();
-    void initStudyLanguageValues() const;
+    void initStudyLanguageValues();
     void selectFontFamily( QComboBox* comboBox, const QString& fontFamily );
     void selectFontSize( QComboBox* comboBox, int fontSizeModifier, bool withEmptyEntry = false );
     void selectLanguage( QComboBox* comboBox, const QString& langCode );
@@ -127,7 +127,7 @@ private:
     QWidget*                    languagesPanel;
     QVBoxLayout*                languagesPanelLayout;
 
-    QTreeWidget*                studyLanguagesListView;
+    QList<QCheckBox*>           studyLanguagesItem;
 
     QWidget*                    quizLengthPanel;
     QHBoxLayout*                quizLengthPanelLayout;

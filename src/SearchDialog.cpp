@@ -22,14 +22,14 @@ void SearchDialog::init() {
 
     resetButton = new QPushButton();
     resetButton->setIcon( QIcon( QPixmap( ZPIXMAP( resetQueryForm_xpm ) ) ) );
-    resetButton->setToolTip( tr( "Reset" ) );
+    //resetButton->setToolTip( tr( "Reset" ) );
     connect( resetButton, SIGNAL( clicked() ), this, SLOT( reset() ) );
     queryField = new HistoryField();
     queryField->setSizePolicy( QSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding ) );
     searchButton = new QPushButton( /*tr( "Search" ),*/ this ); // Passing this inits autoDefault property.
     searchButton->setIcon( QIcon( ZPIXMAP( search_xpm ) ) );
     searchButton->setIconSize( QSize( 32, 32 ) );
-    searchButton->setToolTip( tr( "Search" ) );
+    //searchButton->setToolTip( tr( "Search" ) );
     searchButton->setDefault( true );
     connect( searchButton, SIGNAL( clicked() ), queryField->lineEdit(), SIGNAL( returnPressed() ) );
     connect( searchButton, SIGNAL( clicked() ), this, SLOT( search() ) );
@@ -73,17 +73,17 @@ void SearchDialog::init() {
     goResultVocabButton = new QPushButton( tr( "View Glossary" ) );
     goResultVocabButton->setIcon( QIcon( ZPIXMAP( goVocab_xpm ) ) );
     goResultVocabButton->setIconSize( QSize( 32, 32 ) );
-    goResultVocabButton->setToolTip( tr( "View Glossary" ) );
+    //goResultVocabButton->setToolTip( tr( "View Glossary" ) );
     connect( goResultVocabButton, SIGNAL( clicked() ), this, SLOT( goResultVocab() ) );
     editResultTermButton = new QPushButton( tr( "Edit Term" ) );
     editResultTermButton->setIcon( QIcon( ZPIXMAP( editTerm_xpm ) ) );
     editResultTermButton->setIconSize( QSize( 32, 32 ) );
-    editResultTermButton->setToolTip( tr( "Edit Term" ) );
+    //editResultTermButton->setToolTip( tr( "Edit Term" ) );
     connect( editResultTermButton, SIGNAL( clicked() ), this, SLOT( editResultTerm() ) );
     removeResultTermButton = new QPushButton( tr( "Remove Term(s)" ) );
     removeResultTermButton->setIcon( QIcon( ZPIXMAP( removeTerm_xpm ) ) );
     removeResultTermButton->setIconSize( QSize( 32, 32 ) );
-    removeResultTermButton->setToolTip( tr( "Remove Term(s)" ) );
+    //removeResultTermButton->setToolTip( tr( "Remove Term(s)" ) );
     connect( removeResultTermButton, SIGNAL( clicked() ), this, SLOT( removeResultTerms() ) );
 
     resultsButtonsPanelLayout->addWidget( goResultVocabButton );
@@ -163,9 +163,9 @@ void SearchDialog::updateUi() {
 }
 
 void SearchDialog::retranslateUi() {
-    resetButton->setToolTip( tr( "Reset" ) );
+    //resetButton->setToolTip( tr( "Reset" ) );
     //searchButton->setText( tr( "Search" ) );
-    searchButton->setToolTip( tr( "Search" ) );
+    //searchButton->setToolTip( tr( "Search" ) );
     resultsHeaderLabel->setText( tr( "Results" ) );
     resultsCounterLabel->setText( tr( "%1 term(s) found" ).arg( controller->getSearchResultsCount() ) );
     QStringList headerLabels;
@@ -174,11 +174,11 @@ void SearchDialog::retranslateUi() {
     headerLabels << tr( "Glossary" ) << tr( "Location" );
     resultsListView->setHeaderLabels( headerLabels );
     goResultVocabButton->setText( tr( "View Glossary" ) );
-    goResultVocabButton->setToolTip( tr( "View Glossary" ) );
+    //goResultVocabButton->setToolTip( tr( "View Glossary" ) );
     editResultTermButton->setText( tr( "Edit Term" ) );
-    editResultTermButton->setToolTip( tr( "Edit Term" ) );
+    //editResultTermButton->setToolTip( tr( "Edit Term" ) );
     removeResultTermButton->setText( tr( "Remove Term(s)" ) );
-    removeResultTermButton->setToolTip( tr( "Remove Term(s)" ) );
+    //removeResultTermButton->setToolTip( tr( "Remove Term(s)" ) );
     goResultVocabButton->adjustSize();
     editResultTermButton->adjustSize();
     removeResultTermButton->adjustSize();

@@ -230,8 +230,8 @@ void MainWindow::updateFonts() {
     //testLanguageComboBox->setFont( labelsFont );
     //progressBar->setFont( labelsFont );
 
-    //quizFrame->updateFonts();
-    //vocabManagerFrame->updateFonts();
+    quizFrame->updateFonts();
+    vocabManagerFrame->updateFonts();
 }
 
 bool MainWindow::isDigraphEnabled() const {
@@ -278,9 +278,9 @@ void MainWindow::retranslateUi() {
     
 //    updateFirstLanguageValues();
 //    updateTestLanguageValues();
-//
-//    quizFrame->retranslateUi();
-//    vocabManagerFrame->retranslateUi();
+
+    quizFrame->retranslateUi();
+    vocabManagerFrame->retranslateUi();
 }
 
 void MainWindow::switchLanguage( const QString& language ) {
@@ -390,9 +390,9 @@ void MainWindow::preferences() {
         //else if( mainPanel->currentWidget() == vocabManagerFrame )
 //        updateFirstLanguageValues();
 //        updateTestLanguageValues();
-//        setDigraphEnabled( control->getPreferences().isDigraphEnabled() );
-//        quizFrame->setButtonsHidden( control->getPreferences().areQuizButtonsHidden() );
-//        vocabManagerFrame->updateShownItems();
+        setDigraphEnabled( control->getPreferences().isDigraphEnabled() );
+        quizFrame->setButtonsHidden( control->getPreferences().areQuizButtonsHidden() );
+        vocabManagerFrame->updateShownItems();
     }
 }
 
