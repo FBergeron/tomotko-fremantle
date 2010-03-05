@@ -7,6 +7,7 @@
 #include <QLineEdit>
 #include <QMessageBox>
 #include <QPushButton>
+#include <QScrollArea>
 #include <QSplitter>
 #include <QStackedWidget>
 #include <QTabWidget>
@@ -68,9 +69,6 @@ public slots:
     void setDigraphEnabled( bool isEnabled );
     void retranslateUi();
 
-    bool areDetailsMaximized() const;
-    void toggleMaximizeDetails( bool isOn );
-
 signals:
 
     void selectionChanged( QTreeWidgetItem* item );
@@ -88,7 +86,6 @@ private slots:
 
     FolderTreeItem* addFolder();
     VocabTreeItem* addVocab();
-    void editItem();
     void removeItem();
     void checkAllTerms();
     void inverseCheckedTerms();
@@ -126,9 +123,6 @@ private:
     void addListeners();
     void removeListeners();
 
-    void maximizeDetailsPanel();
-    void restoreDetailsPanel();
-
     uint getSelectedTermCount() const;
 
     int                     currentFolderId;
@@ -157,7 +151,6 @@ private:
     QVBoxLayout*            treeButtonPanelLayout;
     QPushButton*            addFolderButton;
     QPushButton*            addVocabButton;
-    QPushButton*            editItemButton;
     QPushButton*            removeItemButton;
     VocabTreeView*          vocabTreeView;
     FolderTreeItem*         vocabTreeRoot;
@@ -166,26 +159,15 @@ private:
     QWidget*                folderDetailsPanel;
     QVBoxLayout*            folderDetailsPanelLayout;
     QLabel*                 folderDetailsTitle;
-    QWidget*                folderDetailsFolderHeaderPanel;
-    QHBoxLayout*            folderDetailsFolderHeaderPanelLayout;
-    QWidget*                folderDetailsFolderTitlePanel;
-    QHBoxLayout*            folderDetailsFolderTitlePanelLayout;
-    QLabel*                 folderDetailsFolderTitleLabel;
-    DigraphLineEdit*        folderDetailsFolderTitleLineEdit;
-    QPushButton*            folderDetailsFolderMaximizeDetailsButton;
+    QScrollArea*            folderDetailsPropsPanelWrapper;
     PropertiesPanel*        folderDetailsPropsPanel; 
 
     QWidget*                vocabDetailsPanel;
     QVBoxLayout*            vocabDetailsPanelLayout;
-    QWidget*                vocabDetailsVocabHeaderPanel;
-    QHBoxLayout*            vocabDetailsVocabHeaderPanelLayout;
-    QLabel*                 vocabDetailsTitle;
-    QLabel*                 vocabDetailsVocabTitleLabel;
-    DigraphLineEdit*        vocabDetailsVocabTitleLineEdit;
-    QPushButton*            vocabDetailsVocabMaximizeDetailsButton;
     QTabWidget*             vocabDetailsTabWidget;
     QWidget*                vocabDetailsTermsPanel;
     QHBoxLayout*            vocabDetailsTermsPanelLayout;
+    QScrollArea*            vocabDetailsPropsPanelWrapper;
     PropertiesPanel*        vocabDetailsPropsPanel;
     QWidget*                vocabDetailsVocabTitlePanel;
     QHBoxLayout*            vocabDetailsVocabTitlePanelLayout;

@@ -30,11 +30,16 @@ public:
 
     void updateFonts();
     void setDigraphEnabled( bool isEnabled );
+    bool isDigraphEnabled() const;
     void retranslateUi();
 
 public slots:
 
     void updateCounters();
+
+signals:
+
+    void titleChanged( const QString& title );
 
 protected:
 
@@ -42,6 +47,7 @@ protected:
 
 private slots:
     
+    void updateTitle( const QString& title );
     void updateDescription();
     void updateAuthor( const QString& author );
 
@@ -63,6 +69,11 @@ private:
     QVBoxLayout*            simplePropsLabelsPanelLayout;
     QWidget*                simplePropsFieldsPanel;
     QVBoxLayout*            simplePropsFieldsPanelLayout;
+
+    QWidget*                titlePanel;
+    QHBoxLayout*            titlePanelLayout;
+    QLabel*                 titleLabel;
+    DigraphLineEdit*        titleLineEdit;
 
     QLabel*                 descriptionLabel;
     DigraphMultiLineEdit*   descriptionMultiLineEdit;

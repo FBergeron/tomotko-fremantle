@@ -11,6 +11,7 @@ void PropertiesPanel::setVocabulary( Vocabulary* vocab ) {
     editedVocab = vocab;
 
     mainLayout->setContentsMargins( 8, 8, 8, 8 );
+    titleLineEdit->setText( editedVocab->getTitle() );
     descriptionMultiLineEdit->setText( editedVocab->getDescription() );
     authorField->setText( editedVocab->getAuthor() );
     creationDateValueLabel->setText( editedVocab->getCreationDate().toString() );
@@ -27,6 +28,7 @@ void PropertiesPanel::setFolder( Folder* folder ) {
     editedFolder = folder;
 
     mainLayout->setContentsMargins( 0, 0, 0, 0 );
+    titleLineEdit->setText( editedFolder->getTitle() );
     descriptionMultiLineEdit->setText( editedFolder->getDescription() );
     authorField->setText( editedFolder->getAuthor() );
     creationDateValueLabel->setText( editedFolder->getCreationDate().toString() );
@@ -112,17 +114,27 @@ void PropertiesPanel::updateCounters() {
 }
 
 void PropertiesPanel::init() {
+    //setSizePolicy( QSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding ) );
+
     QFont mediumFont( prefs.getMediumFont() );
     QFont labelsFont( prefs.getLabelsFont() );
-    bool isDigraphEnabled( prefs.isDigraphEnabled() );
 
     mainLayout = new QVBoxLayout();
     setLayout( mainLayout );
 
+    titlePanel = new QWidget();
+    titlePanelLayout = new QHBoxLayout();
+    titlePanelLayout->setContentsMargins( 0, 0, 0, 0 );
+    titlePanel->setLayout( titlePanelLayout );
+    titleLabel = new QLabel( tr( "Title" ) );
+    titleLineEdit = new DigraphLineEdit();
+    titleLineEdit->setFont( mediumFont );
+    titlePanelLayout->addWidget( titleLabel );
+    titlePanelLayout->addWidget( titleLineEdit );
+
     descriptionLabel = new QLabel( tr( "Description" ) );
     descriptionMultiLineEdit = new DigraphMultiLineEdit();
     descriptionMultiLineEdit->setFont( mediumFont );
-    descriptionMultiLineEdit->setDigraphEnabled( isDigraphEnabled );
 
     contentLabel = new QLabel( tr( "Content" ) );
     contentListView = new QTreeWidget();
@@ -160,7 +172,6 @@ void PropertiesPanel::init() {
     authorField = new DigraphLineEdit(); 
     simplePropsFieldsPanelLayout->addWidget( authorField );
     authorField->setFont( mediumFont );
-    authorField->setDigraphEnabled( isDigraphEnabled );
 
     creationDateLabel = new QLabel( tr( "CreationDate" ) );
     simplePropsLabelsPanelLayout->addWidget( creationDateLabel );
@@ -174,14 +185,29 @@ void PropertiesPanel::init() {
     simplePropsFieldsPanelLayout->addWidget( modificationDateValueLabel );
     modificationDateValueLabel->setFont( mediumFont );
 
+    mainLayout->addWidget( titlePanel );
     mainLayout->addWidget( descriptionLabel );
     mainLayout->addWidget( descriptionMultiLineEdit, 1 );
     mainLayout->addWidget( contentLabel );
     mainLayout->addWidget( contentListView );
-    //mainLayout->addWidget( simplePropsPanel );
+    mainLayout->addWidget( simplePropsPanel );
 }
 
 PropertiesPanel::~PropertiesPanel() {
+}
+
+void PropertiesPanel::updateTitle( const QString& title ) {
+    if( getType() == QString( "Vocabulary" ) ) {
+        editedVocab->setTitle( title );
+        editedVocab->setModificationDate( QDateTime::currentDateTime() );
+        editedVocab->setDirty( true );
+    }
+    else if( getType() == QString( "Folder" ) ) {
+        editedFolder->setTitle( title );
+        editedFolder->setModificationDate( QDateTime::currentDateTime() );
+        editedFolder->setDirty( true );
+    }
+    emit( titleChanged( title ) );
 }
 
 void PropertiesPanel::updateAuthor( const QString& author ) {
@@ -224,6 +250,8 @@ void PropertiesPanel::updateFonts() {
     for( int i = 0; i < contentListView->columnCount(); i++ )
         contentListView->headerItem()->setFont( i, labelsFont );
     contentListView->setFont( mediumFont ); 
+    titleLabel->setFont( labelsFont );
+    titleLineEdit->setFont( mediumFont );
     authorLabel->setFont( labelsFont );
     authorField->setFont( mediumFont );
     creationDateLabel->setFont( labelsFont );
@@ -233,8 +261,13 @@ void PropertiesPanel::updateFonts() {
 }
 
 void PropertiesPanel::setDigraphEnabled( bool isEnabled ) {
+    titleLineEdit->setDigraphEnabled( isEnabled );
     descriptionMultiLineEdit->setDigraphEnabled( isEnabled );
     authorField->setDigraphEnabled( isEnabled );
+}
+
+bool PropertiesPanel::isDigraphEnabled() const {
+    return( descriptionMultiLineEdit->isDigraphEnabled() );
 }
 
 void PropertiesPanel::retranslateUi() {
@@ -243,12 +276,15 @@ void PropertiesPanel::retranslateUi() {
     QStringList headerLabels;
     headerLabels << tr( "Items" ) << tr( "Selected" ) << tr( "Checked" ) << tr( "Total" );
     contentListView->setHeaderLabels( headerLabels );
+    titleLabel->setText( tr( "Title" ) );
     authorLabel->setText( tr( "Author" ) );
     creationDateLabel->setText( tr( "CreationDate" ) );
     modificationDateLabel->setText( tr( "ModificationDate" ) );
 }
 
 void PropertiesPanel::addListeners() {
+    connect( titleLineEdit, SIGNAL( textChanged( const QString& ) ),
+        this, SLOT( updateTitle( const QString& ) ) );
     connect( authorField, SIGNAL( textChanged( const QString& ) ),
         this, SLOT( updateAuthor( const QString& ) ) );
     connect( descriptionMultiLineEdit, SIGNAL( textChanged() ),
@@ -256,6 +292,8 @@ void PropertiesPanel::addListeners() {
 }
 
 void PropertiesPanel::removeListeners() {
+    disconnect( titleLineEdit, SIGNAL( textChanged( const QString& ) ),
+        this, SLOT( updateTitle( const QString& ) ) );
     disconnect( authorField, SIGNAL( textChanged( const QString& ) ),
         this, SLOT( updateAuthor( const QString& ) ) );
     disconnect( descriptionMultiLineEdit, SIGNAL( textChanged() ),
