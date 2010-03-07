@@ -76,10 +76,13 @@ private:
     QLabel*                 resultsHeaderLabel;
     QLabel*                 resultsCounterLabel;
 
-    QTreeWidget*          resultsListView;
+    QWidget*                resultsPanel;
+    QHBoxLayout*            resultsPanelLayout;
+
+    QTreeWidget*            resultsListView;
 
     QWidget*                resultsButtonsPanel;
-    QHBoxLayout*            resultsButtonsPanelLayout;
+    QVBoxLayout*            resultsButtonsPanelLayout;
     QPushButton*            goResultVocabButton;
     QPushButton*            editResultTermButton;
     QPushButton*            removeResultTermButton;

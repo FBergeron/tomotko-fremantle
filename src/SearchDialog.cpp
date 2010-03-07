@@ -67,7 +67,7 @@ void SearchDialog::init() {
     connect( resultsListView, SIGNAL( itemSelectionChanged() ), this, SLOT( updateUi() ) );
 
     resultsButtonsPanel = new QWidget();
-    resultsButtonsPanelLayout = new QHBoxLayout();
+    resultsButtonsPanelLayout = new QVBoxLayout();
     resultsButtonsPanelLayout->setContentsMargins( 0, 0, 0, 0 );
     resultsButtonsPanel->setLayout( resultsButtonsPanelLayout );
     goResultVocabButton = new QPushButton( tr( "View Glossary" ) );
@@ -94,11 +94,18 @@ void SearchDialog::init() {
     goResultVocabButton->setMaximumHeight( prefHeight );
     editResultTermButton->setMaximumHeight( prefHeight );
 
+    resultsPanel = new QWidget();
+    resultsPanelLayout = new QHBoxLayout();
+    resultsPanelLayout->setContentsMargins( 0, 0, 0, 0 );
+    resultsPanel->setLayout( resultsPanelLayout );
+
+    resultsPanelLayout->addWidget( resultsListView );
+    resultsPanelLayout->addWidget( resultsButtonsPanel );
+
     mainLayout = new QVBoxLayout( this );
     mainLayout->addWidget( queryPanel );
     mainLayout->addWidget( resultsHeaderPanel );
-    mainLayout->addWidget( resultsListView, 1 );
-    mainLayout->addWidget( resultsButtonsPanel );
+    mainLayout->addWidget( resultsPanel, 1 );
 //#if defined(Q_WS_HILDON)
 //    windowButtonsPanel = new QWidget();
 //    windowButtonsPanelLayout = new QHBoxLayout();
