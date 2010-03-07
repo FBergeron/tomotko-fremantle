@@ -30,7 +30,6 @@ void TermDialog::init() {
     bodyLayout = new QVBoxLayout();
     bodyLayout->setContentsMargins( 0, 0, 0, 0 );
     body->setLayout( bodyLayout );
-
 //    menuBar = new QMenuBar( this );
 
 //    QMenu* edition = new QMenu( QApplication::translate( "QObject", "Edition" ), this );
@@ -297,6 +296,7 @@ void TermDialog::initImage( const QString& path ) {
 
 void TermDialog::resizeEvent( QResizeEvent* /*evt*/ ) {
     resizeImageBox();
+    bodyWrapper->widget()->resize( bodyWrapper->maximumViewportSize().width() - bodyWrapper->verticalScrollBar()->size().width(), body->size().height() );
 }
 
 void TermDialog::resizeImageBox() const {

@@ -83,10 +83,8 @@ VocabularyManagerFrame::VocabularyManagerFrame( Controller* controller, QWidget*
     treeButtonPanel->setLayout( treeButtonPanelLayout );
 
     detailsPanel = new QStackedWidget();
-    //detailsPanel->setSizePolicy( QSizePolicy( QSizePolicy::Expanding, QSizePolicy::Fixed ) ); 
 
     folderDetailsPanel = new QWidget();
-    //folderDetailsPanel->setSizePolicy( QSizePolicy( QSizePolicy::Expanding, QSizePolicy::Fixed ) ); 
     folderDetailsPanelLayout = new QVBoxLayout();
     folderDetailsPanelLayout->setContentsMargins( 0, 0, 0, 0 );
 
@@ -98,7 +96,6 @@ VocabularyManagerFrame::VocabularyManagerFrame( Controller* controller, QWidget*
     folderDetailsPanel->setLayout( folderDetailsPanelLayout );
 
     vocabDetailsPanel = new QWidget();
-    //vocabDetailsPanel->setSizePolicy( QSizePolicy( QSizePolicy::Expanding, QSizePolicy::Fixed ) ); 
     vocabDetailsPanelLayout = new QVBoxLayout();
     vocabDetailsPanelLayout->setContentsMargins( 0, 0, 0, 0 );
     vocabDetailsPanel->setLayout( vocabDetailsPanelLayout );
@@ -107,9 +104,12 @@ VocabularyManagerFrame::VocabularyManagerFrame( Controller* controller, QWidget*
     vocabDetailsPanelLayout->addWidget( vocabDetailsTabWidget );
 
     vocabDetailsPropsPanel = new PropertiesPanel( controller->getPreferences(), vocabDetailsTabWidget );
+
     vocabDetailsPropsPanelWrapper = new QScrollArea();
     vocabDetailsPropsPanelWrapper->setWidget( vocabDetailsPropsPanel );
+
     connect( vocabDetailsTabWidget, SIGNAL( currentChanged( int ) ), vocabDetailsPropsPanel, SLOT( updateCounters() ) ); 
+    connect( vocabDetailsTabWidget, SIGNAL( currentChanged( int ) ), this, SLOT( resizeWidgets() ) ); 
 
     vocabDetailsTermsPanel = new QWidget();
     vocabDetailsTermsPanelLayout = new QHBoxLayout();
@@ -190,9 +190,8 @@ VocabularyManagerFrame::VocabularyManagerFrame( Controller* controller, QWidget*
     splitter = new QSplitter( this );
     splitter->addWidget( leftPanel );
     splitter->addWidget( detailsPanel );
-//cerr << "stretch0 h factor=" << detailsPanel->sizePolicy().horizontalStretch() << " v factor=" << detailsPanel->sizePolicy().verticalStretch() << endl;
-    splitter->setStretchFactor( 2, 1 ); 
-//cerr << "stretch1 h factor=" << detailsPanel->sizePolicy().horizontalStretch() << " v factor=" << detailsPanel->sizePolicy().verticalStretch() << endl;
+    connect( splitter, SIGNAL( splitterMoved( int, int ) ), this, SLOT( resizeWidgets() ) );
+
     mainLayout->addWidget( splitter );
     setLayout( mainLayout );
 
@@ -627,6 +626,7 @@ void VocabularyManagerFrame::updateUi() {
             VocabTreeItem* vocabItem = (VocabTreeItem*)selectedItem;
             updateCurrentVocab( vocabItem );
         }
+        resizeWidgets();
     }
     if( termList && termList->topLevelItemCount() > 0 ) {
         checkAllTermsButton->setEnabled( true );
@@ -638,6 +638,20 @@ void VocabularyManagerFrame::updateUi() {
     }
     emit( selectionChanged( selectedItem ) );
     addListeners();
+}
+
+void VocabularyManagerFrame::resizeWidgets() {
+    TreeItem* selectedItem = (TreeItem*)vocabTreeView->currentItem();
+    if( !selectedItem )
+        return;
+    if( selectedItem->isFolder() ) {
+        folderDetailsPropsPanelWrapper->widget()->resize( folderDetailsPropsPanelWrapper->maximumViewportSize().width() - folderDetailsPropsPanelWrapper->verticalScrollBar()->size().width(), 
+            folderDetailsPropsPanel->size().height() );
+    }
+    else {
+        vocabDetailsPropsPanelWrapper->widget()->resize( vocabDetailsPropsPanelWrapper->maximumViewportSize().width() - vocabDetailsPropsPanelWrapper->verticalScrollBar()->size().width(), 
+            vocabDetailsPropsPanel->size().height() );
+    }
 }
 
 void VocabularyManagerFrame::updateCurrentTreeItem( QTreeWidgetItem* currItem, QTreeWidgetItem* prevItem ) {
@@ -1270,6 +1284,10 @@ void VocabularyManagerFrame::showTerm( const TermKey& termKey ) {
             }
         }
     }
+}
+
+void VocabularyManagerFrame::resizeEvent( QResizeEvent* /*evt*/ ) {
+    resizeWidgets();
 }
 
 void VocabularyManagerFrame::updateTreeItemState( QTreeWidgetItem* item, int column ) {

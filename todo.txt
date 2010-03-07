@@ -1,7 +1,6 @@
 ToDo (This is specific to maemo version.  For general todo, check in zaurus or qt4 branches)
 --------------------------------------------------------------------------------------------
 Make PreferencesDialog work.
-    Recover wasted space on the right side of the right panel in VocabularyManagerFrame:  I suspect that the QScrollArea is the key.  Try to remove it and see.
     Put back commented methods in PreferencesDialog:  addFontOverride(), removeFontOverride(), updateFontOverride()
     Remove VGroupBox and use 2 columns layout as mentioned in GUI guidelines.
     Move the Ok/Cancel buttons on the right.

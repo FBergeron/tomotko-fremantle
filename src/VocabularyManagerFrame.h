@@ -73,6 +73,10 @@ signals:
 
     void selectionChanged( QTreeWidgetItem* item );
 
+protected:
+
+    void resizeEvent( QResizeEvent* evt );
+
 private slots:
 
     void updateTree();
@@ -83,6 +87,8 @@ private slots:
     void keepSelection();
     void restoreTreeSelection();
     void restoreVocabSelection();
+
+    void resizeWidgets();
 
     FolderTreeItem* addFolder();
     VocabTreeItem* addVocab();

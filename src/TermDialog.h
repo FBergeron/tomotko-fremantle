@@ -16,6 +16,7 @@
 #include <QPixmap>
 #include <QPushButton>
 #include <QResizeEvent>
+#include <QScrollBar>
 #include <QScrollArea>
 #include <QString>
 #include <QTextEdit>
