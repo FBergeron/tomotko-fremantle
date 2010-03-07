@@ -20,7 +20,6 @@ void QuizFrame::init() {
 
     topPanel = new QWidget();
     topPanelLayout = new QHBoxLayout();
-    topPanelLayout->setContentsMargins( 0, 0, 0, 0 );
     topPanel->setLayout( topPanelLayout );
 
     topLeftPanel = new QWidget();
@@ -239,7 +238,6 @@ void QuizFrame::init() {
  
     bodyLayout->addWidget( topPanel );
     bodyLayout->addWidget( commentBox, 1 );
-    
 
     bodyWrapper = new QScrollArea();
     bodyWrapper->setWidget( body );
@@ -396,6 +394,7 @@ void QuizFrame::resizeImageBox() {
 void QuizFrame::concludeQuiz() {
     setButtonsEnabled( false );
     QMessageBox::information( this, QObject::tr( "Information" ), tr( "WellDone" ).arg( controller->getInitialTermCount() ) );
+    emit( quizConcluded() );
 }
 
 Term* QuizFrame::askCurrentTerm() {
@@ -461,17 +460,18 @@ void QuizFrame::showEvent( QShowEvent* showEvt ) {
     QWidget::showEvent( showEvt );
     // We set the state of maximize action because it VocabularyManagerFrame may have changed it.
     action[ ACTION_MAXIMIZE ]->setChecked( maximizeCommentButton->isChecked() );  
-    emit( quizShown() );
 }
 
 void QuizFrame::hideEvent( QHideEvent* hideEvt ) {
     QWidget::hideEvent( hideEvt );
-    emit( quizHidden() );
+    if( controller->isQuizInProgress() )
+        emit( quizInterrupted() );
 }
 
 void QuizFrame::resizeEvent( QResizeEvent* evt ) {
     QWidget::resizeEvent( evt );
     resizeImageBox();
+    bodyWrapper->widget()->resize( bodyWrapper->maximumViewportSize().width() - bodyWrapper->verticalScrollBar()->size().width() - 6, body->size().height() );
 }
 
 void QuizFrame::rightAnswer() {
@@ -773,9 +773,6 @@ void QuizFrame::editCurrentTerm() {
         }
 
         TermDialog dialog( *vocab, controller, this, *term );
-#if defined(Q_WS_HILDON)
-        dialog.showFullScreen();
-#endif
         int result = dialog.exec();
         if( result ) { 
             QString firstLang( controller->getQuizFirstLanguage() );

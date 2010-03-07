@@ -66,8 +66,8 @@ public slots:
 
 signals:
 
-    void quizShown();
-    void quizHidden();
+    void quizInterrupted();
+    void quizConcluded();
 
 private slots:
 

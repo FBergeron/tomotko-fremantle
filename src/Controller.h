@@ -106,6 +106,7 @@ public slots:
 signals:
 
     void progressChanged( int progress );
+    void quizConcluded();
 
 private:
 

@@ -10,7 +10,6 @@
 #include "icons/editcut.xpm"
 #include "icons/editcopy.xpm"
 #include "icons/editpaste.xpm"
-//#include "icons/blueArrow.xpm"
 #include "icons/eye.xpm"
 #include "icons/goodAns.xpm"
 #include "icons/badAns.xpm"
@@ -41,24 +40,6 @@ MainWindow::MainWindow( QApplication& app, Controller* controller )
     //toolBar->setMovable( false );
     //addToolBar( toolBar );
 
-//    languageSelectorPanel = new QWidget();
-//    languageSelectorPanelLayout = new QHBoxLayout();
-//    languageSelectorPanel->setLayout( languageSelectorPanelLayout );
-//
-//    firstLanguageComboBox = new QComboBox();
-//    languageSelectorLabel = new QLabel();
-//    languageSelectorLabel->setPixmap( QPixmap( blueArrow_xpm ) );
-//    testLanguageComboBox = new QComboBox();
-//
-//    languageSelectorPanelLayout->addWidget( firstLanguageComboBox );
-//    languageSelectorPanelLayout->addWidget( languageSelectorLabel );
-//    languageSelectorPanelLayout->addWidget( testLanguageComboBox );
-//
-//    updateFirstLanguageValues();
-//    updateTestLanguageValues();
-//    connect( firstLanguageComboBox, SIGNAL( activated( const QString& ) ), this, SLOT( setFirstLanguage( const QString& ) ) );
-//    connect( testLanguageComboBox, SIGNAL( activated( const QString& ) ), this, SLOT( setTestLanguage( const QString& ) ) );
-
     copyAction = Util::createAction( QApplication::translate( "QObject", "Copy" ), editcopy_xpm, this, SLOT( copy() ), QKeySequence( Qt::CTRL + Qt::Key_C ) );
     cutAction = Util::createAction( QApplication::translate( "QObject", "Cut" ), editcut_xpm, this, SLOT( cut() ), QKeySequence( Qt::CTRL + Qt::Key_X ) );
     pasteAction = Util::createAction( QApplication::translate( "QObject", "Paste" ), editpaste_xpm, this, SLOT( paste() ), QKeySequence( Qt::CTRL + Qt::Key_V ) );
@@ -66,9 +47,9 @@ MainWindow::MainWindow( QApplication& app, Controller* controller )
     //progressBar = new QProgressBar();
     //progressBar->setMaximumWidth( 160 );
     //connect( controller, SIGNAL( progressChanged( int ) ), progressBar, SLOT( setValue( int ) ) );
+    connect( controller, SIGNAL( quizConcluded() ), this, SLOT( invokeVocabularyManager() ) );
     //progressBar->setVisible( false );
 
-    //languageSelectorAction = toolBar->addWidget( languageSelectorPanel );
     //toolBar->addAction( copyAction );
     //toolBar->addAction( cutAction );
     //toolBar->addAction( pasteAction );
@@ -141,20 +122,6 @@ MainWindow::MainWindow( QApplication& app, Controller* controller )
     //quizFrame->addAction( action[ ACTION_EDIT_QUIZ_TERM ] );
     //quizFrame->addAction( action[ ACTION_MAXIMIZE ] );
 
-    //actionsMenu = new QMenu( tr( "Actions" ), this );
-    //actionsMenuAction = menuBar()->addMenu( actionsMenu );
-   
-    //actionsMenu->addAction( action[ ACTION_START_QUIZ ] );
-
-    //actionsMenu->addAction( action[ ACTION_MANAGE_GLOSSARIES ] );
-
-    //actionsMenu->addSeparator();
-    //actionsMenu->addAction( action[ ACTION_SHOW_ALL_GLOSSARIES_AND_TERMS ] );
-
-    //actionsMenu->addSeparator();
-    //actionsMenu->addAction( action[ ACTION_IMPORT ] );
-    //actionsMenu->addAction( action[ ACTION_EXPORT ] );
-
     //editionMenu = new QMenu( tr( "Edition" ), this );
     //editionMenuAction = menuBar()->addMenu( editionMenu );
 
@@ -170,6 +137,7 @@ MainWindow::MainWindow( QApplication& app, Controller* controller )
     aboutAction = Util::createAction( tr( "About..." ), about_xpm, this, SLOT( about() ) );
 
     mainMenu->addAction( action[ ACTION_START_QUIZ ] );
+    mainMenu->addAction( action[ ACTION_MANAGE_GLOSSARIES ] );
     mainMenu->addAction( action[ ACTION_SEARCH ] );
     mainMenu->addAction( action[ ACTION_IMPORT ] );
     mainMenu->addAction( action[ ACTION_EXPORT ] );
@@ -177,7 +145,8 @@ MainWindow::MainWindow( QApplication& app, Controller* controller )
     mainMenu->addAction( aboutAction );
     mainMenu->addAction( helpAction );
     mainMenu->addAction( action[ ACTION_QUIT ] );
-    connect( quizFrame, SIGNAL( quizHidden() ), control, SLOT( concludeQuiz() ) );
+    connect( quizFrame, SIGNAL( quizInterrupted() ), control, SLOT( concludeQuiz() ) );
+    connect( quizFrame, SIGNAL( quizConcluded() ), control, SLOT( concludeQuiz() ) );
 
     mainPanel->addWidget( quizFrame );
     mainPanel->addWidget( vocabManagerFrame );
@@ -207,6 +176,7 @@ Controller* MainWindow::controller() {
 void MainWindow::updateMenus( QTreeWidgetItem* /* currItem */ ) {
     action[ ACTION_START_QUIZ ]->setText( mainPanel->currentWidget() == quizFrame ? tr( "RestartQuiz" ) : tr( "StartQuiz" ) );
     action[ ACTION_MANAGE_GLOSSARIES ]->setEnabled( mainPanel->currentWidget() != vocabManagerFrame ); 
+    action[ ACTION_SEARCH ]->setEnabled( mainPanel->currentWidget() == vocabManagerFrame ); 
     if( mainPanel->currentWidget() == vocabManagerFrame ) {
 //        if( !menuBar()->actions().contains( editionMenuAction ) )
 //            menuBar()->insertAction( helpMenuAction, editionMenuAction );
@@ -226,8 +196,6 @@ void MainWindow::updateFonts() {
     QFont labelsFont( control->getPreferences().getLabelsFont() ); 
 
     qApp->setFont( labelsFont );
-    //firstLanguageComboBox->setFont( labelsFont );
-    //testLanguageComboBox->setFont( labelsFont );
     //progressBar->setFont( labelsFont );
 
     quizFrame->updateFonts();
@@ -243,7 +211,6 @@ void MainWindow::setDigraphEnabled( bool isEnabled ) {
 }
 
 void MainWindow::retranslateUi() {
-//    actionsMenuAction->setText( tr( "Actions" ) );
 //    editionMenuAction->setText( tr( "Edition" ) );
 //
     // Could use a loop here.
@@ -276,9 +243,6 @@ void MainWindow::retranslateUi() {
     helpAction->setText( tr( "Help..." ) );
     aboutAction->setText( tr( "About..." ) );
     
-//    updateFirstLanguageValues();
-//    updateTestLanguageValues();
-
     quizFrame->retranslateUi();
     vocabManagerFrame->retranslateUi();
 }
@@ -350,26 +314,22 @@ void MainWindow::startQuiz() {
 
 void MainWindow::showQuiz() {
     mainPanel->setCurrentIndex( frameQuizIndex );
-//    updateMenus( NULL );
+    updateMenus( NULL );
 //    toolBar->setVisible( false );
 //    progressBar->setVisible( true );
-//    languageSelectorAction->setVisible( false );
 }
 
 void MainWindow::invokeVocabularyManager() {
     mainPanel->setCurrentIndex( frameVocabManagerIndex );
-    //updateMenus( NULL );
+    updateMenus( NULL );
     //toolBar->setVisible( true );
     //progressBar->setVisible( false );
-    //languageSelectorAction->setVisible( true );
 }
 
 void MainWindow::importData() {
     vocabManagerFrame->importData();
     // Some study languages in the preferences may have been added after the import
     // so we need to update the language selectors.
-//    updateFirstLanguageValues();
-//    updateTestLanguageValues();
 }
 
 void MainWindow::exportData() {
@@ -388,8 +348,6 @@ void MainWindow::preferences() {
         //    // Update the quiz.  May be tricky if the current term has no data for the current first/test languages.
         //}
         //else if( mainPanel->currentWidget() == vocabManagerFrame )
-//        updateFirstLanguageValues();
-//        updateTestLanguageValues();
         setDigraphEnabled( control->getPreferences().isDigraphEnabled() );
         quizFrame->setButtonsHidden( control->getPreferences().areQuizButtonsHidden() );
         vocabManagerFrame->updateShownItems();
@@ -444,72 +402,4 @@ void MainWindow::quit() {
 //void MainWindow::setLanguageFilterEnabled( bool isEnabled ) {
 //    action[ ACTION_SHOW_ALL_GLOSSARIES_AND_TERMS ]->setChecked( !isEnabled );
 //    control->getPreferences().setLanguageFilterEnabled( isEnabled );
-//}
-//
-//void MainWindow::updateFirstLanguageValues() {
-//    updateLanguageSelector( firstLanguageComboBox );
-//    selectLanguage( firstLanguageComboBox, control->getPreferences().getFirstLanguage() );
-//}
-//
-//void MainWindow::updateTestLanguageValues() {
-//    updateLanguageSelector( testLanguageComboBox );
-//    selectLanguage( testLanguageComboBox, control->getPreferences().getTestLanguage() );
-//}
-//
-//void MainWindow::selectLanguage( QComboBox* comboBox, const QString& langCode ) {
-//    int itemCount = comboBox->count();
-//    for( int i = 0; i < itemCount; i++ ) {
-//        if( comboBox->itemText( i ) == QApplication::translate( "QObject", langCode.toLatin1().data() ) ) {
-//            comboBox->setCurrentIndex( i );
-//            return;
-//        }
-//    }
-//}
-//
-//void MainWindow::updateLanguageSelector( QComboBox* comboBox ) {
-//    QList<QString> studyLanguages = control->getPreferences().getStudyLanguages();
-//    QStringList sortedLanguages;
-//    for( int i = 0; i < studyLanguages.size(); i++ ) {
-//        QString lang( studyLanguages[ i ] );
-//        sortedLanguages.append( QApplication::translate( "QObject", lang.toLatin1().data() ) );
-//    }
-//    sortedLanguages.sort(); 
-//
-//    comboBox->clear();
-//    comboBox->addItem( QString( "" ) );
-//    for( QStringList::ConstIterator it = sortedLanguages.begin(); it != sortedLanguages.end(); it++ ) {
-//        QString lang( *it );
-//        comboBox->addItem( lang );
-//    }
-//}
-//
-//void MainWindow::setFirstLanguage( const QString& lang ) {
-//    if( lang == QApplication::translate( "QObject", control->getPreferences().getTestLanguage().toLatin1().data() ) && 
-//            control->getPreferences().getTestLanguage() != QString( "" ) )
-//        switchFirstAndTestLanguages();
-//    else
-//        control->getPreferences().setFirstLanguage( Util::getLanguageCode( lang ) );
-//    updateFonts();
-//    quizFrame->updateLanguageLabels();
-//    vocabManagerFrame->updateShownItems();
-//}
-//
-//void MainWindow::setTestLanguage( const QString& lang ) {
-//    if( lang == QApplication::translate( "QObject", control->getPreferences().getFirstLanguage().toLatin1().data() ) && 
-//            control->getPreferences().getFirstLanguage() != QString( "" ) )
-//        switchFirstAndTestLanguages();
-//    else
-//        control->getPreferences().setTestLanguage( Util::getLanguageCode( lang ) );
-//    updateFonts();
-//    quizFrame->updateLanguageLabels();
-//    vocabManagerFrame->updateShownItems();
-//}
-//
-//void MainWindow::switchFirstAndTestLanguages() {
-//    QString firstLang( control->getPreferences().getFirstLanguage() );
-//    QString testLang( control->getPreferences().getTestLanguage() );
-//    selectLanguage( firstLanguageComboBox, testLang );
-//    selectLanguage( testLanguageComboBox, firstLang );
-//    control->getPreferences().setFirstLanguage( testLang );
-//    control->getPreferences().setTestLanguage( firstLang );
 //}

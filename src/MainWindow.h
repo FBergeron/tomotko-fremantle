@@ -76,19 +76,12 @@ private slots:
     void paste();
     //void toggleLanguageFilter();
     void quit();
-    //void setFirstLanguage( const QString& lang );
-    //void setTestLanguage( const QString& lang );
-    //void switchFirstAndTestLanguages();
     //void toggleMaximize( bool isOn ); 
     void search();
     
 private:
 
     //void setLanguageFilterEnabled( bool isEnabled );
-    //void updateFirstLanguageValues(); Has been relocated to VocabularyManagerFrame
-    //void updateTestLanguageValues(); Has been relocated to VocabularyManagerFrame
-    //void selectLanguage( QComboBox* comboBox, const QString& langCode ); Has been relocated to VocabularyManagerFrame
-    //void updateLanguageSelector( QComboBox* comboBox ); Has been relocated to VocabularyManagerFrame
 
     //QMap<QString,QString>   availableLanguages;  // Have been relocated to PreferencesDialog.
 
@@ -102,9 +95,6 @@ private:
 
     QMenu*                  mainMenu;
 
-    //QMenu*                  actionsMenu;
-    //QAction*                actionsMenuAction;
-
     //QAction*                editionMenuAction;
     QAction*                copyAction;
     QAction*                cutAction;
@@ -112,13 +102,6 @@ private:
 
     QAction*                aboutAction;
     QAction*                helpAction;
-
-//    QWidget*                languageSelectorPanel;   Has been relocated to VocabularyManagerFrame
-//    QAction*                languageSelectorAction;
-//    QHBoxLayout*            languageSelectorPanelLayout;
-//    QComboBox*              firstLanguageComboBox;
-//    QLabel*                 languageSelectorLabel;
-//    QComboBox*              testLanguageComboBox;
 
     //QProgressBar*           progressBar;
 

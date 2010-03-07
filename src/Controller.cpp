@@ -52,6 +52,7 @@ void Controller::prepareQuiz() {
 
 void Controller::concludeQuiz() {
     scheduler.concludeQuiz();
+    emit( quizConcluded() );
 }
 
 Term* Controller::getCurrentTerm() {
