@@ -296,7 +296,7 @@ void TermDialog::initImage( const QString& path ) {
 
 void TermDialog::resizeEvent( QResizeEvent* /*evt*/ ) {
     resizeImageBox();
-    bodyWrapper->widget()->resize( bodyWrapper->maximumViewportSize().width() - bodyWrapper->verticalScrollBar()->size().width(), body->size().height() );
+    bodyWrapper->widget()->resize( bodyWrapper->maximumViewportSize().width() - bodyWrapper->verticalScrollBar()->size().width() - 6, body->size().height() );
 }
 
 void TermDialog::resizeImageBox() const {

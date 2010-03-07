@@ -50,7 +50,6 @@ VocabularyManagerFrame::VocabularyManagerFrame( Controller* controller, QWidget*
     treeButtonPanelLayout = new QVBoxLayout();
     treeButtonPanelLayout->setContentsMargins( 0, 0, 0, 0 );
 
-    //treePanelLayout->addWidget( languageSelectorPanel );
     treePanelLayout->addWidget( vocabTreeView, 1 );
     treePanelLayout->addWidget( treeButtonPanel );
     treePanel->setLayout( treePanelLayout );
@@ -585,7 +584,6 @@ void VocabularyManagerFrame::setDigraphEnabled( bool isEnabled ) {
 
 void VocabularyManagerFrame::retranslateUi() {
     vocabTreeView->setHeaderLabel( tr( "Glossaries" ) );
-    folderDetailsTitle->setText( tr( "Folder" ) );
     QStringList headerLabels;
     headerLabels << QApplication::translate( "QObject", controller->getPreferences().getFirstLanguage().toLatin1().data() );
     headerLabels << QApplication::translate( "QObject", controller->getPreferences().getTestLanguage().toLatin1().data() );
@@ -645,11 +643,11 @@ void VocabularyManagerFrame::resizeWidgets() {
     if( !selectedItem )
         return;
     if( selectedItem->isFolder() ) {
-        folderDetailsPropsPanelWrapper->widget()->resize( folderDetailsPropsPanelWrapper->maximumViewportSize().width() - folderDetailsPropsPanelWrapper->verticalScrollBar()->size().width(), 
+        folderDetailsPropsPanelWrapper->widget()->resize( folderDetailsPropsPanelWrapper->maximumViewportSize().width() - folderDetailsPropsPanelWrapper->verticalScrollBar()->size().width() - 6, 
             folderDetailsPropsPanel->size().height() );
     }
     else {
-        vocabDetailsPropsPanelWrapper->widget()->resize( vocabDetailsPropsPanelWrapper->maximumViewportSize().width() - vocabDetailsPropsPanelWrapper->verticalScrollBar()->size().width(), 
+        vocabDetailsPropsPanelWrapper->widget()->resize( vocabDetailsPropsPanelWrapper->maximumViewportSize().width() - vocabDetailsPropsPanelWrapper->verticalScrollBar()->size().width() - 6, 
             vocabDetailsPropsPanel->size().height() );
     }
 }

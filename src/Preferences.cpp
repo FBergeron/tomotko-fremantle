@@ -453,9 +453,7 @@ void Preferences::initDefaultKeyboardAccelerators() {
     defaultAccel[ ACTION_EXPORT ] = 0;
     defaultAccel[ ACTION_SHOW_ALL_GLOSSARIES_AND_TERMS ] = 0;
     defaultAccel[ ACTION_PREFERENCES ] = Qt::CTRL + Qt::Key_P;
-#if !defined(Q_WS_HILDON)
     defaultAccel[ ACTION_QUIT ] = Qt::CTRL + Qt::Key_Q;
-#endif
     defaultAccel[ ACTION_ADD_FOLDER ] = Qt::CTRL + Qt::Key_F;
     defaultAccel[ ACTION_ADD_GLOSSARY ] = Qt::CTRL + Qt::Key_G;
     defaultAccel[ ACTION_REMOVE_ITEM ] = Qt::CTRL + Qt::Key_Backspace;
@@ -464,7 +462,7 @@ void Preferences::initDefaultKeyboardAccelerators() {
     defaultAccel[ ACTION_REMOVE_TERMS ] = Qt::CTRL + Qt::Key_D;
     defaultAccel[ ACTION_CHECK_ALL_TERMS ] = Qt::CTRL + Qt::Key_A;
     defaultAccel[ ACTION_INVERSE_CHECKED_TERMS ] = Qt::CTRL + Qt::Key_I;
-    defaultAccel[ ACTION_MAXIMIZE ] = Qt::CTRL + Qt::Key_Space;
+    defaultAccel[ ACTION_MAXIMIZE ] = 0; // Qt::CTRL + Qt::Key_Space;  This accelerator is the default accelerator to switch language input on Fremantle.
     defaultAccel[ ACTION_SEARCH ] = Qt::CTRL + Qt::Key_Comma;
 }
 

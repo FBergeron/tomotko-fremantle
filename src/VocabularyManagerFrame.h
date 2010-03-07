@@ -164,7 +164,6 @@ private:
     QStackedWidget*         detailsPanel;
     QWidget*                folderDetailsPanel;
     QVBoxLayout*            folderDetailsPanelLayout;
-    QLabel*                 folderDetailsTitle;
     QScrollArea*            folderDetailsPropsPanelWrapper;
     PropertiesPanel*        folderDetailsPropsPanel; 
 

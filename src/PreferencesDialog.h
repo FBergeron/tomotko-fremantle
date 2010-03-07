@@ -67,9 +67,9 @@ private slots:
 
     void resetDefaultLabelsFont();
     void resetDefaultFont();
-//    void addFontOverride( const QString& language );
-//    void removeFontOverride( const QString& language );
-//    void updateFontOverride( QTreeWidgetItem* item, int column );
+    void addFontOverride( const QString& language );
+    void removeFontOverride( const QString& language );
+    void updateFontOverride();
     void clearAccelKey();
     void setAccelKey();
     void resetAccelKey();
@@ -125,7 +125,7 @@ private:
     QLabel*                     interfacePageLabel;
 
     QWidget*                    languagesPanel;
-    QVBoxLayout*                languagesPanelLayout;
+    QGridLayout*                languagesPanelLayout;
 
     QList<QCheckBox*>           studyLanguagesItem;
 

@@ -284,6 +284,7 @@ void PreferencesDialog::init() {
     keyboardAccelLabel = new QLabel( tr( "Keybord Accelerators" ) );
 
     keyboardAccelListView = new QTreeWidget();
+    keyboardAccelListView->setAutoScroll( false );
     keyboardAccelListView->setColumnCount( 2 );
     QStringList headerLabels;
     headerLabels << tr( "Action" ) << tr( "Key" ); 
@@ -326,7 +327,7 @@ void PreferencesDialog::init() {
     interfacePageLayout->addWidget( interfaceLanguagePanel );
     //interfacePageLayout->addWidget( keyboardAccelPanel ); // Disabled for Fremantle.
     interfacePageLayout->addWidget( digraphCheckBox );
-    interfacePageLayout->addWidget( hideQuizButtonCheckBox );
+    interfacePageLayout->addWidget( hideQuizButtonCheckBox ); // Disabled for Fremantle.
     interfacePageLayout->addWidget( showAltTextInTermListCheckBox );
     interfacePageLayout->addWidget( interfacePageSeparator );
 
@@ -338,13 +339,12 @@ void PreferencesDialog::init() {
     languagePageLabel = new QLabel( tr( "StudyLanguages" ) );
 
     languagesPanel = new QWidget();
-    languagesPanelLayout = new QVBoxLayout();
+    //languagesPanelLayout = new QVBoxLayout();
+    languagesPanelLayout = new QGridLayout();
     languagesPanelLayout->setContentsMargins( 0, 0, 0, 0 );
     languagesPanel->setLayout( languagesPanelLayout );
    
     initStudyLanguageValues();
-
-    //connect( studyLanguagesListView, SIGNAL( itemChanged( QTreeWidgetItem*, int ) ), this, SLOT( updateFontOverride( QTreeWidgetItem*, int ) ) );
 
     languagePageSeparator = new QFrame();
     languagePageSeparator->setFrameStyle( QFrame::HLine );
@@ -377,10 +377,10 @@ void PreferencesDialog::init() {
     bodyPanelLayout->setContentsMargins( 0, 0, 0, 0 );
     bodyPanel->setLayout( bodyPanelLayout );
 
-    bodyPanelLayout->addWidget( quizPage );
-    bodyPanelLayout->addWidget( languagePage );
-    bodyPanelLayout->addWidget( fontPage );
     bodyPanelLayout->addWidget( interfacePage );
+    bodyPanelLayout->addWidget( quizPage );
+    bodyPanelLayout->addWidget( fontPage );
+    bodyPanelLayout->addWidget( languagePage );
 
     bodyWrapper->setWidget( bodyPanel );
 
@@ -449,13 +449,27 @@ void PreferencesDialog::initSequences() {
 }
 
 void PreferencesDialog::initStudyLanguageValues() {
+    QStringList sortedLanguages;
     int studyLanguageListLength = sizeof( studyLanguageList ) / sizeof( QString );
-    for( int i = 0; i < studyLanguageListLength; i++ ) {
-        bool isStudied( prefs->isStudyLanguage( studyLanguageList[ i ] ) );
-        QCheckBox* languageCheckBox = new QCheckBox( QApplication::translate( "QObject", studyLanguageList[ i ].toLatin1().data() ) );
+    for( int i = 0; i < studyLanguageListLength; i++ ) 
+        sortedLanguages.append( QApplication::translate( "QObject", studyLanguageList[ i ].toLatin1().data() ) );
+    sortedLanguages.sort();
+
+    int languageCount = sortedLanguages.count();
+    int languageCountDividedBy2 = (int)( languageCount / 2 + 0.5 );
+    for( int i = 0; i < languageCount; i++ ) {
+        QString lang = sortedLanguages.at( i );
+        QString langCode( Util::getLanguageCode( lang ) );
+        bool isStudied( prefs->isStudyLanguage( langCode ) );
+        QCheckBox* languageCheckBox = new QCheckBox( lang );
         languageCheckBox->setCheckState( isStudied ? Qt::Checked : Qt::Unchecked );
-        languagesPanelLayout->addWidget( languageCheckBox );
+        //int row = i / 2;
+        //int col = i % 2;
+        int col = ( i < ( languageCount / 2 + 1 ) ? 0 : 1 );
+        int row = i - ( col * ( languageCount / 2 + 1 ) );
+        languagesPanelLayout->addWidget( languageCheckBox, row, col );
         studyLanguagesItem.append( languageCheckBox );
+        connect( languageCheckBox, SIGNAL( stateChanged( int ) ), this, SLOT( updateFontOverride() ) );
     }
 }
 
@@ -557,6 +571,7 @@ void PreferencesDialog::accept() {
     prefs->setDigraphEnabled( isDigraphEnabled );
 
     bool isQuizButtonHiddenChecked = ( hideQuizButtonCheckBox->checkState() != Qt::Unchecked );
+    isQuizButtonHiddenChecked = false; // Always show buttons in Fremantle.
     prefs->setQuizButtonsHidden( isQuizButtonHiddenChecked );
 
     bool isAltInTermListShownChecked = ( showAltTextInTermListCheckBox->checkState() != Qt::Unchecked );
@@ -573,7 +588,6 @@ void PreferencesDialog::accept() {
 
     QString interfaceLanguage = availableLanguages[ interfaceLanguageField->currentText() ];
     prefs->setInterfaceLanguage( interfaceLanguage );
-
     QDialog::accept();
 }
 
@@ -631,68 +645,77 @@ void PreferencesDialog::resetDefaultFont() {
     selectFontSize( fontSizeComboBox, prefs->getDefaultFontSizeModifier() );
 }
 
-//void PreferencesDialog::addFontOverride( const QString& language ) {
-//    // Do nothing if the font override already exists.
-//    int fontOverrideCount = fontOverrideLabels.count();
-//    for( int i = 0; i < fontOverrideCount; i++ ) {
-//        if( fontOverrideLabels.at( i )->text() == QApplication::translate( "QObject", language.toLatin1().data() ) )
-//            return;
-//    }
-//    
-//    QWidget* fontOverrideBox = new QWidget();
-//    QHBoxLayout* fontOverrideBoxLayout = new QHBoxLayout();
-//    fontOverrideBox->setLayout( fontOverrideBoxLayout );
-//
-//    QLabel* fontOverrideLabel = new QLabel( QApplication::translate( "QObject", language.toLatin1().data() ) );
-//    QComboBox* fontOverrideFamilyComboBox = new QComboBox();
-//    initFontFamilyValues( fontOverrideFamilyComboBox, true );
-//    if( prefs->isFontOverrideFamilyDefined( language ) ) 
-//        selectFontFamily( fontOverrideFamilyComboBox, prefs->getFontOverrideFamily( language ) );
-//
-//    QComboBox* fontOverrideSizeComboBox = new QComboBox();
-//    initFontSizeValues( fontOverrideSizeComboBox, true );
-//    if( prefs->isFontOverrideSizeDefined( language ) ) 
-//        selectFontSize( fontOverrideSizeComboBox, prefs->getFontOverrideSize( language ), true );
-//
-//    fontOverrideBoxLayout->addWidget( fontOverrideLabel );
-//    fontOverrideBoxLayout->addWidget( fontOverrideFamilyComboBox );
-//    fontOverrideBoxLayout->addWidget( fontOverrideSizeComboBox );
-//
-//    fontOverrideBoxes.append( fontOverrideBox );
-//    fontOverrideLabels.append( fontOverrideLabel );
-//    fontOverrideFamilyComboBoxes.append( fontOverrideFamilyComboBox );
-//    fontOverrideSizeComboBoxes.append( fontOverrideSizeComboBox );
-//
-//    int indexOfFiller = fontOverridesBoxLayout->indexOf( fontOverridesBoxFiller );
-//    fontOverridesBoxLayout->insertWidget( indexOfFiller, fontOverrideBox ); 
-//}
-//
-//void PreferencesDialog::removeFontOverride( const QString& language ) {
-//    int fontOverrideCount = fontOverrideLabels.count();
-//    for( int i = 0; i < fontOverrideCount; i++ ) {
-//        if( fontOverrideLabels.at( i )->text() == QApplication::translate( "QObject", language.toLatin1().data() ) ) {
-//            QWidget* fontOverrideBox = fontOverrideBoxes.at( i );
-//
-//            fontOverrideLabels.removeAt( i );
-//            fontOverrideFamilyComboBoxes.removeAt( i );
-//            fontOverrideSizeComboBoxes.removeAt( i );
-//            fontOverrideBoxes.removeAt( i );
-//
-//            delete( fontOverrideBox );
-//
-//            return;
-//        }
-//    }
-//}
-//
-//void PreferencesDialog::updateFontOverride( QTreeWidgetItem* item, int /*column*/ ) {
-//    QString lang( Util::getLanguageCode( item->text( 0 ) ) );
-//    bool isChecked = ( item->checkState( 0 ) == Qt::Checked );
-//    if( isChecked ) 
-//        addFontOverride( lang );
-//    else 
-//        removeFontOverride( lang );
-//}
+void PreferencesDialog::addFontOverride( const QString& language ) {
+    // Do nothing if the font override already exists.
+    int fontOverrideCount = fontOverrideLabels.count();
+    for( int i = 0; i < fontOverrideCount; i++ ) {
+        if( fontOverrideLabels.at( i )->text() == QApplication::translate( "QObject", language.toLatin1().data() ) )
+            return;
+    }
+    
+    QWidget* fontOverrideBox = new QWidget();
+    QHBoxLayout* fontOverrideBoxLayout = new QHBoxLayout();
+    fontOverrideBox->setLayout( fontOverrideBoxLayout );
+
+    QLabel* fontOverrideLabel = new QLabel( QApplication::translate( "QObject", language.toLatin1().data() ) );
+    QComboBox* fontOverrideFamilyComboBox = new QComboBox();
+    initFontFamilyValues( fontOverrideFamilyComboBox, true );
+    if( prefs->isFontOverrideFamilyDefined( language ) ) 
+        selectFontFamily( fontOverrideFamilyComboBox, prefs->getFontOverrideFamily( language ) );
+
+    QComboBox* fontOverrideSizeComboBox = new QComboBox();
+    initFontSizeValues( fontOverrideSizeComboBox, true );
+    if( prefs->isFontOverrideSizeDefined( language ) ) 
+        selectFontSize( fontOverrideSizeComboBox, prefs->getFontOverrideSize( language ), true );
+
+    fontOverrideBoxLayout->addWidget( fontOverrideLabel );
+    fontOverrideBoxLayout->addWidget( fontOverrideFamilyComboBox );
+    fontOverrideBoxLayout->addWidget( fontOverrideSizeComboBox );
+
+    fontOverrideBoxes.append( fontOverrideBox );
+    fontOverrideLabels.append( fontOverrideLabel );
+    fontOverrideFamilyComboBoxes.append( fontOverrideFamilyComboBox );
+    fontOverrideSizeComboBoxes.append( fontOverrideSizeComboBox );
+
+    //int indexOfFiller = fontOverridesBoxLayout->indexOf( fontOverridesBoxFiller );
+    //fontOverridesBoxLayout->insertWidget( indexOfFiller, fontOverrideBox ); 
+    fontOverridesPanelLayout->addWidget( fontOverrideBox ); 
+}
+
+void PreferencesDialog::removeFontOverride( const QString& language ) {
+    int fontOverrideCount = fontOverrideLabels.count();
+    for( int i = 0; i < fontOverrideCount; i++ ) {
+        if( fontOverrideLabels.at( i )->text() == QApplication::translate( "QObject", language.toLatin1().data() ) ) {
+            QWidget* fontOverrideBox = fontOverrideBoxes.at( i );
+
+            fontOverrideLabels.removeAt( i );
+            fontOverrideFamilyComboBoxes.removeAt( i );
+            fontOverrideSizeComboBoxes.removeAt( i );
+            fontOverrideBoxes.removeAt( i );
+
+            delete( fontOverrideBox );
+
+            return;
+        }
+    }
+}
+
+void PreferencesDialog::updateFontOverride() {
+    int studyLanguageItemCount = studyLanguagesItem.count();
+    for( int i = 0; i < studyLanguageItemCount; i++ ) {
+        QCheckBox* languageCheckBox = (QCheckBox*)studyLanguagesItem.at( i );
+        QString checkBoxLang( Util::getLanguageCode( languageCheckBox->text() ) );
+        bool isChecked = ( languageCheckBox->checkState() != Qt::Unchecked );
+        int fontOverrideItemCount = fontOverrideLabels.count();
+        for( int j = 0; j < fontOverrideItemCount; j++ ) {
+            if( checkBoxLang == Util::getLanguageCode( fontOverrideLabels.at( j )->text() ) )
+                if( !isChecked )
+                    removeFontOverride( checkBoxLang );
+        }
+        if( isChecked )
+            addFontOverride( checkBoxLang );
+    }
+}
 
 void PreferencesDialog::setAccelKey() {
     KeyActionListViewItem* item = (KeyActionListViewItem*)keyboardAccelListView->currentItem();

@@ -59,7 +59,7 @@ void PropertiesPanel::updateCounters() {
         values << tr( "Words" ) << QString::number( selectedTermCount ) << QString::number( checkedTermCount ) << QString::number( termCount );
         QTreeWidgetItem* termCountItem = new QTreeWidgetItem( contentListView, values );
         for( int i = 1; i <= 3; i++ )
-            termCountItem->setTextAlignment( i, Qt::AlignRight );
+            termCountItem->setTextAlignment( i, Qt::AlignRight | Qt::AlignVCenter );
         contentListView->addTopLevelItem( termCountItem );
     }
     else if( getType() == QString( "Folder" ) ) {
@@ -92,21 +92,21 @@ void PropertiesPanel::updateCounters() {
         termCountValues << tr( "Words" ) << QString::number( selectedTermCount ) << QString::number( checkedTermCount ) << QString::number( termCount );
         QTreeWidgetItem* termCountItem = new QTreeWidgetItem( contentListView, termCountValues );
         for( int i = 1; i <= 3; i++ )
-            termCountItem->setTextAlignment( i, Qt::AlignRight );
+            termCountItem->setTextAlignment( i, Qt::AlignRight | Qt::AlignVCenter );
         contentListView->addTopLevelItem( termCountItem );
 
         QStringList vocabCountValues;
         vocabCountValues << tr( "Glossaries" ) << QString::number( selectedVocabCount ) << QString::number( checkedVocabCount ) << QString::number( vocabCount );
         QTreeWidgetItem* vocabCountItem = new QTreeWidgetItem( contentListView, vocabCountValues );
         for( int i = 1; i <= 3; i++ )
-            vocabCountItem->setTextAlignment( i, Qt::AlignRight );
+            vocabCountItem->setTextAlignment( i, Qt::AlignRight | Qt::AlignVCenter );
         contentListView->addTopLevelItem( vocabCountItem );
 
         QStringList folderCountValues;
         folderCountValues << tr( "Folders" ) << QString::number( selectedFolderCount ) << QString::number( checkedFolderCount ) << QString::number( folderCount );
         QTreeWidgetItem* folderCountItem = new QTreeWidgetItem( contentListView, folderCountValues );
         for( int i = 1; i <= 3; i++ )
-            folderCountItem->setTextAlignment( i, Qt::AlignRight );
+            folderCountItem->setTextAlignment( i, Qt::AlignRight | Qt::AlignVCenter );
         contentListView->addTopLevelItem( folderCountItem );
     }
     contentListView->updateGeometry();
@@ -114,8 +114,6 @@ void PropertiesPanel::updateCounters() {
 }
 
 void PropertiesPanel::init() {
-    //setSizePolicy( QSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding ) );
-
     QFont mediumFont( prefs.getMediumFont() );
     QFont labelsFont( prefs.getLabelsFont() );
 
@@ -138,6 +136,7 @@ void PropertiesPanel::init() {
 
     contentLabel = new QLabel( tr( "Content" ) );
     contentListView = new QTreeWidget();
+    contentListView->setVerticalScrollBarPolicy( Qt::ScrollBarAlwaysOff );
     contentListView->setAllColumnsShowFocus( true );
     contentListView->setSelectionMode( QAbstractItemView::ExtendedSelection );
     contentListView->header()->setStretchLastSection( false );
@@ -146,9 +145,9 @@ void PropertiesPanel::init() {
 
     contentListView->setHeaderLabels( headerLabels );
     contentListView->header()->setResizeMode( 0, QHeaderView::Stretch );
-    contentListView->headerItem()->setTextAlignment( 1, Qt::AlignRight );
-    contentListView->headerItem()->setTextAlignment( 2, Qt::AlignRight );
-    contentListView->headerItem()->setTextAlignment( 3, Qt::AlignRight );
+    contentListView->headerItem()->setTextAlignment( 1, Qt::AlignRight | Qt::AlignVCenter );
+    contentListView->headerItem()->setTextAlignment( 2, Qt::AlignRight | Qt::AlignVCenter );
+    contentListView->headerItem()->setTextAlignment( 3, Qt::AlignRight | Qt::AlignVCenter );
 
     simplePropsPanel = new QWidget();
     simplePropsPanelLayout = new QHBoxLayout();
@@ -184,6 +183,12 @@ void PropertiesPanel::init() {
     modificationDateValueLabel = new QLabel();
     simplePropsFieldsPanelLayout->addWidget( modificationDateValueLabel );
     modificationDateValueLabel->setFont( mediumFont );
+
+    authorLabel->setMinimumHeight( authorField->sizeHint().height() );
+    creationDateLabel->setMinimumHeight( authorField->sizeHint().height() );
+    creationDateValueLabel->setMinimumHeight( authorField->sizeHint().height() );
+    modificationDateLabel->setMinimumHeight( authorField->sizeHint().height() );
+    modificationDateValueLabel->setMinimumHeight( authorField->sizeHint().height() );
 
     mainLayout->addWidget( titlePanel );
     mainLayout->addWidget( descriptionLabel );

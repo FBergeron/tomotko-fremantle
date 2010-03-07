@@ -107,20 +107,20 @@ MainWindow::MainWindow( QApplication& app, Controller* controller )
         this, SLOT( search() ), prefs.getAccelerator( ACTION_SEARCH ) );
 
     //// Accelerators that are not driven by menus/actions must be added to their widgets to work.
-    //vocabManagerFrame->addAction( action[ ACTION_CHECK_ALL_TERMS ] );
-    //vocabManagerFrame->addAction( action[ ACTION_INVERSE_CHECKED_TERMS ] );
-    //vocabManagerFrame->addAction( action[ ACTION_MAXIMIZE ] );
-    //vocabManagerFrame->addAction( action[ ACTION_ADD_TERM ] );
-    //vocabManagerFrame->addAction( action[ ACTION_REMOVE_TERMS ] );
-    //vocabManagerFrame->addAction( action[ ACTION_EDIT_TERM ] );
-    //vocabManagerFrame->addAction( action[ ACTION_ADD_FOLDER ] );
-    //vocabManagerFrame->addAction( action[ ACTION_ADD_GLOSSARY ] );
-    //vocabManagerFrame->addAction( action[ ACTION_REMOVE_ITEM ] );
-    //quizFrame->addAction( action[ ACTION_RIGHT_ANSWER ] );
-    //quizFrame->addAction( action[ ACTION_WRONG_ANSWER ] );
-    //quizFrame->addAction( action[ ACTION_REVEAL ] );
-    //quizFrame->addAction( action[ ACTION_EDIT_QUIZ_TERM ] );
-    //quizFrame->addAction( action[ ACTION_MAXIMIZE ] );
+    vocabManagerFrame->addAction( action[ ACTION_CHECK_ALL_TERMS ] );
+    vocabManagerFrame->addAction( action[ ACTION_INVERSE_CHECKED_TERMS ] );
+    vocabManagerFrame->addAction( action[ ACTION_MAXIMIZE ] );
+    vocabManagerFrame->addAction( action[ ACTION_ADD_TERM ] );
+    vocabManagerFrame->addAction( action[ ACTION_REMOVE_TERMS ] );
+    vocabManagerFrame->addAction( action[ ACTION_EDIT_TERM ] );
+    vocabManagerFrame->addAction( action[ ACTION_ADD_FOLDER ] );
+    vocabManagerFrame->addAction( action[ ACTION_ADD_GLOSSARY ] );
+    vocabManagerFrame->addAction( action[ ACTION_REMOVE_ITEM ] );
+    quizFrame->addAction( action[ ACTION_RIGHT_ANSWER ] );
+    quizFrame->addAction( action[ ACTION_WRONG_ANSWER ] );
+    quizFrame->addAction( action[ ACTION_REVEAL ] );
+    quizFrame->addAction( action[ ACTION_EDIT_QUIZ_TERM ] );
+    quizFrame->addAction( action[ ACTION_MAXIMIZE ] );
 
     //editionMenu = new QMenu( tr( "Edition" ), this );
     //editionMenuAction = menuBar()->addMenu( editionMenu );
