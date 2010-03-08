@@ -38,8 +38,6 @@ VocabularyManagerFrame::VocabularyManagerFrame( Controller* controller, QWidget*
 
     updateFirstLanguageValues();
     updateTestLanguageValues();
-    //connect( firstLanguageComboBox, SIGNAL( activated( const QString& ) ), this, SLOT( setFirstLanguage( const QString& ) ) );
-    //connect( testLanguageComboBox, SIGNAL( activated( const QString& ) ), this, SLOT( setTestLanguage( const QString& ) ) );
 
     vocabTreeView = new VocabTreeView( *controller );
     vocabTreeView->setAnimated( true );
@@ -735,6 +733,9 @@ void VocabularyManagerFrame::selectLanguage( QComboBox* comboBox, const QString&
 }
 
 void VocabularyManagerFrame::updateLanguageSelector( QComboBox* comboBox ) {
+    disconnect( firstLanguageComboBox, SIGNAL( currentIndexChanged( const QString& ) ), this, SLOT( setFirstLanguage( const QString& ) ) );
+    disconnect( testLanguageComboBox, SIGNAL( currentIndexChanged( const QString& ) ), this, SLOT( setTestLanguage( const QString& ) ) );
+
     QList<QString> studyLanguages = controller->getPreferences().getStudyLanguages();
     QStringList sortedLanguages;
     for( int i = 0; i < studyLanguages.size(); i++ ) {
@@ -749,6 +750,9 @@ void VocabularyManagerFrame::updateLanguageSelector( QComboBox* comboBox ) {
         QString lang( *it );
         comboBox->addItem( lang );
     }
+
+    connect( firstLanguageComboBox, SIGNAL( currentIndexChanged( const QString& ) ), this, SLOT( setFirstLanguage( const QString& ) ) );
+    connect( testLanguageComboBox, SIGNAL( currentIndexChanged( const QString& ) ), this, SLOT( setTestLanguage( const QString& ) ) );
 }
 
 
@@ -1312,4 +1316,30 @@ void VocabularyManagerFrame::updateTermItemState( QTreeWidgetItem* item, int col
         if( termListItem->getTerm()->isMarkedForStudy() != isChecked )
             termListItem->setOn( isChecked );
     }
+}
+
+void VocabularyManagerFrame::setFirstLanguage( const QString& lang ) {
+    if( lang == QApplication::translate( "QObject", controller->getPreferences().getTestLanguage().toLatin1().data() ) && 
+            controller->getPreferences().getTestLanguage() != QString( "" ) )
+        switchFirstAndTestLanguages();
+    else
+        emit( firstLanguageChanged( lang ) );
+}
+
+void VocabularyManagerFrame::setTestLanguage( const QString& lang ) {
+    if( lang == QApplication::translate( "QObject", controller->getPreferences().getFirstLanguage().toLatin1().data() ) && 
+            controller->getPreferences().getFirstLanguage() != QString( "" ) )
+        switchFirstAndTestLanguages();
+    else
+        emit( testLanguageChanged( lang ) );
+}
+
+void VocabularyManagerFrame::switchFirstAndTestLanguages() {
+    QString firstLang( controller->getPreferences().getFirstLanguage() );
+    QString testLang( controller->getPreferences().getTestLanguage() );
+    selectLanguage( firstLanguageComboBox, testLang );
+    selectLanguage( testLanguageComboBox, firstLang );
+    controller->getPreferences().setFirstLanguage( testLang );
+    controller->getPreferences().setTestLanguage( firstLang );
+    emit( firstAndTestLanguagesSwitched() );
 }

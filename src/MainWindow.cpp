@@ -152,6 +152,10 @@ MainWindow::MainWindow( QApplication& app, Controller* controller )
     mainPanel->addWidget( vocabManagerFrame );
 
     connect( vocabManagerFrame, SIGNAL( selectionChanged( QTreeWidgetItem* ) ), this, SLOT( updateMenus( QTreeWidgetItem* ) ) );
+    connect( vocabManagerFrame, SIGNAL( firstLanguageChanged( const QString& ) ), this, SLOT( setFirstLanguage( const QString& ) ) );
+    connect( vocabManagerFrame, SIGNAL( testLanguageChanged( const QString& ) ), this, SLOT( setTestLanguage( const QString& ) ) );
+    connect( vocabManagerFrame, SIGNAL( firstAndTestLanguagesSwitched() ), this, SLOT( switchFirstAndTestLanguages() ) );
+
     setCentralWidget( mainPanel );
     //setLanguageFilterEnabled( controller->getPreferences().isLanguageFilterEnabled() );
     invokeVocabularyManager();
@@ -348,6 +352,8 @@ void MainWindow::preferences() {
         //    // Update the quiz.  May be tricky if the current term has no data for the current first/test languages.
         //}
         //else if( mainPanel->currentWidget() == vocabManagerFrame )
+        vocabManagerFrame->updateFirstLanguageValues();
+        vocabManagerFrame->updateTestLanguageValues();
         setDigraphEnabled( control->getPreferences().isDigraphEnabled() );
         quizFrame->setButtonsHidden( control->getPreferences().areQuizButtonsHidden() );
         vocabManagerFrame->updateShownItems();
@@ -403,3 +409,23 @@ void MainWindow::quit() {
 //    action[ ACTION_SHOW_ALL_GLOSSARIES_AND_TERMS ]->setChecked( !isEnabled );
 //    control->getPreferences().setLanguageFilterEnabled( isEnabled );
 //}
+
+void MainWindow::setFirstLanguage( const QString& lang ) {
+    control->getPreferences().setFirstLanguage( Util::getLanguageCode( lang ) );
+    updateFonts();
+    quizFrame->updateLanguageLabels();
+    vocabManagerFrame->updateShownItems();
+}
+
+void MainWindow::setTestLanguage( const QString& lang ) {
+    control->getPreferences().setTestLanguage( Util::getLanguageCode( lang ) );
+    updateFonts();
+    quizFrame->updateLanguageLabels();
+    vocabManagerFrame->updateShownItems();
+}
+
+void MainWindow::switchFirstAndTestLanguages() {
+    updateFonts();
+    quizFrame->updateLanguageLabels();
+    vocabManagerFrame->updateShownItems();
+}

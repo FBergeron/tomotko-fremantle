@@ -66,12 +66,17 @@ public slots:
     void updateUi();
     void updateCurrentTreeItem( QTreeWidgetItem* currItem, QTreeWidgetItem* prevItem );
     void updateFonts();
+    void updateFirstLanguageValues();
+    void updateTestLanguageValues();
     void setDigraphEnabled( bool isEnabled );
     void retranslateUi();
 
 signals:
 
     void selectionChanged( QTreeWidgetItem* item );
+    void firstLanguageChanged( const QString& lang );
+    void testLanguageChanged( const QString& lang );
+    void firstAndTestLanguagesSwitched();
 
 protected:
 
@@ -106,12 +111,14 @@ private slots:
     void updateCurrentFolderTitle( const QString& title );
     void updateCurrentVocabTitle( const QString& title );
 
+    void setFirstLanguage( const QString& lang );
+    void setTestLanguage( const QString& lang );
+
 private:
 
-    void updateFirstLanguageValues();
-    void updateTestLanguageValues();
     void selectLanguage( QComboBox* comboBox, const QString& langCode ); 
     void updateLanguageSelector( QComboBox* comboBox );
+    void switchFirstAndTestLanguages();
 
     FolderTreeItem* addFolder( Folder* folder, QMap<int,Vocabulary>* vocabularies = NULL );
     VocabTreeItem* addVocab( Vocabulary* vocab );

@@ -76,6 +76,9 @@ private slots:
     void paste();
     //void toggleLanguageFilter();
     void quit();
+    void setFirstLanguage( const QString& lang );
+    void setTestLanguage( const QString& lang );
+    void switchFirstAndTestLanguages();
     //void toggleMaximize( bool isOn ); 
     void search();
     
