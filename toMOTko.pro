@@ -3,7 +3,7 @@
 ######################################################################
 
 ICON        = toMOTko.icns
-CONFIG      +=  zlib
+CONFIG      +=  zlib release
 #CONFIG      +=  console zlib
 TEMPLATE    =   app
 DEPENDPATH  +=  src

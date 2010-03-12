@@ -7,7 +7,11 @@
 #include "icons/flag_de.xpm"
 
 const QString PreferencesDialog::fontSizeNameList[] = { 
-    QT_TR_NOOP( "VerySmall" ), QT_TR_NOOP( "Small" ), QT_TR_NOOP( "Medium" ), QT_TR_NOOP( "Large" ), QT_TR_NOOP( "VeryLarge" ) 
+    QT_TRANSLATE_NOOP( "PreferencesDialog", "VerySmall" ), 
+    QT_TRANSLATE_NOOP( "PreferencesDialog", "Small" ), 
+    QT_TRANSLATE_NOOP( "PreferencesDialog", "Medium" ), 
+    QT_TRANSLATE_NOOP( "PreferencesDialog", "Large" ), 
+    QT_TRANSLATE_NOOP( "PreferencesDialog", "VeryLarge" ) 
 };
 
 const QString PreferencesDialog::firstLanguageList[] = { 
@@ -15,9 +19,12 @@ const QString PreferencesDialog::firstLanguageList[] = {
 };
 
 const QString PreferencesDialog::studyLanguageList[] = { 
-    QString( "en" ), QString( "fr" ), QString( "es" ), QString( "ja" ), QString( "de" ), QString( "ar" ), QString( "bg" ), QString( "el" ),
-    QString( "it" ), QString( "ko" ), QString( "nl" ), QString( "pt" ), QString( "ru" ), QString( "sw" ), QString( "th" ), QString( "vi" ),
-    QString( "zh" )
+    QString( "en" ), QString( "fr" ), QString( "es" ), QString( "ja" ), QString( "de" ), 
+    QString( "ar" ), QString( "bg" ), QString( "cs" ), QString( "da" ), QString( "el" ), 
+    QString( "eo" ), QString( "fi" ), QString( "he" ), QString( "hi" ), QString( "it" ), 
+    QString( "ko" ), QString( "la" ), QString( "nl" ), QString( "no" ), QString( "pt" ), QString( "rm" ), 
+    QString( "ro" ), QString( "ru" ), QString( "sv" ), QString( "sw" ), QString( "th" ), 
+    QString( "tl" ), QString( "vi" ), QString( "zh" )
 };
 
 PreferencesDialog::PreferencesDialog( QWidget* parent, Preferences* prefs ) 
@@ -456,7 +463,6 @@ void PreferencesDialog::initStudyLanguageValues() {
     sortedLanguages.sort();
 
     int languageCount = sortedLanguages.count();
-    int languageCountDividedBy2 = (int)( languageCount / 2 + 0.5 );
     for( int i = 0; i < languageCount; i++ ) {
         QString lang = sortedLanguages.at( i );
         QString langCode( Util::getLanguageCode( lang ) );

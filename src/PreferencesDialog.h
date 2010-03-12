@@ -12,7 +12,6 @@
 #include <QComboBox>
 #include <QDialog>
 #include <QFrame>
-#include <QGridLayout>
 #include <QHBoxLayout>
 #include <QHeaderView>
 #include <QLabel>
