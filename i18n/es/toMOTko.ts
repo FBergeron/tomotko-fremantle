@@ -563,7 +563,7 @@ Overwrite the current assignment?</source>
     <message>
         <location filename="../../src/Util.cpp" line="5"/>
         <source>bg</source>
-        <translation>Bulgar</translation>
+        <translation>Búlgaro</translation>
     </message>
     <message>
         <location filename="../../src/Util.cpp" line="5"/>
