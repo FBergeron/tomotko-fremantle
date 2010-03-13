@@ -34,9 +34,9 @@ build-stamp: configure-stamp
 	dh_testdir
 
 	# Add here commands to compile the package.
-	lupdate toMOTko.pro
-	lrelease toMOTko.pro
-	qmake toMOTko.pro
+	/opt/qt4-maemo5/bin/lupdate toMOTko.pro
+	/opt/qt4-maemo5/bin/lrelease toMOTko.pro
+	/opt/qt4-maemo5/bin/qmake toMOTko.pro
 	$(MAKE)
 	#docbook-to-man debian/tomotko.sgml > tomotko.1
 

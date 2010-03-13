@@ -46,13 +46,13 @@
         <location filename="../../src/MainWindow.cpp" line="78"/>
         <location filename="../../src/MainWindow.cpp" line="227"/>
         <source>Import...</source>
-        <translation>Import...</translation>
+        <translation>Import Data</translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="80"/>
         <location filename="../../src/MainWindow.cpp" line="228"/>
         <source>Export...</source>
-        <translation>Export...</translation>
+        <translation>Export Data</translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="84"/>
@@ -74,7 +74,7 @@
         <location filename="../../src/MainWindow.cpp" line="137"/>
         <location filename="../../src/MainWindow.cpp" line="248"/>
         <source>About...</source>
-        <translation>About...</translation>
+        <translation>About toMOTko</translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="181"/>
@@ -206,7 +206,7 @@
         <location filename="../../src/MainWindow.cpp" line="106"/>
         <location filename="../../src/MainWindow.cpp" line="241"/>
         <source>Search...</source>
-        <translation>Search...</translation>
+        <translation>Search</translation>
     </message>
     <message>
         <source>Edition</source>
@@ -216,7 +216,7 @@
         <location filename="../../src/MainWindow.cpp" line="135"/>
         <location filename="../../src/MainWindow.cpp" line="247"/>
         <source>Help...</source>
-        <translation>Help...</translation>
+        <translation>Help</translation>
     </message>
 </context>
 <context>
@@ -313,7 +313,7 @@
     <message>
         <location filename="../../src/PreferencesDialog.cpp" line="396"/>
         <source>Preferences...</source>
-        <translation>Preferences...</translation>
+        <translation>Preferences</translation>
     </message>
     <message>
         <location filename="../../src/PreferencesDialog.cpp" line="509"/>

@@ -1,3 +1,16 @@
+tomotko (0.11.2-9fremantle1) unstable; urgency=low
+
+  * Fixed typo in dependencies.
+
+ -- Frederic Bergeron <fbergeron@users.sourceforge.net>  Sun, 13 Mar 2010 01:41:45 +0900
+
+tomotko (0.11.2-9fremantle0) unstable; urgency=low
+
+  * Began hildonization of the application for Fremantle.  Not complete but
+    functional enough.
+
+ -- Frederic Bergeron <fbergeron@users.sourceforge.net>  Sun, 13 Mar 2010 00:41:45 +0900
+
 tomotko (0.11.2-9) unstable; urgency=low
 
   * Revert user's data location to home directory.
@@ -53,3 +66,4 @@ tomotko (0.11.2-1) unstable; urgency=low
   * Initial release for Maemo.
 
  -- Frederic Bergeron <fbergeron@users.sourceforge.net>  Sat, 15 Aug 2009 00:41:45 +0900
+

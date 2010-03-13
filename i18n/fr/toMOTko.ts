@@ -46,13 +46,13 @@
         <location filename="../../src/MainWindow.cpp" line="78"/>
         <location filename="../../src/MainWindow.cpp" line="227"/>
         <source>Import...</source>
-        <translation>Importer...</translation>
+        <translation>Importer Données</translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="80"/>
         <location filename="../../src/MainWindow.cpp" line="228"/>
         <source>Export...</source>
-        <translation>Exporter...</translation>
+        <translation>Exporter Données</translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="84"/>
@@ -74,7 +74,7 @@
         <location filename="../../src/MainWindow.cpp" line="137"/>
         <location filename="../../src/MainWindow.cpp" line="248"/>
         <source>About...</source>
-        <translation>À propos...</translation>
+        <translation>À Propos de toMOTko</translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="181"/>
@@ -206,7 +206,7 @@
         <location filename="../../src/MainWindow.cpp" line="106"/>
         <location filename="../../src/MainWindow.cpp" line="241"/>
         <source>Search...</source>
-        <translation>Rechercher...</translation>
+        <translation>Rechercher</translation>
     </message>
     <message>
         <source>Edition</source>
@@ -216,7 +216,7 @@
         <location filename="../../src/MainWindow.cpp" line="135"/>
         <location filename="../../src/MainWindow.cpp" line="247"/>
         <source>Help...</source>
-        <translation>Aide...</translation>
+        <translation>Aide</translation>
     </message>
 </context>
 <context>

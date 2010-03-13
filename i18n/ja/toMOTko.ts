@@ -46,13 +46,13 @@
         <location filename="../../src/MainWindow.cpp" line="78"/>
         <location filename="../../src/MainWindow.cpp" line="227"/>
         <source>Import...</source>
-        <translation>インポート...</translation>
+        <translation>インポート</translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="80"/>
         <location filename="../../src/MainWindow.cpp" line="228"/>
         <source>Export...</source>
-        <translation>エクスポート...</translation>
+        <translation>エクスポート</translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="84"/>
@@ -80,7 +80,7 @@
         <location filename="../../src/MainWindow.cpp" line="137"/>
         <location filename="../../src/MainWindow.cpp" line="248"/>
         <source>About...</source>
-        <translation>toMOTkoについて...</translation>
+        <translation>toMOTkoについて</translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="181"/>
@@ -201,7 +201,7 @@
         <location filename="../../src/MainWindow.cpp" line="106"/>
         <location filename="../../src/MainWindow.cpp" line="241"/>
         <source>Search...</source>
-        <translation>検索...</translation>
+        <translation>検索</translation>
     </message>
     <message>
         <source>Edition</source>
@@ -211,7 +211,7 @@
         <location filename="../../src/MainWindow.cpp" line="135"/>
         <location filename="../../src/MainWindow.cpp" line="247"/>
         <source>Help...</source>
-        <translation>ヘルプ...</translation>
+        <translation>ヘルプ</translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="299"/>
@@ -314,7 +314,7 @@
     <message>
         <location filename="../../src/PreferencesDialog.cpp" line="396"/>
         <source>Preferences...</source>
-        <translation>設定...</translation>
+        <translation>設定</translation>
     </message>
     <message>
         <source>Keyboard Accelerators</source>

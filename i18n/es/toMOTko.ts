@@ -74,7 +74,7 @@
         <location filename="../../src/MainWindow.cpp" line="137"/>
         <location filename="../../src/MainWindow.cpp" line="248"/>
         <source>About...</source>
-        <translation>Acerca de toMOTko...</translation>
+        <translation>Acerca de toMOTko</translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="181"/>
@@ -206,7 +206,7 @@
         <location filename="../../src/MainWindow.cpp" line="106"/>
         <location filename="../../src/MainWindow.cpp" line="241"/>
         <source>Search...</source>
-        <translation>Buscar...</translation>
+        <translation>Buscar</translation>
     </message>
     <message>
         <source>Edition</source>
@@ -216,7 +216,7 @@
         <location filename="../../src/MainWindow.cpp" line="135"/>
         <location filename="../../src/MainWindow.cpp" line="247"/>
         <source>Help...</source>
-        <translation>Ayuda...</translation>
+        <translation>Ayuda</translation>
     </message>
 </context>
 <context>
@@ -333,7 +333,7 @@
     <message>
         <location filename="../../src/PreferencesDialog.cpp" line="396"/>
         <source>Preferences...</source>
-        <translation>Preferencias...</translation>
+        <translation>Preferencias</translation>
     </message>
     <message>
         <location filename="../../src/PreferencesDialog.cpp" line="509"/>
@@ -1278,7 +1278,7 @@ los idomas seleccionados.</translation>
         <location filename="../../src/VocabularyManagerFrame.cpp" line="348"/>
         <location filename="../../src/VocabularyManagerFrame.cpp" line="356"/>
         <source>Import...</source>
-        <translation>Importar...</translation>
+        <translation>Importar Datos</translation>
     </message>
     <message>
         <location filename="../../src/VocabularyManagerFrame.cpp" line="401"/>
@@ -1298,7 +1298,7 @@ Los datos nuevos no son visibles por el momento.  Para verlos, Usted necesita se
         <location filename="../../src/VocabularyManagerFrame.cpp" line="459"/>
         <location filename="../../src/VocabularyManagerFrame.cpp" line="470"/>
         <source>Export...</source>
-        <translation>Exportar...</translation>
+        <translation>Exportar Datos</translation>
     </message>
     <message>
         <location filename="../../src/VocabularyManagerFrame.cpp" line="348"/>

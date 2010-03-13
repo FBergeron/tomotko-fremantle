@@ -46,13 +46,13 @@
         <location filename="../../src/MainWindow.cpp" line="78"/>
         <location filename="../../src/MainWindow.cpp" line="227"/>
         <source>Import...</source>
-        <translation>Import...</translation>
+        <translation>Import Daten</translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="80"/>
         <location filename="../../src/MainWindow.cpp" line="228"/>
         <source>Export...</source>
-        <translation>Export...</translation>
+        <translation>Export Daten</translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="84"/>
@@ -74,7 +74,7 @@
         <location filename="../../src/MainWindow.cpp" line="137"/>
         <location filename="../../src/MainWindow.cpp" line="248"/>
         <source>About...</source>
-        <translation>Über...</translation>
+        <translation>Über toMOTko</translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="181"/>
@@ -194,7 +194,7 @@
         <location filename="../../src/MainWindow.cpp" line="106"/>
         <location filename="../../src/MainWindow.cpp" line="241"/>
         <source>Search...</source>
-        <translation>Suche...</translation>
+        <translation>Suche</translation>
     </message>
     <message>
         <source>Edition</source>
@@ -204,7 +204,7 @@
         <location filename="../../src/MainWindow.cpp" line="135"/>
         <location filename="../../src/MainWindow.cpp" line="247"/>
         <source>Help...</source>
-        <translation>Hilfe...</translation>
+        <translation>Hilfe</translation>
     </message>
 </context>
 <context>
@@ -301,7 +301,7 @@
     <message>
         <location filename="../../src/PreferencesDialog.cpp" line="396"/>
         <source>Preferences...</source>
-        <translation>Einstellungen...</translation>
+        <translation>Einstellungen</translation>
     </message>
     <message>
         <location filename="../../src/PreferencesDialog.cpp" line="509"/>

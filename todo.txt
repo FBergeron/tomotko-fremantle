@@ -7,6 +7,7 @@ Make PreferencesDialog work.
     Position the scrollbar the right place, if possible, when invalid values are detected.
     The Reset Buttons for fonts do not work on Xephyr.  The problem is that the default font is not available (not installed?).
         Maybe we need to identify the best font and hardcode it for fremantle.
+    The languages of interest and keyboard accelerators take a lot of room.  Use specific dialog for these.
 The Done button in the About window is not localized.
 When the Search Dialog is closed, the main window is not brought in front.  Is it possible to do so programmatically?
 Implement contextual menu for Import, Export, Cut, Copy, Paste
