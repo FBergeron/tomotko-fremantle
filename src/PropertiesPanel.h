@@ -12,6 +12,7 @@
 #include <QWidget>
 #include "DigraphLineEdit.h"
 #include "DigraphMultiLineEdit.h"
+#include "DynamicHeightTreeWidget.h"
 #include "Folder.h"
 #include "Preferences.h"
 #include "Vocabulary.h"
@@ -61,38 +62,38 @@ private:
 
     QString getType() const;
 
-    QVBoxLayout*            mainLayout;
-    QWidget*                simplePropsPanel;
-    QHBoxLayout*            simplePropsPanelLayout;
+    QVBoxLayout*                mainLayout;
+    QWidget*                    simplePropsPanel;
+    QHBoxLayout*                simplePropsPanelLayout;
 
-    QWidget*                simplePropsLabelsPanel;
-    QVBoxLayout*            simplePropsLabelsPanelLayout;
-    QWidget*                simplePropsFieldsPanel;
-    QVBoxLayout*            simplePropsFieldsPanelLayout;
+    QWidget*                    simplePropsLabelsPanel;
+    QVBoxLayout*                simplePropsLabelsPanelLayout;
+    QWidget*                    simplePropsFieldsPanel;
+    QVBoxLayout*                simplePropsFieldsPanelLayout;
 
-    QWidget*                titlePanel;
-    QHBoxLayout*            titlePanelLayout;
-    QLabel*                 titleLabel;
-    DigraphLineEdit*        titleLineEdit;
+    QWidget*                    titlePanel;
+    QHBoxLayout*                titlePanelLayout;
+    QLabel*                     titleLabel;
+    DigraphLineEdit*            titleLineEdit;
 
-    QLabel*                 descriptionLabel;
-    DigraphMultiLineEdit*   descriptionMultiLineEdit;
+    QLabel*                     descriptionLabel;
+    DigraphMultiLineEdit*       descriptionMultiLineEdit;
 
-    QLabel*                 contentLabel;
-    QTreeWidget*            contentListView;
+    QLabel*                     contentLabel;
+    DynamicHeightTreeWidget*    contentListView;
 
-    QLabel*                 authorLabel;
-    DigraphLineEdit*        authorField;
+    QLabel*                     authorLabel;
+    DigraphLineEdit*            authorField;
 
-    QLabel*                 creationDateLabel;
-    QLabel*                 creationDateValueLabel;
+    QLabel*                     creationDateLabel;
+    QLabel*                     creationDateValueLabel;
 
-    QLabel*                 modificationDateLabel;
-    QLabel*                 modificationDateValueLabel;
+    QLabel*                     modificationDateLabel;
+    QLabel*                     modificationDateValueLabel;
 
-    const Preferences&      prefs;
-    Vocabulary*             editedVocab;
-    Folder*                 editedFolder;
+    const Preferences&          prefs;
+    Vocabulary*                 editedVocab;
+    Folder*                     editedFolder;
 
 };
 

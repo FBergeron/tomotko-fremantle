@@ -135,7 +135,7 @@ void PropertiesPanel::init() {
     descriptionMultiLineEdit->setFont( mediumFont );
 
     contentLabel = new QLabel( tr( "Content" ) );
-    contentListView = new QTreeWidget();
+    contentListView = new DynamicHeightTreeWidget();
     contentListView->setVerticalScrollBarPolicy( Qt::ScrollBarAlwaysOff );
     contentListView->setAllColumnsShowFocus( true );
     contentListView->setSelectionMode( QAbstractItemView::ExtendedSelection );

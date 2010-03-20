@@ -22,6 +22,7 @@ HEADERS     +=  src/Base.h \
                 src/DigraphMultiLineEdit.h \
                 src/Sequence.h \
                 src/Preferences.h \
+                src/DynamicHeightTreeWidget.h \
                 src/PropertiesPanel.h \
                 src/TermDialog.h \
                 src/TranslationSelectionDialog.h \
@@ -67,6 +68,7 @@ SOURCES     +=  src/Util.cpp \
                 src/DigraphMultiLineEdit.cpp \
                 src/Sequence.cpp \
                 src/Preferences.cpp \
+                src/DynamicHeightTreeWidget.cpp \
                 src/PropertiesPanel.cpp \
                 src/TermDialog.cpp \
                 src/TranslationSelectionDialog.cpp \
