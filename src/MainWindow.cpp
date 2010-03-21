@@ -110,6 +110,7 @@ MainWindow::MainWindow( QApplication& app, Controller* controller )
     vocabManagerFrame->addAction( action[ ACTION_CHECK_ALL_TERMS ] );
     vocabManagerFrame->addAction( action[ ACTION_INVERSE_CHECKED_TERMS ] );
     vocabManagerFrame->addAction( action[ ACTION_MAXIMIZE ] );
+    vocabManagerFrame->addAction( action[ ACTION_SEARCH ] );
     vocabManagerFrame->addAction( action[ ACTION_ADD_TERM ] );
     vocabManagerFrame->addAction( action[ ACTION_REMOVE_TERMS ] );
     vocabManagerFrame->addAction( action[ ACTION_EDIT_TERM ] );
@@ -261,12 +262,12 @@ void MainWindow::switchLanguage( const QString& language ) {
     retranslateUi();
 }
 
-//void MainWindow::toggleMaximize( bool isOn ) {
-//    if( mainPanel->currentWidget() == quizFrame )
-//        quizFrame->toggleMaximizeComment( isOn );
-//    else if( mainPanel->currentWidget() == vocabManagerFrame )
-//        vocabManagerFrame->toggleMaximizeDetails( isOn );
-//}
+void MainWindow::toggleMaximize( bool isOn ) {
+    //if( mainPanel->currentWidget() == quizFrame )
+    //    quizFrame->toggleMaximizeComment( isOn );
+    //else if( mainPanel->currentWidget() == vocabManagerFrame )
+    //    vocabManagerFrame->toggleMaximizeDetails( isOn );
+}
 
 void MainWindow::search() {
     if( mainPanel->currentWidget() == vocabManagerFrame )

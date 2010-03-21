@@ -28,7 +28,7 @@ const QString PreferencesDialog::studyLanguageList[] = {
 };
 
 PreferencesDialog::PreferencesDialog( QWidget* parent, Preferences* prefs ) 
-    : QDialog( parent/*, 0, true*/ ), prefs( prefs ), grabAccelKeyFor( NULL ), keyboardAccelModified( false )  {
+    : QDialog( parent/*, 0, true*/ ), prefs( prefs ) {
     init();
 }
 
@@ -72,7 +72,8 @@ void PreferencesDialog::init() {
     sequencesViewPanel->setLayout( sequencesViewPanelLayout );
     //revealingOptionsPanelLayout->addWidget( sequencesViewPanel );
     sequencesPanelLayout->addWidget( sequencesViewPanel );
-    sequencesView = new QTreeWidget();
+    //sequencesView = new QTreeWidget();
+    sequencesView = new DynamicHeightTreeWidget();
     sequencesView->headerItem()->setHidden( true );
     sequencesViewPanelLayout->addWidget( sequencesView );
     sequencesViewButtons = new QWidget();
@@ -284,55 +285,15 @@ void PreferencesDialog::init() {
     interfaceLanguagePanelLayout->addWidget( interfaceLanguageLabel );
     interfaceLanguagePanelLayout->addWidget( interfaceLanguageField );
 
-    keyboardAccelPanel = new QWidget();
-    keyboardAccelPanelLayout = new QVBoxLayout();
-    keyboardAccelPanel->setLayout( keyboardAccelPanelLayout );
-
-    keyboardAccelLabel = new QLabel( tr( "Keybord Accelerators" ) );
-
-    keyboardAccelListView = new QTreeWidget();
-    keyboardAccelListView->setAutoScroll( false );
-    keyboardAccelListView->setColumnCount( 2 );
-    QStringList headerLabels;
-    headerLabels << tr( "Action" ) << tr( "Key" ); 
-    keyboardAccelListView->setHeaderLabels( headerLabels );
-    keyboardAccelListView->header()->setResizeMode( 0, QHeaderView::Stretch );
-    keyboardAccelListView->setIconSize( QSize( 24, 24 ) );
-    int actionCount = sizeof( action ) / sizeof( QAction* );
-    for( int i = actionCount - 1; i >= 0; i-- ) {
-        KeyActionListViewItem* actionItem = new KeyActionListViewItem( keyboardAccelListView, action[ i ], (Action)i );
-        actionItem->setText( 0, action[ i ]->text() );
-        actionItem->setIcon( 0, action[ i ]->icon() );
-        keyboardAccelListView->addTopLevelItem( actionItem );
-    }
-    connect( keyboardAccelListView, SIGNAL( currentItemChanged( QTreeWidgetItem*, QTreeWidgetItem* ) ), this, SLOT( cancelSetAccelKey() ) );
-
-    keyboardAccelPanelLayout->addWidget( keyboardAccelLabel );
-    keyboardAccelPanelLayout->addWidget( keyboardAccelListView );
-
-    keyboardAccelButtonPanel = new QWidget();
-    keyboardAccelPanelLayout->addWidget( keyboardAccelButtonPanel );
-    clearAccelKeyButton = new QPushButton( tr( "Clear key" ) );
-    setAccelKeyButton = new QPushButton( tr( "Set key" ) );
-    resetAccelKeyButton = new QPushButton( tr( "Reset key" ) );
-    
-    keyboardAccelButtonPanelLayout = new QHBoxLayout( keyboardAccelButtonPanel );
-    keyboardAccelButtonPanelLayout->setContentsMargins( 0, 0, 0, 0 );
-    keyboardAccelButtonPanelLayout->addStretch();
-    keyboardAccelButtonPanelLayout->addWidget( clearAccelKeyButton );
-    keyboardAccelButtonPanelLayout->addWidget( setAccelKeyButton );
-    keyboardAccelButtonPanelLayout->addWidget( resetAccelKeyButton );
-
-    connect( clearAccelKeyButton, SIGNAL( clicked() ), this, SLOT( clearAccelKey() ) );
-    connect( setAccelKeyButton, SIGNAL( clicked() ), this, SLOT( setAccelKey() ) );
-    connect( resetAccelKeyButton, SIGNAL( clicked() ), this, SLOT( resetAccelKey() ) );
+    keyboardAccelButton = new QPushButton( tr( "Keyboard Accelerator Definitions" ) );
+    connect( keyboardAccelButton, SIGNAL( clicked() ), this, SLOT( invokeKeyboardAcceleratorsDialog() ) );
 
     interfacePageSeparator = new QFrame();
     interfacePageSeparator->setFrameStyle( QFrame::HLine );
 
     interfacePageLayout->addWidget( interfacePageLabel );
     interfacePageLayout->addWidget( interfaceLanguagePanel );
-    //interfacePageLayout->addWidget( keyboardAccelPanel ); // Disabled for Fremantle.
+    interfacePageLayout->addWidget( keyboardAccelButton );
     interfacePageLayout->addWidget( digraphCheckBox );
     interfacePageLayout->addWidget( hideQuizButtonCheckBox ); // Disabled for Fremantle.
     interfacePageLayout->addWidget( showAltTextInTermListCheckBox );
@@ -505,8 +466,6 @@ void PreferencesDialog::selectLanguage( QComboBox* comboBox, const QString& lang
 }
 
 void PreferencesDialog::accept() {
-    cancelSetAccelKey();
-
     if( !isRevealingSequenceSelectionValid() ) {
         // TODO: Position the scrollbar at the right location.
         QMessageBox::warning( this, QObject::tr( "Warning" ), tr( "RevealingOrderMandatory" ) );
@@ -582,15 +541,6 @@ void PreferencesDialog::accept() {
 
     bool isAltInTermListShownChecked = ( showAltTextInTermListCheckBox->checkState() != Qt::Unchecked );
     prefs->setAltInTermListShown( isAltInTermListShownChecked );
-
-    if( keyboardAccelModified ) {
-        for( int i = 0; i < keyboardAccelListView->topLevelItemCount(); i++ ) {
-            KeyActionListViewItem* item = (KeyActionListViewItem*)keyboardAccelListView->topLevelItem( i );
-            QAction *action = item->getAction();
-            action->setShortcut( item->getKey() );
-            prefs->setAccelerator( item->getActionIndex(), item->getKey() );
-        }
-    }
 
     QString interfaceLanguage = availableLanguages[ interfaceLanguageField->currentText() ];
     prefs->setInterfaceLanguage( interfaceLanguage );
@@ -723,105 +673,18 @@ void PreferencesDialog::updateFontOverride() {
     }
 }
 
-void PreferencesDialog::setAccelKey() {
-    KeyActionListViewItem* item = (KeyActionListViewItem*)keyboardAccelListView->currentItem();
-    if( item == NULL ) 
-        return;
-    item->setText( 1, tr( "<press key>" ) ); 
-    grabAccelKeyFor = item;
-    grabKeyboard();  
-}
-
-void PreferencesDialog::clearAccelKey() {
-    cancelSetAccelKey();
-
-    KeyActionListViewItem* item = (KeyActionListViewItem*)keyboardAccelListView->currentItem();
-    if( item == NULL ) 
-        return;
-    item->setKey( 0 );
-    keyboardAccelModified = true;
-}
-
-void PreferencesDialog::resetAccelKey() {
-    cancelSetAccelKey();
-
-    KeyActionListViewItem* item = (KeyActionListViewItem*)keyboardAccelListView->currentItem();
-    if( item == NULL ) 
-        return;
-    item->setKey( prefs->getDefaultAccelerator( item->getActionIndex() ) );
-    keyboardAccelModified = true;
-}
-
-void PreferencesDialog::cancelSetAccelKey() {
-    if( grabAccelKeyFor != NULL ) {
-        KeyActionListViewItem* ka = (KeyActionListViewItem*)grabAccelKeyFor;
-        ka->updateText();
-        grabAccelKeyFor = NULL;
-        releaseKeyboard();
-    }
-}
-
-void PreferencesDialog::keyPressEvent( QKeyEvent* evt ) {
-    if( grabAccelKeyFor != NULL ) {
-        switch (evt->key()) {
-            case Qt::Key_Shift:
-            case Qt::Key_Control:
-            case Qt::Key_Meta:
-            case Qt::Key_Alt:
-            case Qt::Key_CapsLock:
-            case Qt::Key_NumLock:
-            case Qt::Key_ScrollLock:
-            case Qt::Key_F22:
-                evt->ignore();
-                break;
-            default:
-                KeyActionListViewItem *ka = (KeyActionListViewItem*)grabAccelKeyFor;
-
-                QKeySequence keyCode( evt->key() );
-                if( (evt->modifiers() & Qt::ShiftModifier) != 0 )
-                    keyCode = keyCode | Qt::SHIFT;
-                if( (evt->modifiers() & Qt::AltModifier) != 0 )
-                    keyCode = keyCode | Qt::ALT;
-                if( (evt->modifiers() & Qt::ControlModifier ) != 0 )
-                    keyCode = keyCode | Qt::CTRL;      
-
-                releaseKeyboard();
-
-                // Check for duplicate key codes
-                bool cancelBinding = false;
-                for( int i = 0; i < keyboardAccelListView->topLevelItemCount(); i++ ) {
-                    KeyActionListViewItem* item = (KeyActionListViewItem*)keyboardAccelListView->topLevelItem( i ); 
-                    if( item == ka ) 
-                        continue;
-
-                    if( item->getKey() == keyCode ) {
-                        int sel = QMessageBox::warning( this, tr( "Duplicate key binding" ),
-                        tr( "Key '" ) + keyCode.toString() + tr( "'\nis currently assigned to\n'" ) + item->getAction()->text() +
-                            tr( "'.\nOverwrite the current assignment?" ), QMessageBox::No, QMessageBox::Yes );
-                        if( sel == QMessageBox::Yes ) 
-                            item->setKey( 0 );
-                        else {
-                            cancelBinding = true;
-                            break;
-                        }
-                    }
-                }
-
-                if( cancelBinding ) 
-                    ka->updateText();
-                else {
-                    ka->setKey( keyCode );
-                    keyboardAccelModified = true;
-                    ka->updateText();
-                }
-
-                grabAccelKeyFor = NULL;
-                evt->accept();
-                break;
+void PreferencesDialog::invokeKeyboardAcceleratorsDialog() {
+    KeyboardAcceleratorsDialog dialog( this, prefs );
+    dialog.show();
+    int result = dialog.exec();
+    if( result && dialog.areAcceleratorsModified() ) {
+        const QMap<Action,int> accel = dialog.getAccelerators();
+        for( QMap<Action,int>::ConstIterator it = accel.begin(); it != accel.end(); it++ ) {
+            Action actionIndex = it.key();
+            int actionKey = it.value();
+            action[ actionIndex ]->setShortcut( actionKey );
+            prefs->setAccelerator( actionIndex, actionKey );
         }
-    }
-    else if( evt->key() == Qt::Key_Return ) {
-        setAccelKey();
     }
 }
 

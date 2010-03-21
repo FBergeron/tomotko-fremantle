@@ -1,5 +1,9 @@
 ToDo (This is specific to maemo version.  For general todo, check in zaurus or qt4 branches)
 --------------------------------------------------------------------------------------------
+Make all accelerators work.
+Replug copy/cut/paste accelerators.
+Strings to modify:
+    Add a string before language selector.
 Make PreferencesDialog work.
     Remake the SequenceDialog.  It will probably depend on the QuizFrame too. Or use a QScrollArea.
     I have hidden the scrollbar of bodyWrapper.  Not sure if it's a good idea.  What's the standard way to do that on Maemo?
@@ -7,7 +11,7 @@ Make PreferencesDialog work.
     Position the scrollbar the right place, if possible, when invalid values are detected.
     The Reset Buttons for fonts do not work on Xephyr.  The problem is that the default font is not available (not installed?).
         Maybe we need to identify the best font and hardcode it for fremantle.
-    The languages of interest and keyboard accelerators take a lot of room.  Use specific dialog for these.
+    The languages of interest take a lot of room.  Use specific dialog for these.
 The Done button in the About window is not localized.
 When the Search Dialog is closed, the main window is not brought in front.  Is it possible to do so programmatically?
 Implement contextual menu for Import, Export, Cut, Copy, Paste

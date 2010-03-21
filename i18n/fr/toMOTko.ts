@@ -14,21 +14,87 @@
         <translation>Retour</translation>
     </message>
     <message>
-        <source>Close</source>
-        <translation type="obsolete">Fermer</translation>
-    </message>
-    <message>
         <location filename="../../src/HelpBrowser.cpp" line="34"/>
         <source>Help: %1</source>
         <translation>Aide: %1</translation>
     </message>
 </context>
 <context>
-    <name>MainWindow</name>
+    <name>KeyboardAcceleratorsDialog</name>
     <message>
-        <source>Actions</source>
-        <translation type="obsolete">Actions</translation>
+        <location filename="../../src/KeyboardAcceleratorsDialog.cpp" line="23"/>
+        <source>Action</source>
+        <translation>Action</translation>
     </message>
+    <message>
+        <location filename="../../src/KeyboardAcceleratorsDialog.cpp" line="23"/>
+        <source>Key</source>
+        <translation>Touche</translation>
+    </message>
+    <message>
+        <location filename="../../src/KeyboardAcceleratorsDialog.cpp" line="39"/>
+        <source>Clear key</source>
+        <translation>Effacer</translation>
+    </message>
+    <message>
+        <location filename="../../src/KeyboardAcceleratorsDialog.cpp" line="40"/>
+        <source>Set key</source>
+        <translation>Définir</translation>
+    </message>
+    <message>
+        <location filename="../../src/KeyboardAcceleratorsDialog.cpp" line="41"/>
+        <source>Reset key</source>
+        <translation>Valeur orig.</translation>
+    </message>
+    <message>
+        <location filename="../../src/KeyboardAcceleratorsDialog.cpp" line="59"/>
+        <source>Ok</source>
+        <translation>Ok</translation>
+    </message>
+    <message>
+        <location filename="../../src/KeyboardAcceleratorsDialog.cpp" line="61"/>
+        <source>Cancel</source>
+        <translation>Annuler</translation>
+    </message>
+    <message>
+        <location filename="../../src/KeyboardAcceleratorsDialog.cpp" line="83"/>
+        <source>Keyboard Accelerator Definitions</source>
+        <translation>Raccourcis-Clavier</translation>
+    </message>
+    <message>
+        <location filename="../../src/KeyboardAcceleratorsDialog.cpp" line="118"/>
+        <source>&lt;press key&gt;</source>
+        <translation>&lt;Tapez raccourci&gt;</translation>
+    </message>
+    <message>
+        <location filename="../../src/KeyboardAcceleratorsDialog.cpp" line="186"/>
+        <source>Duplicate key binding</source>
+        <translation>Raccourci doublon</translation>
+    </message>
+    <message>
+        <location filename="../../src/KeyboardAcceleratorsDialog.cpp" line="187"/>
+        <source>Key &apos;</source>
+        <translation>Le raccourci &apos;</translation>
+    </message>
+    <message>
+        <location filename="../../src/KeyboardAcceleratorsDialog.cpp" line="187"/>
+        <source>&apos;
+is currently assigned to
+&apos;</source>
+        <translation>&apos;
+est déjà assigné à
+&apos;</translation>
+    </message>
+    <message>
+        <location filename="../../src/KeyboardAcceleratorsDialog.cpp" line="188"/>
+        <source>&apos;.
+Overwrite the current assignment?</source>
+        <translation>&apos;.
+Affecter le raccourci quand même?</translation>
+    </message>
+</context>
+<context>
+    <name>MainWindow</name>
     <message>
         <location filename="../../src/MainWindow.cpp" line="74"/>
         <location filename="../../src/MainWindow.cpp" line="181"/>
@@ -58,17 +124,13 @@
         <location filename="../../src/MainWindow.cpp" line="84"/>
         <location filename="../../src/MainWindow.cpp" line="230"/>
         <source>Preferences...</source>
-        <translation>Préférences...</translation>
+        <translation>Préférences</translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="86"/>
         <location filename="../../src/MainWindow.cpp" line="231"/>
         <source>Quit</source>
         <translation>Quitter</translation>
-    </message>
-    <message>
-        <source>?</source>
-        <translation type="obsolete">?</translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="137"/>
@@ -96,18 +158,6 @@
         <location filename="../../src/MainWindow.cpp" line="284"/>
         <source>AboutMessage</source>
         <translation>&lt;html&gt;&lt;h2&gt;toMOTko v0.11.2&lt;/h2&gt;&lt;p&gt;Petite application facilitant l&apos;apprentissage de vocabulaire.&lt;/p&gt;&lt;p&gt;Écrit par Frédéric Bergeron&lt;br/&gt;(&lt;a href=&quot;mailto:fbergeron@users.sourceforge.net&quot;&gt;fbergeron@users.sourceforge.net&lt;/a&gt;)&lt;br/&gt;Copyright (c) 2006-2010&lt;/p&gt;&lt;p&gt;Ce programme est GPL v2.&lt;/p&gt;&lt;p&gt;Site web: &lt;a href=&quot;http://tomotko.sourceforge.net&quot;&gt;http://tomotko.sourceforge.net&lt;/a&gt;&lt;/p&gt;</translation>
-    </message>
-    <message>
-        <source>Copy</source>
-        <translation type="obsolete">Copier</translation>
-    </message>
-    <message>
-        <source>Cut</source>
-        <translation type="obsolete">Couper</translation>
-    </message>
-    <message>
-        <source>Paste</source>
-        <translation type="obsolete">Coller</translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="66"/>
@@ -209,10 +259,6 @@
         <translation>Rechercher</translation>
     </message>
     <message>
-        <source>Edition</source>
-        <translation type="obsolete">Édition</translation>
-    </message>
-    <message>
         <location filename="../../src/MainWindow.cpp" line="135"/>
         <location filename="../../src/MainWindow.cpp" line="247"/>
         <source>Help...</source>
@@ -222,101 +268,88 @@
 <context>
     <name>PreferencesDialog</name>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="202"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="206"/>
         <source>LanguageFontOverrides</source>
         <translation>Surdéfinitions par langue</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="151"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="155"/>
         <source>Fonts</source>
         <translation>Polices de caractères</translation>
     </message>
     <message>
-        <source>BuiltInSupportForAccents</source>
-        <translation type="obsolete">Support intégré pour accents</translation>
-    </message>
-    <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="223"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="227"/>
         <source>DigraphesEnabled</source>
         <translation>Digraphes activés</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="343"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="307"/>
         <source>StudyLanguages</source>
         <translation>Langues pertinentes</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="50"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="53"/>
         <source>Length</source>
         <translation>Longueur</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="60"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="63"/>
         <source>RevealingOrders</source>
         <translation>Séquences de dévoilement</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="124"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="128"/>
         <source>QuizLengthShortest</source>
         <translation>Le plus court (1)</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="125"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="129"/>
         <source>QuizLengthMedium</source>
         <translation>Moyen (3)</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="127"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="131"/>
         <source>QuizLengthLongest</source>
         <translation>Le plus long (5)</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="163"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="167"/>
         <source>LabelsFont</source>
         <translation>Libelés</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="183"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="187"/>
         <source>FieldsFont</source>
         <translation>Champs</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="166"/>
-        <location filename="../../src/PreferencesDialog.cpp" line="186"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="170"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="190"/>
         <source>ResetDefaultValue</source>
         <translation>Valeur orig.</translation>
     </message>
     <message>
-        <source>Languages</source>
-        <translation type="obsolete">Langues</translation>
-    </message>
-    <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="43"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="46"/>
         <source>Quiz</source>
         <translation>Quiz</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="221"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="225"/>
         <source>Interface</source>
         <translation>Interface</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="237"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="241"/>
         <source>InterfaceLanguage</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="288"/>
-        <source>Keybord Accelerators</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="396"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="360"/>
         <source>Preferences...</source>
         <translation>Préférences</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="509"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="471"/>
         <source>RevealingOrderMandatory</source>
         <translation>Vous devez choisir au moins une séquence de dévoilement.  Créez-en une nouvelle au besoin.</translation>
     </message>
@@ -346,76 +379,17 @@
         <translation>Très grand</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="515"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="288"/>
+        <source>Keyboard Accelerator Definitions</source>
+        <translation>Raccourcis-Clavier...</translation>
+    </message>
+    <message>
+        <location filename="../../src/PreferencesDialog.cpp" line="477"/>
         <source>StudyLanguagesMandatory</source>
         <translation>Vous devez sélectionner au moins deux langues d&apos;intérêt (une langue source et une langue cible.)</translation>
     </message>
     <message>
-        <source>Keyboard Accelerators</source>
-        <translation type="obsolete">Raccourcis de clavier</translation>
-    </message>
-    <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="294"/>
-        <source>Action</source>
-        <translation>Action</translation>
-    </message>
-    <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="294"/>
-        <source>Key</source>
-        <translation>Touche</translation>
-    </message>
-    <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="312"/>
-        <source>Clear key</source>
-        <translation>Effacer</translation>
-    </message>
-    <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="313"/>
-        <source>Set key</source>
-        <translation>Définir</translation>
-    </message>
-    <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="727"/>
-        <source>&lt;press key&gt;</source>
-        <translation>&lt;Tapez raccourci&gt;</translation>
-    </message>
-    <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="795"/>
-        <source>Duplicate key binding</source>
-        <translation>Raccourci doublon</translation>
-    </message>
-    <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="796"/>
-        <source>Key &apos;</source>
-        <translation>Le raccourci &apos;</translation>
-    </message>
-    <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="796"/>
-        <source>&apos;
-is currently assigned to
-&apos;</source>
-        <translation>&apos;
-est déjà assigné à
-&apos;</translation>
-    </message>
-    <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="797"/>
-        <source>&apos;.
-Overwrite the current assignment?</source>
-        <translation>&apos;.
-Affecter le raccourci quand même?</translation>
-    </message>
-    <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="314"/>
-        <source>Reset key</source>
-        <translation>Valeur orig.</translation>
-    </message>
-    <message>
-        <source>QuizOptions</source>
-        <translation type="obsolete">Quiz</translation>
-    </message>
-    <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="226"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="230"/>
         <source>hideQuizButtons</source>
         <translation>Cacher les boutons</translation>
     </message>
@@ -428,26 +402,22 @@ Affecter le raccourci quand même?</translation>
         <translation type="obsolete">Enlever une séquence de dévoilement</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="97"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="101"/>
         <source>QuizWindow</source>
         <translation>Fenêtre de Quiz</translation>
     </message>
     <message>
-        <source>GlossaryManagerOptions</source>
-        <translation type="obsolete">Liste de mots</translation>
-    </message>
-    <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="229"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="233"/>
         <source>ShowAltInTermList</source>
         <translation>Afficher la valeur du champs Alt./Phon.</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="365"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="329"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="367"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="331"/>
         <source>Cancel</source>
         <translation>Annuler</translation>
     </message>
@@ -679,10 +649,6 @@ Affecter le raccourci quand même?</translation>
         <translation>Allemand</translation>
     </message>
     <message>
-        <source>Edition</source>
-        <translation type="obsolete">Édition</translation>
-    </message>
-    <message>
         <location filename="../../src/MainWindow.cpp" line="44"/>
         <source>Cut</source>
         <translation>Couper</translation>
@@ -719,8 +685,8 @@ Affecter le raccourci quand même?</translation>
         <translation>Un problème est survenu durant la sauvegarde des données. Vérifiez l&apos;espace-disque et les droits d&apos;accès aux fichiers.</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="509"/>
-        <location filename="../../src/PreferencesDialog.cpp" line="515"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="471"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="477"/>
         <location filename="../../src/SearchDialog.cpp" line="296"/>
         <location filename="../../src/SequenceDialog.cpp" line="170"/>
         <location filename="../../src/SequenceDialog.cpp" line="176"/>
@@ -787,22 +753,6 @@ les langues sélectionnées.</translation>
 <context>
     <name>QuizFrame</name>
     <message>
-        <source>Reveal</source>
-        <translation type="obsolete">Dévoiler</translation>
-    </message>
-    <message>
-        <source>RightAnswer</source>
-        <translation type="obsolete">Bonne réponse</translation>
-    </message>
-    <message>
-        <source>WrongAnswer</source>
-        <translation type="obsolete">Mauvaise réponse</translation>
-    </message>
-    <message>
-        <source>EditWord</source>
-        <translation type="obsolete">Éditer le mot</translation>
-    </message>
-    <message>
         <location filename="../../src/QuizFrame.cpp" line="101"/>
         <location filename="../../src/QuizFrame.cpp" line="133"/>
         <location filename="../../src/QuizFrame.cpp" line="143"/>
@@ -853,10 +803,6 @@ les langues sélectionnées.</translation>
         <translation>Exemples/Commentaires</translation>
     </message>
     <message>
-        <source>MaximizeComment</source>
-        <translation type="obsolete">Agrandir le champ Exemples/Commentaires du quiz</translation>
-    </message>
-    <message>
         <location filename="../../src/QuizFrame.cpp" line="187"/>
         <location filename="../../src/QuizFrame.cpp" line="649"/>
         <source>Image</source>
@@ -865,41 +811,9 @@ les langues sélectionnées.</translation>
 </context>
 <context>
     <name>ScrollableLineEdit</name>
-    <message>
-        <source>Undo</source>
-        <translation type="obsolete">Annuler</translation>
-    </message>
-    <message>
-        <source>Redo</source>
-        <translation type="obsolete">Refaire</translation>
-    </message>
-    <message>
-        <source>Cut</source>
-        <translation type="obsolete">Couper</translation>
-    </message>
-    <message>
-        <source>Copy</source>
-        <translation type="obsolete">Copier</translation>
-    </message>
-    <message>
-        <source>Paste</source>
-        <translation type="obsolete">Coller</translation>
-    </message>
-    <message>
-        <source>Clear</source>
-        <translation type="obsolete">Effacer</translation>
-    </message>
-    <message>
-        <source>Select All</source>
-        <translation type="obsolete">Sélectionner tout</translation>
-    </message>
 </context>
 <context>
     <name>SearchDialog</name>
-    <message>
-        <source>Search</source>
-        <translation type="obsolete">Chercher</translation>
-    </message>
     <message>
         <location filename="../../src/SearchDialog.cpp" line="48"/>
         <location filename="../../src/SearchDialog.cpp" line="176"/>
@@ -943,10 +857,6 @@ les langues sélectionnées.</translation>
         <translation>Effacer</translation>
     </message>
     <message>
-        <source>Close</source>
-        <translation type="obsolete">Fermer</translation>
-    </message>
-    <message>
         <location filename="../../src/SearchDialog.cpp" line="177"/>
         <location filename="../../src/SearchDialog.cpp" line="213"/>
         <source>%1 term(s) found</source>
@@ -976,10 +886,6 @@ les langues sélectionnées.</translation>
         <location filename="../../src/SearchDialog.cpp" line="344"/>
         <source>MultipleTranslationsDetectedForRemoveTerms</source>
         <translation>Certains des mots sélectionnés contiennent des traductions dans plusieurs langues.  Indiquez les traductions à effacer.</translation>
-    </message>
-    <message>
-        <source>Reset</source>
-        <translation type="obsolete">Effacer</translation>
     </message>
 </context>
 <context>
@@ -1085,26 +991,14 @@ les langues sélectionnées.</translation>
         <translation>Choisir</translation>
     </message>
     <message>
-        <source>setImageTooltip</source>
-        <translation type="obsolete">Choisir image</translation>
-    </message>
-    <message>
         <location filename="../../src/TermDialog.cpp" line="146"/>
         <source>clearImage</source>
         <translation>Effacer</translation>
     </message>
     <message>
-        <source>clearImageTooltip</source>
-        <translation type="obsolete">Effacer image</translation>
-    </message>
-    <message>
         <location filename="../../src/TermDialog.cpp" line="254"/>
         <source>SetImage...</source>
         <translation>Choisir...</translation>
-    </message>
-    <message>
-        <source>Cut</source>
-        <translation type="obsolete">Couper</translation>
     </message>
     <message>
         <location filename="../../src/TermDialog.cpp" line="159"/>
@@ -1185,54 +1079,10 @@ les langues sélectionnées.</translation>
         <translation>Non</translation>
     </message>
     <message>
-        <source>Title</source>
-        <translation type="obsolete">Titre</translation>
-    </message>
-    <message>
         <location filename="../../src/VocabularyManagerFrame.cpp" line="44"/>
         <location filename="../../src/VocabularyManagerFrame.cpp" line="584"/>
         <source>Glossaries</source>
         <translation>Glossaires</translation>
-    </message>
-    <message>
-        <source>AddFolder</source>
-        <translation type="obsolete">Ajouter dossier</translation>
-    </message>
-    <message>
-        <source>AddGlossary</source>
-        <translation type="obsolete">Ajouter glossaire</translation>
-    </message>
-    <message>
-        <source>RemoveItem</source>
-        <translation type="obsolete">Effacer l&apos;item</translation>
-    </message>
-    <message>
-        <source>Folder</source>
-        <translation type="obsolete">Dossier</translation>
-    </message>
-    <message>
-        <source>Glossary</source>
-        <translation type="obsolete">Glossaire</translation>
-    </message>
-    <message>
-        <source>CheckAllTerms</source>
-        <translation type="obsolete">Cocher tous les mots</translation>
-    </message>
-    <message>
-        <source>InverseCheckedTerms</source>
-        <translation type="obsolete">Inverser la sélection des mots cochés</translation>
-    </message>
-    <message>
-        <source>AddTerm</source>
-        <translation type="obsolete">Ajouter un mot</translation>
-    </message>
-    <message>
-        <source>EditTerm</source>
-        <translation type="obsolete">Éditer le mot</translation>
-    </message>
-    <message>
-        <source>RemoveTerm</source>
-        <translation type="obsolete">Effacer un mot</translation>
     </message>
     <message>
         <location filename="../../src/VocabularyManagerFrame.cpp" line="449"/>
@@ -1269,10 +1119,6 @@ les langues sélectionnées.</translation>
         <location filename="../../src/VocabularyManagerFrame.cpp" line="591"/>
         <source>Properties</source>
         <translation>Propriétés</translation>
-    </message>
-    <message>
-        <source>MaximizeDetails</source>
-        <translation type="obsolete">Agrandir</translation>
     </message>
     <message>
         <location filename="../../src/VocabularyManagerFrame.cpp" line="182"/>
@@ -1327,21 +1173,6 @@ Les données importées sont invisibles pour le moment.  Pour les voir, vous dev
         <location filename="../../src/VocabularyManagerFrame.cpp" line="471"/>
         <source>Glossaries (*.zip)</source>
         <translation>Glossaires (*.zip)</translation>
-    </message>
-</context>
-<context>
-    <name>ZFileDialog</name>
-    <message>
-        <source>Name</source>
-        <translation type="obsolete">Nom</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation type="obsolete">Taille</translation>
-    </message>
-    <message>
-        <source>Date</source>
-        <translation type="obsolete">Date</translation>
     </message>
 </context>
 </TS>

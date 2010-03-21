@@ -13,7 +13,6 @@ SearchDialog::~SearchDialog() {
 }
 
 void SearchDialog::init() {
-    setWindowFlags( Qt::Window | Qt::WindowMaximizeButtonHint );
     setModal( true );
     queryPanel = new QWidget();
     queryPanelLayout = new QHBoxLayout();
@@ -86,9 +85,13 @@ void SearchDialog::init() {
     //removeResultTermButton->setToolTip( tr( "Remove Term(s)" ) );
     connect( removeResultTermButton, SIGNAL( clicked() ), this, SLOT( removeResultTerms() ) );
 
+    closeButton = new QPushButton( tr( "Close" ) );
+    connect( closeButton, SIGNAL( clicked() ), this, SLOT( reject() ) );
+
     resultsButtonsPanelLayout->addWidget( goResultVocabButton );
     resultsButtonsPanelLayout->addWidget( editResultTermButton );
     resultsButtonsPanelLayout->addWidget( removeResultTermButton );
+    resultsButtonsPanelLayout->addWidget( closeButton );
 
     prefHeight = removeResultTermButton->sizeHint().height();
     goResultVocabButton->setMaximumHeight( prefHeight );
@@ -106,17 +109,6 @@ void SearchDialog::init() {
     mainLayout->addWidget( queryPanel );
     mainLayout->addWidget( resultsHeaderPanel );
     mainLayout->addWidget( resultsPanel, 1 );
-//#if defined(Q_WS_HILDON)
-//    windowButtonsPanel = new QWidget();
-//    windowButtonsPanelLayout = new QHBoxLayout();
-//    windowButtonsPanelLayout->setContentsMargins( 0, 0, 0, 0 );
-//    windowButtonsPanel->setLayout( windowButtonsPanelLayout );
-//    closeButton = new QPushButton( tr( "Close" ) );
-//    connect( closeButton, SIGNAL( clicked() ), this, SLOT( reject() ) );
-//    windowButtonsPanelLayout->addStretch( 0 );
-//    windowButtonsPanelLayout->addWidget( closeButton );
-//    mainLayout->addWidget( windowButtonsPanel );
-//#endif
 
     setWindowTitle( tr( "Search..." ) );
 

@@ -20,6 +20,77 @@
     </message>
 </context>
 <context>
+    <name>KeyboardAcceleratorsDialog</name>
+    <message>
+        <location filename="../../src/KeyboardAcceleratorsDialog.cpp" line="23"/>
+        <source>Action</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/KeyboardAcceleratorsDialog.cpp" line="23"/>
+        <source>Key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/KeyboardAcceleratorsDialog.cpp" line="39"/>
+        <source>Clear key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/KeyboardAcceleratorsDialog.cpp" line="40"/>
+        <source>Set key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/KeyboardAcceleratorsDialog.cpp" line="41"/>
+        <source>Reset key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/KeyboardAcceleratorsDialog.cpp" line="59"/>
+        <source>Ok</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/KeyboardAcceleratorsDialog.cpp" line="61"/>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/KeyboardAcceleratorsDialog.cpp" line="83"/>
+        <source>Keyboard Accelerator Definitions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/KeyboardAcceleratorsDialog.cpp" line="118"/>
+        <source>&lt;press key&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/KeyboardAcceleratorsDialog.cpp" line="186"/>
+        <source>Duplicate key binding</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/KeyboardAcceleratorsDialog.cpp" line="187"/>
+        <source>Key &apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/KeyboardAcceleratorsDialog.cpp" line="187"/>
+        <source>&apos;
+is currently assigned to
+&apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/KeyboardAcceleratorsDialog.cpp" line="188"/>
+        <source>&apos;.
+Overwrite the current assignment?</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>MainWindow</name>
     <message>
         <location filename="../../src/MainWindow.cpp" line="66"/>
@@ -194,57 +265,62 @@
 <context>
     <name>PreferencesDialog</name>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="50"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="53"/>
         <source>Length</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="60"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="63"/>
         <source>RevealingOrders</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="97"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="101"/>
         <source>QuizWindow</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="124"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="128"/>
         <source>QuizLengthShortest</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="125"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="129"/>
         <source>QuizLengthMedium</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="127"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="131"/>
         <source>QuizLengthLongest</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="43"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="46"/>
         <source>Quiz</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="151"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="155"/>
         <source>Fonts</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="221"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="225"/>
         <source>Interface</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="396"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="288"/>
+        <source>Keyboard Accelerator Definitions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/PreferencesDialog.cpp" line="360"/>
         <source>Preferences...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="163"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="167"/>
         <source>LabelsFont</source>
         <translation type="unfinished"></translation>
     </message>
@@ -274,121 +350,63 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="166"/>
-        <location filename="../../src/PreferencesDialog.cpp" line="186"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="170"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="190"/>
         <source>ResetDefaultValue</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="183"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="187"/>
         <source>FieldsFont</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="202"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="206"/>
         <source>LanguageFontOverrides</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="223"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="227"/>
         <source>DigraphesEnabled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="226"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="230"/>
         <source>hideQuizButtons</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="229"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="233"/>
         <source>ShowAltInTermList</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="294"/>
-        <source>Action</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="294"/>
-        <source>Key</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="312"/>
-        <source>Clear key</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="313"/>
-        <source>Set key</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="314"/>
-        <source>Reset key</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="727"/>
-        <source>&lt;press key&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="795"/>
-        <source>Duplicate key binding</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="796"/>
-        <source>Key &apos;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="796"/>
-        <source>&apos;
-is currently assigned to
-&apos;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="797"/>
-        <source>&apos;.
-Overwrite the current assignment?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="343"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="307"/>
         <source>StudyLanguages</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="237"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="241"/>
         <source>InterfaceLanguage</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="288"/>
-        <source>Keybord Accelerators</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="365"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="329"/>
         <source>Ok</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="367"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="331"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="509"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="471"/>
         <source>RevealingOrderMandatory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="515"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="477"/>
         <source>StudyLanguagesMandatory</source>
         <translation type="unfinished"></translation>
     </message>
@@ -671,8 +689,8 @@ Overwrite the current assignment?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="509"/>
-        <location filename="../../src/PreferencesDialog.cpp" line="515"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="471"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="477"/>
         <location filename="../../src/SearchDialog.cpp" line="296"/>
         <location filename="../../src/SequenceDialog.cpp" line="170"/>
         <location filename="../../src/SequenceDialog.cpp" line="176"/>

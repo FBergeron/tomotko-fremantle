@@ -463,7 +463,7 @@ void Preferences::initDefaultKeyboardAccelerators() {
     defaultAccel[ ACTION_CHECK_ALL_TERMS ] = Qt::CTRL + Qt::Key_A;
     defaultAccel[ ACTION_INVERSE_CHECKED_TERMS ] = Qt::CTRL + Qt::Key_I;
     defaultAccel[ ACTION_MAXIMIZE ] = 0; // Qt::CTRL + Qt::Key_Space;  This accelerator is the default accelerator to switch language input on Fremantle.
-    defaultAccel[ ACTION_SEARCH ] = Qt::CTRL + Qt::Key_Comma;
+    defaultAccel[ ACTION_SEARCH ] = Qt::CTRL + Qt::Key_Slash;
 }
 
 QFont Preferences::getFont( const QString& fontFamily, uint size ) const {

@@ -79,7 +79,7 @@ private slots:
     void setFirstLanguage( const QString& lang );
     void setTestLanguage( const QString& lang );
     void switchFirstAndTestLanguages();
-    //void toggleMaximize( bool isOn ); 
+    void toggleMaximize( bool isOn ); 
     void search();
     
 private:

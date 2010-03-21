@@ -1,9 +1,3 @@
-/*
- * This class contains some code borrowed from 
- * keyboard_shortcuts.h (rev. 1.2) and
- * keyboard_shortcuts.cpp (rev. 1.3) of ZBEDic.
- * Copyright (C) 2004 Rafal Mantiuk <rafm@users.sourceforge.org>
- */
 #ifndef PREFERENCES_DIALOG_H
 #define PREFERENCES_DIALOG_H 
 
@@ -27,7 +21,9 @@
 #include <QTreeWidget>
 #include <QVBoxLayout>
 #include <QGroupBox>
+#include "DynamicHeightTreeWidget.h"
 #include "KeyActionListViewItem.h"
+#include "KeyboardAcceleratorsDialog.h"
 #include "Preferences.h"
 #include "SequenceDialog.h"
 #include "SequenceListItem.h"
@@ -69,10 +65,11 @@ private slots:
     void addFontOverride( const QString& language );
     void removeFontOverride( const QString& language );
     void updateFontOverride();
-    void clearAccelKey();
-    void setAccelKey();
-    void resetAccelKey();
-    void cancelSetAccelKey();
+    void invokeKeyboardAcceleratorsDialog();
+//    void clearAccelKey();
+//    void setAccelKey();
+//    void resetAccelKey();
+//    void cancelSetAccelKey();
     void addSequence();
     void removeSequence();
     void updateUi();
@@ -91,7 +88,7 @@ private:
     bool isRevealingSequenceSelectionValid() const;
     bool isRevealingSequenceDefined( const QString& seqStr ) const;
     bool isStudyLanguageSelectionValid() const;
-    void keyPressEvent( QKeyEvent *evt );
+//    void keyPressEvent( QKeyEvent *evt );
 
     Preferences*                prefs;
 
@@ -146,7 +143,8 @@ private:
 
     QWidget*                    sequencesViewPanel;
     QVBoxLayout*                sequencesViewPanelLayout;
-    QTreeWidget*                sequencesView;
+    //QTreeWidget*                sequencesView;
+    DynamicHeightTreeWidget*    sequencesView;
     QWidget*                    sequencesViewButtons;
     QHBoxLayout*                sequencesViewButtonsLayout;
     QPushButton*                addSequenceButton;
@@ -164,7 +162,8 @@ private:
     QLabel*                     quizLengthMediumLabel;
     QLabel*                     quizLengthLongestLabel;
    
-    QHBoxLayout*                keyboardAccelButtonPanelLayout;
+    QPushButton*                keyboardAccelButton;
+    //QHBoxLayout*                keyboardAccelButtonPanelLayout;
 
     QWidget*                    labelsFontPanel;
     QHBoxLayout*                labelsFontPanelLayout;
@@ -199,18 +198,19 @@ private:
 
     QCheckBox*                  showAltTextInTermListCheckBox;
 
-    QWidget*                    keyboardAccelPanel;
-    QVBoxLayout*                keyboardAccelPanelLayout;
+    //QWidget*                    keyboardAccelPanel;
+    //QVBoxLayout*                keyboardAccelPanelLayout;
 
-    QLabel*                     keyboardAccelLabel;
-    QTreeWidgetItem*            grabAccelKeyFor;
-    QTreeWidget*                keyboardAccelListView;
-    bool                        keyboardAccelModified;
+    //QLabel*                     keyboardAccelLabel;
+    //QTreeWidgetItem*            grabAccelKeyFor;
+    ////QTreeWidget*                keyboardAccelListView;
+    //DynamicHeightTreeWidget*    keyboardAccelListView;
+    //bool                        keyboardAccelModified;
 
-    QWidget*                    keyboardAccelButtonPanel;
-    QPushButton*                clearAccelKeyButton;
-    QPushButton*                setAccelKeyButton;
-    QPushButton*                resetAccelKeyButton;
+    //QWidget*                    keyboardAccelButtonPanel;
+    //QPushButton*                clearAccelKeyButton;
+    //QPushButton*                setAccelKeyButton;
+    //QPushButton*                resetAccelKeyButton;
 
     QWidget*                    interfaceLanguagePanel;
     QHBoxLayout*                interfaceLanguagePanelLayout;
