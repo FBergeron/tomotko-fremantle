@@ -71,6 +71,9 @@ public slots:
     void setDigraphEnabled( bool isEnabled );
     void retranslateUi();
 
+    bool areDetailsMaximized() const;
+    void toggleMaximizeDetails( bool isOn );
+
 signals:
 
     void selectionChanged( QTreeWidgetItem* item );
@@ -136,7 +139,13 @@ private:
     void addListeners();
     void removeListeners();
 
+    void maximizeDetailsPanel();
+    void restoreDetailsPanel();
+
     uint getSelectedTermCount() const;
+
+    bool areFolderDetailsMaximized;
+    bool areVocabDetailsMaximized;
 
     int                     currentFolderId;
     int                     currentVocabId;

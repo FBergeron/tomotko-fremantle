@@ -10,7 +10,7 @@
 #include "icons/blueArrow.xpm"
 
 VocabularyManagerFrame::VocabularyManagerFrame( Controller* controller, QWidget* parent /*= 0*/ )
-    : QWidget( parent ), searchDialog( NULL ), controller( controller ) {
+    : QWidget( parent ), areFolderDetailsMaximized( false ), areVocabDetailsMaximized( false ), searchDialog( NULL ), controller( controller ) {
 
     mainLayout = new QVBoxLayout();
 
@@ -607,6 +607,21 @@ void VocabularyManagerFrame::retranslateUi() {
     if( searchDialog )
         searchDialog->retranslateUi();
     updateUi();
+}
+
+bool VocabularyManagerFrame::areDetailsMaximized() const {
+    TreeItem* selectedItem = (TreeItem*)vocabTreeView->currentItem();
+    if( selectedItem )
+        return( selectedItem->isFolder() ? areFolderDetailsMaximized : areVocabDetailsMaximized );
+    return( false );
+}
+
+
+void VocabularyManagerFrame::toggleMaximizeDetails( bool isOn ) {
+    if( isOn )
+        maximizeDetailsPanel();
+    else
+        restoreDetailsPanel();
 }
 
 void VocabularyManagerFrame::updateUi() {
@@ -1250,6 +1265,26 @@ void VocabularyManagerFrame::removeListeners() {
     disconnect( termList, SIGNAL( itemChanged( QTreeWidgetItem*, int ) ), this, SLOT( updateTermItemState( QTreeWidgetItem*, int ) ) );
     disconnect( vocabTreeView, SIGNAL( currentItemChanged( QTreeWidgetItem*, QTreeWidgetItem* ) ), this, SLOT( updateCurrentTreeItem( QTreeWidgetItem*, QTreeWidgetItem* ) ) ); 
     disconnect( vocabTreeView, SIGNAL( itemChanged( QTreeWidgetItem*, int ) ), this, SLOT( updateTreeItemState( QTreeWidgetItem*, int ) ) );
+}
+
+void VocabularyManagerFrame::maximizeDetailsPanel() {
+    action[ ACTION_MAXIMIZE ]->setChecked( true );
+    // Set both folder and vocab maximize buttons to the same state because easier to manage.
+    areFolderDetailsMaximized = true;
+    areVocabDetailsMaximized = true;
+    leftPanel->hide();
+    updateGeometry();
+    update();
+}
+
+void VocabularyManagerFrame::restoreDetailsPanel() {
+    action[ ACTION_MAXIMIZE ]->setChecked( false );
+    // Set both folder and vocab maximize buttons to the same state because easier to manage.
+    areFolderDetailsMaximized = false;
+    areVocabDetailsMaximized = false;
+    leftPanel->show();
+    updateGeometry();
+    update();
 }
 
 uint VocabularyManagerFrame::getSelectedTermCount() const {

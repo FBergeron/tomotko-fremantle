@@ -106,7 +106,7 @@ MainWindow::MainWindow( QApplication& app, Controller* controller )
     action[ ACTION_SEARCH ] = Util::createAction( tr( "Search..." ), search_xpm, 
         this, SLOT( search() ), prefs.getAccelerator( ACTION_SEARCH ) );
 
-    //// Accelerators that are not driven by menus/actions must be added to their widgets to work.
+    // Accelerators that are not driven by menus/actions must be added to their widgets to work.
     vocabManagerFrame->addAction( action[ ACTION_CHECK_ALL_TERMS ] );
     vocabManagerFrame->addAction( action[ ACTION_INVERSE_CHECKED_TERMS ] );
     vocabManagerFrame->addAction( action[ ACTION_MAXIMIZE ] );
@@ -263,10 +263,10 @@ void MainWindow::switchLanguage( const QString& language ) {
 }
 
 void MainWindow::toggleMaximize( bool isOn ) {
-    //if( mainPanel->currentWidget() == quizFrame )
-    //    quizFrame->toggleMaximizeComment( isOn );
-    //else if( mainPanel->currentWidget() == vocabManagerFrame )
-    //    vocabManagerFrame->toggleMaximizeDetails( isOn );
+    if( mainPanel->currentWidget() == quizFrame )
+        quizFrame->toggleMaximizeComment( isOn );
+    else if( mainPanel->currentWidget() == vocabManagerFrame )
+        vocabManagerFrame->toggleMaximizeDetails( isOn );
 }
 
 void MainWindow::search() {
@@ -397,10 +397,10 @@ void MainWindow::paste() {
     }
 }
 
-//void MainWindow::toggleLanguageFilter() {
+void MainWindow::toggleLanguageFilter() {
 //    setLanguageFilterEnabled( !action[ ACTION_SHOW_ALL_GLOSSARIES_AND_TERMS ]->isChecked() );
 //    vocabManagerFrame->updateShownItems();
-//}
+}
 
 void MainWindow::quit() {
     close();
