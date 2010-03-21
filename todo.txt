@@ -1,8 +1,6 @@
 ToDo (This is specific to maemo version.  For general todo, check in zaurus or qt4 branches)
 --------------------------------------------------------------------------------------------
-Add credits for Maemo port: johnx, NHTM?, testers in previous package (Mikko, Hokir, Ed, etc.), Thomas Raschbacher.
-Strings to modify:
-    Add a string before language selector.
+Renable language filter?  If not, remove the accelerator and its mention in the help.
 Make PreferencesDialog work.
     Remake the SequenceDialog.  It will probably depend on the QuizFrame too. Or use a QScrollArea.
     I have hidden the scrollbar of bodyWrapper.  Not sure if it's a good idea.  What's the standard way to do that on Maemo?
@@ -11,7 +9,6 @@ Make PreferencesDialog work.
     The Reset Buttons for fonts do not work on Xephyr.  The problem is that the default font is not available (not installed?).
         Maybe we need to identify the best font and hardcode it for fremantle.
     The languages of interest take a lot of room.  Use specific dialog for these.
-The Done button in the About window is not localized. Probably no big deal.
 Implement contextual menu for Import, Export, Cut, Copy, Paste?  For Cut, Copy, Paste, I think I will rather use Keyboard accelerators.  For Import/Export, main menu is not bad.
 Use standard constants for margin, alignment, etc.
 Use standard layout as much as possible.

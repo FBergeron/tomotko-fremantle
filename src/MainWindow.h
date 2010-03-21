@@ -9,7 +9,6 @@
 #include <QDir>
 #include <QKeySequence>
 #include <QLabel>
-#include <QProgressBar>
 #include <QMainWindow> 
 #include <QMaemo5InformationBox>
 #include <QMap>
@@ -86,8 +85,6 @@ private:
 
     //void setLanguageFilterEnabled( bool isEnabled );
 
-    //QMap<QString,QString>   availableLanguages;  // Have been relocated to PreferencesDialog.
-
     QApplication&           app;
     Controller*             control;
 
@@ -104,8 +101,6 @@ private:
 
     QAction*                aboutAction;
     QAction*                helpAction;
-
-    //QProgressBar*           progressBar;
 
     QTranslator*            translator;
 

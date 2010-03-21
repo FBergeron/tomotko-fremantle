@@ -36,25 +36,11 @@ MainWindow::MainWindow( QApplication& app, Controller* controller )
     else
         cerr << "Could not load translation files in directory " << qPrintable( transDir ) << endl;
 
-    //toolBar = new QToolBar();
-    //toolBar->setMovable( false );
-    //addToolBar( toolBar );
-
     copyAction = Util::createAction( QApplication::translate( "QObject", "Copy" ), editcopy_xpm, this, SLOT( copy() ), QKeySequence( Qt::CTRL + Qt::Key_C ) );
     cutAction = Util::createAction( QApplication::translate( "QObject", "Cut" ), editcut_xpm, this, SLOT( cut() ), QKeySequence( Qt::CTRL + Qt::Key_X ) );
     pasteAction = Util::createAction( QApplication::translate( "QObject", "Paste" ), editpaste_xpm, this, SLOT( paste() ), QKeySequence( Qt::CTRL + Qt::Key_V ) );
 
-    //progressBar = new QProgressBar();
-    //progressBar->setMaximumWidth( 160 );
-    //connect( controller, SIGNAL( progressChanged( int ) ), progressBar, SLOT( setValue( int ) ) );
     connect( controller, SIGNAL( quizConcluded() ), this, SLOT( invokeVocabularyManager() ) );
-    //progressBar->setVisible( false );
-
-    //toolBar->addAction( copyAction );
-    //toolBar->addAction( cutAction );
-    //toolBar->addAction( pasteAction );
-
-    //statusBar()->addPermanentWidget( progressBar );
 
     mainPanel = new QStackedWidget();
 
@@ -207,9 +193,7 @@ void MainWindow::updateMenus( QTreeWidgetItem* /* currItem */ ) {
 
 void MainWindow::updateFonts() {
     QFont labelsFont( control->getPreferences().getLabelsFont() ); 
-
     qApp->setFont( labelsFont );
-    //progressBar->setFont( labelsFont );
 
     quizFrame->updateFonts();
     vocabManagerFrame->updateFonts();
@@ -324,15 +308,11 @@ void MainWindow::startQuiz() {
 void MainWindow::showQuiz() {
     mainPanel->setCurrentIndex( frameQuizIndex );
     updateMenus( NULL );
-//    toolBar->setVisible( false );
-//    progressBar->setVisible( true );
 }
 
 void MainWindow::invokeVocabularyManager() {
     mainPanel->setCurrentIndex( frameVocabManagerIndex );
     updateMenus( NULL );
-    //toolBar->setVisible( true );
-    //progressBar->setVisible( false );
 }
 
 void MainWindow::importData() {

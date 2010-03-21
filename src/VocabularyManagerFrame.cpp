@@ -33,7 +33,9 @@ VocabularyManagerFrame::VocabularyManagerFrame( Controller* controller, QWidget*
     testLanguageComboBox = new QComboBox();
 
     languageSelectorPanelLayout->addWidget( firstLanguageComboBox );
+    languageSelectorPanelLayout->addStretch();
     languageSelectorPanelLayout->addWidget( languageSelectorLabel );
+    languageSelectorPanelLayout->addStretch();
     languageSelectorPanelLayout->addWidget( testLanguageComboBox );
 
     updateFirstLanguageValues();
