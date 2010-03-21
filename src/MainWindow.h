@@ -98,7 +98,6 @@ private:
 
     QMenu*                  mainMenu;
 
-    //QAction*                editionMenuAction;
     QAction*                copyAction;
     QAction*                cutAction;
     QAction*                pasteAction;
@@ -107,8 +106,6 @@ private:
     QAction*                helpAction;
 
     //QProgressBar*           progressBar;
-
-    //QMenu*                  editionMenu;
 
     QTranslator*            translator;
 

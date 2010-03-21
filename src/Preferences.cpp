@@ -1,11 +1,7 @@
 #include "Preferences.h"
 
 const qint32 Preferences::magicNumber = qint32( 0x77556644 );
-#if defined(Q_WS_HILDON)
-const uint Preferences::fontSizeList[] = { 10, 12, 14, 18, 24, 30, 36, 40 };
-#else
 const uint Preferences::fontSizeList[] = { 8, 9, 10, 12, 14, 18, 24, 36 };
-#endif
 
 Preferences::Preferences() 
     : quizLength( MEDIUM ), interfaceLanguage( QString( "en" ) ), digraphEnabled( false ), quizButtonsHidden( false ), altInTermListShown( false ),
@@ -454,16 +450,16 @@ void Preferences::initDefaultKeyboardAccelerators() {
     defaultAccel[ ACTION_SHOW_ALL_GLOSSARIES_AND_TERMS ] = 0;
     defaultAccel[ ACTION_PREFERENCES ] = Qt::CTRL + Qt::Key_P;
     defaultAccel[ ACTION_QUIT ] = Qt::CTRL + Qt::Key_Q;
-    defaultAccel[ ACTION_ADD_FOLDER ] = Qt::CTRL + Qt::Key_F;
-    defaultAccel[ ACTION_ADD_GLOSSARY ] = Qt::CTRL + Qt::Key_G;
-    defaultAccel[ ACTION_REMOVE_ITEM ] = Qt::CTRL + Qt::Key_Backspace;
+    defaultAccel[ ACTION_ADD_FOLDER ] = 0; // Qt::CTRL + Qt::Key_F now triggers Search;
+    defaultAccel[ ACTION_ADD_GLOSSARY ] = 0; // Qt::CTRL + Qt::Key_G is not set for this version.
+    defaultAccel[ ACTION_REMOVE_ITEM ] = 0; // Qt::CTRL + Qt::Key_Backspace is not set for this version.
     defaultAccel[ ACTION_ADD_TERM ] = Qt::CTRL + Qt::Key_W;
     defaultAccel[ ACTION_EDIT_TERM ] = Qt::CTRL + Qt::Key_E;
     defaultAccel[ ACTION_REMOVE_TERMS ] = Qt::CTRL + Qt::Key_D;
     defaultAccel[ ACTION_CHECK_ALL_TERMS ] = Qt::CTRL + Qt::Key_A;
     defaultAccel[ ACTION_INVERSE_CHECKED_TERMS ] = Qt::CTRL + Qt::Key_I;
     defaultAccel[ ACTION_MAXIMIZE ] = 0; // Qt::CTRL + Qt::Key_Space;  This accelerator is the default accelerator to switch language input on Fremantle.
-    defaultAccel[ ACTION_SEARCH ] = Qt::CTRL + Qt::Key_Slash;
+    defaultAccel[ ACTION_SEARCH ] = Qt::CTRL + Qt::Key_F; // Replaced from Qt::CTRL + Qt::Key_Comma.
 }
 
 QFont Preferences::getFont( const QString& fontFamily, uint size ) const {

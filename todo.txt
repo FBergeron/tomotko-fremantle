@@ -1,9 +1,6 @@
 ToDo (This is specific to maemo version.  For general todo, check in zaurus or qt4 branches)
 --------------------------------------------------------------------------------------------
-Make all accelerators work.
-    Reconnect Maximize even though there is no visual widget to use it.
 Add credits for Maemo port: johnx, NHTM?, testers in previous package (Mikko, Hokir, Ed, etc.), Thomas Raschbacher.
-Replug copy/cut/paste accelerators.
 Strings to modify:
     Add a string before language selector.
 Make PreferencesDialog work.

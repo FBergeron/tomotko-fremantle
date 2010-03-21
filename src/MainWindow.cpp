@@ -106,7 +106,8 @@ MainWindow::MainWindow( QApplication& app, Controller* controller )
     action[ ACTION_SEARCH ] = Util::createAction( tr( "Search..." ), search_xpm, 
         this, SLOT( search() ), prefs.getAccelerator( ACTION_SEARCH ) );
 
-    // Accelerators that are not driven by menus/actions must be added to their widgets to work.
+    // For some reasons, it's not always enough to insert actions in menus for the accelerators to work.  
+    // Adding then to the top widgets make sure that it works all the time.
     vocabManagerFrame->addAction( action[ ACTION_CHECK_ALL_TERMS ] );
     vocabManagerFrame->addAction( action[ ACTION_INVERSE_CHECKED_TERMS ] );
     vocabManagerFrame->addAction( action[ ACTION_MAXIMIZE ] );
@@ -117,18 +118,25 @@ MainWindow::MainWindow( QApplication& app, Controller* controller )
     vocabManagerFrame->addAction( action[ ACTION_ADD_FOLDER ] );
     vocabManagerFrame->addAction( action[ ACTION_ADD_GLOSSARY ] );
     vocabManagerFrame->addAction( action[ ACTION_REMOVE_ITEM ] );
+    vocabManagerFrame->addAction( action[ ACTION_START_QUIZ ] );
+    vocabManagerFrame->addAction( action[ ACTION_MANAGE_GLOSSARIES ] );
+    vocabManagerFrame->addAction( action[ ACTION_PREFERENCES ] );
+    vocabManagerFrame->addAction( action[ ACTION_QUIT ] );
+    vocabManagerFrame->addAction( cutAction );
+    vocabManagerFrame->addAction( copyAction );
+    vocabManagerFrame->addAction( pasteAction );
     quizFrame->addAction( action[ ACTION_RIGHT_ANSWER ] );
     quizFrame->addAction( action[ ACTION_WRONG_ANSWER ] );
     quizFrame->addAction( action[ ACTION_REVEAL ] );
     quizFrame->addAction( action[ ACTION_EDIT_QUIZ_TERM ] );
     quizFrame->addAction( action[ ACTION_MAXIMIZE ] );
-
-    //editionMenu = new QMenu( tr( "Edition" ), this );
-    //editionMenuAction = menuBar()->addMenu( editionMenu );
-
-    //editionMenu->addAction( cutAction );
-    //editionMenu->addAction( copyAction );
-    //editionMenu->addAction( pasteAction );
+    quizFrame->addAction( action[ ACTION_START_QUIZ ] );
+    quizFrame->addAction( action[ ACTION_MANAGE_GLOSSARIES ] );
+    quizFrame->addAction( action[ ACTION_PREFERENCES ] );
+    quizFrame->addAction( action[ ACTION_QUIT ] );
+    quizFrame->addAction( cutAction );
+    quizFrame->addAction( copyAction );
+    quizFrame->addAction( pasteAction );
 
     mainMenu = new QMenu( this );
     menuBar()->addMenu( mainMenu );
@@ -240,10 +248,6 @@ void MainWindow::retranslateUi() {
     action[ ACTION_INVERSE_CHECKED_TERMS ]->setText( tr( "InverseCheckedTerms" ) );
     action[ ACTION_MAXIMIZE ]->setText( tr( "Maximize" ) );
     action[ ACTION_SEARCH ]->setText( tr( "Search..." ) );
-
-//    cutAction->setText( QObject::tr( "Cut" ) );
-//    copyAction->setText( QObject::tr( "Copy" ) );
-//    pasteAction->setText( QObject::tr( "Paste" ) );
 
     helpAction->setText( tr( "Help..." ) );
     aboutAction->setText( tr( "About..." ) );
