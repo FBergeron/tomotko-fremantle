@@ -1,7 +1,7 @@
 #include "TermDialog.h"
-#include "icons/editcut.xpm"
-#include "icons/editcopy.xpm"
-#include "icons/editpaste.xpm"
+//#include "icons/editcut.xpm"
+//#include "icons/editcopy.xpm"
+//#include "icons/editpaste.xpm"
 
 TermDialog::TermDialog( Vocabulary& vocab, Controller* controller, QWidget* parent ) 
     : QDialog( parent ), vocab( vocab ), controller( controller ), editedTerm( new Term( vocab.getMaxTermId() + 1, vocab.getId() ) ), pixmap( NULL ), movie( NULL ) {

@@ -75,6 +75,7 @@ class Util {
 public:
 
     static const QString languageCodeList[];
+    static const QString studyLanguageList[];
     static QString getLanguageCode( const QString& language );
 
     static bool deleteDirectory( const QString& dir );
@@ -87,6 +88,8 @@ public:
 
     static QString getDigraph( const QString& buffer );
     static QAction* createAction( const QString& name, const char** icon, QObject* receiver, const char* slot, QKeySequence defaultKey = QKeySequence(), bool toggle = false );
+
+    static int getStudyLanguagesCount();
 
 private:
 

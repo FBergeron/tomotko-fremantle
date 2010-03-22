@@ -1,5 +1,8 @@
 ToDo (This is specific to maemo version.  For general todo, check in zaurus or qt4 branches)
 --------------------------------------------------------------------------------------------
+The languages of interest take a lot of room.  Use specific dialog for these.  In progress:
+    Finished the StudyLanguagesDialog.
+    Remove checkboxes and related code from PreferencesDialog.
 Renable language filter?  If not, remove the accelerator and its mention in the help.
 Make PreferencesDialog work.
     Remake the SequenceDialog.  It will probably depend on the QuizFrame too. Or use a QScrollArea.
@@ -8,8 +11,10 @@ Make PreferencesDialog work.
     Position the scrollbar the right place, if possible, when invalid values are detected.
     The Reset Buttons for fonts do not work on Xephyr.  The problem is that the default font is not available (not installed?).
         Maybe we need to identify the best font and hardcode it for fremantle.
-    The languages of interest take a lot of room.  Use specific dialog for these.
-Implement contextual menu for Import, Export, Cut, Copy, Paste?  For Cut, Copy, Paste, I think I will rather use Keyboard accelerators.  For Import/Export, main menu is not bad.
-Use standard constants for margin, alignment, etc.
+    Validate data before accepting them.
+Use standard constants for margin, alignment, etc?
 Use standard layout as much as possible.
+Reenable Cut/Copy/Paste in TermDialog?
+Rewrite online help and renew screenshots.
 Review all code and check for comments.
+Review all strings in all languages.

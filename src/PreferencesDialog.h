@@ -24,6 +24,7 @@
 #include "DynamicHeightTreeWidget.h"
 #include "KeyActionListViewItem.h"
 #include "KeyboardAcceleratorsDialog.h"
+#include "StudyLanguagesDialog.h"
 #include "Preferences.h"
 #include "SequenceDialog.h"
 #include "SequenceListItem.h"
@@ -42,8 +43,8 @@ public:
     static const QString interfaceLanguageList[];
     static const QString interfaceLanguageCodeList[];
     static const QString firstLanguageList[];
-    static const QString studyLanguageList[];
-    static const QString studyLanguageCodeList[];
+    //static const QString studyLanguageList[];
+    //static const QString studyLanguageCodeList[];
 
     PreferencesDialog( QWidget* parent, Preferences* prefs );
     ~PreferencesDialog(); 
@@ -66,10 +67,7 @@ private slots:
     void removeFontOverride( const QString& language );
     void updateFontOverride();
     void invokeKeyboardAcceleratorsDialog();
-//    void clearAccelKey();
-//    void setAccelKey();
-//    void resetAccelKey();
-//    void cancelSetAccelKey();
+    void invokeStudyLanguagesDialog();
     void addSequence();
     void removeSequence();
     void updateUi();
@@ -88,7 +86,6 @@ private:
     bool isRevealingSequenceSelectionValid() const;
     bool isRevealingSequenceDefined( const QString& seqStr ) const;
     bool isStudyLanguageSelectionValid() const;
-//    void keyPressEvent( QKeyEvent *evt );
 
     Preferences*                prefs;
 
@@ -122,6 +119,8 @@ private:
 
     QWidget*                    languagesPanel;
     QGridLayout*                languagesPanelLayout;
+
+    QPushButton*                studyLanguagesButton;
 
     QList<QCheckBox*>           studyLanguagesItem;
 
@@ -163,7 +162,6 @@ private:
     QLabel*                     quizLengthLongestLabel;
    
     QPushButton*                keyboardAccelButton;
-    //QHBoxLayout*                keyboardAccelButtonPanelLayout;
 
     QWidget*                    labelsFontPanel;
     QHBoxLayout*                labelsFontPanelLayout;
@@ -197,20 +195,6 @@ private:
     QCheckBox*                  hideQuizButtonCheckBox;
 
     QCheckBox*                  showAltTextInTermListCheckBox;
-
-    //QWidget*                    keyboardAccelPanel;
-    //QVBoxLayout*                keyboardAccelPanelLayout;
-
-    //QLabel*                     keyboardAccelLabel;
-    //QTreeWidgetItem*            grabAccelKeyFor;
-    ////QTreeWidget*                keyboardAccelListView;
-    //DynamicHeightTreeWidget*    keyboardAccelListView;
-    //bool                        keyboardAccelModified;
-
-    //QWidget*                    keyboardAccelButtonPanel;
-    //QPushButton*                clearAccelKeyButton;
-    //QPushButton*                setAccelKeyButton;
-    //QPushButton*                resetAccelKeyButton;
 
     QWidget*                    interfaceLanguagePanel;
     QHBoxLayout*                interfaceLanguagePanelLayout;

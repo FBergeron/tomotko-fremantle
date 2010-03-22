@@ -18,14 +18,14 @@ const QString PreferencesDialog::firstLanguageList[] = {
     QString( "en" ), QString( "fr" ), QString( "es" ), QString( "ja" ) 
 };
 
-const QString PreferencesDialog::studyLanguageList[] = { 
-    QString( "en" ), QString( "fr" ), QString( "es" ), QString( "ja" ), QString( "de" ), 
-    QString( "ar" ), QString( "bg" ), QString( "cs" ), QString( "da" ), QString( "el" ), 
-    QString( "eo" ), QString( "fi" ), QString( "he" ), QString( "hi" ), QString( "it" ), 
-    QString( "ko" ), QString( "la" ), QString( "nl" ), QString( "no" ), QString( "pt" ), QString( "rm" ), 
-    QString( "ro" ), QString( "ru" ), QString( "sv" ), QString( "sw" ), QString( "th" ), 
-    QString( "tl" ), QString( "vi" ), QString( "zh" )
-};
+//const QString PreferencesDialog::studyLanguageList[] = { 
+//    QString( "en" ), QString( "fr" ), QString( "es" ), QString( "ja" ), QString( "de" ), 
+//    QString( "ar" ), QString( "bg" ), QString( "cs" ), QString( "da" ), QString( "el" ), 
+//    QString( "eo" ), QString( "fi" ), QString( "he" ), QString( "hi" ), QString( "it" ), 
+//    QString( "ko" ), QString( "la" ), QString( "nl" ), QString( "no" ), QString( "pt" ), QString( "rm" ), 
+//    QString( "ro" ), QString( "ru" ), QString( "sv" ), QString( "sw" ), QString( "th" ), 
+//    QString( "tl" ), QString( "vi" ), QString( "zh" )
+//};
 
 PreferencesDialog::PreferencesDialog( QWidget* parent, Preferences* prefs ) 
     : QDialog( parent/*, 0, true*/ ), prefs( prefs ) {
@@ -288,12 +288,16 @@ void PreferencesDialog::init() {
     keyboardAccelButton = new QPushButton( tr( "Keyboard Accelerator Definitions" ) );
     connect( keyboardAccelButton, SIGNAL( clicked() ), this, SLOT( invokeKeyboardAcceleratorsDialog() ) );
 
+    studyLanguagesButton = new QPushButton( tr( "Study Language Definitions" ) );
+    connect( studyLanguagesButton, SIGNAL( clicked() ), this, SLOT( invokeStudyLanguagesDialog() ) );
+
     interfacePageSeparator = new QFrame();
     interfacePageSeparator->setFrameStyle( QFrame::HLine );
 
     interfacePageLayout->addWidget( interfacePageLabel );
     interfacePageLayout->addWidget( interfaceLanguagePanel );
     interfacePageLayout->addWidget( keyboardAccelButton );
+    interfacePageLayout->addWidget( studyLanguagesButton );
     interfacePageLayout->addWidget( digraphCheckBox );
     interfacePageLayout->addWidget( hideQuizButtonCheckBox ); // Disabled for Fremantle.
     interfacePageLayout->addWidget( showAltTextInTermListCheckBox );
@@ -418,9 +422,9 @@ void PreferencesDialog::initSequences() {
 
 void PreferencesDialog::initStudyLanguageValues() {
     QStringList sortedLanguages;
-    int studyLanguageListLength = sizeof( studyLanguageList ) / sizeof( QString );
+    int studyLanguageListLength = Util::getStudyLanguagesCount();
     for( int i = 0; i < studyLanguageListLength; i++ ) 
-        sortedLanguages.append( QApplication::translate( "QObject", studyLanguageList[ i ].toLatin1().data() ) );
+        sortedLanguages.append( QApplication::translate( "QObject", Util::studyLanguageList[ i ].toLatin1().data() ) );
     sortedLanguages.sort();
 
     int languageCount = sortedLanguages.count();
@@ -685,6 +689,21 @@ void PreferencesDialog::invokeKeyboardAcceleratorsDialog() {
             action[ actionIndex ]->setShortcut( actionKey );
             prefs->setAccelerator( actionIndex, actionKey );
         }
+    }
+}
+
+void PreferencesDialog::invokeStudyLanguagesDialog() {
+    StudyLanguagesDialog dialog( this, prefs );
+    dialog.show();
+    int result = dialog.exec();
+    if( result ) {
+        //const QMap<Action,int> accel = dialog.getAccelerators();
+        //for( QMap<Action,int>::ConstIterator it = accel.begin(); it != accel.end(); it++ ) {
+        //    Action actionIndex = it.key();
+        //    int actionKey = it.value();
+        //    action[ actionIndex ]->setShortcut( actionKey );
+        //    prefs->setAccelerator( actionIndex, actionKey );
+        //}
     }
 }
 

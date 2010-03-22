@@ -9,6 +9,15 @@ const QString Util::languageCodeList[] = {
     QObject::tr( "tl" ), QObject::tr( "vi" ), QObject::tr( "zh" )
 };
 
+const QString Util::studyLanguageList[] = { 
+    QString( "en" ), QString( "fr" ), QString( "es" ), QString( "ja" ), QString( "de" ), 
+    QString( "ar" ), QString( "bg" ), QString( "cs" ), QString( "da" ), QString( "el" ), 
+    QString( "eo" ), QString( "fi" ), QString( "he" ), QString( "hi" ), QString( "it" ), 
+    QString( "ko" ), QString( "la" ), QString( "nl" ), QString( "no" ), QString( "pt" ), QString( "rm" ), 
+    QString( "ro" ), QString( "ru" ), QString( "sv" ), QString( "sw" ), QString( "th" ), 
+    QString( "tl" ), QString( "vi" ), QString( "zh" )
+};
+
 QMap<QString,QString>* Util::digraphMap = 0;
 
 QString Util::getLanguageCode( const QString& language ) {
@@ -160,4 +169,8 @@ QAction* Util::createAction( const QString& name, const char** icon, QObject* re
     if( !defaultKey.isEmpty() )
         a->setShortcut( defaultKey );
     return a;
+}
+
+int Util::getStudyLanguagesCount() {
+    return( sizeof( Util::studyLanguageList ) / sizeof( QString ) );
 }

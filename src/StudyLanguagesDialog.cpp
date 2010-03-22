@@ -1,0 +1,100 @@
+#include "StudyLanguagesDialog.h"
+
+StudyLanguagesDialog::StudyLanguagesDialog( QWidget* parent, Preferences* prefs ) 
+    : QDialog( parent ), prefs( prefs ) {
+    init();
+}
+
+StudyLanguagesDialog::~StudyLanguagesDialog() {
+}
+
+void StudyLanguagesDialog::init() {
+    setModal( true ); 
+    
+    languagesPanel = new QWidget();
+    languagesPanelLayout = new QGridLayout();
+    languagesPanelLayout->setContentsMargins( 0, 0, 0, 0 );
+    languagesPanel->setLayout( languagesPanelLayout );
+   
+    initStudyLanguageValues();
+
+    bottomButtonsPanel = new QWidget();
+    bottomButtonsPanelLayout = new QVBoxLayout();
+    bottomButtonsPanelLayout->setContentsMargins( 0, 0, 0, 0 );
+    bottomButtonsPanel->setLayout( bottomButtonsPanelLayout );
+
+    acceptButton = new QPushButton( tr( "Ok" ) );
+    connect( acceptButton, SIGNAL( clicked() ), this, SLOT( accept() ) );
+    cancelButton = new QPushButton( tr( "Cancel" ) );
+    connect( cancelButton, SIGNAL( clicked() ), this, SLOT( reject() ) );
+
+    bottomButtonsPanelLayout->addStretch();
+    bottomButtonsPanelLayout->addWidget( acceptButton );
+    bottomButtonsPanelLayout->addWidget( cancelButton );
+
+    mainLayout = new QBoxLayout( QBoxLayout::LeftToRight );
+
+    languagesPanelWrapper = new QScrollArea();
+    languagesPanelWrapper->setWidget( languagesPanel );
+
+    mainLayout->addWidget( languagesPanelWrapper  );
+    mainLayout->addWidget( bottomButtonsPanel );
+
+    setLayout( mainLayout );
+
+    setWindowTitle( tr( "Study Language Definitions" ) );
+
+    updateUi();
+}
+
+void StudyLanguagesDialog::initStudyLanguageValues() {
+    QStringList sortedLanguages;
+    int studyLanguageListLength = Util::getStudyLanguagesCount();
+    for( int i = 0; i < studyLanguageListLength; i++ ) 
+        sortedLanguages.append( QApplication::translate( "QObject", Util::studyLanguageList[ i ].toLatin1().data() ) );
+    sortedLanguages.sort();
+
+    int languageCount = sortedLanguages.count();
+    for( int i = 0; i < languageCount; i++ ) {
+        QString lang = sortedLanguages.at( i );
+        QString langCode( Util::getLanguageCode( lang ) );
+        bool isStudied( prefs->isStudyLanguage( langCode ) );
+        QCheckBox* languageCheckBox = new QCheckBox( lang );
+        languageCheckBox->setCheckState( isStudied ? Qt::Checked : Qt::Unchecked );
+        //int row = i / 2;
+        //int col = i % 2;
+        int col = ( i < ( languageCount / 2 + 1 ) ? 0 : 1 );
+        int row = i - ( col * ( languageCount / 2 + 1 ) );
+        languagesPanelLayout->addWidget( languageCheckBox, row, col );
+        studyLanguagesItem.append( languageCheckBox );
+        connect( languageCheckBox, SIGNAL( stateChanged( int ) ), this, SLOT( updateFontOverride() ) );
+    }
+}
+
+void StudyLanguagesDialog::accept() {
+    //for( int i = 0; i < keyboardAccelListView->topLevelItemCount(); i++ ) {
+    //    KeyActionListViewItem* item = (KeyActionListViewItem*)keyboardAccelListView->topLevelItem( i );
+    //    setAccelerator( item->getActionIndex(), item->getKey() );
+    //}
+
+    QDialog::accept();
+}
+
+void StudyLanguagesDialog::resizeEvent( QResizeEvent* evt ) {
+    languagesPanelWrapper->widget()->resize( languagesPanelWrapper->maximumViewportSize().width() - languagesPanelWrapper->verticalScrollBar()->size().width() - 40, 
+        languagesPanel->size().height() );
+}
+
+void StudyLanguagesDialog::updateUi() {
+    //if( keyboardAccelListView->currentItem() ) {
+    //    clearAccelKeyButton->setEnabled( true ); 
+    //    setAccelKeyButton->setEnabled( true );
+    //    resetAccelKeyButton->setEnabled( true );
+    //}
+    //else {
+    //    clearAccelKeyButton->setEnabled( false ); 
+    //    setAccelKeyButton->setEnabled( false );
+    //    resetAccelKeyButton->setEnabled( false );
+    //}
+}
+

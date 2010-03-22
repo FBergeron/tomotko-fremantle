@@ -33,6 +33,7 @@ HEADERS     +=  src/Base.h \
                 src/SequenceDialog.h \
                 src/SequenceListItem.h \
                 src/KeyboardAcceleratorsDialog.h \
+                src/StudyLanguagesDialog.h \
                 src/PreferencesDialog.h \
                 src/Controller.h \
                 src/MainWindow.h \
@@ -79,6 +80,7 @@ SOURCES     +=  src/Util.cpp \
                 src/SequenceDialog.cpp \
                 src/SequenceListItem.cpp \
                 src/KeyboardAcceleratorsDialog.cpp \
+                src/StudyLanguagesDialog.cpp \
                 src/PreferencesDialog.cpp \
                 src/Controller.cpp \
                 src/main.cpp \
