@@ -47,6 +47,20 @@ void StudyLanguagesDialog::init() {
     updateUi();
 }
 
+QStringList StudyLanguagesDialog::getStudyLanguages() const {
+    QStringList languages;
+    int langItemCount = studyLanguagesItem.count();
+    for( int i = 0; i < langItemCount; i++ ) {
+        QCheckBox* languageCheckBox = studyLanguagesItem.at( i );
+        bool isChecked = ( languageCheckBox->checkState() != Qt::Unchecked );
+        if( isChecked ) {
+            QString langCode( Util::getLanguageCode( languageCheckBox->text() ) );
+            languages.append( langCode );
+        }
+    }
+    return( languages );
+}
+
 void StudyLanguagesDialog::initStudyLanguageValues() {
     QStringList sortedLanguages;
     int studyLanguageListLength = Util::getStudyLanguagesCount();
@@ -67,17 +81,28 @@ void StudyLanguagesDialog::initStudyLanguageValues() {
         int row = i - ( col * ( languageCount / 2 + 1 ) );
         languagesPanelLayout->addWidget( languageCheckBox, row, col );
         studyLanguagesItem.append( languageCheckBox );
-        connect( languageCheckBox, SIGNAL( stateChanged( int ) ), this, SLOT( updateFontOverride() ) );
     }
 }
 
 void StudyLanguagesDialog::accept() {
-    //for( int i = 0; i < keyboardAccelListView->topLevelItemCount(); i++ ) {
-    //    KeyActionListViewItem* item = (KeyActionListViewItem*)keyboardAccelListView->topLevelItem( i );
-    //    setAccelerator( item->getActionIndex(), item->getKey() );
-    //}
+    if( !isStudyLanguageSelectionValid() ) {
+        QMessageBox::warning( this, QObject::tr( "Warning" ), tr( "StudyLanguagesMandatory" ) );
+        return;
+    }
 
     QDialog::accept();
+}
+
+bool StudyLanguagesDialog::isStudyLanguageSelectionValid() const {
+    int checkedLangCount = 0;
+    int studyLanguageItemCount = studyLanguagesItem.count();
+    for( int i = 0; i < studyLanguageItemCount; i++ ) {
+        QCheckBox* languageCheckBox = studyLanguagesItem.at( i );
+        bool isChecked = ( languageCheckBox->checkState() != Qt::Unchecked );
+        if( isChecked )
+            checkedLangCount++;
+    }
+    return( checkedLangCount >= 2 );
 }
 
 void StudyLanguagesDialog::resizeEvent( QResizeEvent* evt ) {

@@ -43,8 +43,6 @@ public:
     static const QString interfaceLanguageList[];
     static const QString interfaceLanguageCodeList[];
     static const QString firstLanguageList[];
-    //static const QString studyLanguageList[];
-    //static const QString studyLanguageCodeList[];
 
     PreferencesDialog( QWidget* parent, Preferences* prefs );
     ~PreferencesDialog(); 
@@ -79,13 +77,11 @@ private:
     void initFontSizeValues( QComboBox* comboBox, bool withEmptyEntry = false ) const;
     void initFontOverrides();
     void initSequences();
-    void initStudyLanguageValues();
     void selectFontFamily( QComboBox* comboBox, const QString& fontFamily );
     void selectFontSize( QComboBox* comboBox, int fontSizeModifier, bool withEmptyEntry = false );
     void selectLanguage( QComboBox* comboBox, const QString& langCode );
     bool isRevealingSequenceSelectionValid() const;
     bool isRevealingSequenceDefined( const QString& seqStr ) const;
-    bool isStudyLanguageSelectionValid() const;
 
     Preferences*                prefs;
 
@@ -96,11 +92,6 @@ private:
     QScrollArea*                bodyWrapper;
     QWidget*                    bodyPanel;
     QVBoxLayout*                bodyPanelLayout;
-
-    QWidget*                    languagePage;
-    QVBoxLayout*                languagePageLayout;
-    QFrame*                     languagePageSeparator;
-    QLabel*                     languagePageLabel;
 
     QWidget*                    quizPage;
     QVBoxLayout*                quizPageLayout;
@@ -117,12 +108,7 @@ private:
     QFrame*                     interfacePageSeparator;
     QLabel*                     interfacePageLabel;
 
-    QWidget*                    languagesPanel;
-    QGridLayout*                languagesPanelLayout;
-
     QPushButton*                studyLanguagesButton;
-
-    QList<QCheckBox*>           studyLanguagesItem;
 
     QWidget*                    quizLengthPanel;
     QHBoxLayout*                quizLengthPanelLayout;
@@ -142,7 +128,6 @@ private:
 
     QWidget*                    sequencesViewPanel;
     QVBoxLayout*                sequencesViewPanelLayout;
-    //QTreeWidget*                sequencesView;
     DynamicHeightTreeWidget*    sequencesView;
     QWidget*                    sequencesViewButtons;
     QHBoxLayout*                sequencesViewButtonsLayout;

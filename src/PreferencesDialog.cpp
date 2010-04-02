@@ -18,15 +18,6 @@ const QString PreferencesDialog::firstLanguageList[] = {
     QString( "en" ), QString( "fr" ), QString( "es" ), QString( "ja" ) 
 };
 
-//const QString PreferencesDialog::studyLanguageList[] = { 
-//    QString( "en" ), QString( "fr" ), QString( "es" ), QString( "ja" ), QString( "de" ), 
-//    QString( "ar" ), QString( "bg" ), QString( "cs" ), QString( "da" ), QString( "el" ), 
-//    QString( "eo" ), QString( "fi" ), QString( "he" ), QString( "hi" ), QString( "it" ), 
-//    QString( "ko" ), QString( "la" ), QString( "nl" ), QString( "no" ), QString( "pt" ), QString( "rm" ), 
-//    QString( "ro" ), QString( "ru" ), QString( "sv" ), QString( "sw" ), QString( "th" ), 
-//    QString( "tl" ), QString( "vi" ), QString( "zh" )
-//};
-
 PreferencesDialog::PreferencesDialog( QWidget* parent, Preferences* prefs ) 
     : QDialog( parent/*, 0, true*/ ), prefs( prefs ) {
     init();
@@ -303,28 +294,6 @@ void PreferencesDialog::init() {
     interfacePageLayout->addWidget( showAltTextInTermListCheckBox );
     interfacePageLayout->addWidget( interfacePageSeparator );
 
-    languagePage = new QWidget();
-    languagePageLayout = new QVBoxLayout();
-    languagePageLayout->setContentsMargins( 0, 0, 0, 0 );
-    languagePage->setLayout( languagePageLayout );
-
-    languagePageLabel = new QLabel( tr( "StudyLanguages" ) );
-
-    languagesPanel = new QWidget();
-    //languagesPanelLayout = new QVBoxLayout();
-    languagesPanelLayout = new QGridLayout();
-    languagesPanelLayout->setContentsMargins( 0, 0, 0, 0 );
-    languagesPanel->setLayout( languagesPanelLayout );
-   
-    initStudyLanguageValues();
-
-    languagePageSeparator = new QFrame();
-    languagePageSeparator->setFrameStyle( QFrame::HLine );
-
-    languagePageLayout->addWidget( languagePageLabel );
-    languagePageLayout->addWidget( languagesPanel );
-    languagePageLayout->addWidget( languagePageSeparator );
-
     bottomButtonsPanel = new QWidget();
     bottomButtonsPanelLayout = new QVBoxLayout();
     bottomButtonsPanelLayout->setContentsMargins( 0, 0, 0, 0 );
@@ -352,7 +321,7 @@ void PreferencesDialog::init() {
     bodyPanelLayout->addWidget( interfacePage );
     bodyPanelLayout->addWidget( quizPage );
     bodyPanelLayout->addWidget( fontPage );
-    bodyPanelLayout->addWidget( languagePage );
+//    bodyPanelLayout->addWidget( languagePage );
 
     bodyWrapper->setWidget( bodyPanel );
 
@@ -420,30 +389,6 @@ void PreferencesDialog::initSequences() {
     }
 }
 
-void PreferencesDialog::initStudyLanguageValues() {
-    QStringList sortedLanguages;
-    int studyLanguageListLength = Util::getStudyLanguagesCount();
-    for( int i = 0; i < studyLanguageListLength; i++ ) 
-        sortedLanguages.append( QApplication::translate( "QObject", Util::studyLanguageList[ i ].toLatin1().data() ) );
-    sortedLanguages.sort();
-
-    int languageCount = sortedLanguages.count();
-    for( int i = 0; i < languageCount; i++ ) {
-        QString lang = sortedLanguages.at( i );
-        QString langCode( Util::getLanguageCode( lang ) );
-        bool isStudied( prefs->isStudyLanguage( langCode ) );
-        QCheckBox* languageCheckBox = new QCheckBox( lang );
-        languageCheckBox->setCheckState( isStudied ? Qt::Checked : Qt::Unchecked );
-        //int row = i / 2;
-        //int col = i % 2;
-        int col = ( i < ( languageCount / 2 + 1 ) ? 0 : 1 );
-        int row = i - ( col * ( languageCount / 2 + 1 ) );
-        languagesPanelLayout->addWidget( languageCheckBox, row, col );
-        studyLanguagesItem.append( languageCheckBox );
-        connect( languageCheckBox, SIGNAL( stateChanged( int ) ), this, SLOT( updateFontOverride() ) );
-    }
-}
-
 void PreferencesDialog::selectFontFamily( QComboBox* comboBox, const QString& fontFamily ) {
     for( int i = 0; i < comboBox->count(); i++ ) {
         if( comboBox->itemText( i ) == fontFamily )
@@ -473,12 +418,6 @@ void PreferencesDialog::accept() {
     if( !isRevealingSequenceSelectionValid() ) {
         // TODO: Position the scrollbar at the right location.
         QMessageBox::warning( this, QObject::tr( "Warning" ), tr( "RevealingOrderMandatory" ) );
-        return;
-    }
-
-    if( !isStudyLanguageSelectionValid() ) {
-        // TODO: Position the scrollbar at the right location.
-        QMessageBox::warning( this, QObject::tr( "Warning" ), tr( "StudyLanguagesMandatory" ) );
         return;
     }
 
@@ -514,27 +453,6 @@ void PreferencesDialog::accept() {
             prefs->setFontOverrideSize( language, fontSizeModifier );
         }
     }
-
-    bool firstLanguageExists = false;
-    bool testLanguageExists = false;
-    prefs->clearStudyLanguages();
-    int studyLanguageItemCount = studyLanguagesItem.count();
-    for( int i = 0; i < studyLanguageItemCount; i++ ) {
-        QCheckBox* languageCheckBox = studyLanguagesItem.at( i );
-        bool isChecked = ( languageCheckBox->checkState() != Qt::Unchecked );
-        if( isChecked ) {
-            QString langCode( Util::getLanguageCode( languageCheckBox->text() ) );
-            prefs->addStudyLanguage( langCode );
-            if( !firstLanguageExists )
-                firstLanguageExists = ( prefs->getFirstLanguage() == langCode );
-            if( !testLanguageExists )
-                testLanguageExists = (prefs->getTestLanguage() == langCode );
-        }
-    }
-    if( !firstLanguageExists )
-        prefs->setFirstLanguage( QString( "" ) );
-    if( !testLanguageExists )
-        prefs->setTestLanguage( QString( "" ) );
 
     bool isDigraphEnabled = ( digraphCheckBox->checkState() != Qt::Unchecked );
     prefs->setDigraphEnabled( isDigraphEnabled );
@@ -574,18 +492,6 @@ bool PreferencesDialog::isRevealingSequenceDefined( const QString& seqStr ) cons
     }
 
     return( false );
-}
-
-bool PreferencesDialog::isStudyLanguageSelectionValid() const {
-    int checkedLangCount = 0;
-    int studyLanguageItemCount = studyLanguagesItem.count();
-    for( int i = 0; i < studyLanguageItemCount; i++ ) {
-        QCheckBox* languageCheckBox = studyLanguagesItem.at( i );
-        bool isChecked = ( languageCheckBox->checkState() != Qt::Unchecked );
-        if( isChecked )
-            checkedLangCount++;
-    }
-    return( checkedLangCount >= 2 );
 }
 
 void PreferencesDialog::resizeEvent( QResizeEvent* evt ) {
@@ -644,7 +550,8 @@ void PreferencesDialog::addFontOverride( const QString& language ) {
 
 void PreferencesDialog::removeFontOverride( const QString& language ) {
     int fontOverrideCount = fontOverrideLabels.count();
-    for( int i = 0; i < fontOverrideCount; i++ ) {
+    int i = 0;
+    for( ; i < fontOverrideCount; i++ ) {
         if( fontOverrideLabels.at( i )->text() == QApplication::translate( "QObject", language.toLatin1().data() ) ) {
             QWidget* fontOverrideBox = fontOverrideBoxes.at( i );
 
@@ -661,19 +568,26 @@ void PreferencesDialog::removeFontOverride( const QString& language ) {
 }
 
 void PreferencesDialog::updateFontOverride() {
-    int studyLanguageItemCount = studyLanguagesItem.count();
-    for( int i = 0; i < studyLanguageItemCount; i++ ) {
-        QCheckBox* languageCheckBox = (QCheckBox*)studyLanguagesItem.at( i );
-        QString checkBoxLang( Util::getLanguageCode( languageCheckBox->text() ) );
-        bool isChecked = ( languageCheckBox->checkState() != Qt::Unchecked );
-        int fontOverrideItemCount = fontOverrideLabels.count();
-        for( int j = 0; j < fontOverrideItemCount; j++ ) {
-            if( checkBoxLang == Util::getLanguageCode( fontOverrideLabels.at( j )->text() ) )
-                if( !isChecked )
-                    removeFontOverride( checkBoxLang );
-        }
-        if( isChecked )
-            addFontOverride( checkBoxLang );
+    QStringList fontOverridesToRemove;
+    QList<QString> studyLanguages( prefs->getStudyLanguages() );
+    int fontOverrideCount = fontOverrideLabels.count();
+    for( int i = 0; i < fontOverrideCount; i++ ) {
+        QString fontOverrideLang = Util::getLanguageCode( fontOverrideLabels.at( i )->text() );
+        if( studyLanguages.contains( fontOverrideLang ) )
+            studyLanguages.removeOne( fontOverrideLang );
+        else
+            fontOverridesToRemove.append( fontOverrideLang );
+    }
+
+    for( QStringList::Iterator it = fontOverridesToRemove.begin(); it != fontOverridesToRemove.end(); it++ ) {
+        QString fontOverrideLang = *it;
+        removeFontOverride( fontOverrideLang );
+    }
+    
+    int remainingStudyLanguageCount = studyLanguages.count();
+    for( int i = 0; i < remainingStudyLanguageCount; i++ ) {
+        QString newStudyLanguage = studyLanguages.at( i );
+        addFontOverride( newStudyLanguage );
     }
 }
 
@@ -697,13 +611,25 @@ void PreferencesDialog::invokeStudyLanguagesDialog() {
     dialog.show();
     int result = dialog.exec();
     if( result ) {
-        //const QMap<Action,int> accel = dialog.getAccelerators();
-        //for( QMap<Action,int>::ConstIterator it = accel.begin(); it != accel.end(); it++ ) {
-        //    Action actionIndex = it.key();
-        //    int actionKey = it.value();
-        //    action[ actionIndex ]->setShortcut( actionKey );
-        //    prefs->setAccelerator( actionIndex, actionKey );
-        //}
+        bool firstLanguageExists = false;
+        bool testLanguageExists = false;
+        QStringList languages = dialog.getStudyLanguages();
+        prefs->clearStudyLanguages();
+        int studyLanguageItemCount = languages.count();
+        for( int i = 0; i < studyLanguageItemCount; i++ ) {
+             QString langCode( languages.at( i ) );
+             prefs->addStudyLanguage( langCode );
+             if( !firstLanguageExists )
+                 firstLanguageExists = ( prefs->getFirstLanguage() == langCode );
+             if( !testLanguageExists )
+                 testLanguageExists = (prefs->getTestLanguage() == langCode );
+        }
+        if( !firstLanguageExists )
+            prefs->setFirstLanguage( QString( "" ) );
+        if( !testLanguageExists )
+            prefs->setTestLanguage( QString( "" ) );
+
+        updateFontOverride();
     }
 }
 

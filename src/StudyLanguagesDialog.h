@@ -4,10 +4,11 @@
 #include <QBoxLayout>
 #include <QCheckBox>
 #include <QDialog>
-//#include <QMessageBox>
+#include <QMessageBox>
 #include <QPushButton>
 #include <QScrollBar>
 #include <QScrollArea>
+#include <QStringList>
 #include "Preferences.h"
 #include "Util.h"
 
@@ -20,8 +21,7 @@ public:
     StudyLanguagesDialog( QWidget* parent, Preferences* prefs );
     ~StudyLanguagesDialog(); 
 
-    //QMap<Action, int> getAccelerators() const;
-    //bool areAcceleratorsModified() const;
+    QStringList getStudyLanguages() const;
 
 public slots:
 
@@ -41,6 +41,7 @@ private:
 
     void init();
     void initStudyLanguageValues();
+    bool isStudyLanguageSelectionValid() const;
 
     Preferences*        prefs;
 
