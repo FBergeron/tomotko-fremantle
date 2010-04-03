@@ -1,8 +1,6 @@
 ToDo (This is specific to maemo version.  For general todo, check in zaurus or qt4 branches)
 --------------------------------------------------------------------------------------------
-The languages of interest take a lot of room.  Use specific dialog for these.  In progress:
-    In PreferencesDialog::updateFontOverride(), I must accumulate the indexes of the items to remove, and then, remove them.  This will fix the segfault.
-    Finished the StudyLanguagesDialog.
+Move fonts settings into a separate dialog.
 Renable language filter?  If not, remove the accelerator and its mention in the help.
 Make PreferencesDialog work.
     Remake the SequenceDialog.  It will probably depend on the QuizFrame too. Or use a QScrollArea.

@@ -22,6 +22,7 @@
 #include <QVBoxLayout>
 #include <QGroupBox>
 #include "DynamicHeightTreeWidget.h"
+#include "FontsDialog.h"
 #include "KeyActionListViewItem.h"
 #include "KeyboardAcceleratorsDialog.h"
 #include "StudyLanguagesDialog.h"
@@ -66,6 +67,7 @@ private slots:
     void updateFontOverride();
     void invokeKeyboardAcceleratorsDialog();
     void invokeStudyLanguagesDialog();
+    void invokeFontsDialog();
     void addSequence();
     void removeSequence();
     void updateUi();
@@ -109,6 +111,7 @@ private:
     QLabel*                     interfacePageLabel;
 
     QPushButton*                studyLanguagesButton;
+    QPushButton*                fontsButton;
 
     QWidget*                    quizLengthPanel;
     QHBoxLayout*                quizLengthPanelLayout;

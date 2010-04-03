@@ -282,6 +282,9 @@ void PreferencesDialog::init() {
     studyLanguagesButton = new QPushButton( tr( "Study Language Definitions" ) );
     connect( studyLanguagesButton, SIGNAL( clicked() ), this, SLOT( invokeStudyLanguagesDialog() ) );
 
+    fontsButton = new QPushButton( tr( "Fonts Settings" ) );
+    connect( fontsButton, SIGNAL( clicked() ), this, SLOT( invokeFontsDialog() ) );
+
     interfacePageSeparator = new QFrame();
     interfacePageSeparator->setFrameStyle( QFrame::HLine );
 
@@ -289,6 +292,7 @@ void PreferencesDialog::init() {
     interfacePageLayout->addWidget( interfaceLanguagePanel );
     interfacePageLayout->addWidget( keyboardAccelButton );
     interfacePageLayout->addWidget( studyLanguagesButton );
+    interfacePageLayout->addWidget( fontsButton );
     interfacePageLayout->addWidget( digraphCheckBox );
     interfacePageLayout->addWidget( hideQuizButtonCheckBox ); // Disabled for Fremantle.
     interfacePageLayout->addWidget( showAltTextInTermListCheckBox );
@@ -630,6 +634,14 @@ void PreferencesDialog::invokeStudyLanguagesDialog() {
             prefs->setTestLanguage( QString( "" ) );
 
         updateFontOverride();
+    }
+}
+
+void PreferencesDialog::invokeFontsDialog() {
+    FontsDialog dialog( this, prefs );
+    dialog.show();
+    int result = dialog.exec();
+    if( result ) {
     }
 }
 
