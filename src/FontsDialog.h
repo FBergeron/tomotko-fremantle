@@ -8,6 +8,7 @@
 #include <QMessageBox>
 #include <QPushButton>
 #include <QScrollArea>
+#include <QScrollBar>
 #include <QStringList>
 #include "Preferences.h"
 #include "Util.h"
@@ -41,11 +42,9 @@ protected slots:
 
 protected:
 
-    virtual void resizeEvent( QResizeEvent* evt );
+    virtual void resizeEvent( QResizeEvent* );
 
 private slots:
-
-    void updateUi();
 
     void resetDefaultLabelsFont();
     void resetDefaultFont();
@@ -55,6 +54,9 @@ private:
     void init();
     void initFontFamilyValues( QComboBox* comboBox, bool withEmptyEntry = false ) const;
     void initFontSizeValues( QComboBox* comboBox, bool withEmptyEntry = false ) const;
+    void initFontOverrides();
+    void selectFontFamily( QComboBox* comboBox, const QString& fontFamily );
+    void selectFontSize( QComboBox* comboBox, int fontSizeModifier, bool withEmptyEntry = false );
 
     Preferences*            prefs;
 
@@ -86,9 +88,6 @@ private:
     QComboBox*              fontFamilyComboBox;
     QComboBox*              fontSizeComboBox;
     QPushButton*            resetDefaultFontButton;
-
-    QWidget*                fontOverridesPanel;
-    QVBoxLayout*            fontOverridesPanelLayout;
 
     QLabel*                 fontOverridesLabel;
 

@@ -19,7 +19,6 @@ void FontsDialog::init() {
     fontsPanel->setLayout( fontsPanelLayout );
 
     fontsPanelWrapper = new QScrollArea();
-    fontsPanelWrapper->setWidget( fontsPanel );
 
     labelsFontPanel = new QWidget();
     labelsFontPanelLayout = new QHBoxLayout();
@@ -37,9 +36,9 @@ void FontsDialog::init() {
     labelsFontPanelLayout->addWidget( resetDefaultLabelsFontButton );
 
     initFontFamilyValues( labelsFontFamilyComboBox );
-    //selectFontFamily( labelsFontFamilyComboBox, prefs->getLabelsFontFamily() );
+    selectFontFamily( labelsFontFamilyComboBox, prefs->getLabelsFontFamily() );
     initFontSizeValues( labelsFontSizeComboBox );
-    //selectFontSize( labelsFontSizeComboBox, prefs->getLabelsFontSizeModifier() );
+    selectFontSize( labelsFontSizeComboBox, prefs->getLabelsFontSizeModifier() );
 
     fontPanel = new QWidget();
     fontPanelLayout = new QHBoxLayout();
@@ -56,21 +55,15 @@ void FontsDialog::init() {
     fontPanelLayout->addWidget( fontSizeComboBox);
     fontPanelLayout->addWidget( resetDefaultFontButton );
 
-    //initFontFamilyValues( fontFamilyComboBox );
-    //selectFontFamily( fontFamilyComboBox, prefs->getFontFamily() );
-    //initFontSizeValues( fontSizeComboBox );
-    //selectFontSize( fontSizeComboBox, prefs->getFontSizeModifier() );
+    initFontFamilyValues( fontFamilyComboBox );
+    selectFontFamily( fontFamilyComboBox, prefs->getFontFamily() );
+    initFontSizeValues( fontSizeComboBox );
+    selectFontSize( fontSizeComboBox, prefs->getFontSizeModifier() );
 
-    //fontOverridesPanel = new QWidget();
-    //fontOverridesPanelLayout = new QVBoxLayout();
-    //fontOverridesPanel->setLayout( fontOverridesPanelLayout );
+    fontOverridesLabel = new QLabel( tr( "LanguageFontOverrides" ) );
+    fontsPanelLayout->addWidget( fontOverridesLabel );
 
-    //fontOverridesLabel = new QLabel( tr( "LanguageFontOverrides" ) );
-
-    //fontOverridesPanelLayout->addWidget( fontOverridesLabel );
-
-    //fontsPanelLayout->addWidget( fontOverridesPanel );
-    //initFontOverrides();
+    initFontOverrides();
 
     bottomButtonsPanel = new QWidget();
     bottomButtonsPanelLayout = new QBoxLayout( QBoxLayout::TopToBottom );
@@ -86,14 +79,14 @@ void FontsDialog::init() {
     bottomButtonsPanelLayout->addWidget( acceptButton );
     bottomButtonsPanelLayout->addWidget( cancelButton );
 
+    fontsPanelWrapper->setWidget( fontsPanel );
+
     mainLayout->addWidget( fontsPanelWrapper  );
     mainLayout->addWidget( bottomButtonsPanel );
 
     setLayout( mainLayout );
 
     setWindowTitle( tr( "Fonts Settings" ) );
-
-    updateUi();
 }
 
 void FontsDialog::initFontFamilyValues( QComboBox* comboBox, bool withEmptyEntry /*= false*/ ) const {
@@ -105,11 +98,56 @@ void FontsDialog::initFontFamilyValues( QComboBox* comboBox, bool withEmptyEntry
 }
 
 void FontsDialog::initFontSizeValues( QComboBox* comboBox, bool withEmptyEntry /*= false*/ ) const {
-    //int fontSizeNameListLength = sizeof( fontSizeNameList ) / sizeof( QString );
-    //if( withEmptyEntry ) 
-    //    comboBox->addItem( QString( "" ) );
-    //for( int i = 0; i < fontSizeNameListLength; i++ )
-    //    comboBox->addItem( tr( fontSizeNameList[ i ].toLatin1().data() ) );
+    int fontSizeNameListLength = Util::getFontSizesCount();
+    if( withEmptyEntry ) 
+        comboBox->addItem( QString( "" ) );
+    for( int i = 0; i < fontSizeNameListLength; i++ )
+        comboBox->addItem( tr( Util::fontSizeNameList[ i ].toLatin1().data() ) );
+}
+
+void FontsDialog::initFontOverrides() {
+    QList<QString> lang( prefs->getStudyLanguages() );
+    for( int i = 0; i < lang.count(); i++ ) {
+        QString language = lang.at( i );
+        QWidget* fontOverrideBox = new QWidget();
+        QHBoxLayout* fontOverrideBoxLayout = new QHBoxLayout();
+        fontOverrideBox->setLayout( fontOverrideBoxLayout );
+        QLabel* fontOverrideLabel = new QLabel( QApplication::translate( "QObject", language.toLatin1().data() ) );
+        QComboBox* fontOverrideFamilyComboBox = new QComboBox();
+        initFontFamilyValues( fontOverrideFamilyComboBox, true );
+        if( prefs->isFontOverrideFamilyDefined( language ) ) 
+            selectFontFamily( fontOverrideFamilyComboBox, prefs->getFontOverrideFamily( language ) );
+        QComboBox* fontOverrideSizeComboBox = new QComboBox();
+        initFontSizeValues( fontOverrideSizeComboBox, true );
+        if( prefs->isFontOverrideSizeDefined( language ) ) 
+            selectFontSize( fontOverrideSizeComboBox, prefs->getFontOverrideSize( language ), true );
+        fontOverrideBoxLayout->addWidget( fontOverrideLabel );
+        fontOverrideBoxLayout->addWidget( fontOverrideFamilyComboBox );
+        fontOverrideBoxLayout->addWidget( fontOverrideSizeComboBox );
+
+        fontOverrideBoxes.append( fontOverrideBox );
+        fontOverrideLabels.append( fontOverrideLabel );
+        fontOverrideFamilyComboBoxes.append( fontOverrideFamilyComboBox );
+        fontOverrideSizeComboBoxes.append( fontOverrideSizeComboBox );
+
+        //fontOverridesPanelLayout->addWidget( fontOverrideBox, 0 );
+        fontsPanelLayout->addWidget( fontOverrideBox, 0 );
+    }
+}
+
+void FontsDialog::selectFontFamily( QComboBox* comboBox, const QString& fontFamily ) {
+    for( int i = 0; i < comboBox->count(); i++ ) {
+        if( comboBox->itemText( i ) == fontFamily )
+            comboBox->setCurrentIndex( i );
+    }
+}
+
+void FontsDialog::selectFontSize( QComboBox* comboBox, int fontSizeModifier, bool withEmptyEntry /*= false*/ ) {
+    int fontSizeNameListLength = Util::getFontSizesCount();
+    int sizeIndex = fontSizeModifier + ( fontSizeNameListLength - 1 ) / 2;
+    if( withEmptyEntry )
+        sizeIndex++;
+    comboBox->setCurrentIndex( sizeIndex );
 }
 
 QString FontsDialog::getLabelsFontFamily() const {
@@ -159,76 +197,41 @@ int FontsDialog::getFontOverrideSizeModifier( const QString& lang ) const {
     return( overridesFontSizeModifier[ lang ] );  
 }
 
-//void FontsDialog::initStudyLanguageValues() {
-//    QStringList sortedLanguages;
-//    int studyLanguageListLength = Util::getStudyLanguagesCount();
-//    for( int i = 0; i < studyLanguageListLength; i++ ) 
-//        sortedLanguages.append( QApplication::translate( "QObject", Util::studyLanguageList[ i ].toLatin1().data() ) );
-//    sortedLanguages.sort();
-//
-//    int languageCount = sortedLanguages.count();
-//    for( int i = 0; i < languageCount; i++ ) {
-//        QString lang = sortedLanguages.at( i );
-//        QString langCode( Util::getLanguageCode( lang ) );
-//        bool isStudied( prefs->isStudyLanguage( langCode ) );
-//        QCheckBox* languageCheckBox = new QCheckBox( lang );
-//        languageCheckBox->setCheckState( isStudied ? Qt::Checked : Qt::Unchecked );
-//        //int row = i / 2;
-//        //int col = i % 2;
-//        int col = ( i < ( languageCount / 2 + 1 ) ? 0 : 1 );
-//        int row = i - ( col * ( languageCount / 2 + 1 ) );
-//        languagesPanelLayout->addWidget( languageCheckBox, row, col );
-//        studyLanguagesItem.append( languageCheckBox );
-//    }
-//}
-
 void FontsDialog::accept() {
-    //if( !isStudyLanguageSelectionValid() ) {
-    //    QMessageBox::warning( this, QObject::tr( "Warning" ), tr( "StudyLanguagesMandatory" ) );
-    //    return;
-    //}
+    labelsFontFamily = labelsFontFamilyComboBox->currentText();
+    labelsFontSizeModifier =  labelsFontSizeComboBox->currentIndex() - ( Util::getFontSizesCount() - 1 ) / 2;
+
+    fieldsFontFamily = fontFamilyComboBox->currentText();
+    fieldsFontSizeModifier =  fontSizeComboBox->currentIndex() - ( Util::getFontSizesCount() - 1 ) / 2;
+
+    overridesFontFamily.clear();
+    overridesFontSizeModifier.clear();
+    int fontOverrideCount = fontOverrideLabels.count();
+    for( int i = 0; i < fontOverrideCount; i++ ) {
+        const QString& language = Util::getLanguageCode( fontOverrideLabels.at( i )->text() );
+        if( fontOverrideFamilyComboBoxes.at( i )->currentIndex() > 0 )
+            overridesFontFamily[ language ] = fontOverrideFamilyComboBoxes.at( i )->currentText();
+        if( fontOverrideSizeComboBoxes.at( i )->currentIndex() > 0 ) {
+            int fontSizeModifier =  ( fontOverrideSizeComboBoxes.at( i )->currentIndex() - 1 ) - ( Util::getFontSizesCount() - 1 ) / 2;
+            overridesFontSizeModifier[ language ] = fontSizeModifier;
+        }
+    }
 
     QDialog::accept();
 }
 
-//bool FontsDialog::isStudyLanguageSelectionValid() const {
-//    //int checkedLangCount = 0;
-//    //int studyLanguageItemCount = studyLanguagesItem.count();
-//    //for( int i = 0; i < studyLanguageItemCount; i++ ) {
-//    //    QCheckBox* languageCheckBox = studyLanguagesItem.at( i );
-//    //    bool isChecked = ( languageCheckBox->checkState() != Qt::Unchecked );
-//    //    if( isChecked )
-//    //        checkedLangCount++;
-//    //}
-//    //return( checkedLangCount >= 2 );
-//}
-
-void FontsDialog::resizeEvent( QResizeEvent* evt ) {
-    //languagesPanelWrapper->widget()->resize( languagesPanelWrapper->maximumViewportSize().width() - languagesPanelWrapper->verticalScrollBar()->size().width() - 40, 
-    //    languagesPanel->size().height() );
+void FontsDialog::resizeEvent( QResizeEvent* ) {
+    fontsPanelWrapper->widget()->resize( fontsPanelWrapper->maximumViewportSize().width() - fontsPanelWrapper->verticalScrollBar()->size().width() - 40, 
+        fontsPanel->size().height() );
 }
-
-void FontsDialog::updateUi() {
-    //if( keyboardAccelListView->currentItem() ) {
-    //    clearAccelKeyButton->setEnabled( true ); 
-    //    setAccelKeyButton->setEnabled( true );
-    //    resetAccelKeyButton->setEnabled( true );
-    //}
-    //else {
-    //    clearAccelKeyButton->setEnabled( false ); 
-    //    setAccelKeyButton->setEnabled( false );
-    //    resetAccelKeyButton->setEnabled( false );
-    //}
-}
-
 
 void FontsDialog::resetDefaultLabelsFont() {
-    //selectFontFamily( labelsFontFamilyComboBox, prefs->getDefaultLabelsFontFamily() );
-    //selectFontSize( labelsFontSizeComboBox, prefs->getDefaultLabelsFontSizeModifier() );
+    selectFontFamily( labelsFontFamilyComboBox, prefs->getDefaultLabelsFontFamily() );
+    selectFontSize( labelsFontSizeComboBox, prefs->getDefaultLabelsFontSizeModifier() );
 }
 
 void FontsDialog::resetDefaultFont() {
-    //selectFontFamily( fontFamilyComboBox, prefs->getDefaultFontFamily() );
-    //selectFontSize( fontSizeComboBox, prefs->getDefaultFontSizeModifier() );
+    selectFontFamily( fontFamilyComboBox, prefs->getDefaultFontFamily() );
+    selectFontSize( fontSizeComboBox, prefs->getDefaultFontSizeModifier() );
 }
 

@@ -31,7 +31,7 @@ protected slots:
 
 protected:
 
-    virtual void resizeEvent( QResizeEvent* evt );
+    virtual void resizeEvent( QResizeEvent* );
 
 private slots:
 

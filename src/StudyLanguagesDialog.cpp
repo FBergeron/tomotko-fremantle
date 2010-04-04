@@ -105,7 +105,7 @@ bool StudyLanguagesDialog::isStudyLanguageSelectionValid() const {
     return( checkedLangCount >= 2 );
 }
 
-void StudyLanguagesDialog::resizeEvent( QResizeEvent* evt ) {
+void StudyLanguagesDialog::resizeEvent( QResizeEvent* ) {
     languagesPanelWrapper->widget()->resize( languagesPanelWrapper->maximumViewportSize().width() - languagesPanelWrapper->verticalScrollBar()->size().width() - 40, 
         languagesPanel->size().height() );
 }

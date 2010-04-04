@@ -40,7 +40,6 @@ class PreferencesDialog : public QDialog {
     
 public:
 
-    static const QString fontSizeNameList[];
     static const QString interfaceLanguageList[];
     static const QString interfaceLanguageCodeList[];
     static const QString firstLanguageList[];
@@ -60,11 +59,6 @@ protected:
 
 private slots:
 
-    void resetDefaultLabelsFont();
-    void resetDefaultFont();
-    void addFontOverride( const QString& language );
-    void removeFontOverride( const QString& language );
-    void updateFontOverride();
     void invokeKeyboardAcceleratorsDialog();
     void invokeStudyLanguagesDialog();
     void invokeFontsDialog();
@@ -75,12 +69,7 @@ private slots:
 private:
 
     void init();
-    void initFontFamilyValues( QComboBox* comboBox, bool withEmptyEntry = false ) const;
-    void initFontSizeValues( QComboBox* comboBox, bool withEmptyEntry = false ) const;
-    void initFontOverrides();
     void initSequences();
-    void selectFontFamily( QComboBox* comboBox, const QString& fontFamily );
-    void selectFontSize( QComboBox* comboBox, int fontSizeModifier, bool withEmptyEntry = false );
     void selectLanguage( QComboBox* comboBox, const QString& langCode );
     bool isRevealingSequenceSelectionValid() const;
     bool isRevealingSequenceDefined( const QString& seqStr ) const;
@@ -100,15 +89,9 @@ private:
     QFrame*                     quizPageSeparator;
     QLabel*                     quizPageLabel;
 
-    QWidget*                    fontPage;
-    QVBoxLayout*                fontPageLayout;
-    QFrame*                     fontPageSeparator;
-    QLabel*                     fontPageLabel;
-
     QWidget*                    interfacePage;
     QVBoxLayout*                interfacePageLayout;
     QFrame*                     interfacePageSeparator;
-    QLabel*                     interfacePageLabel;
 
     QPushButton*                studyLanguagesButton;
     QPushButton*                fontsButton;
@@ -150,33 +133,6 @@ private:
     QLabel*                     quizLengthLongestLabel;
    
     QPushButton*                keyboardAccelButton;
-
-    QWidget*                    labelsFontPanel;
-    QHBoxLayout*                labelsFontPanelLayout;
-    QLabel*                     labelsFontLabel;
-    QComboBox*                  labelsFontFamilyComboBox;
-    QComboBox*                  labelsFontSizeComboBox;
-    QPushButton*                resetDefaultLabelsFontButton;
-
-    QWidget*                    fontsPanel;
-    QVBoxLayout*                fontsPanelLayout;
-
-    QWidget*                    fontPanel;
-    QHBoxLayout*                fontPanelLayout;
-    QLabel*                     fontLabel;
-    QComboBox*                  fontFamilyComboBox;
-    QComboBox*                  fontSizeComboBox;
-    QPushButton*                resetDefaultFontButton;
-
-    QWidget*                    fontOverridesPanel;
-    QVBoxLayout*                fontOverridesPanelLayout;
-
-    QLabel*                     fontOverridesLabel;
-
-    QList<QWidget*>             fontOverrideBoxes;
-    QList<QLabel*>              fontOverrideLabels;
-    QList<QComboBox*>           fontOverrideFamilyComboBoxes;
-    QList<QComboBox*>           fontOverrideSizeComboBoxes;
 
     QCheckBox*                  digraphCheckBox;
 

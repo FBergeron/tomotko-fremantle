@@ -18,6 +18,14 @@ const QString Util::studyLanguageList[] = {
     QString( "tl" ), QString( "vi" ), QString( "zh" )
 };
 
+const QString Util::fontSizeNameList[] = { 
+    QT_TRANSLATE_NOOP( "Util", "VerySmall" ), 
+    QT_TRANSLATE_NOOP( "Util", "Small" ), 
+    QT_TRANSLATE_NOOP( "Util", "Medium" ), 
+    QT_TRANSLATE_NOOP( "Util", "Large" ), 
+    QT_TRANSLATE_NOOP( "Util", "VeryLarge" ) 
+};
+
 QMap<QString,QString>* Util::digraphMap = 0;
 
 QString Util::getLanguageCode( const QString& language ) {
@@ -173,4 +181,8 @@ QAction* Util::createAction( const QString& name, const char** icon, QObject* re
 
 int Util::getStudyLanguagesCount() {
     return( sizeof( Util::studyLanguageList ) / sizeof( QString ) );
+}
+
+int Util::getFontSizesCount() {
+    return( sizeof( Util::fontSizeNameList ) / sizeof( QString ) );
 }

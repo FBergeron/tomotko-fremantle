@@ -78,6 +78,8 @@ public:
     static const QString studyLanguageList[];
     static QString getLanguageCode( const QString& language );
 
+    static const QString fontSizeNameList[];
+
     static bool deleteDirectory( const QString& dir );
     static QString term2Xml( const Term& term, QStringList* languages = NULL, uint indentLevel = 0 );
     static int getDefaultQuizLength();
@@ -90,6 +92,7 @@ public:
     static QAction* createAction( const QString& name, const char** icon, QObject* receiver, const char* slot, QKeySequence defaultKey = QKeySequence(), bool toggle = false );
 
     static int getStudyLanguagesCount();
+    static int getFontSizesCount();
 
 private:
 
