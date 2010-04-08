@@ -304,92 +304,87 @@ Overwrite the current assignment?</source>
 <context>
     <name>PreferencesDialog</name>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="198"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="194"/>
         <source>Keyboard Accelerator Definitions</source>
         <translation>キーボードショートカット...</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="36"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="34"/>
         <source>Length</source>
         <translation>質問の数</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="110"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="54"/>
         <source>QuizLengthShortest</source>
         <translation>少ない (1)</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="111"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="55"/>
         <source>QuizLengthMedium</source>
         <translation>普通 (3)</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="113"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="57"/>
         <source>QuizLengthLongest</source>
         <translation>多い (5)</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="137"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="133"/>
         <source>DigraphesEnabled</source>
         <translation>ダイグラフをオン</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="29"/>
-        <source>Quiz</source>
-        <translation>クイズ</translation>
-    </message>
-    <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="253"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="250"/>
         <source>Preferences...</source>
         <translation>設定</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="46"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="72"/>
         <source>RevealingOrders</source>
         <translation>表示順番</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="83"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="109"/>
         <source>QuizWindow</source>
         <translation>クイズのウィンドウ</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="140"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="136"/>
         <source>hideQuizButtons</source>
-        <translation>ボタンを隠す</translation>
+        <translation>クイズのボタンを隠す</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="143"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="139"/>
         <source>ShowAltInTermList</source>
         <translation>発音を表示する</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="151"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="147"/>
         <source>InterfaceLanguage</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="201"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="197"/>
         <source>Study Language Definitions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="204"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="200"/>
         <source>Fonts Settings</source>
         <translation>フォント...</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="224"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="221"/>
         <source>Ok</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="226"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="223"/>
         <source>Cancel</source>
         <translation>キャンセル</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="280"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="277"/>
         <source>RevealingOrderMandatory</source>
         <translation type="unfinished"></translation>
     </message>
@@ -644,7 +639,7 @@ Overwrite the current assignment?</source>
         <translation>エラー</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="280"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="277"/>
         <location filename="../../src/SearchDialog.cpp" line="288"/>
         <location filename="../../src/SequenceDialog.cpp" line="170"/>
         <location filename="../../src/SequenceDialog.cpp" line="176"/>

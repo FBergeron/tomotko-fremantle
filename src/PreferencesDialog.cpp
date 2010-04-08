@@ -26,8 +26,6 @@ void PreferencesDialog::init() {
     quizPageLayout->setContentsMargins( 0, 0, 0, 0 );
     quizPage->setLayout( quizPageLayout );
   
-    quizPageLabel = new QLabel( tr( "Quiz" ) );
-
     quizLengthPanel = new QWidget();
     quizLengthPanelLayout = new QHBoxLayout();
     quizLengthPanelLayout->setContentsMargins( 0, 0, 0, 0 );
@@ -38,6 +36,39 @@ void PreferencesDialog::init() {
     quizLengthSliderPanel = new QWidget();
     quizLengthSliderPanelLayout = new QVBoxLayout();
     quizLengthSliderPanel->setLayout( quizLengthSliderPanelLayout );
+
+    quizLengthSlider = new QSlider( Qt::Horizontal );
+    quizLengthSlider->setMinimum( 0 );
+    quizLengthSlider->setMaximum( TermScheduler::poolCount - 1 );
+    quizLengthSlider->setTickInterval( 1 );
+    quizLengthSlider->setTickPosition( QSlider::TicksBothSides );
+    quizLengthSlider->setFocusPolicy( Qt::StrongFocus );
+
+    quizLengthSliderPanelLayout->addWidget( quizLengthSlider );
+    quizLengthLabelsPanel = new QWidget();
+    quizLengthLabelsPanelLayout = new QHBoxLayout();
+    quizLengthLabelsPanelLayout->setContentsMargins( 0, 0, 0, 0 );
+    quizLengthLabelsPanel->setLayout( quizLengthLabelsPanelLayout );
+    quizLengthSliderPanelLayout->addWidget( quizLengthLabelsPanel );
+
+    quizLengthShortestLabel = new QLabel( tr( "QuizLengthShortest" ) );
+    quizLengthMediumLabel = new QLabel( tr( "QuizLengthMedium" ) );
+    quizLengthMediumLabel->setAlignment( Qt::AlignCenter );
+    quizLengthLongestLabel = new QLabel( tr( "QuizLengthLongest" ) );
+    quizLengthLongestLabel->setAlignment( Qt::AlignRight );
+    quizLengthLabelsPanelLayout->addWidget( quizLengthShortestLabel );
+    quizLengthLabelsPanelLayout->addWidget( quizLengthMediumLabel );
+    quizLengthLabelsPanelLayout->addWidget( quizLengthLongestLabel );
+
+    quizLengthPanelLayout->addWidget( quizLengthLabel );
+    quizLengthPanelLayout->addWidget( quizLengthSliderPanel );
+
+    quizLengthSlider->setValue( prefs->getQuizLength() ); 
+
+    miscOptionsPanel = new QWidget();
+    miscOptionsPanelLayout = new QGridLayout();
+    miscOptionsPanelLayout->setContentsMargins( 0, 0, 0, 0 );
+    miscOptionsPanel->setLayout( miscOptionsPanelLayout );
 
     revealingOptionsPanel = new QWidget();
     revealingOptionsPanelLayout = new QVBoxLayout();
@@ -93,46 +124,11 @@ void PreferencesDialog::init() {
     sequencesPanelLayout->addWidget( sequencesViewPanel );
     sequencesPanelLayout->addWidget( sequencesLabelBox ); 
 
-    quizLengthSlider = new QSlider( Qt::Horizontal );
-    quizLengthSlider->setMinimum( 0 );
-    quizLengthSlider->setMaximum( TermScheduler::poolCount - 1 );
-    quizLengthSlider->setTickInterval( 1 );
-    quizLengthSlider->setTickPosition( QSlider::TicksBothSides );
-    quizLengthSlider->setFocusPolicy( Qt::StrongFocus );
-
-    quizLengthSliderPanelLayout->addWidget( quizLengthSlider );
-    quizLengthLabelsPanel = new QWidget();
-    quizLengthLabelsPanelLayout = new QHBoxLayout();
-    quizLengthLabelsPanelLayout->setContentsMargins( 0, 0, 0, 0 );
-    quizLengthLabelsPanel->setLayout( quizLengthLabelsPanelLayout );
-    quizLengthSliderPanelLayout->addWidget( quizLengthLabelsPanel );
-
-    quizLengthShortestLabel = new QLabel( tr( "QuizLengthShortest" ) );
-    quizLengthMediumLabel = new QLabel( tr( "QuizLengthMedium" ) );
-    quizLengthMediumLabel->setAlignment( Qt::AlignCenter );
-    quizLengthLongestLabel = new QLabel( tr( "QuizLengthLongest" ) );
-    quizLengthLongestLabel->setAlignment( Qt::AlignRight );
-    quizLengthLabelsPanelLayout->addWidget( quizLengthShortestLabel );
-    quizLengthLabelsPanelLayout->addWidget( quizLengthMediumLabel );
-    quizLengthLabelsPanelLayout->addWidget( quizLengthLongestLabel );
-
-    quizLengthPanelLayout->addWidget( quizLengthLabel );
-    quizLengthPanelLayout->addWidget( quizLengthSliderPanel );
-
-    quizLengthSlider->setValue( prefs->getQuizLength() ); 
-
     quizPageSeparator = new QFrame();
     quizPageSeparator->setFrameStyle( QFrame::HLine );
 
-    quizPageLayout->addWidget( quizPageLabel );
-    quizPageLayout->addWidget( quizLengthPanel );
     quizPageLayout->addWidget( revealingOptionsPanel );
     quizPageLayout->addWidget( quizPageSeparator );
-
-    interfacePage = new QWidget();
-    interfacePageLayout = new QVBoxLayout();
-    interfacePageLayout->setContentsMargins( 0, 0, 0, 0 );
-    interfacePage->setLayout( interfacePageLayout );
 
     digraphCheckBox = new QCheckBox( tr( "DigraphesEnabled" ) );
     digraphCheckBox->setCheckState( prefs->isDigraphEnabled() ? Qt::Checked : Qt::Unchecked );
@@ -204,18 +200,6 @@ void PreferencesDialog::init() {
     fontsButton = new QPushButton( tr( "Fonts Settings" ) );
     connect( fontsButton, SIGNAL( clicked() ), this, SLOT( invokeFontsDialog() ) );
 
-    interfacePageSeparator = new QFrame();
-    interfacePageSeparator->setFrameStyle( QFrame::HLine );
-
-    interfacePageLayout->addWidget( interfaceLanguagePanel );
-    interfacePageLayout->addWidget( studyLanguagesButton );
-    interfacePageLayout->addWidget( fontsButton );
-    interfacePageLayout->addWidget( keyboardAccelButton );
-    interfacePageLayout->addWidget( digraphCheckBox );
-    interfacePageLayout->addWidget( hideQuizButtonCheckBox );
-    interfacePageLayout->addWidget( showAltTextInTermListCheckBox );
-    interfacePageLayout->addWidget( interfacePageSeparator );
-
     bottomButtonsPanel = new QWidget();
     bottomButtonsPanelLayout = new QVBoxLayout();
     bottomButtonsPanelLayout->setContentsMargins( 0, 0, 0, 0 );
@@ -240,7 +224,16 @@ void PreferencesDialog::init() {
     bodyPanelLayout->setContentsMargins( 0, 0, 0, 0 );
     bodyPanel->setLayout( bodyPanelLayout );
 
-    bodyPanelLayout->addWidget( interfacePage );
+    miscOptionsPanelLayout->addWidget( studyLanguagesButton, 0, 0 );
+    miscOptionsPanelLayout->addWidget( digraphCheckBox, 0, 1 );
+    miscOptionsPanelLayout->addWidget( fontsButton, 1, 0 );
+    miscOptionsPanelLayout->addWidget( hideQuizButtonCheckBox, 1, 1 );
+    miscOptionsPanelLayout->addWidget( keyboardAccelButton, 2, 0 );
+    miscOptionsPanelLayout->addWidget( showAltTextInTermListCheckBox, 2, 1);
+
+    bodyPanelLayout->addWidget( interfaceLanguagePanel );
+    bodyPanelLayout->addWidget( miscOptionsPanel );
+    bodyPanelLayout->addWidget( quizLengthPanel );
     bodyPanelLayout->addWidget( quizPage );
 
     bodyWrapper->setWidget( bodyPanel );

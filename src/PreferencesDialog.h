@@ -84,14 +84,12 @@ private:
     QWidget*                    bodyPanel;
     QVBoxLayout*                bodyPanelLayout;
 
+    QWidget*                    miscOptionsPanel;
+    QGridLayout*                miscOptionsPanelLayout;
+
     QWidget*                    quizPage;
     QVBoxLayout*                quizPageLayout;
     QFrame*                     quizPageSeparator;
-    QLabel*                     quizPageLabel;
-
-    QWidget*                    interfacePage;
-    QVBoxLayout*                interfacePageLayout;
-    QFrame*                     interfacePageSeparator;
 
     QPushButton*                studyLanguagesButton;
     QPushButton*                fontsButton;

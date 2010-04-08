@@ -307,92 +307,87 @@ Affecter le raccourci quand même?</translation>
 <context>
     <name>PreferencesDialog</name>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="137"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="133"/>
         <source>DigraphesEnabled</source>
         <translation>Digraphes activés</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="36"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="34"/>
         <source>Length</source>
-        <translation>Longueur</translation>
+        <translation>Longueur des quizzes (répétitions)</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="46"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="72"/>
         <source>RevealingOrders</source>
         <translation>Séquences de dévoilement</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="110"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="54"/>
         <source>QuizLengthShortest</source>
         <translation>Le plus court (1)</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="111"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="55"/>
         <source>QuizLengthMedium</source>
         <translation>Moyen (3)</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="113"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="57"/>
         <source>QuizLengthLongest</source>
         <translation>Le plus long (5)</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="29"/>
-        <source>Quiz</source>
-        <translation>Quiz</translation>
-    </message>
-    <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="151"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="147"/>
         <source>InterfaceLanguage</source>
         <translation>Langue d&apos;interface</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="253"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="250"/>
         <source>Preferences...</source>
         <translation>Préférences</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="280"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="277"/>
         <source>RevealingOrderMandatory</source>
         <translation>Vous devez choisir au moins une séquence de dévoilement.  Créez-en une nouvelle au besoin.</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="198"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="194"/>
         <source>Keyboard Accelerator Definitions</source>
         <translation>Raccourcis-Clavier...</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="140"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="136"/>
         <source>hideQuizButtons</source>
-        <translation>Cacher les boutons</translation>
+        <translation>Cacher les boutons du Quiz</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="83"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="109"/>
         <source>QuizWindow</source>
         <translation>Fenêtre de Quiz</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="143"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="139"/>
         <source>ShowAltInTermList</source>
         <translation>Afficher la valeur du champs Alt./Phon.</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="201"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="197"/>
         <source>Study Language Definitions</source>
         <translation>Langues d&apos;intérêt...</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="204"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="200"/>
         <source>Fonts Settings</source>
         <translation>Polices de caractères...</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="224"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="221"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="226"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="223"/>
         <source>Cancel</source>
         <translation>Annuler</translation>
     </message>
@@ -660,7 +655,7 @@ Affecter le raccourci quand même?</translation>
         <translation>Un problème est survenu durant la sauvegarde des données. Vérifiez l&apos;espace-disque et les droits d&apos;accès aux fichiers.</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="280"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="277"/>
         <location filename="../../src/SearchDialog.cpp" line="288"/>
         <location filename="../../src/SequenceDialog.cpp" line="170"/>
         <location filename="../../src/SequenceDialog.cpp" line="176"/>
