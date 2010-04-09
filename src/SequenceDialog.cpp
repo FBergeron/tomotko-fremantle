@@ -19,12 +19,16 @@ void SequenceDialog::init() {
     quizPanel = new QGroupBox( tr( "Quiz" ) );
     quizPanelLayout = new QVBoxLayout();
     quizPanel->setLayout( quizPanelLayout );
-    sequencePanelLayout->addWidget( quizPanel, 1 );
-    
+
+    quizBody = new QWidget();
+    quizBodyLayout = new QVBoxLayout();
+    quizBodyLayout->setContentsMargins( 0, 0, 0, 0 );
+    quizBody->setLayout( quizBodyLayout );
+
     quizTopPanel = new QWidget();
     quizTopPanelLayout = new QHBoxLayout();
     quizTopPanel->setLayout( quizTopPanelLayout );
-    quizPanelLayout->addWidget( quizTopPanel );
+    quizBodyLayout->addWidget( quizTopPanel );
 
     quizTopLeftPanel = new QWidget();
     quizTopLeftPanelLayout = new QVBoxLayout();
@@ -97,7 +101,7 @@ void SequenceDialog::init() {
     quizCommentBox->setSizePolicy( QSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding ) );
     quizCommentBoxLayout = new QVBoxLayout();
     quizCommentBox->setLayout( quizCommentBoxLayout );
-    quizPanelLayout->addWidget( quizCommentBox, 1 );
+    quizBodyLayout->addWidget( quizCommentBox, 1 );
 
     quizCommentLabel = new QLabel( tr( "CommentLabelPanel" ) );
     quizCommentBoxLayout->addWidget( quizCommentLabel );
@@ -110,7 +114,6 @@ void SequenceDialog::init() {
     sequencePanelButtons = new QWidget();
     sequencePanelButtonsLayout = new QVBoxLayout();
     sequencePanelButtons->setLayout( sequencePanelButtonsLayout );
-    sequencePanelLayout->addWidget( sequencePanelButtons );
 
     addSequenceMarkButton = new QPushButton( ">" );
     sequencePanelButtonsLayout->addWidget( addSequenceMarkButton );
@@ -138,7 +141,7 @@ void SequenceDialog::init() {
     sequenceLineLineEdit->setReadOnly( true );
 
     bottomButtonsPanel = new QWidget();
-    bottomButtonsPanelLayout = new QHBoxLayout();
+    bottomButtonsPanelLayout = new QBoxLayout( QBoxLayout::TopToBottom );
     bottomButtonsPanel->setLayout( bottomButtonsPanelLayout );
 
     acceptButton = new QPushButton( tr( "Ok" ) );
@@ -150,9 +153,24 @@ void SequenceDialog::init() {
     bottomButtonsPanelLayout->addWidget( acceptButton );
     bottomButtonsPanelLayout->addWidget( cancelButton );
 
-    mainLayout = new QVBoxLayout();
-    mainLayout->addWidget( sequenceLinePanel );
-    mainLayout->addWidget( sequencePanel, 1 );
+    quizBodyWrapper = new QScrollArea();
+    quizBodyWrapper->setWidget( quizBody );
+
+    quizPanelLayout->addWidget( quizBodyWrapper );
+
+    sequencePanelLayout->addWidget( quizPanel, 1 );
+    sequencePanelLayout->addWidget( sequencePanelButtons );
+
+    body = new QWidget();
+    bodyLayout = new QBoxLayout( QBoxLayout::TopToBottom );
+    bodyLayout->setContentsMargins( 0, 0, 0, 0 );
+    body->setLayout( bodyLayout );
+
+    bodyLayout->addWidget( sequenceLinePanel );
+    bodyLayout->addWidget( sequencePanel, 1 );
+
+    mainLayout = new QBoxLayout( QBoxLayout::LeftToRight );
+    mainLayout->addWidget( body, 1 );
     mainLayout->addWidget( bottomButtonsPanel );
     mainLayout->activate();
 

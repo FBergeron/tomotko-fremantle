@@ -271,8 +271,6 @@ void MainWindow::closeEvent( QCloseEvent* ce ) {
 
 void MainWindow::about() {
     QMessageBox::about( this, tr( "AboutToMOTko..." ), tr( "AboutMessage" ) );
-    //QMessageBox::aboutQt( this, "test" ); 
-    //QMaemo5InformationBox::information( this, "This is a <b>Test</b>", QMaemo5InformationBox::DefaultTimeout );
 }
 
 void MainWindow::help() {

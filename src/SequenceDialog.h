@@ -1,6 +1,7 @@
 #ifndef SEQUENCE_DIALOG_H
 #define SEQUENCE_DIALOG_H 
 
+#include <QBoxLayout>
 #include <QDialog>
 #include <QStack>
 #include <QGroupBox>
@@ -10,6 +11,7 @@
 #include <QMessageBox>
 #include <QMouseEvent>
 #include <QPushButton>
+#include <QScrollArea>
 #include <QStyle>
 #include <QVBoxLayout>
 #include <QWidget>
@@ -58,13 +60,21 @@ private:
     QStack<Sequence::Item>      items; 
     Sequence::ItemList          currGroup;
 
-    QVBoxLayout*                mainLayout;
+    QBoxLayout*                 mainLayout;
+
+    QWidget*                    body;
+    QBoxLayout*                 bodyLayout;
 
     QWidget*                    sequencePanel;
     QHBoxLayout*                sequencePanelLayout;
 
     QGroupBox*                  quizPanel;
     QVBoxLayout*                quizPanelLayout;
+
+    QWidget*                    quizBody;
+    QVBoxLayout*                quizBodyLayout;
+
+    QScrollArea*                quizBodyWrapper;
 
     QWidget*                    quizTopPanel;
     QHBoxLayout*                quizTopPanelLayout;
@@ -112,7 +122,7 @@ private:
     QLineEdit*                  sequenceLineLineEdit;
 
     QWidget*                    bottomButtonsPanel;
-    QHBoxLayout*                bottomButtonsPanelLayout;
+    QBoxLayout*                 bottomButtonsPanelLayout;
     QPushButton*                acceptButton;
     QPushButton*                cancelButton;
 

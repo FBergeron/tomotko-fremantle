@@ -1,3 +1,10 @@
+tomotko (0.11.2-9fremantle2) unstable; urgency=low
+
+  * Finished hildonization.
+  * Removed dependencies to libqt4-maemo5 libraries (use libqt4 instead).
+
+ -- Frederic Bergeron <fbergeron@users.sourceforge.net>  Fri, 9 Apr 2010 01:41:45 +0900
+
 tomotko (0.11.2-9fremantle1) unstable; urgency=low
 
   * Fixed typo in dependencies.

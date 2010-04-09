@@ -10,7 +10,6 @@
 #include <QKeySequence>
 #include <QLabel>
 #include <QMainWindow> 
-#include <QMaemo5InformationBox>
 #include <QMap>
 #include <QMenu>
 #include <QMenuBar>

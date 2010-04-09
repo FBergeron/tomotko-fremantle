@@ -1,10 +1,11 @@
 ToDo (This is specific to maemo version.  For general todo, check in zaurus or qt4 branches)
 --------------------------------------------------------------------------------------------
+Move Revealing Sequence into a separate dialog.
+Remake the image for Portrait Sequence Map (just in case).
+Verify if KeyActionListViewItem is still needed.
 Renable language filter?  If not, remove the accelerator and its mention in the help.
 Make PreferencesDialog work.
-    Remake the SequenceDialog.  It will probably depend on the QuizFrame too. Or use a QScrollArea.
     I have hidden the scrollbar of bodyWrapper.  Not sure if it's a good idea.  What's the standard way to do that on Maemo?
-    Simplify Revealing Sequences (probably something similar to previous version): Less options is sometimes better :-)
     Position the scrollbar the right place, if possible, when invalid values are detected.
     The Reset Buttons for fonts do not work on Xephyr.  The problem is that the default font is not available (not installed?).
         Maybe we need to identify the best font and hardcode it for fremantle.

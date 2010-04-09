@@ -8,7 +8,7 @@ CONFIG      +=  zlib release
 TEMPLATE    =   app
 DEPENDPATH  +=  src
 INCLUDEPATH +=  . src
-QT          +=  maemo5 xml
+QT          +=  xml
 RESOURCES   =   toMOTko.qrc
 RC_FILE     =   toMOTko.rc
 
