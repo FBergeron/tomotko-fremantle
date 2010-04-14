@@ -1,5 +1,6 @@
 ToDo (This is specific to maemo version.  For general todo, check in zaurus or qt4 branches)
 --------------------------------------------------------------------------------------------
+Before a new release, update the date in the debian control file.
 Move Revealing Sequence into a separate dialog.
 Remake the image for Portrait Sequence Map (just in case).
 Verify if KeyActionListViewItem is still needed.

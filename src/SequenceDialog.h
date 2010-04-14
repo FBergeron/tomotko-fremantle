@@ -12,6 +12,7 @@
 #include <QMouseEvent>
 #include <QPushButton>
 #include <QScrollArea>
+#include <QScrollBar>
 #include <QStyle>
 #include <QVBoxLayout>
 #include <QWidget>
@@ -34,6 +35,10 @@ public slots:
 protected slots:
 
     virtual void accept();
+
+protected:
+
+    virtual void resizeEvent( QResizeEvent* );
 
 private slots:
 
@@ -117,7 +122,7 @@ private:
     QPushButton*                removeLastMarkButton;
 
     QWidget*                    sequenceLinePanel;
-    QHBoxLayout*                sequenceLinePanelLayout;
+    QBoxLayout*                 sequenceLinePanelLayout;
     QLabel*                     sequenceLineLabel;
     QLineEdit*                  sequenceLineLineEdit;
 

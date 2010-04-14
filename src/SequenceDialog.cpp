@@ -51,7 +51,7 @@ void SequenceDialog::init() {
     quizFirstLangLabel = new QLabel( tr( "Word/Expr." ) );
     quizFirstLangPanelWrapperLayout->addWidget( quizFirstLangLabel );
     quizFirstLangTermButton = new QPushButton( "a" );
-    quizFirstLangTermButton->setMinimumWidth( 150 );
+    //quizFirstLangTermButton->setMinimumWidth( 150 );
     quizFirstLangPanelWrapperLayout->addWidget( quizFirstLangTermButton, 1 );
     quizFirstLangTermButton->installEventFilter( this );
     quizFirstLangPanel->setSizePolicy( QSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding ) );
@@ -106,14 +106,27 @@ void SequenceDialog::init() {
     quizCommentLabel = new QLabel( tr( "CommentLabelPanel" ) );
     quizCommentBoxLayout->addWidget( quizCommentLabel );
     quizCommentButton = new QPushButton( "d" );
-    quizCommentButton->setMinimumHeight( 100 );
+    //quizCommentButton->setMinimumHeight( 100 );
     quizCommentButton->setSizePolicy( QSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding ) );
     quizCommentBoxLayout->addWidget( quizCommentButton, 1 );
     quizCommentButton->installEventFilter( this );
 
+    sequenceLinePanel = new QWidget();
+    sequenceLinePanelLayout = new QBoxLayout( QBoxLayout::TopToBottom );
+    sequenceLinePanelLayout->setContentsMargins( 0, 0, 0, 0 );
+    sequenceLinePanelLayout->setSpacing( 0 );
+    sequenceLinePanel->setLayout( sequenceLinePanelLayout );
+    sequenceLineLabel = new QLabel( tr( "Sequence" ) );
+    sequenceLinePanelLayout->addWidget( sequenceLineLabel );
+    sequenceLineLineEdit = new QLineEdit();
+    sequenceLinePanelLayout->addWidget( sequenceLineLineEdit );
+    sequenceLineLineEdit->setReadOnly( true );
+
     sequencePanelButtons = new QWidget();
     sequencePanelButtonsLayout = new QVBoxLayout();
     sequencePanelButtons->setLayout( sequencePanelButtonsLayout );
+
+    sequencePanelButtonsLayout->addWidget( sequenceLinePanel );
 
     addSequenceMarkButton = new QPushButton( ">" );
     sequencePanelButtonsLayout->addWidget( addSequenceMarkButton );
@@ -130,15 +143,6 @@ void SequenceDialog::init() {
     removeLastMarkButton->setEnabled( false );
     removeLastMarkButton->setMinimumWidth( addSequenceMarkButton->sizeHint().width() );
     connect( removeLastMarkButton, SIGNAL( clicked() ), this, SLOT( removeLastToken() ) );
-
-    sequenceLinePanel = new QWidget();
-    sequenceLinePanelLayout = new QHBoxLayout();
-    sequenceLinePanel->setLayout( sequenceLinePanelLayout );
-    sequenceLineLabel = new QLabel( tr( "Sequence" ) );
-    sequenceLinePanelLayout->addWidget( sequenceLineLabel );
-    sequenceLineLineEdit = new QLineEdit();
-    sequenceLinePanelLayout->addWidget( sequenceLineLineEdit );
-    sequenceLineLineEdit->setReadOnly( true );
 
     bottomButtonsPanel = new QWidget();
     bottomButtonsPanelLayout = new QBoxLayout( QBoxLayout::TopToBottom );
@@ -166,7 +170,7 @@ void SequenceDialog::init() {
     bodyLayout->setContentsMargins( 0, 0, 0, 0 );
     body->setLayout( bodyLayout );
 
-    bodyLayout->addWidget( sequenceLinePanel );
+    //bodyLayout->addWidget( sequenceLinePanel );
     bodyLayout->addWidget( sequencePanel, 1 );
 
     mainLayout = new QBoxLayout( QBoxLayout::LeftToRight );
@@ -210,7 +214,8 @@ bool SequenceDialog::eventFilter( QObject* obj, QEvent* evt ) {
         if( mouseEvt->button() == Qt::LeftButton ) {
             if( obj && obj->inherits( "QPushButton" ) ) {
                 QPushButton* button = (QPushButton*)obj;
-                addSequenceItem( button->text() );
+                if( button->isEnabled() )
+                    addSequenceItem( button->text() );
             }
         }
     }
@@ -297,6 +302,11 @@ void SequenceDialog::setItemButtonsEnabled( bool isEnabled ) {
     quizTestLangTermButton->setEnabled( isEnabled && !isItemUsed( Sequence::TEST_LANG_TERM ) );
     quizCommentButton->setEnabled( isEnabled && !isItemUsed( Sequence::COMMENT ) );
     quizImageButton->setEnabled( isEnabled && !isItemUsed( Sequence::IMAGE ) );
+}
+
+void SequenceDialog::resizeEvent( QResizeEvent* evt ) {
+    quizBodyWrapper->widget()->resize( quizBodyWrapper->maximumViewportSize().width() - quizBodyWrapper->verticalScrollBar()->size().width() - 40, 
+        quizBody->size().height() );
 }
 
 //void SequenceDialog::trace() const {
