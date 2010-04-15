@@ -277,17 +277,17 @@ Affecter le raccourci quand même?</translation>
         <translation>Agrandir</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="288"/>
+        <location filename="../../src/MainWindow.cpp" line="286"/>
         <source>ConfirmResumeQuiz</source>
         <translation>Il y a déjà un quiz en cours pour les langues sélectionnées. Voulez-vous continuer ce quiz?</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="294"/>
+        <location filename="../../src/MainWindow.cpp" line="292"/>
         <source>Yes</source>
         <translation>Oui</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="295"/>
+        <location filename="../../src/MainWindow.cpp" line="293"/>
         <source>No</source>
         <translation>Non</translation>
     </message>
@@ -307,7 +307,7 @@ Affecter le raccourci quand même?</translation>
 <context>
     <name>PreferencesDialog</name>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="133"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="73"/>
         <source>DigraphesEnabled</source>
         <translation>Digraphes activés</translation>
     </message>
@@ -315,11 +315,6 @@ Affecter le raccourci quand même?</translation>
         <location filename="../../src/PreferencesDialog.cpp" line="34"/>
         <source>Length</source>
         <translation>Longueur des quizzes (répétitions)</translation>
-    </message>
-    <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="72"/>
-        <source>RevealingOrders</source>
-        <translation>Séquences de dévoilement</translation>
     </message>
     <message>
         <location filename="../../src/PreferencesDialog.cpp" line="54"/>
@@ -337,57 +332,52 @@ Affecter le raccourci quand même?</translation>
         <translation>Le plus long (5)</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="147"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="87"/>
         <source>InterfaceLanguage</source>
         <translation>Langue d&apos;interface</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="250"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="143"/>
+        <source>Revealing Sequences Settings</source>
+        <translation>Séquences de dévoilement...</translation>
+    </message>
+    <message>
+        <location filename="../../src/PreferencesDialog.cpp" line="190"/>
         <source>Preferences...</source>
         <translation>Préférences</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="277"/>
-        <source>RevealingOrderMandatory</source>
-        <translation>Vous devez choisir au moins une séquence de dévoilement.  Créez-en une nouvelle au besoin.</translation>
-    </message>
-    <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="194"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="134"/>
         <source>Keyboard Accelerator Definitions</source>
         <translation>Raccourcis-Clavier...</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="136"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="76"/>
         <source>hideQuizButtons</source>
         <translation>Cacher les boutons du Quiz</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="109"/>
-        <source>QuizWindow</source>
-        <translation>Fenêtre de Quiz</translation>
-    </message>
-    <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="139"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="79"/>
         <source>ShowAltInTermList</source>
         <translation>Afficher la valeur du champs Alt./Phon.</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="197"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="137"/>
         <source>Study Language Definitions</source>
         <translation>Langues d&apos;intérêt...</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="200"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="140"/>
         <source>Fonts Settings</source>
         <translation>Polices de caractères...</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="221"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="151"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="223"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="153"/>
         <source>Cancel</source>
         <translation>Annuler</translation>
     </message>
@@ -655,18 +645,18 @@ Affecter le raccourci quand même?</translation>
         <translation>Un problème est survenu durant la sauvegarde des données. Vérifiez l&apos;espace-disque et les droits d&apos;accès aux fichiers.</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="277"/>
         <location filename="../../src/SearchDialog.cpp" line="288"/>
-        <location filename="../../src/SequenceDialog.cpp" line="170"/>
-        <location filename="../../src/SequenceDialog.cpp" line="176"/>
-        <location filename="../../src/StudyLanguagesDialog.cpp" line="89"/>
+        <location filename="../../src/SequenceDialog.cpp" line="192"/>
+        <location filename="../../src/SequenceDialog.cpp" line="198"/>
+        <location filename="../../src/SequencesDialog.cpp" line="87"/>
+        <location filename="../../src/StudyLanguagesDialog.cpp" line="87"/>
         <location filename="../../src/VocabularyManagerFrame.cpp" line="813"/>
         <location filename="../../src/VocabularyManagerFrame.cpp" line="947"/>
         <source>Warning</source>
         <translation>Avertissement</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="288"/>
+        <location filename="../../src/MainWindow.cpp" line="286"/>
         <location filename="../../src/QuizFrame.cpp" line="274"/>
         <location filename="../../src/QuizFrame.cpp" line="289"/>
         <location filename="../../src/QuizFrame.cpp" line="396"/>
@@ -862,65 +852,98 @@ ligne %1, colonne %2.
         <translation>Fenêtre de quiz</translation>
     </message>
     <message>
-        <location filename="../../src/SequenceDialog.cpp" line="36"/>
+        <location filename="../../src/SequenceDialog.cpp" line="40"/>
         <source>FirstLanguage</source>
         <translation>Langue source</translation>
     </message>
     <message>
-        <location filename="../../src/SequenceDialog.cpp" line="47"/>
-        <location filename="../../src/SequenceDialog.cpp" line="77"/>
+        <location filename="../../src/SequenceDialog.cpp" line="51"/>
+        <location filename="../../src/SequenceDialog.cpp" line="81"/>
         <source>Word/Expr.</source>
         <translation>Mot/Expr.</translation>
     </message>
     <message>
-        <location filename="../../src/SequenceDialog.cpp" line="55"/>
+        <location filename="../../src/SequenceDialog.cpp" line="59"/>
         <source>TestLanguage</source>
         <translation>Langue cible</translation>
     </message>
     <message>
-        <location filename="../../src/SequenceDialog.cpp" line="75"/>
+        <location filename="../../src/SequenceDialog.cpp" line="79"/>
         <source>Alt./Phon.</source>
         <translation>Alt./Phon.</translation>
     </message>
     <message>
-        <location filename="../../src/SequenceDialog.cpp" line="86"/>
+        <location filename="../../src/SequenceDialog.cpp" line="90"/>
         <source>Image</source>
         <translation>Image</translation>
     </message>
     <message>
-        <location filename="../../src/SequenceDialog.cpp" line="102"/>
+        <location filename="../../src/SequenceDialog.cpp" line="106"/>
         <source>CommentLabelPanel</source>
         <translation>Examples/Commentaires</translation>
     </message>
     <message>
-        <location filename="../../src/SequenceDialog.cpp" line="134"/>
+        <location filename="../../src/SequenceDialog.cpp" line="119"/>
         <source>Sequence</source>
         <translation>Séquence de dévoilement</translation>
     </message>
     <message>
-        <location filename="../../src/SequenceDialog.cpp" line="161"/>
+        <location filename="../../src/SequenceDialog.cpp" line="183"/>
         <source>AddRevealingSequence</source>
         <translation>Ajouter une séquence de dévoilement...</translation>
     </message>
     <message>
-        <location filename="../../src/SequenceDialog.cpp" line="170"/>
+        <location filename="../../src/SequenceDialog.cpp" line="192"/>
         <source>SequenceIsEmpty</source>
         <translation>La séquence en courѕ d&apos;édition est vide.  Pour annuler l&apos;opération, cliquez sur Annuler pour fermer la fenêtre de dialogue.</translation>
     </message>
     <message>
-        <location filename="../../src/SequenceDialog.cpp" line="176"/>
+        <location filename="../../src/SequenceDialog.cpp" line="198"/>
         <source>SequenceNotTerminated</source>
         <translation>La séquence en cours d&apos;édition est invalide car elle ne se termine pas par un item dévoilable.  Veuillez ajouter un item dévoible ou effacer le dernier opérateur d&apos;union.</translation>
     </message>
     <message>
-        <location filename="../../src/SequenceDialog.cpp" line="144"/>
+        <location filename="../../src/SequenceDialog.cpp" line="151"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
     <message>
-        <location filename="../../src/SequenceDialog.cpp" line="146"/>
+        <location filename="../../src/SequenceDialog.cpp" line="153"/>
         <source>Cancel</source>
         <translation>Annuler</translation>
+    </message>
+</context>
+<context>
+    <name>SequencesDialog</name>
+    <message>
+        <location filename="../../src/SequencesDialog.cpp" line="25"/>
+        <source>Existing Sequences</source>
+        <translation>Séquences existantes</translation>
+    </message>
+    <message>
+        <location filename="../../src/SequencesDialog.cpp" line="49"/>
+        <source>QuizWindow</source>
+        <translation>Fenêtre de Quiz</translation>
+    </message>
+    <message>
+        <location filename="../../src/SequencesDialog.cpp" line="64"/>
+        <source>Ok</source>
+        <translation>Ok</translation>
+    </message>
+    <message>
+        <location filename="../../src/SequencesDialog.cpp" line="66"/>
+        <source>Cancel</source>
+        <translation>Annuler</translation>
+    </message>
+    <message>
+        <location filename="../../src/SequencesDialog.cpp" line="80"/>
+        <source>RevealingOrders</source>
+        <translation>Séquences de dévoilement</translation>
+    </message>
+    <message>
+        <location filename="../../src/SequencesDialog.cpp" line="87"/>
+        <source>RevealingOrderMandatory</source>
+        <translation>Vous devez choisir au moins une séquence de dévoilement.  Créez-en une nouvelle au besoin.</translation>
     </message>
 </context>
 <context>
@@ -941,7 +964,7 @@ ligne %1, colonne %2.
         <translation>Langues d&apos;intérêt</translation>
     </message>
     <message>
-        <location filename="../../src/StudyLanguagesDialog.cpp" line="89"/>
+        <location filename="../../src/StudyLanguagesDialog.cpp" line="87"/>
         <source>StudyLanguagesMandatory</source>
         <translation>Vous devez sélectionner au moins deux langues d&apos;intérêt
 (une langue source et une langue cible.)</translation>

@@ -1,18 +1,12 @@
 ToDo (This is specific to maemo version.  For general todo, check in zaurus or qt4 branches)
 --------------------------------------------------------------------------------------------
-Before a new release, update the date in the debian control file.
-Move Revealing Sequence into a separate dialog.
-Remake the image for Portrait Sequence Map (just in case).
 Verify if KeyActionListViewItem is still needed.
 Renable language filter?  If not, remove the accelerator and its mention in the help.
 Make PreferencesDialog work.
     I have hidden the scrollbar of bodyWrapper.  Not sure if it's a good idea.  What's the standard way to do that on Maemo?
-    Position the scrollbar the right place, if possible, when invalid values are detected.
     The Reset Buttons for fonts do not work on Xephyr.  The problem is that the default font is not available (not installed?).
         Maybe we need to identify the best font and hardcode it for fremantle.
     Validate data before accepting them.
-Use standard constants for margin, alignment, etc?
-Use standard layout as much as possible.
 Reenable Cut/Copy/Paste in TermDialog?
 Rewrite online help and renew screenshots.
 Review all code and check for comments.

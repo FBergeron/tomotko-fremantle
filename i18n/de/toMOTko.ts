@@ -276,17 +276,17 @@ Overwrite the current assignment?</source>
         <translation>Maximieren</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="288"/>
+        <location filename="../../src/MainWindow.cpp" line="286"/>
         <source>ConfirmResumeQuiz</source>
         <translation>Es wurde bereits ein Quiz für die gewählten Sprachen begonnen.&lt;br&gt;Möchten Sie es fortsetzen?</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="294"/>
+        <location filename="../../src/MainWindow.cpp" line="292"/>
         <source>Yes</source>
         <translation>Ja</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="295"/>
+        <location filename="../../src/MainWindow.cpp" line="293"/>
         <source>No</source>
         <translation>Nein</translation>
     </message>
@@ -306,7 +306,7 @@ Overwrite the current assignment?</source>
 <context>
     <name>PreferencesDialog</name>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="133"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="73"/>
         <source>DigraphesEnabled</source>
         <translation>Digraphen ein</translation>
     </message>
@@ -314,11 +314,6 @@ Overwrite the current assignment?</source>
         <location filename="../../src/PreferencesDialog.cpp" line="34"/>
         <source>Length</source>
         <translation>Quizlänge (Wiederholungen)</translation>
-    </message>
-    <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="72"/>
-        <source>RevealingOrders</source>
-        <translation>Aufdeckreihenfolge</translation>
     </message>
     <message>
         <location filename="../../src/PreferencesDialog.cpp" line="54"/>
@@ -336,57 +331,52 @@ Overwrite the current assignment?</source>
         <translation>Lang (5)</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="147"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="87"/>
         <source>InterfaceLanguage</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="250"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="143"/>
+        <source>Revealing Sequences Settings</source>
+        <translation>Aufdeckreihenfolge...</translation>
+    </message>
+    <message>
+        <location filename="../../src/PreferencesDialog.cpp" line="190"/>
         <source>Preferences...</source>
         <translation>Einstellungen</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="277"/>
-        <source>RevealingOrderMandatory</source>
-        <translation>Sie müssen zumindest eine Aufdeckreihenfolge wählen. Wenn keine verfügbar ist, erstellen Sie bitte eine.</translation>
-    </message>
-    <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="194"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="134"/>
         <source>Keyboard Accelerator Definitions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="136"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="76"/>
         <source>hideQuizButtons</source>
         <translation>Quizknöpfe verstecken</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="109"/>
-        <source>QuizWindow</source>
-        <translation>Quizfenster</translation>
-    </message>
-    <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="139"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="79"/>
         <source>ShowAltInTermList</source>
         <translation>Zeige alt./phon. Wert</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="197"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="137"/>
         <source>Study Language Definitions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="200"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="140"/>
         <source>Fonts Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="221"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="151"/>
         <source>Ok</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="223"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="153"/>
         <source>Cancel</source>
         <translation></translation>
     </message>
@@ -654,18 +644,18 @@ Overwrite the current assignment?</source>
         <translation>Ein Fehler ist beim Speichern aufgetreten. Prüfen Sie die Berechtigungen und freien Speicherplatz.</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="277"/>
         <location filename="../../src/SearchDialog.cpp" line="288"/>
-        <location filename="../../src/SequenceDialog.cpp" line="170"/>
-        <location filename="../../src/SequenceDialog.cpp" line="176"/>
-        <location filename="../../src/StudyLanguagesDialog.cpp" line="89"/>
+        <location filename="../../src/SequenceDialog.cpp" line="192"/>
+        <location filename="../../src/SequenceDialog.cpp" line="198"/>
+        <location filename="../../src/SequencesDialog.cpp" line="87"/>
+        <location filename="../../src/StudyLanguagesDialog.cpp" line="87"/>
         <location filename="../../src/VocabularyManagerFrame.cpp" line="813"/>
         <location filename="../../src/VocabularyManagerFrame.cpp" line="947"/>
         <source>Warning</source>
         <translation>Warnung</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="288"/>
+        <location filename="../../src/MainWindow.cpp" line="286"/>
         <location filename="../../src/QuizFrame.cpp" line="274"/>
         <location filename="../../src/QuizFrame.cpp" line="289"/>
         <location filename="../../src/QuizFrame.cpp" line="396"/>
@@ -859,65 +849,98 @@ Overwrite the current assignment?</source>
         <translation>Quizfenster</translation>
     </message>
     <message>
-        <location filename="../../src/SequenceDialog.cpp" line="36"/>
+        <location filename="../../src/SequenceDialog.cpp" line="40"/>
         <source>FirstLanguage</source>
         <translation>Erste Sprache</translation>
     </message>
     <message>
-        <location filename="../../src/SequenceDialog.cpp" line="47"/>
-        <location filename="../../src/SequenceDialog.cpp" line="77"/>
+        <location filename="../../src/SequenceDialog.cpp" line="51"/>
+        <location filename="../../src/SequenceDialog.cpp" line="81"/>
         <source>Word/Expr.</source>
         <translation>Wort/Ausdr.</translation>
     </message>
     <message>
-        <location filename="../../src/SequenceDialog.cpp" line="55"/>
+        <location filename="../../src/SequenceDialog.cpp" line="59"/>
         <source>TestLanguage</source>
         <translation>Testsprache</translation>
     </message>
     <message>
-        <location filename="../../src/SequenceDialog.cpp" line="75"/>
+        <location filename="../../src/SequenceDialog.cpp" line="79"/>
         <source>Alt./Phon.</source>
         <translation>Alt./Phon.</translation>
     </message>
     <message>
-        <location filename="../../src/SequenceDialog.cpp" line="86"/>
+        <location filename="../../src/SequenceDialog.cpp" line="90"/>
         <source>Image</source>
         <translation>Bild</translation>
     </message>
     <message>
-        <location filename="../../src/SequenceDialog.cpp" line="102"/>
+        <location filename="../../src/SequenceDialog.cpp" line="106"/>
         <source>CommentLabelPanel</source>
         <translation>Beispiele/Kommentare</translation>
     </message>
     <message>
-        <location filename="../../src/SequenceDialog.cpp" line="134"/>
+        <location filename="../../src/SequenceDialog.cpp" line="119"/>
         <source>Sequence</source>
         <translation>Aufdeckreihenfolge</translation>
     </message>
     <message>
-        <location filename="../../src/SequenceDialog.cpp" line="161"/>
+        <location filename="../../src/SequenceDialog.cpp" line="183"/>
         <source>AddRevealingSequence</source>
         <translation>Aufdeckreihenfolge hinzufügen...</translation>
     </message>
     <message>
-        <location filename="../../src/SequenceDialog.cpp" line="170"/>
+        <location filename="../../src/SequenceDialog.cpp" line="192"/>
         <source>SequenceIsEmpty</source>
         <translation>Die gerade bearbeitete Aufdeckreihenfolge ist leer. Wenn Sie sie löschen möchten, wählen Sie &apos;Abbrechen&apos; um das Fenster zu schließen.</translation>
     </message>
     <message>
-        <location filename="../../src/SequenceDialog.cpp" line="176"/>
+        <location filename="../../src/SequenceDialog.cpp" line="198"/>
         <source>SequenceNotTerminated</source>
         <translation>Die gerade bearbeitete Aufdeckreihenfolge endet nicht mit einem aufdeckbaren Eintrag. Entfernen Sie den letzen Operator oder fügen Sie einen aufdeckbaren Eintrag an.</translation>
     </message>
     <message>
-        <location filename="../../src/SequenceDialog.cpp" line="144"/>
+        <location filename="../../src/SequenceDialog.cpp" line="151"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
     <message>
-        <location filename="../../src/SequenceDialog.cpp" line="146"/>
+        <location filename="../../src/SequenceDialog.cpp" line="153"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
+    </message>
+</context>
+<context>
+    <name>SequencesDialog</name>
+    <message>
+        <location filename="../../src/SequencesDialog.cpp" line="25"/>
+        <source>Existing Sequences</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/SequencesDialog.cpp" line="49"/>
+        <source>QuizWindow</source>
+        <translation>Quizfenster</translation>
+    </message>
+    <message>
+        <location filename="../../src/SequencesDialog.cpp" line="64"/>
+        <source>Ok</source>
+        <translation>Ok</translation>
+    </message>
+    <message>
+        <location filename="../../src/SequencesDialog.cpp" line="66"/>
+        <source>Cancel</source>
+        <translation>Abbrechen</translation>
+    </message>
+    <message>
+        <location filename="../../src/SequencesDialog.cpp" line="80"/>
+        <source>RevealingOrders</source>
+        <translation>Aufdeckreihenfolge</translation>
+    </message>
+    <message>
+        <location filename="../../src/SequencesDialog.cpp" line="87"/>
+        <source>RevealingOrderMandatory</source>
+        <translation>Sie müssen zumindest eine Aufdeckreihenfolge wählen. Wenn keine verfügbar ist, erstellen Sie bitte eine.</translation>
     </message>
 </context>
 <context>
@@ -938,7 +961,7 @@ Overwrite the current assignment?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/StudyLanguagesDialog.cpp" line="89"/>
+        <location filename="../../src/StudyLanguagesDialog.cpp" line="87"/>
         <source>StudyLanguagesMandatory</source>
         <translation>Sie müssen zumindest zwei Studiensprachen wählen
 (eine Quell- und eine Zielsprache).</translation>

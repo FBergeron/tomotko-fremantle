@@ -31,6 +31,7 @@ HEADERS     +=  src/Base.h \
                 src/SearchDialog.h \
                 #src/KeyActionListViewItem.h \
                 src/SequenceDialog.h \
+                src/SequencesDialog.h \
                 src/SequenceListItem.h \
                 src/KeyboardAcceleratorsDialog.h \
                 src/FontsDialog.h \
@@ -79,6 +80,7 @@ SOURCES     +=  src/Util.cpp \
                 src/HistoryField.cpp \
                 src/SearchDialog.cpp \
                 src/SequenceDialog.cpp \
+                src/SequencesDialog.cpp \
                 src/SequenceListItem.cpp \
                 src/KeyboardAcceleratorsDialog.cpp \
                 src/FontsDialog.cpp \

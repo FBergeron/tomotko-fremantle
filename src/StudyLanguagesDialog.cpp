@@ -43,8 +43,6 @@ void StudyLanguagesDialog::init() {
     setLayout( mainLayout );
 
     setWindowTitle( tr( "Study Language Definitions" ) );
-
-    updateUi();
 }
 
 QStringList StudyLanguagesDialog::getStudyLanguages() const {
@@ -108,18 +106,5 @@ bool StudyLanguagesDialog::isStudyLanguageSelectionValid() const {
 void StudyLanguagesDialog::resizeEvent( QResizeEvent* ) {
     languagesPanelWrapper->widget()->resize( languagesPanelWrapper->maximumViewportSize().width() - languagesPanelWrapper->verticalScrollBar()->size().width() - 40, 
         languagesPanel->size().height() );
-}
-
-void StudyLanguagesDialog::updateUi() {
-    //if( keyboardAccelListView->currentItem() ) {
-    //    clearAccelKeyButton->setEnabled( true ); 
-    //    setAccelKeyButton->setEnabled( true );
-    //    resetAccelKeyButton->setEnabled( true );
-    //}
-    //else {
-    //    clearAccelKeyButton->setEnabled( false ); 
-    //    setAccelKeyButton->setEnabled( false );
-    //    resetAccelKeyButton->setEnabled( false );
-    //}
 }
 

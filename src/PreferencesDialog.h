@@ -25,9 +25,9 @@
 #include "FontsDialog.h"
 #include "KeyActionListViewItem.h"
 #include "KeyboardAcceleratorsDialog.h"
+#include "SequencesDialog.h"
 #include "StudyLanguagesDialog.h"
 #include "Preferences.h"
-#include "SequenceDialog.h"
 #include "SequenceListItem.h"
 #include "TermScheduler.h"
 #include "Util.h"
@@ -62,17 +62,12 @@ private slots:
     void invokeKeyboardAcceleratorsDialog();
     void invokeStudyLanguagesDialog();
     void invokeFontsDialog();
-    void addSequence();
-    void removeSequence();
-    void updateUi();
+    void invokeSequencesDialog();
 
 private:
 
     void init();
-    void initSequences();
     void selectLanguage( QComboBox* comboBox, const QString& langCode );
-    bool isRevealingSequenceSelectionValid() const;
-    bool isRevealingSequenceDefined( const QString& seqStr ) const;
 
     Preferences*                prefs;
 
@@ -89,10 +84,10 @@ private:
 
     QWidget*                    quizPage;
     QVBoxLayout*                quizPageLayout;
-    QFrame*                     quizPageSeparator;
 
     QPushButton*                studyLanguagesButton;
     QPushButton*                fontsButton;
+    QPushButton*                sequencesButton;
 
     QWidget*                    quizLengthPanel;
     QHBoxLayout*                quizLengthPanelLayout;
@@ -101,27 +96,6 @@ private:
 
     QWidget*                    quizLengthSliderPanel;
     QVBoxLayout*                quizLengthSliderPanelLayout;
-
-    QLabel*                     revealingOptionsLabel;
-
-    QWidget*                    revealingOptionsPanel;
-    QVBoxLayout*                revealingOptionsPanelLayout;
-
-    QWidget*                    sequencesPanel;
-    QHBoxLayout*                sequencesPanelLayout;
-
-    QWidget*                    sequencesViewPanel;
-    QVBoxLayout*                sequencesViewPanelLayout;
-    DynamicHeightTreeWidget*    sequencesView;
-    QWidget*                    sequencesViewButtons;
-    QHBoxLayout*                sequencesViewButtonsLayout;
-    QPushButton*                addSequenceButton;
-    QPushButton*                removeSequenceButton;
-
-    QWidget*                    sequencesLabelBox;
-    QVBoxLayout*                sequencesLabelBoxLayout;
-    QLabel*                     sequencesLabelHeader;
-    QLabel*                     sequencesLabel;
 
     QSlider*                    quizLengthSlider;
     QWidget*                    quizLengthLabelsPanel;

@@ -33,10 +33,6 @@ protected:
 
     virtual void resizeEvent( QResizeEvent* );
 
-private slots:
-
-    void updateUi();
-
 private:
 
     void init();
