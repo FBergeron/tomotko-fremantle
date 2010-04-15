@@ -34,9 +34,9 @@ build-stamp: configure-stamp
 	dh_testdir
 
 	# Add here commands to compile the package.
-	/opt/qt4-maemo5/bin/lupdate toMOTko.pro
-	/opt/qt4-maemo5/bin/lrelease toMOTko.pro
-	/opt/qt4-maemo5/bin/qmake toMOTko.pro
+	lupdate toMOTko.pro
+	lrelease toMOTko.pro
+	qmake toMOTko.pro
 	$(MAKE)
 	#docbook-to-man debian/tomotko.sgml > tomotko.1
 
@@ -60,13 +60,13 @@ install: build
 
 	# Add here commands to install the package into debian/tomotko.
 	install -d $(CURDIR)/debian/tomotko/usr/share/applications/hildon
-	install -m644 etc/deb/toMOTko.desktop $(CURDIR)/debian/tomotko/usr/share/applications/hildon/toMOTko.desktop
+	install -m644 etc/debian/toMOTko.desktop $(CURDIR)/debian/tomotko/usr/share/applications/hildon/toMOTko.desktop
 
 	install -d $(CURDIR)/debian/tomotko/usr/share/pixmaps
 	install -m644 pics/toMOTko.png $(CURDIR)/debian/tomotko/usr/share/pixmaps/toMOTko.png
 
 	install -d $(CURDIR)/debian/tomotko/usr/share/man/man1
-	install -m644 etc/deb/toMOTko.1 $(CURDIR)/debian/tomotko/usr/share/man/man1/toMOTko.1
+	install -m644 etc/debian/toMOTko.1 $(CURDIR)/debian/tomotko/usr/share/man/man1/toMOTko.1
 	
 	install -m755 toMOTko $(CURDIR)/debian/tomotko/usr/bin/toMOTko
 

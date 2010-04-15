@@ -43,11 +43,11 @@ To launch the Hildon Application Framework, in scratchbox :
 
 To extract localized string, in scratchbox (1) :
 
-> /opt/qt4-maemo5/bin/lupdate toMOTko.pro
+> lupdate toMOTko.pro
 
 To generate the string files, in scratchbox (1) :
 
-> /opt/qt4-maemo5/bin/lrelease toMOTko.pro
+> lrelease toMOTko.pro
 
 These 2 operations should be done at least once before building the Makefile‥
 Otherwise, you will get errors like these when running qmake:
@@ -61,7 +61,7 @@ RCC: Error in 'toMOTko.qrc': Cannot find file 'i18n/de/toMOTko.qm'
 
 To build the Makefile, in scratchbox (1) :
 
-> /opt/qt4-maemo5/bin/qmake toMOTko.pro
+> qmake toMOTko.pro
 
 To build the executable, in scratchbox (1) :
 
@@ -121,7 +121,8 @@ In Scratchbox (no matter the architecture), clean up the source directory.  It m
 
 Then, the debian directory for Maemo must be copied into the source directory and the files must be generated.
 
-> cp -r etc/MaemoDeb/debian . 
+> cp -r etc/debian . 
+> rm -rf debian/.svn
 > dpkg-buildpackage -rfakeroot -sa -S
 
 3 files should be produced in $SCRATCHBOX_HOME:
