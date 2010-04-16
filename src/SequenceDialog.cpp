@@ -170,7 +170,6 @@ void SequenceDialog::init() {
     bodyLayout->setContentsMargins( 0, 0, 0, 0 );
     body->setLayout( bodyLayout );
 
-    //bodyLayout->addWidget( sequenceLinePanel );
     bodyLayout->addWidget( sequencePanel, 1 );
 
     mainLayout = new QBoxLayout( QBoxLayout::LeftToRight );
@@ -304,7 +303,7 @@ void SequenceDialog::setItemButtonsEnabled( bool isEnabled ) {
     quizImageButton->setEnabled( isEnabled && !isItemUsed( Sequence::IMAGE ) );
 }
 
-void SequenceDialog::resizeEvent( QResizeEvent* evt ) {
+void SequenceDialog::resizeEvent( QResizeEvent* ) {
     quizBodyWrapper->widget()->resize( quizBodyWrapper->maximumViewportSize().width() - quizBodyWrapper->verticalScrollBar()->size().width() - 40, 
         quizBody->size().height() );
 }

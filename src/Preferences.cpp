@@ -4,7 +4,7 @@ const qint32 Preferences::magicNumber = qint32( 0x77556644 );
 const uint Preferences::fontSizeList[] = { 8, 9, 10, 12, 14, 18, 24, 36 };
 
 Preferences::Preferences() 
-    : quizLength( MEDIUM ), interfaceLanguage( QString( "en" ) ), digraphEnabled( false ), quizButtonsHidden( false ), altInTermListShown( false ),
+    : quizLength( SHORT ), interfaceLanguage( QString( "en" ) ), digraphEnabled( false ), quizButtonsHidden( false ), altInTermListShown( false ),
         firstLanguage( QString( "en" ) ), testLanguage( QString( "ja" ) ),
             labelsFontFamily( Util::getDefaultLabelsFontFamily() ), labelsFontSizeModifier( Util::getDefaultLabelsFontSizeModifier() ),
                 fontFamily( Util::getDefaultFontFamily() ), fontSizeModifier( Util::getDefaultFontSizeModifier() ),
