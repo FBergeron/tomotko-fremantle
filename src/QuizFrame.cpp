@@ -379,13 +379,13 @@ void QuizFrame::resizeImageBox() {
     imageBox->resize( imageBox->width(), topLeftPanel->height() );
     if( movie ) {
         // Use the pixmap to compute the scaled size.
-        int proportionalWidth = image->height() * pixmap->width() / pixmap->height();
+        int proportionalWidth = ( image->height() - 20 ) * pixmap->width() / pixmap->height();
         movie->setScaledSize( QSize( proportionalWidth, image->height() ) );
         image->setMovie( movie );
         movie->start();
     }
     else if( pixmap ) {
-        QPixmap scaledPixmap( pixmap->scaledToHeight( image->height(), Qt::SmoothTransformation ) );
+        QPixmap scaledPixmap( pixmap->scaledToHeight( image->height() - 20, Qt::SmoothTransformation ) );
         image->setPixmap( scaledPixmap  ); 
     }
     imageStack->updateGeometry(); // To resize the imageButton.

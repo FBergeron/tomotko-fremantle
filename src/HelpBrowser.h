@@ -4,10 +4,9 @@
 #include <iostream>
 #include <QApplication>
 #include <QDesktopServices>
-#include <QHBoxLayout>
+#include <QBoxLayout>
 #include <QPushButton>
 #include <QTextBrowser>
-#include <QVBoxLayout>
 #include <QWidget>
 
 using namespace std;
@@ -18,9 +17,9 @@ class HelpBrowser : public QWidget {
 
 public:
 
-    HelpBrowser( const QString& path, const QString& page, QWidget* parent = 0 );
+    HelpBrowser( const QString& path, QWidget* parent = 0 );
 
-    static void showPage( const QString& page );
+    void showPage( const QString& page );
 
 private slots:
 

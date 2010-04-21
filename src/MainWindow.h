@@ -92,6 +92,8 @@ private:
     QuizFrame*              quizFrame;
     VocabularyManagerFrame* vocabManagerFrame;
 
+    HelpBrowser*            helpBrowser;
+
     QMenu*                  mainMenu;
 
     QAction*                copyAction;

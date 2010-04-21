@@ -1,9 +1,6 @@
 #include "HelpBrowser.h"
 
-HelpBrowser::HelpBrowser( const QString& path, const QString& page, QWidget* parent /* = 0 */ ) : QWidget( parent ) {
-    setAttribute( Qt::WA_DeleteOnClose );
-    setAttribute( Qt::WA_GroupLeader );
-
+HelpBrowser::HelpBrowser( const QString& path, QWidget* parent /* = 0 */ ) : QWidget( parent ) {
     textBrowser = new QTextBrowser();
     textBrowser->setOpenLinks( false );
     QString stylesheet( "body { margin: 10px; }" );
@@ -11,12 +8,12 @@ HelpBrowser::HelpBrowser( const QString& path, const QString& page, QWidget* par
     homeButton = new QPushButton( tr( "Home" ) );
     backButton = new QPushButton( tr( "Back" ) );
 
-    QVBoxLayout* buttonLayout = new QVBoxLayout();
+    QBoxLayout* buttonLayout = new QBoxLayout( QBoxLayout::TopToBottom );
     buttonLayout->addWidget( homeButton );
     buttonLayout->addStretch();
     buttonLayout->addWidget( backButton );
 
-    QHBoxLayout* mainLayout = new QHBoxLayout();
+    QBoxLayout* mainLayout = new QBoxLayout( QHBoxLayout::LeftToRight );
     mainLayout->addWidget( textBrowser );
     mainLayout->addLayout( buttonLayout );
     setLayout( mainLayout );
@@ -27,7 +24,6 @@ HelpBrowser::HelpBrowser( const QString& path, const QString& page, QWidget* par
     connect( textBrowser, SIGNAL( anchorClicked( const QUrl& ) ), this, SLOT( openLink( const QUrl& ) ) );
 
     textBrowser->setSearchPaths( QStringList() << path << ":/img" );
-    textBrowser->setSource( page );
 }
 
 void HelpBrowser::updateWindowTitle() {
@@ -42,13 +38,7 @@ void HelpBrowser::openLink( const QUrl& url ) {
 }
 
 void HelpBrowser::showPage( const QString& page ) {
-    QString path = ":/help/en/html";
-    HelpBrowser* browser = new HelpBrowser( path, page );
-    browser->resize( 600, 600 );
-#if defined(WINCE)
-    browser->showMaximized();
-#else
-    browser->show();
-#endif
+    textBrowser->setSource( page );
+    show();
 }
 

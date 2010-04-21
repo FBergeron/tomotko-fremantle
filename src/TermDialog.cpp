@@ -308,13 +308,13 @@ void TermDialog::resizeImageBox() const {
         int imageHeight = imageBoxLayout->contentsRect().height() - top - bottom - imageButtonsPanel->sizeHint().height();
         if( movie ) {
             // Use the pixmap to compute the scaled size.
-            int proportionalWidth = imageHeight * pixmap->width() / pixmap->height(); 
+            int proportionalWidth = ( imageHeight - 20 ) * pixmap->width() / pixmap->height(); 
             movie->setScaledSize( QSize( proportionalWidth, imageHeight ) ); 
             image->setMovie( movie );
             movie->start();
         }
         else if( pixmap ) {
-            QPixmap scaledPixmap( pixmap->scaledToHeight( imageHeight, Qt::SmoothTransformation ) );
+            QPixmap scaledPixmap( pixmap->scaledToHeight( imageHeight - 20, Qt::SmoothTransformation ) );
             image->setPixmap( scaledPixmap );
         }
     }

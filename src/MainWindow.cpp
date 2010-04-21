@@ -25,7 +25,7 @@
 #include "icons/inverseCheckedTerms.xpm"
 
 MainWindow::MainWindow( QApplication& app, Controller* controller )
-    : QMainWindow( 0/*, WDestructiveClose*/ ), app( app ), control( controller ) {
+    : QMainWindow( 0/*, WDestructiveClose*/ ), app( app ), control( controller ), helpBrowser( NULL ) {
     setAttribute( Qt::WA_DeleteOnClose );
     Preferences& prefs( controller->getPreferences() );
 
@@ -162,6 +162,7 @@ MainWindow::MainWindow( QApplication& app, Controller* controller )
 
 MainWindow::~MainWindow() {
     delete( control );
+    delete( helpBrowser );
 }
 
 QSize MainWindow::sizeHint() const {
@@ -274,7 +275,13 @@ void MainWindow::about() {
 }
 
 void MainWindow::help() {
-    HelpBrowser::showPage( "toMOTko.html" );
+    if( helpBrowser == NULL ) {
+        QString path = ":/help/en/html";
+        helpBrowser = new HelpBrowser( path );
+        helpBrowser->showPage( "toMOTko.html" );
+    }
+    else
+        helpBrowser->activateWindow();
 }
 
 void MainWindow::startQuiz() {
