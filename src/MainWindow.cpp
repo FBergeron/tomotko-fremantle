@@ -282,6 +282,7 @@ void MainWindow::help() {
     }
     else
         helpBrowser->activateWindow();
+    helpBrowser->setVisible( true );
 }
 
 void MainWindow::startQuiz() {
