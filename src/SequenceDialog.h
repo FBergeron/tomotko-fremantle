@@ -4,7 +4,6 @@
 #include <QBoxLayout>
 #include <QDialog>
 #include <QStack>
-#include <QGroupBox>
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QLineEdit>
@@ -67,37 +66,39 @@ private:
 
     QBoxLayout*                 mainLayout;
 
-    QWidget*                    body;
-    QBoxLayout*                 bodyLayout;
-
     QWidget*                    sequencePanel;
-    QHBoxLayout*                sequencePanelLayout;
+    QBoxLayout*                 sequencePanelLayout;
 
-    QGroupBox*                  quizPanel;
+    QWidget*                    quizPanel;
     QVBoxLayout*                quizPanelLayout;
+
+    QLabel*                     quizLabel;
 
     QWidget*                    quizBody;
     QVBoxLayout*                quizBodyLayout;
 
-    QScrollArea*                quizBodyWrapper;
+    QScrollArea*                quizPanelWrapper;
 
     QWidget*                    quizTopPanel;
     QHBoxLayout*                quizTopPanelLayout;
     QWidget*                    quizTopLeftPanel;
     QVBoxLayout*                quizTopLeftPanelLayout;
-    QGroupBox*                  quizImagePanel;
+    QWidget*                    quizImagePanel;
+    QLabel*                     quizImageLabel;
     QVBoxLayout*                quizImagePanelLayout;
     QPushButton*                quizImageButton;
     
-    QGroupBox*                  quizFirstLangPanel;
-    QHBoxLayout*                quizFirstLangPanelLayout;
+    QWidget*                    quizFirstLangPanel;
+    QVBoxLayout*                quizFirstLangPanelLayout;
+    QLabel*                     quizFirstLangPanelLabel;
     QWidget*                    quizFirstLangPanelWrapper;
     QHBoxLayout*                quizFirstLangPanelWrapperLayout;
     QLabel*                     quizFirstLangLabel;
     QPushButton*                quizFirstLangTermButton;
 
-    QGroupBox*                  quizTestLangPanel;
-    QHBoxLayout*                quizTestLangPanelLayout;
+    QWidget*                    quizTestLangPanel;
+    QVBoxLayout*                quizTestLangPanelLayout;
+    QLabel*                     quizTestLangPanelLabel;
     QWidget*                    quizTestLangPanelWrapper;
     QHBoxLayout*                quizTestLangPanelWrapperLayout;
     QWidget*                    quizTestLangLabelsPanel;
@@ -115,8 +116,10 @@ private:
     QLabel*                     quizCommentLabel;
     QPushButton*                quizCommentButton;
 
-    QWidget*                    sequencePanelButtons;
-    QVBoxLayout*                sequencePanelButtonsLayout;
+    QWidget*                    sequenceConsolePanel;
+    QBoxLayout*                 sequenceConsolePanelLayout;
+    QWidget*                    sequenceButtonsPanel;
+    QGridLayout*                sequenceButtonsPanelLayout;
     QPushButton*                addSequenceMarkButton;
     QPushButton*                addGroupMarkButton;
     QPushButton*                removeLastMarkButton;

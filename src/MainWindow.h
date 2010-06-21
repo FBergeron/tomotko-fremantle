@@ -82,7 +82,7 @@ private slots:
     
 private:
 
-    //void setLanguageFilterEnabled( bool isEnabled );
+    void setLanguageFilterEnabled( bool isEnabled );
 
     QApplication&           app;
     Controller*             control;

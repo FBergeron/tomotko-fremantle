@@ -162,7 +162,6 @@ MainWindow::MainWindow( QApplication& app, Controller* controller )
 
 MainWindow::~MainWindow() {
     delete( control );
-    delete( helpBrowser );
 }
 
 QSize MainWindow::sizeHint() const {
@@ -194,7 +193,6 @@ void MainWindow::updateMenus( QTreeWidgetItem* /* currItem */ ) {
 
 void MainWindow::updateFonts() {
     QFont labelsFont( control->getPreferences().getLabelsFont() ); 
-    qApp->setFont( labelsFont );
 
     quizFrame->updateFonts();
     vocabManagerFrame->updateFonts();
@@ -264,6 +262,9 @@ void MainWindow::search() {
 }
 
 void MainWindow::closeEvent( QCloseEvent* ce ) {
+    if( helpBrowser )
+        helpBrowser->close();
+
     bool isOk = vocabManagerFrame->saveData();
     if( !isOk )
         QMessageBox::warning( this, QObject::tr( "Error" ), QObject::tr( "ErrorSavingData" ) );
@@ -388,18 +389,18 @@ void MainWindow::paste() {
 }
 
 void MainWindow::toggleLanguageFilter() {
-//    setLanguageFilterEnabled( !action[ ACTION_SHOW_ALL_GLOSSARIES_AND_TERMS ]->isChecked() );
-//    vocabManagerFrame->updateShownItems();
+    setLanguageFilterEnabled( !action[ ACTION_SHOW_ALL_GLOSSARIES_AND_TERMS ]->isChecked() );
+    vocabManagerFrame->updateShownItems();
 }
 
 void MainWindow::quit() {
     close();
 }
 
-//void MainWindow::setLanguageFilterEnabled( bool isEnabled ) {
-//    action[ ACTION_SHOW_ALL_GLOSSARIES_AND_TERMS ]->setChecked( !isEnabled );
-//    control->getPreferences().setLanguageFilterEnabled( isEnabled );
-//}
+void MainWindow::setLanguageFilterEnabled( bool isEnabled ) {
+    action[ ACTION_SHOW_ALL_GLOSSARIES_AND_TERMS ]->setChecked( !isEnabled );
+    control->getPreferences().setLanguageFilterEnabled( isEnabled );
+}
 
 void MainWindow::setFirstLanguage( const QString& lang ) {
     control->getPreferences().setFirstLanguage( Util::getLanguageCode( lang ) );

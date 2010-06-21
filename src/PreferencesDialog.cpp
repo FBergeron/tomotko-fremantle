@@ -218,7 +218,7 @@ void PreferencesDialog::accept() {
 }
 
 void PreferencesDialog::resizeEvent( QResizeEvent* ) {
-    bodyWrapper->widget()->resize( bodyWrapper->maximumViewportSize().width() - bodyWrapper->verticalScrollBar()->size().width() - 40, bodyPanel->size().height() );
+    bodyWrapper->widget()->resize( bodyWrapper->maximumViewportSize().width() - bodyWrapper->verticalScrollBar()->size().width() - 6, bodyPanel->size().height() );
 }
 
 void PreferencesDialog::invokeKeyboardAcceleratorsDialog() {

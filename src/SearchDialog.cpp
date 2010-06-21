@@ -152,6 +152,7 @@ void SearchDialog::updateFonts() {
     goResultVocabButton->setFont( labelsFont );
     editResultTermButton->setFont( labelsFont );
     removeResultTermButton->setFont( labelsFont );
+    closeButton->setFont( labelsFont );
 }
 
 void SearchDialog::updateUi() {

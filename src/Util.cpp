@@ -46,13 +46,12 @@ int Util::getDefaultLabelsFontSizeModifier() {
 }
 
 QString Util::getDefaultFontFamily() {
-    //QFontDatabase fontDatabase;
-    //QStringList families = fontDatabase.families();
-    //if( families.contains( "MS Sans Serif" ) )
-    //    return( QString( "MS Sans Serif" ) ); // For Windows.
-    //else
-    //    return( qApp->font().defaultFamily() );
-    return( qApp->font().defaultFamily() );
+    QFontDatabase fontDatabase;
+    QStringList families = fontDatabase.families();
+    if( families.contains( qApp->font().family() ) )
+        return( qApp->font().family() );
+    else
+        return( qApp->font().defaultFamily() );
 }
 
 int Util::getDefaultFontSizeModifier() {

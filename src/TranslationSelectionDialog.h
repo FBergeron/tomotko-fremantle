@@ -1,6 +1,7 @@
 #ifndef TRANSLATION_SELECTION_DIALOG_H
 #define TRANSLATION_SELECTION_DIALOG_H 
 
+#include <QBoxLayout>
 #include <QDialog>
 #include <QLabel>
 #include <QPushButton>
@@ -8,7 +9,6 @@
 #include <QStringList>
 #include <QTreeWidget>
 #include <QTreeWidgetItem>
-#include <QVBoxLayout>
 #include <QWidget>
 #include "Controller.h"
 
@@ -40,10 +40,13 @@ private:
     QTreeWidget*    languageList;
     QPushButton*    checkAllLanguagesButton;
 
-    QVBoxLayout*    mainLayout;
+    QBoxLayout*     mainLayout;
+
+    QWidget*        body;
+    QBoxLayout*     bodyLayout;
 
     QWidget*        bottomButtonsPanel;
-    QHBoxLayout*    bottomButtonsPanelLayout;
+    QBoxLayout*     bottomButtonsPanelLayout;
     QPushButton*    acceptButton;
     QPushButton*    cancelButton;
 

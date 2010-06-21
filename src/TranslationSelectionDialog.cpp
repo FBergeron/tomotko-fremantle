@@ -38,7 +38,7 @@ void TranslationSelectionDialog::init( const QString& caption, const QString& me
     connect( checkAllLanguagesButton, SIGNAL( clicked() ), this, SLOT( checkAllLanguages() ) );
 
     bottomButtonsPanel = new QWidget();
-    bottomButtonsPanelLayout = new QHBoxLayout();
+    bottomButtonsPanelLayout = new QBoxLayout( QBoxLayout::TopToBottom );
     bottomButtonsPanelLayout->setContentsMargins( 0, 0, 0, 0 );
     bottomButtonsPanel->setLayout( bottomButtonsPanelLayout );
 
@@ -51,11 +51,19 @@ void TranslationSelectionDialog::init( const QString& caption, const QString& me
     bottomButtonsPanelLayout->addWidget( acceptButton );
     bottomButtonsPanelLayout->addWidget( cancelButton );
 
-    mainLayout = new QVBoxLayout( this );
-    mainLayout->addWidget( messageLabel );
-    mainLayout->addWidget( languageList, 1 );
-    mainLayout->addWidget( checkAllLanguagesButton );
+    body = new QWidget();
+    bodyLayout = new QBoxLayout( QBoxLayout::TopToBottom );
+    bodyLayout->setContentsMargins( 0, 0, 0, 0 );
+    body->setLayout( bodyLayout );
+    bodyLayout->addWidget( messageLabel );
+    bodyLayout->addWidget( languageList, 1 );
+    bodyLayout->addWidget( checkAllLanguagesButton );
+
+    mainLayout = new QBoxLayout( QBoxLayout::LeftToRight );
+    mainLayout->addWidget( body );
     mainLayout->addWidget( bottomButtonsPanel );
+
+    setLayout( mainLayout );
 
     setWindowTitle( caption );
 }

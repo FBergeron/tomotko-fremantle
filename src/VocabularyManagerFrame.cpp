@@ -32,11 +32,11 @@ VocabularyManagerFrame::VocabularyManagerFrame( Controller* controller, QWidget*
     languageSelectorLabel->setPixmap( QPixmap( blueArrow_xpm ) );
     testLanguageComboBox = new QComboBox();
 
-    languageSelectorPanelLayout->addWidget( firstLanguageComboBox );
+    languageSelectorPanelLayout->addWidget( firstLanguageComboBox, 1 );
     languageSelectorPanelLayout->addStretch();
     languageSelectorPanelLayout->addWidget( languageSelectorLabel );
     languageSelectorPanelLayout->addStretch();
-    languageSelectorPanelLayout->addWidget( testLanguageComboBox );
+    languageSelectorPanelLayout->addWidget( testLanguageComboBox, 1 );
 
     updateFirstLanguageValues();
     updateTestLanguageValues();
@@ -99,7 +99,7 @@ VocabularyManagerFrame::VocabularyManagerFrame( Controller* controller, QWidget*
     vocabDetailsPanelLayout->setContentsMargins( 0, 0, 0, 0 );
     vocabDetailsPanel->setLayout( vocabDetailsPanelLayout );
 
-    vocabDetailsTabWidget = new QTabWidget();
+    vocabDetailsTabWidget = new MyTabWidget();
     vocabDetailsPanelLayout->addWidget( vocabDetailsTabWidget );
 
     vocabDetailsPropsPanel = new PropertiesPanel( controller->getPreferences(), vocabDetailsTabWidget );
@@ -109,6 +109,7 @@ VocabularyManagerFrame::VocabularyManagerFrame( Controller* controller, QWidget*
 
     connect( vocabDetailsTabWidget, SIGNAL( currentChanged( int ) ), vocabDetailsPropsPanel, SLOT( updateCounters() ) ); 
     connect( vocabDetailsTabWidget, SIGNAL( currentChanged( int ) ), this, SLOT( resizeWidgets() ) ); 
+    connect( vocabDetailsTabWidget, SIGNAL( doubleClicked() ), this, SLOT( doToggleMaximizeDetails() ) );
 
     vocabDetailsTermsPanel = new QWidget();
     vocabDetailsTermsPanelLayout = new QHBoxLayout();
@@ -117,11 +118,13 @@ VocabularyManagerFrame::VocabularyManagerFrame( Controller* controller, QWidget*
     termList->header()->setMovable( false );
     termList->setSortingEnabled( true );
     termList->setSelectionMode( QAbstractItemView::ExtendedSelection );
-    termList->setColumnCount( 2 );
+    termList->setColumnCount( 3 );
     QStringList headerLabels = QStringList();
-    headerLabels << QApplication::translate( "QObject", controller->getPreferences().getFirstLanguage().toLatin1().data() ) << QApplication::translate( "QObject", controller->getPreferences().getTestLanguage().toLatin1().data() );
+    headerLabels << "" << QApplication::translate( "QObject", controller->getPreferences().getFirstLanguage().toLatin1().data() ) << QApplication::translate( "QObject", controller->getPreferences().getTestLanguage().toLatin1().data() );
     termList->setHeaderLabels( headerLabels );
-    termList->header()->setResizeMode( QHeaderView::Stretch );
+    termList->header()->setResizeMode( 0, QHeaderView::ResizeToContents );
+    termList->header()->setResizeMode( 1, QHeaderView::Stretch );
+    termList->header()->setResizeMode( 2, QHeaderView::Stretch );
     connect( termList, SIGNAL( itemSelectionChanged() ), this, SLOT( updateTermList() ) ); 
 
     termControlPanel = new QWidget();
@@ -362,9 +365,8 @@ void VocabularyManagerFrame::importData() {
                     int response = msgBox.exec();
                     if( response )
                         languagesToImport = msgBox.getSelectedLanguages();
-                    else  {
+                    else
                         return; // Cancel import.
-                    }
                 }
 
                 for( QStringList::ConstIterator it = languagesToImport.begin(); it != languagesToImport.end(); it++ ) {
@@ -404,6 +406,11 @@ void VocabularyManagerFrame::importData() {
                     if( !newTreeItem )
                         msg += tr( "InvisibleImport" );
                     QMessageBox::information( this, QObject::tr( "OperationSuccessful" ), msg );
+
+                    // Some study languages in the preferences may have been added after the import
+                    // so we need to update the language selectors.
+                    updateFirstLanguageValues();
+                    updateTestLanguageValues();
                 }
                 else
                     QMessageBox::warning( this, QObject::tr( "OperationFailed" ), tr( "ItemImportFailed" ) );
@@ -486,15 +493,18 @@ void VocabularyManagerFrame::updateFonts() {
 
     vocabTreeView->setFont( mediumFont );
     vocabTreeView->headerItem()->setFont( 0, labelsFont );
+    vocabDetailsTabWidget->setFont( labelsFont );
     folderDetailsPropsPanel->updateFonts();
     vocabDetailsPropsPanel->updateFonts();
     termList->setFont( mediumFont );
     termList->headerItem()->setFont( 0, labelsFont );
     termList->headerItem()->setFont( 1, labelsFont );
+    termList->headerItem()->setFont( 2, labelsFont );
     for( int i = 0; i < termList->topLevelItemCount(); i++ ) {
         TermListItem* item = (TermListItem*)termList->topLevelItem( i );
-        item->setFont( 0, controller->getPreferences().getMediumFont( controller->getPreferences().getFirstLanguage() ) );
-        item->setFont( 1, controller->getPreferences().getMediumFont( controller->getPreferences().getTestLanguage() ) );
+        item->setFont( 0, labelsFont );
+        item->setFont( 1, controller->getPreferences().getMediumFont( controller->getPreferences().getFirstLanguage() ) );
+        item->setFont( 2, controller->getPreferences().getMediumFont( controller->getPreferences().getTestLanguage() ) );
     }
 }
 
@@ -585,6 +595,7 @@ void VocabularyManagerFrame::setDigraphEnabled( bool isEnabled ) {
 void VocabularyManagerFrame::retranslateUi() {
     vocabTreeView->setHeaderLabel( tr( "Glossaries" ) );
     QStringList headerLabels;
+    headerLabels << "";
     headerLabels << QApplication::translate( "QObject", controller->getPreferences().getFirstLanguage().toLatin1().data() );
     headerLabels << QApplication::translate( "QObject", controller->getPreferences().getTestLanguage().toLatin1().data() );
     termList->setHeaderLabels( headerLabels );
@@ -618,6 +629,13 @@ bool VocabularyManagerFrame::areDetailsMaximized() const {
     return( false );
 }
 
+
+void VocabularyManagerFrame::doToggleMaximizeDetails() {
+    if( areDetailsMaximized() )
+        restoreDetailsPanel();
+    else
+        maximizeDetailsPanel();
+}
 
 void VocabularyManagerFrame::toggleMaximizeDetails( bool isOn ) {
     if( isOn )
@@ -698,6 +716,7 @@ void VocabularyManagerFrame::updateCurrentVocab( VocabTreeItem* vocabItem ) {
     Vocabulary* vocab = vocabItem->getVocabulary();
     vocabDetailsPropsPanel->setVocabulary( vocab );
     QStringList termListHeaders;
+    termListHeaders << "";
     termListHeaders << QApplication::translate( "QObject", prefs.getFirstLanguage().toLatin1().data() );
     termListHeaders << QApplication::translate( "QObject", prefs.getTestLanguage().toLatin1().data() );
     termList->setHeaderLabels( termListHeaders );
@@ -710,11 +729,12 @@ void VocabularyManagerFrame::updateCurrentVocab( VocabTreeItem* vocabItem ) {
                 term.isTranslationExists( prefs.getTestLanguage() ) ) ) {
             TermListItem* termItem = new TermListItem( termList, &term, prefs.getFirstLanguage(), prefs.getTestLanguage(), prefs.isAltInTermListShown() );
             termItem->setOn( term.isMarkedForStudy() );
-            termItem->setFont( 0, prefs.getMediumFont( prefs.getFirstLanguage() ) );
-            termItem->setFont( 1, prefs.getMediumFont( prefs.getTestLanguage() ) );
+            termItem->setFont( 0, prefs.getLabelsFont() );
+            termItem->setFont( 1, prefs.getMediumFont( prefs.getFirstLanguage() ) );
+            termItem->setFont( 2, prefs.getMediumFont( prefs.getTestLanguage() ) );
         }
     }
-    termList->sortItems( 0, Qt::AscendingOrder );
+    termList->sortItems( 1, Qt::AscendingOrder );
     termList->setSortingEnabled( true );
     vocabItem->setOpen( true );
     addVocabButton->setEnabled( false );

@@ -10,11 +10,11 @@
 #include <QScrollArea>
 #include <QSplitter>
 #include <QStackedWidget>
-#include <QTabWidget>
 #include <QVBoxLayout>
 #include <QWidget>
 #include "Controller.h"
 #include "DigraphLineEdit.h"
+#include "MyTabWidget.h"
 #include "PropertiesPanel.h"
 #include "SearchDialog.h"
 #include "TranslationSelectionDialog.h"
@@ -73,6 +73,8 @@ public slots:
 
     bool areDetailsMaximized() const;
     void toggleMaximizeDetails( bool isOn );
+
+    void doToggleMaximizeDetails();
 
 signals:
 
@@ -185,7 +187,7 @@ private:
 
     QWidget*                vocabDetailsPanel;
     QVBoxLayout*            vocabDetailsPanelLayout;
-    QTabWidget*             vocabDetailsTabWidget;
+    MyTabWidget*            vocabDetailsTabWidget;
     QWidget*                vocabDetailsTermsPanel;
     QHBoxLayout*            vocabDetailsTermsPanelLayout;
     QScrollArea*            vocabDetailsPropsPanelWrapper;

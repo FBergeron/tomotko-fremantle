@@ -14,6 +14,7 @@ RC_FILE     =   toMOTko.rc
 
 HEADERS     +=  src/Base.h \
                 src/Util.h \
+                src/MyTabWidget.h \
                 src/BilingualKey.h \
                 src/DigraphLineEdit.h \
                 src/HelpBrowser.h \
@@ -29,7 +30,7 @@ HEADERS     +=  src/Base.h \
                 src/ResultListItem.h \
                 src/HistoryField.h \
                 src/SearchDialog.h \
-                #src/KeyActionListViewItem.h \
+                src/KeyActionListViewItem.h \
                 src/SequenceDialog.h \
                 src/SequencesDialog.h \
                 src/SequenceListItem.h \
@@ -64,6 +65,7 @@ HEADERS     +=  src/Base.h \
                 src/zlib.h
 
 SOURCES     +=  src/Util.cpp \ 
+                src/MyTabWidget.cpp \
                 src/BilingualKey.cpp \
                 src/DigraphLineEdit.cpp \
                 src/HelpBrowser.cpp \

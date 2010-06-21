@@ -6,7 +6,6 @@
 #include <QDialog>
 #include <QFileDialog>
 #include <QFileInfo>
-#include <QGroupBox>
 #include <QImageReader>
 #include <QLabel>
 #include <QLineEdit>
@@ -49,16 +48,13 @@ protected:
 
 private slots:
     
-//    void cut();
-//    void copy();
-//    void paste();
-
     void setImage();
     void clearImage();
 
 private:
 
     void init();
+    void updateFonts();
     void updateUi();
     void updateModel();
 
@@ -79,10 +75,13 @@ private:
     QWidget*                topLeftPanel;
     QVBoxLayout*            topLeftPanelLayout;
 
-    QGroupBox*              firstLangPanel;
-    QHBoxLayout*            firstLangPanelLayout;
-    QGroupBox*              testLangPanel;
-    QVBoxLayout*            testLangPanelLayout;
+    QWidget*                firstLangPanel;
+    QBoxLayout*             firstLangPanelLayout;
+    QLabel*                 firstLangPanelLabel;
+
+    QWidget*                testLangPanel;
+    QBoxLayout*             testLangPanelLayout;
+    QLabel*                 testLangPanelLabel;
 
     QWidget*                firstLangTermPanel;
     QHBoxLayout*            firstLangTermPanelLayout;
@@ -107,8 +106,9 @@ private:
     QLabel*                 commentLabel;
     DigraphMultiLineEdit*   commentMultiLineEdit;
 
-    QGroupBox*              imageBox;
-    QVBoxLayout*            imageBoxLayout;
+    QWidget*                imageBox;
+    QBoxLayout*             imageBoxLayout;
+    QLabel*                 imageBoxLabel;
     QLabel*                 image;
     QWidget*                imageButtonsPanel;
     QHBoxLayout*            imageButtonsPanelLayout;
@@ -124,9 +124,9 @@ private:
     Controller*             controller;
     Term*                   editedTerm;
 
-//    QAction*                cutAction;
-//    QAction*                copyAction;
-//    QAction*                pasteAction;
+    QAction*                cutAction;
+    QAction*                copyAction;
+    QAction*                pasteAction;
 
     QString                 tempImagePath; // Contains absolute path.
     QPixmap*                pixmap;

@@ -16,7 +16,7 @@ void SequencesDialog::init() {
     sequencesPanel->setLayout( sequencesPanelLayout );
 
     sequencesViewPanel = new QWidget(); 
-    sequencesViewPanelLayout = new QBoxLayout( QBoxLayout::LeftToRight );
+    sequencesViewPanelLayout = new QBoxLayout( QBoxLayout::TopToBottom );
     sequencesViewPanelLayout->setContentsMargins( 0, 10, 0, 0 );
     sequencesViewPanel->setLayout( sequencesViewPanelLayout );
     //revealingOptionsPanelLayout->addWidget( sequencesViewPanel );
@@ -25,7 +25,7 @@ void SequencesDialog::init() {
     sequencesView->setHeaderLabel( tr( "Existing Sequences" ) );
     sequencesViewPanelLayout->addWidget( sequencesView );
     sequencesViewButtons = new QWidget();
-    sequencesViewButtonsLayout = new QBoxLayout( QBoxLayout::TopToBottom );
+    sequencesViewButtonsLayout = new QBoxLayout( QBoxLayout::LeftToRight );
     sequencesViewButtonsLayout->setContentsMargins( 0, 0, 0, 0 );
     sequencesViewButtons->setLayout( sequencesViewButtonsLayout );
     sequencesViewPanelLayout->addWidget( sequencesViewButtons );

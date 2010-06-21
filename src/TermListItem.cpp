@@ -16,12 +16,12 @@ void TermListItem::updateUi() {
         setCheckState( 0, term->isMarkedForStudy() ? Qt::Checked : Qt::Unchecked );
         if( term->isTranslationExists( firstLanguage ) ) {
             const Translation& firstLangTranslation = term->getTranslation( firstLanguage );
-            setText( 0, firstLangTranslation.getWord() );
-            setForeground( 0, QBrush( treeWidget()->palette().color( QPalette::Active, QPalette::WindowText ) ) );
+            setText( 1, firstLangTranslation.getWord() );
+            setForeground( 1, QBrush( treeWidget()->palette().color( QPalette::Active, QPalette::WindowText ) ) );
         }
         else {
-            setText( 0, QApplication::translate( "QObject", "Undefined" ) );
-            setForeground( 0, QBrush( treeWidget()->palette().color( QPalette::Disabled, QPalette::WindowText ) ) );
+            setText( 1, QApplication::translate( "QObject", "Undefined" ) );
+            setForeground( 1, QBrush( treeWidget()->palette().color( QPalette::Disabled, QPalette::WindowText ) ) );
         }
 
         if( term->isTranslationExists( testLanguage ) ) {
@@ -29,12 +29,12 @@ void TermListItem::updateUi() {
             QString testLangStr = testLangTranslation.getWord(); 
             if( altShown && testLangTranslation.getAlt().length() > 0 )
                 testLangStr += " [" + testLangTranslation.getAlt() + "]";
-            setText( 1, testLangStr );
-            setForeground( 1, QBrush( treeWidget()->palette().color( QPalette::Active, QPalette::WindowText ) ) );
+            setText( 2, testLangStr );
+            setForeground( 2, QBrush( treeWidget()->palette().color( QPalette::Active, QPalette::WindowText ) ) );
         }
         else {
-            setText( 1, QApplication::translate( "QObject", "Undefined" ) );
-            setForeground( 1, QBrush( treeWidget()->palette().color( QPalette::Disabled, QPalette::WindowText ) ) );
+            setText( 2, QApplication::translate( "QObject", "Undefined" ) );
+            setForeground( 2, QBrush( treeWidget()->palette().color( QPalette::Disabled, QPalette::WindowText ) ) );
         }
     }
 }

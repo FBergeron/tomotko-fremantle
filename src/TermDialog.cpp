@@ -1,7 +1,4 @@
 #include "TermDialog.h"
-//#include "icons/editcut.xpm"
-//#include "icons/editcopy.xpm"
-//#include "icons/editpaste.xpm"
 
 TermDialog::TermDialog( Vocabulary& vocab, Controller* controller, QWidget* parent ) 
     : QDialog( parent ), vocab( vocab ), controller( controller ), editedTerm( new Term( vocab.getMaxTermId() + 1, vocab.getId() ) ), pixmap( NULL ), movie( NULL ) {
@@ -14,8 +11,7 @@ TermDialog::TermDialog( Vocabulary& vocab, Controller* controller, QWidget* pare
 }
 
 void TermDialog::init() {
-    //setWindowFlags( Qt::Window | Qt::WindowMaximizeButtonHint );
-    setModal( true );
+    setModal( false );
 
     Preferences& prefs = controller->getPreferences();
 
@@ -30,22 +26,6 @@ void TermDialog::init() {
     bodyLayout = new QVBoxLayout();
     bodyLayout->setContentsMargins( 0, 0, 0, 0 );
     body->setLayout( bodyLayout );
-//    menuBar = new QMenuBar( this );
-
-//    QMenu* edition = new QMenu( QApplication::translate( "QObject", "Edition" ), this );
-//    menuBar->addMenu( edition );
-
-//    cutAction = Util::createAction( tr( "Cut" ), editcut_xpm, this, SLOT( cut() ), QKeySequence( Qt::CTRL + Qt::Key_X ) );
-//    connect( cutAction, SIGNAL( triggered() ), this, SLOT( cut() ) );
-//    edition->addAction( cutAction );
-//
-//    copyAction = Util::createAction( QApplication::translate( "QObject", "Copy" ), editcopy_xpm, this, SLOT( copy() ), QKeySequence( Qt::CTRL + Qt::Key_C ) );
-//    connect( copyAction, SIGNAL( triggered() ), this, SLOT( copy() ) );
-//    edition->addAction( copyAction );
-//
-//    pasteAction = Util::createAction( QApplication::translate( "QObject", "Paste" ), editpaste_xpm, this, SLOT( paste() ), QKeySequence( Qt::CTRL + Qt::Key_V ) );
-//    connect( pasteAction, SIGNAL( triggered() ), this, SLOT( paste() ) );
-//    edition->addAction( pasteAction );
 
     topPanel = new QWidget();
     topPanelLayout = new QHBoxLayout();
@@ -59,14 +39,14 @@ void TermDialog::init() {
     topLeftPanel->setLayout( topLeftPanelLayout );
     topPanelLayout->addWidget( topLeftPanel, 1 );
 
-    firstLangPanel = new QGroupBox( QApplication::translate( "QObject", firstLang.toLatin1().data() ) );
-    firstLangPanelLayout = new QHBoxLayout();
+    firstLangPanel = new QWidget();
+    firstLangPanelLayout = new QBoxLayout( QBoxLayout::TopToBottom );
     firstLangPanelLayout->setContentsMargins( 0, 0, 0, 0 ); 
     firstLangPanel->setLayout( firstLangPanelLayout );
     topLeftPanelLayout->addWidget( firstLangPanel );
 
-    testLangPanel = new QGroupBox( QApplication::translate( "QObject", testLang.toLatin1().data() ) );
-    testLangPanelLayout = new QVBoxLayout();
+    testLangPanel = new QWidget();
+    testLangPanelLayout = new QBoxLayout( QBoxLayout::TopToBottom );
     testLangPanelLayout->setContentsMargins( 0, 0, 0, 0 );
     testLangPanel->setLayout( testLangPanelLayout );
     topLeftPanelLayout->addWidget( testLangPanel );
@@ -74,6 +54,9 @@ void TermDialog::init() {
     firstLangTermPanel = new QWidget();
     firstLangTermPanelLayout = new QHBoxLayout();
     firstLangTermPanel->setLayout( firstLangTermPanelLayout );
+
+    firstLangPanelLabel = new QLabel( QApplication::translate( "QObject", firstLang.toLatin1().data() ) );
+    firstLangPanelLayout->addWidget( firstLangPanelLabel );
     firstLangPanelLayout->addWidget( firstLangTermPanel );
 
     firstLangTermLabel = new QLabel( tr( "Word/Expr." ) );
@@ -86,6 +69,9 @@ void TermDialog::init() {
     testLangTopPanel = new QWidget();
     testLangTopPanelLayout = new QHBoxLayout();
     testLangTopPanel->setLayout( testLangTopPanelLayout );
+
+    testLangPanelLabel = new QLabel( QApplication::translate( "QObject", testLang.toLatin1().data() ));
+    testLangPanelLayout->addWidget( testLangPanelLabel );
     testLangPanelLayout->addWidget( testLangTopPanel );
 
     testLangLabelsPanel = new QWidget();
@@ -127,8 +113,8 @@ void TermDialog::init() {
     commentBoxLayout->addWidget( commentLabel );
     commentBoxLayout->addWidget( commentMultiLineEdit, 1 );
 
-    imageBox = new QGroupBox( tr( "Image" ) );
-    imageBoxLayout = new QVBoxLayout();
+    imageBox = new QWidget();
+    imageBoxLayout = new QBoxLayout( QBoxLayout::TopToBottom );
     imageBox->setLayout( imageBoxLayout );
     topPanelLayout->addWidget( imageBox );
 
@@ -147,6 +133,9 @@ void TermDialog::init() {
     imageButtonsPanelLayout->addWidget( clearImageButton );
     //clearImageButton->setToolTip( tr( "clearImageTooltip" ) );
     connect( clearImageButton, SIGNAL( clicked() ), this, SLOT( clearImage() ) );
+
+    imageBoxLabel = new QLabel( tr( "Image" ) );
+    imageBoxLayout->addWidget( imageBoxLabel );
 
     imageBoxLayout->addWidget( image, 1 );
     imageBoxLayout->addWidget( imageButtonsPanel );
@@ -171,12 +160,13 @@ void TermDialog::init() {
     bodyWrapper = new QScrollArea();
     bodyWrapper->setWidget( body );
 
-//    mainLayout->setMenuBar( menuBar );
     mainLayout->addWidget( bodyWrapper );
     mainLayout->addWidget( bottomButtonsPanel );
     mainLayout->activate();
 
     setWindowTitle( tr( "EditTerm" ) );
+
+    updateFonts();
 
     updateUi();
 }
@@ -215,36 +205,6 @@ void TermDialog::updateModel() {
             tempImagePath.right( tempImagePath.length() - vocabLocation.length() ) : tempImagePath;
     editedTerm->setImagePath( imagePath );
 }
-
-//void TermDialog::cut() {
-//    QWidget* widget = qApp->focusWidget();
-//    if( widget ) {
-//        if( widget->inherits( "DigraphLineEdit" ) )
-//            ((DigraphLineEdit*)widget)->cut();
-//        else if( widget->inherits( "DigraphMultiLineEdit" ) )
-//            ((DigraphMultiLineEdit*)widget)->cut();
-//    }
-//}
-//
-//void TermDialog::copy() {
-//    QWidget* widget = qApp->focusWidget();
-//    if( widget != NULL ) {
-//        if( widget->inherits( "DigraphLineEdit" ) )
-//            ((DigraphLineEdit*)widget)->copy();
-//        else if( widget->inherits( "DigraphMultiLineEdit" ) )
-//            ((DigraphMultiLineEdit*)widget)->copy();
-//    }
-//}
-//
-//void TermDialog::paste() {
-//    QWidget* widget = qApp->focusWidget();
-//    if( widget != NULL ) {
-//        if( widget->inherits( "DigraphLineEdit" ) )
-//            ((DigraphLineEdit*)widget)->paste();
-//        else if( widget->inherits( "DigraphMultiLineEdit" ) )
-//            ((DigraphMultiLineEdit*)widget)->paste();
-//    }
-//}
 
 void TermDialog::setImage() {
     QDir dir = QDir::home();
@@ -327,6 +287,48 @@ const Term& TermDialog::getTerm() {
 
 QSize TermDialog::sizeHint() const {
     return( QSize( 640, 480 ) );
+}
+
+void TermDialog::updateFonts() {
+    QFont largeFont( controller->getPreferences().getLargeFont() );
+    QFont mediumFont( controller->getPreferences().getMediumFont() );
+    QFont labelsFont( controller->getPreferences().getLabelsFont() );
+    QString firstLang( controller->getQuizFirstLanguage() );
+    QString testLang( controller->getQuizTestLanguage() );
+
+    firstLangTermLabel->setFont( labelsFont );
+    firstLangTermLineEdit->setFont( controller->getPreferences().getMediumFont( firstLang ) );
+    firstLangPanel->setFont( labelsFont );
+
+    testLangTermAltLabel->setFont( labelsFont );
+    testLangTermAltLineEdit->setFont( controller->getPreferences().getMediumFont( testLang ) );
+    testLangTermLabel->setFont( labelsFont );
+
+    testLangTermLineEdit->setFont( controller->getPreferences().getLargeFont( testLang ) );
+
+    testLangPanel->setFont( labelsFont );
+
+    imageBox->setFont( labelsFont );
+    setImageButton->setFont( labelsFont );
+    clearImageButton->setFont( labelsFont );
+
+    acceptButton->setFont( labelsFont );
+    cancelButton->setFont( labelsFont );
+
+    commentLabel->setFont( labelsFont );
+    commentMultiLineEdit->setFont( controller->getPreferences().getBestFont( firstLang, testLang ) );
+
+    firstLangTermPanel->updateGeometry();
+    firstLangTermPanel->layout()->invalidate();
+
+    testLangLabelsPanel->updateGeometry();
+    testLangLabelsPanel->layout()->invalidate();
+
+    testLangFieldsPanel->updateGeometry();
+    testLangFieldsPanel->layout()->invalidate();
+
+    update();
+    updateGeometry();
 }
 
 void TermDialog::updateUi() {

@@ -9,10 +9,12 @@
     <file>help/en/html/toMOTko-Preferences.html</file>
     <file>help/en/html/toMOTko-Quiz.html</file>
     <file>help/en/html/img/glossaryManager.png</file>
+    <file>help/en/html/img/preferences.png</file>
     <file>help/en/html/img/preferencesFonts.png</file>
-    <file>help/en/html/img/preferencesInterface.png</file>
+    <file>help/en/html/img/preferencesKeyboardAccelerators.png</file>
     <file>help/en/html/img/preferencesLanguages.png</file>
-    <file>help/en/html/img/preferencesQuiz.png</file>
+    <file>help/en/html/img/preferencesRevealingSequences.png</file>
+    <file>help/en/html/img/preferencesAddRevealingSequence.png</file>
     <file>help/en/html/img/quiz.png</file>
     <file>help/en/html/img/search.png</file>
     <file>help/en/html/img/sequenceEditor.png</file>

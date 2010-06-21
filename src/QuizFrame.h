@@ -117,10 +117,13 @@ private:
     QWidget*                    topLeftPanel;
     QVBoxLayout*                topLeftPanelLayout;
 
-    QGroupBox*                  firstLangPanel;
-    QHBoxLayout*                firstLangPanelLayout;
-    QGroupBox*                  testLangPanel;
-    QVBoxLayout*                testLangPanelLayout;
+    QWidget*                    firstLangPanel;
+    QBoxLayout*                 firstLangPanelLayout;
+    QLabel*                     firstLangPanelLabel;
+
+    QWidget*                    testLangPanel;
+    QBoxLayout*                 testLangPanelLayout;
+    QLabel*                     testLangPanelLabel;
 
     QWidget*                    controlPanel;
     QVBoxLayout*                controlPanelLayout;
@@ -166,8 +169,9 @@ private:
     ScrollableMultiLineEdit*    commentMultiLineEdit;
     QPushButton*                commentButton;
 
-    QGroupBox*                  imageBox;
-    QVBoxLayout*                imageBoxLayout;
+    QWidget*                    imageBox;
+    QBoxLayout*                 imageBoxLayout;
+    QLabel*                     imageBoxLabel;
     QStackedWidget*             imageStack;
     QPushButton*                imageButton;
     QLabel*                     image;

@@ -29,14 +29,14 @@ void QuizFrame::init() {
     topLeftPanel->setLayout( topLeftPanelLayout );
     topPanelLayout->addWidget( topLeftPanel, 1 );
 
-    firstLangPanel = new QGroupBox( QApplication::translate( "QObject", firstLang.toLatin1().data() ) );
-    firstLangPanelLayout = new QHBoxLayout();
+    firstLangPanel = new QWidget();
+    firstLangPanelLayout = new QBoxLayout( QBoxLayout::TopToBottom );
     firstLangPanelLayout->setContentsMargins( 0, 0, 0, 0 );
     firstLangPanel->setLayout( firstLangPanelLayout );
     topLeftPanelLayout->addWidget( firstLangPanel );
 
-    testLangPanel = new QGroupBox( QApplication::translate( "QObject", testLang.toLatin1().data() ) );
-    testLangPanelLayout = new QVBoxLayout();
+    testLangPanel = new QWidget();
+    testLangPanelLayout = new QBoxLayout( QBoxLayout::TopToBottom );
     testLangPanelLayout->setContentsMargins( 0, 0, 0, 0 );
     testLangPanel->setLayout( testLangPanelLayout );
     topLeftPanelLayout->addWidget( testLangPanel );
@@ -91,6 +91,9 @@ void QuizFrame::init() {
     firstLangTermPanel = new QWidget();
     firstLangTermPanelLayout = new QHBoxLayout();
     firstLangTermPanel->setLayout( firstLangTermPanelLayout );
+
+    firstLangPanelLabel = new QLabel( QApplication::translate( "QObject", firstLang.toLatin1().data() ) );
+    firstLangPanelLayout->addWidget( firstLangPanelLabel );
     firstLangPanelLayout->addWidget( firstLangTermPanel );
 
     firstLangTermLabel = new QLabel( tr( "Word/Expr." ) );
@@ -107,6 +110,9 @@ void QuizFrame::init() {
     firstLangTermPanelLayout->addWidget( firstLangTermLabel, 0 );
     firstLangTermPanelLayout->addWidget( firstLangTermStack, 1 );
     
+    testLangPanelLabel = new QLabel( QApplication::translate( "QObject", testLang.toLatin1().data() ) );
+    testLangPanelLayout->addWidget( testLangPanelLabel );
+
     testLangTopPanel = new QWidget();
     testLangPanelLayout->addWidget( testLangTopPanel );
     testLangTopPanelLayout = new QHBoxLayout();
@@ -184,9 +190,12 @@ void QuizFrame::init() {
     commentStack->addWidget( commentMultiLineEdit );
     commentStack->addWidget( commentButton );
 
-    imageBox = new QGroupBox( tr( "Image" ) );
-    imageBoxLayout = new QVBoxLayout();
+    imageBox = new QWidget();
+    imageBoxLayout = new QBoxLayout( QBoxLayout::TopToBottom );
     imageBox->setLayout( imageBoxLayout );
+
+    imageBoxLabel = new QLabel( tr( "Image" ) ); 
+    imageBoxLayout->addWidget( imageBoxLabel );
 
     imageStack = new QStackedWidget();
     imageBoxLayout->addWidget( imageStack );
@@ -432,8 +441,8 @@ void QuizFrame::askTerm( const Term& term ) {
 }
 
 void QuizFrame::updateLanguageLabels() {
-    firstLangPanel->setTitle( QApplication::translate( "QObject", controller->getQuizFirstLanguage().toLatin1().data() ) );
-    testLangPanel->setTitle( QApplication::translate( "QObject", controller->getQuizTestLanguage().toLatin1().data() ) );
+    firstLangPanelLabel->setText( QApplication::translate( "QObject", controller->getQuizFirstLanguage().toLatin1().data() ) );
+    testLangPanelLabel->setText( QApplication::translate( "QObject", controller->getQuizTestLanguage().toLatin1().data() ) );
 }
 
 void QuizFrame::setButtonsHidden( bool areHidden ) {
@@ -450,6 +459,7 @@ void QuizFrame::setButtonsHidden( bool areHidden ) {
         maximizeCommentButton->show();
         buttonsHidden = false;
     }
+    adjustSize();
 }
 
 bool QuizFrame::areButtonsHidden() const {
@@ -471,7 +481,7 @@ void QuizFrame::hideEvent( QHideEvent* hideEvt ) {
 void QuizFrame::resizeEvent( QResizeEvent* evt ) {
     QWidget::resizeEvent( evt );
     resizeImageBox();
-    bodyWrapper->widget()->resize( bodyWrapper->maximumViewportSize().width() - bodyWrapper->verticalScrollBar()->size().width() - 6, body->size().height() );
+    bodyWrapper->widget()->resize( bodyWrapper->width() - bodyWrapper->verticalScrollBar()->size().width() - 6, body->size().height() );
 }
 
 void QuizFrame::rightAnswer() {
@@ -646,7 +656,7 @@ void QuizFrame::retranslateUi() {
     testLangTermLabel->setText( tr( "Word/Expr." ) );
     testLangTermAltButton->setText( tr( "???" ) );
     testLangTermButton->setText( tr( "???" ) );
-    imageBox->setTitle( tr( "Image" ) );
+    imageBoxLabel->setText( tr( "Image" ) );
     commentLabel->setText( tr( "Examples/Comments" ) );
     commentButton->setText( tr( "???" ) );
     //revealAllDataButton->setText( tr( "Reveal" ) );

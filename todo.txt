@@ -1,19 +1,6 @@
 ToDo (This is specific to maemo version.  For general todo, check in zaurus or qt4 branches)
 --------------------------------------------------------------------------------------------
-Since qt-4.6, there is some problems with some layouts.  For example, the image button in a quiz walks over his label.  Also, the SequenceDialog is too tight.  The revealing sequences in the list are also truncated.
-When I import a glossary in some languages not already in Study List, 2 problems:  
-- It seems that the new languages are added in the Study List after the import but they should also be added in the
-  Language Selectors.  
-- The message mentions the Language Filter option...  What do we do with that?
-Replug cut/copy/paste in TermDialog?
-Verify if KeyActionListViewItem is still needed.
-Renable language filter?  If not, remove the accelerator and its mention in the help.
-Make PreferencesDialog work.
-    I have hidden the scrollbar of bodyWrapper.  Not sure if it's a good idea.  What's the standard way to do that on Maemo?
-    The Reset Buttons for fonts do not work on Xephyr.  The problem is that the default font is not available (not installed?).
-        Maybe we need to identify the best font and hardcode it for fremantle.
-    Validate data before accepting them.
-Reenable Cut/Copy/Paste in TermDialog?
-Rewrite online help and renew screenshots.
+Fix bug: If we resume a quiz that have been deleted, we will get an empty quiz page.  It should not happen.  If we do restart, doesn't work any better.
+Review online help.
 Review all code and check for comments.
 Review all strings in all languages.

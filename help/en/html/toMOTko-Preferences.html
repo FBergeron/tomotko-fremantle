@@ -8,115 +8,45 @@
         <h1>Preferences</h1>
         <p>
         The Preferences dialog allows you to specify custom attributes of toMOTko.
-        It contains 4 panels : Quiz, Languages, Fonts, and Interface.
+        The main window contains general settings.  Other settings may be set by
+        invoking subwindows.
+        </p><p>
+        Let's first take a look at the main window that looks 
+        like this:
         </p>
-        <p>The Quiz panel is shown below :</p>
-        <p><img src="img/preferencesQuiz.png" width="431" height="407"/></p>
+        <p><img src="img/preferences.png" width="600" height="360"/></p>
         <p>
-        You can <b>specify the quiz length</b> using the slider in the Quiz pane.  
-        The number pointed by the slider 
-        is the minimum times a word will be asked in the Quiz.  This is useful depending if you're
-        learning the words for the very first time or if you're just reviewing them.
-        </p><p>
-        You can also <b>specify the quiz's revealing sequences</b> checking 
-        one or more boxes.  This is useful to learn the words in different "directions" 
-        (for example, from English to Japanese or from Japanese to English).  When more than one 
-        revealing sequences are selected, the Quiz will pick randomly one sequence before 
-        asking a term.
-        </p><p>
-        By default, some commonly used revealing sequences are defined.  In case it's not enough,
-        you can create your own revealing sequence.  See below for details.
-        </p><p>
-        A revealing sequence determines which fields will be shown by the Quiz when asking a question and
-        in which order they will be revealed.  A revealing sequence is expressed as a character string 
-        similar to a mathematical expression. Each letter corresponds to a specific field of the Quiz as
-        shown in the picture on the left.  Between each letter, either a junction (+) operator or an
-        iteration (>) operator is used.
-        </p><p>
-        For example, let's take a look at the following revealing sequence : a+e &gt; c &gt; b+d.
-        </p><p>
-        a+e means that the Quiz, when asking a question, will start showing the source language's term field (a)
-        and the image field (e) (if there is one defined for the current term).  Then, if the Eye button is
-        clicked, the target language's term will be revealed (c).  If the Eye button is clicked again, 
-        the target language's Alt./Phon. field (b) and Comment field (d) will be revealed.
-        </p><p>
-        When all fields are revealed, if Eye button is clicked another time, the Comment field will be expanded.
-        If the Eye button is clicked again, the Comment field will be minimized.  
-        </p><p>
-        To <b>remove a revealing sequence</b>, select it and click the - button.
-        </p><p>
-        To <b>add a revealing sequence</b>, click the + button to invoke the Sequence Editor.
-        </p>
-        <p>The Sequence Editor is shown below :</p>
-        <p><img src="img/sequenceEditor.png" width="375" height="364"/></p>
+        For easier use, you can <b>choose the application interface language</b>.  
+        At the moment, the
+        application has been fully translated in English, French, Spanish, and
+        German.  Other languages are partially translated.  Additional languages
+        may eventually be added.
         <p>
-        To compose the revealing sequence expression, you click the appropriate buttons.  The buttons will be
-        disabled or enabled in function of the state of the revealing sequence expression.  This way, it guarantees 
-        that the expression will be valid once it's finished.
+        You can <b>specify the quiz length</b> using the slider just below.  
+        The number pointed by the slider is the minimum times a word will be asked in the Quiz.  
+        For learning new words, you could increase this value, for example.  Іf you are only
+        reviewing vocabulary, most probably that a low value would be more appropriate.
         </p><p>
-        To reveal more than one field at a time, you use the junction (+) operator.  To reveal fields after clicking
-        the Eye button, you use the iteration (>) button.  Once the revealing sequence is completed, you click Ok and 
-        it will be added in the list.  To cancel the composition of a revealing sequence, close the window or click 
-        the Cancel button.  The sequence will be discarded.
-        </p>
-        <p>The Languages panel is shown below :</p>
-        <p><img src="img/preferencesLanguages.png" width="431" height="407"/></p>
-        <p>
-        You can <b>specify the study languages</b> by checking each language of interest in
-        in the list, including your mother tongue.  Once this is done, you will have the 
-        possibility to change the source and target languages in the Glossary Manager using
-        the language selectors in the menu bar on the top of the screen.
-        </p>
-        <p>The Fonts panel is shown below :</p>
-        <p><img src="img/preferencesFonts.png" width="431" height="407"/></p>
-        <p>
-        You can <b>specify the font of labels and fields</b> using the font selector in this pane.
-        The available fonts of your system will be displayed in the list box.  You can select a font name and its size.
-        The font change will take place once you close the Preferences dialog.  You may have to install additional fonts
-        depending on the languages you want to study.
+        You can <b>enable the built-in accent support</b> by checking the Digraphs option.
         </p><p>
-        Depending of the fonts installed on your system, some sizes may not be available and
-        the result may be a little bit surprising.  Try some values until you're satisfied.
+        The Digraphs option was borrowed from the famous Vim editor (<a href="http://www.vim.org">http://www.vim.org</a>).
+        It allows a user to input accentuated characters of some foreign languages without using 
+        an external Input Method component.
         </p><p>
-        You can always <b>reset the original font settings</b> clicking on the Reset button.
-        </p><p>
-        To <b>set a special font in function of the language</b>, you use the Font Overrides
-        definitions at the bottom of the pane.  This is desirable when the default font (the Fields font)
-        is not suited for some languages.
-        </p>
-        <p>To give an example, here are my font preferences :</p>
-        <table border="1">
-            <tr><td>&nbsp;</td><td>Fonts</td></tr>
-            <tr><td>Labels</td><td>Arial, Small</td></tr>
-            <tr><td>Fields</td><td>Arial, Medium</td></tr>
-            <tr><td>Japanese</td><td>MS Mincho</td></tr>
-        </table>
-        <p>
-        As the comment field is likely to contain text in two languages (the
-        source and target languages), toMOTko will try to use the best possible font, considering
-        the Font Overrides.  In the worst case, it will use the Field font as default.  
-        Because of that, it's recommended to set a generic font for Field font (preferably a
-        font supporting Unicode characters).
-        </p>
-        <p>The Interface panel is shown below :</p>
-        <p><img src="img/preferencesInterface.png" width="431" height="407"/></p>
-        <p>
-        You can <b>enable the built-in accent support</b> by checking the Digraph option.
-        </p><p>
-        The digraphs option was borrowed from the famous Vim editor (<a href="http://www.vim.org">http://www.vim.org</a>).
-        It allows a user to input accented letters of some foreign languages without installing 
-        an external Input Method component.  It works like this : Whenever you want to input
-        an accented letter, you will do it using 2 letters (hence the name digraphs).
+        It works like this: Whenever you want to input
+        an accentuated character, you will do it using 2 letters (hence the name digraphs).
         For example, if you want to write a '<font face="unifont">ö</font>' (useful when learning German), we type the letter
         'o', followed by backspace (that removes it), then we type ':'.  Another example, if you
         want to write a '<font face="unifont">ñ</font>' (useful when learning Spanish), we type the letter 'n',
         followed by backspace and '~'.
         </p><p>
-        For the moment, only a few <a href="toMOTko-Digraphs.html">digraphs</a> are available.  More digraphs will
+        At the moment, only a few <a href="toMOTko-Digraphs.html">digraphs</a> are available.  More digraphs will
         probably be added in later versions.
         </p><p>
-        Getting used to digraphs is very easy.  If you already have an Input Method component 
-        installed however, you may not need this feature and you can disable it safely.
+        Getting used to digraphs is very easy and convenient for some languages.  However, it's no substitute for a 
+        functional Input Method component that allows the input of not only accentuated characters, but also non-latin 
+        characters as well, like Chinese, Japanese, or Korean characters.  If you prefer using an external Input Method component,
+        feel free to disable this feature.
         </p><p>
         You can <b>hide or show the quiz buttons</b> depending if you prefer to have more space allocated
         to display the words' information or not.  If you check the box, as the buttons are hidden, you
@@ -126,15 +56,103 @@
         the Glossary Manager, you can check the option in this panel.  This may be convenient and keep you from 
         editing needlessly a term to see its pronunciation.
         </p><p>
+        You can <b>specify the study languages</b> by clicking the <tt>Study Languages...</tt> button that
+        will invoke a subwindow where you will be able to check languages of interest:
+        </p>
+        <p><img src="img/preferencesLanguages.png" width="600" height="360"/></p>
+        <p> 
+        You should also check your mother tongue.  Once this is done, you will have the 
+        possibility to change the source and target languages in the Glossary Manager using
+        the language selectors in the top-left section of the screen.
+        </p><p>
+        The list of study languages already includes many languages.  If you would like some additional
+        languages to be supported, please let me know.
+        </p>
+        <p>You can change the fonts used by the application by clicking the <tt>Fonts...</tt> button
+        that will reveal the following subwindow:</p>
+        <p><img src="img/preferencesFonts.png" width="600" height="360"/></p>
+        <p>
+        You can <b>specify the font of labels and fields</b> using the font selector in this pane.
+        The available fonts of your system will be displayed in the list box.  You can select a font name and its size.
+        The font change will take place once you close the Preferences dialog.  You may have to install additional fonts
+        depending on the languages you want to study.
+        </p><p>
+        Depending of the fonts installed on your system, some sizes may not be available and
+        the result may be a little bit surprising.  Try some values until you're satisfied.
+        </p><p>
+        You can always <b>reset the original font settings</b> clicking on the <tt>Reset</tt> button.
+        </p><p>
+        To <b>set a special font in function of the language</b>, you use the Font Overrides
+        definitions at the bottom of the pane.  This is desirable when the default font (the Fields font)
+        is not suited for some languages.
+        </p><p>
+        As the comment field is likely to contain text in two languages (the
+        source and target languages), toMOTko will try to use the best possible font, considering
+        the Font Overrides.  In the worst case, it will use the Field font as default.  
+        Because of that, it's recommended to set a generic font for Field font (preferably a
+        font supporting Unicode characters).
+        </p><p>
+        You can also <b>specify the quiz's revealing sequences</b> clicking the <tt>Revealing Sequences...</tt> button
+        that will invoke the following subwindow:
+        </p><p>
+        <p><img src="img/preferencesRevealingSequences.png" width="600" height="360"/></p>
+        <p>
+        The list of available revealing sequences is shown on the left.  On the right, you can
+        see a representation of the Quiz Window with its fields labeled <tt>a</tt>, <tt>b</tt>,
+        <tt>c</tt>, <tt>d</tt>, and <tt>e</tt>.  You can check the desired revealing sequences
+        to learn the words in different "directions" 
+        (for example, from English to Japanese or from Japanese to English).  When more than one 
+        revealing sequences are selected, the Quiz will pick randomly one sequence before 
+        asking a term.
+        </p><p>
+        By default, some commonly used revealing sequences are defined.  In case it's not enough,
+        you can create your own revealing sequence.  See below for details.
+        </p><p>
+        As its name implies, a revealing sequence determines which fields will be shown by the Quiz when asking a question and
+        in which order they will be revealed.  A revealing sequence is expressed as a character string 
+        similar to a mathematical expression. Each letter corresponds to a specific field of the Quiz as
+        shown in the picture on the left.  Between each letter, either a junction (+) operator or an
+        iteration (&gt;) operator is used.
+        </p><p>
+        For example, let's take a look at the following revealing sequence: 
+        </p><p>
+        <tt>a+e &gt; c &gt; b+d</tt>.
+        </p><p>
+        <tt>a+e</tt> means that the Quiz, when asking a question, will start showing the source language's term field (<tt>a</tt>)
+        and the image field (<tt>e</tt>) (if there is one defined for the current term).  Then, if the Eye button is
+        clicked, the target language's term will be revealed (<tt>c</tt>).  If the Eye button is clicked again, 
+        the target language's Alt./Phon. field (<tt>b</tt>) and Comment field (<tt>d</tt>) will be revealed.
+        </p><p>
+        When all fields are revealed, if Eye button is clicked another time, the Comment field will be expanded.
+        If the Eye button is clicked again, the Comment field will be minimized.  
+        </p><p>
+        To <b>remove a revealing sequence</b>, select it and click the <tt>-</tt> button.
+        </p><p>
+        To <b>add a revealing sequence</b>, click the <tt>+</tt> button to invoke the Sequence Editor, shown below.
+        </p>
+        <p><img src="img/preferencesAddRevealingSequence.png" width="600" height="360"/></p>
+        <p>
+        To compose the revealing sequence expression, you click the appropriate buttons.  The buttons will be
+        disabled or enabled in function of the state of the revealing sequence expression.  This way, it guarantees 
+        that the expression will be valid once it's finished.
+        </p><p>
+        To reveal more than one field at a time, you use the junction (+) operator.  To reveal fields after clicking
+        the Eye button, you use the iteration (&gt;) button.  Once the revealing sequence is completed, you click Ok and 
+        it will be added in the list.  To cancel the composition of a revealing sequence, close the window or click 
+        the Cancel button.  The sequence will be discarded.
+        </p>
+        <p>The subwindow for setting the Keyboard Accelerators is shown below:</p>
+        <p><img src="img/preferencesKeyboardAccelerators.png" width="600" height="360"/></p>
+        </p><p>
         You can also <b>set a keyboard shortcut</b> by selecting a specific action in the list
-        and clicking the Set key button.  The next key typed will be affected as a shortcut for 
+        and clicking the <tt>Set</tt> key button.  The next key typed will be assigned as a shortcut for 
         the selected action.
         </p><p>
         You can <b>remove a keyboard shortcut</b> by selecting a specific action in the list
-        and clicking the Clear key button.
+        and clicking the <tt>Clear</tt> key button.
         </p><p>
         You can <b>reset keyboard shortcut to its default value</b> by selecting a specific action in the list
-        and clicking the Reset key button.
+        and clicking the <tt>Reset</tt> key button.
         </p><p>
         Default values are assigned for most of the actions.
         </p>

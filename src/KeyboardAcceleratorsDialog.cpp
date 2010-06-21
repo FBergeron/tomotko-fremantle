@@ -26,6 +26,10 @@ void KeyboardAcceleratorsDialog::init() {
     keyboardAccelListView->setIconSize( QSize( 24, 24 ) );
     int actionCount = sizeof( action ) / sizeof( QAction* );
     for( int i = actionCount - 1; i >= 0; i-- ) {
+        // Skip desactivated actions
+        if( i == ACTION_SHOW_ALL_GLOSSARIES_AND_TERMS )
+            continue;
+
         KeyActionListViewItem* actionItem = new KeyActionListViewItem( keyboardAccelListView, action[ i ], (Action)i );
         actionItem->setText( 0, action[ i ]->text() );
         actionItem->setIcon( 0, action[ i ]->icon() );

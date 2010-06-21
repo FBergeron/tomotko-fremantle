@@ -1,7 +1,7 @@
 #include "Preferences.h"
 
 const qint32 Preferences::magicNumber = qint32( 0x77556644 );
-const uint Preferences::fontSizeList[] = { 8, 9, 10, 12, 14, 18, 24, 36 };
+const uint Preferences::fontSizeList[] = { 10, 12, 14, 18, 24, 36, 48, 64 };
 
 Preferences::Preferences() 
     : quizLength( SHORT ), interfaceLanguage( QString( "en" ) ), digraphEnabled( false ), quizButtonsHidden( false ), altInTermListShown( false ),
