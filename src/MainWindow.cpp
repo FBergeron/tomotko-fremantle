@@ -287,8 +287,11 @@ void MainWindow::help() {
 }
 
 void MainWindow::startQuiz() {
-    if( mainPanel->currentWidget() == quizFrame ) 
+    if( mainPanel->currentWidget() == quizFrame ) {
+        control->restartQuiz();
+        control->prepareQuiz();
         quizFrame->restartQuiz();
+    }
     else {
         bool resumeQuiz = false;
         if( control->isResumableQuizAvailable() ) {
@@ -303,6 +306,21 @@ void MainWindow::startQuiz() {
         
             int response = msgBox.exec();
             resumeQuiz = ( response == QMessageBox::Yes );
+        }
+        if( resumeQuiz )
+            control->resumeQuiz();
+        else
+            control->startQuiz();
+
+        control->prepareQuiz();
+        if( !control->isQuizInProgress() ) {
+            QMessageBox::warning( this, QObject::tr( "Information" ), tr( "NoTermsMarkedForStudy" ) );
+            return;
+        }
+        Term* currTerm = control->getCurrentTerm();
+        if( !currTerm ) {
+            QMessageBox::warning( this, QObject::tr( "Information" ), tr( "TermsMissing" ) );
+            return;
         }
         showQuiz();
         if( resumeQuiz )

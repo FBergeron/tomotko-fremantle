@@ -1,6 +1,5 @@
 ToDo (This is specific to maemo version.  For general todo, check in zaurus or qt4 branches)
 --------------------------------------------------------------------------------------------
-Fix bug: If we resume a quiz that have been deleted, we will get an empty quiz page.  It should not happen.  If we do restart, doesn't work any better.
 Review online help.
 Review all code and check for comments.
 Review all strings in all languages.

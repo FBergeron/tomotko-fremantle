@@ -274,37 +274,19 @@ QuizFrame::~QuizFrame() {
 
 void QuizFrame::startQuiz() {
     setButtonsEnabled( false );
-    controller->startQuiz();
-    controller->prepareQuiz();
     updateLanguageLabels();
     updateFonts();
-
-    if( !controller->isQuizInProgress() ) {
-        QMessageBox::warning( this, QObject::tr( "Information" ), tr( "NoTermsMarkedForStudy" ) );
-        return;
-    }
-
     askNextTerm();
 }
 
 void QuizFrame::restartQuiz() {
     setButtonsEnabled( false );
-    controller->restartQuiz();
-    controller->prepareQuiz();
     updateLanguageLabels();
     updateFonts();
-
-    if( !controller->isQuizInProgress() ) {
-        QMessageBox::warning( this, QObject::tr( "Information" ), tr( "NoTermsMarkedForStudy" ) );
-        return;
-    }
-
     askNextTerm();
 }
 
 void QuizFrame::resumeQuiz() {
-    controller->resumeQuiz();
-    controller->prepareQuiz();
     updateLanguageLabels();
     updateFonts();
     askCurrentTerm();

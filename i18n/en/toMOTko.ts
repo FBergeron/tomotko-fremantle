@@ -276,19 +276,29 @@ Overwrite the current assignment?</source>
         <translation>Maximize</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="295"/>
+        <location filename="../../src/MainWindow.cpp" line="298"/>
         <source>ConfirmResumeQuiz</source>
         <translation>There is a resumable quiz available for the current languages. Do you want to resume this quiz?</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="301"/>
+        <location filename="../../src/MainWindow.cpp" line="304"/>
         <source>Yes</source>
         <translation>Yes</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="302"/>
+        <location filename="../../src/MainWindow.cpp" line="305"/>
         <source>No</source>
         <translation>No</translation>
+    </message>
+    <message>
+        <location filename="../../src/MainWindow.cpp" line="317"/>
+        <source>NoTermsMarkedForStudy</source>
+        <translation>No terms have been marked for study for the specified languages. The quiz cannot start. Use the Glossary Manager to select the terms you want to study.</translation>
+    </message>
+    <message>
+        <location filename="../../src/MainWindow.cpp" line="322"/>
+        <source>TermsMissing</source>
+        <translation>The terms that were in this quiz cannot be found.  The quiz cannot be resumed.</translation>
     </message>
     <message>
         <location filename="../../src/MainWindow.cpp" line="92"/>
@@ -656,12 +666,12 @@ Overwrite the current assignment?</source>
         <translation>Warning</translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="295"/>
-        <location filename="../../src/QuizFrame.cpp" line="283"/>
-        <location filename="../../src/QuizFrame.cpp" line="298"/>
-        <location filename="../../src/QuizFrame.cpp" line="405"/>
-        <location filename="../../src/QuizFrame.cpp" line="775"/>
-        <location filename="../../src/QuizFrame.cpp" line="781"/>
+        <location filename="../../src/MainWindow.cpp" line="298"/>
+        <location filename="../../src/MainWindow.cpp" line="317"/>
+        <location filename="../../src/MainWindow.cpp" line="322"/>
+        <location filename="../../src/QuizFrame.cpp" line="387"/>
+        <location filename="../../src/QuizFrame.cpp" line="757"/>
+        <location filename="../../src/QuizFrame.cpp" line="763"/>
         <source>Information</source>
         <translation>Information</translation>
     </message>
@@ -687,17 +697,17 @@ Overwrite the current assignment?</source>
         <translation>Parse error at line %1, col %2. %3.</translation>
     </message>
     <message>
-        <location filename="../../src/Controller.cpp" line="737"/>
+        <location filename="../../src/Controller.cpp" line="738"/>
         <source>MyGlossaries</source>
         <translation>My Glossaries</translation>
     </message>
     <message>
-        <location filename="../../src/Controller.cpp" line="144"/>
+        <location filename="../../src/Controller.cpp" line="145"/>
         <source>NewFolder</source>
         <translation>New Folder</translation>
     </message>
     <message>
-        <location filename="../../src/Controller.cpp" line="173"/>
+        <location filename="../../src/Controller.cpp" line="174"/>
         <source>NewGlossary</source>
         <translation>New Glossary</translation>
     </message>
@@ -710,53 +720,47 @@ Overwrite the current assignment?</source>
         <location filename="../../src/QuizFrame.cpp" line="149"/>
         <location filename="../../src/QuizFrame.cpp" line="187"/>
         <location filename="../../src/QuizFrame.cpp" line="202"/>
-        <location filename="../../src/QuizFrame.cpp" line="654"/>
-        <location filename="../../src/QuizFrame.cpp" line="657"/>
-        <location filename="../../src/QuizFrame.cpp" line="658"/>
-        <location filename="../../src/QuizFrame.cpp" line="661"/>
+        <location filename="../../src/QuizFrame.cpp" line="636"/>
+        <location filename="../../src/QuizFrame.cpp" line="639"/>
+        <location filename="../../src/QuizFrame.cpp" line="640"/>
+        <location filename="../../src/QuizFrame.cpp" line="643"/>
         <source>???</source>
         <translation>???</translation>
     </message>
     <message>
-        <location filename="../../src/QuizFrame.cpp" line="283"/>
-        <location filename="../../src/QuizFrame.cpp" line="298"/>
-        <source>NoTermsMarkedForStudy</source>
-        <translation>No terms have been marked for study for the specified languages. The quiz cannot start. Use the Glossary Manager to select the terms you want to study.</translation>
-    </message>
-    <message>
-        <location filename="../../src/QuizFrame.cpp" line="405"/>
+        <location filename="../../src/QuizFrame.cpp" line="387"/>
         <source>WellDone</source>
         <translation>Well done.  You&apos;ve learned all the %1 selected words. Pick other words in the Glossary Manager and start another quiz to learn more vocabulary.</translation>
     </message>
     <message>
-        <location filename="../../src/QuizFrame.cpp" line="775"/>
-        <location filename="../../src/QuizFrame.cpp" line="781"/>
+        <location filename="../../src/QuizFrame.cpp" line="757"/>
+        <location filename="../../src/QuizFrame.cpp" line="763"/>
         <source>DissociatedWord</source>
         <translation>The word has been dissociated from its original glossary.  Edition cannot be performed from the Quiz.</translation>
     </message>
     <message>
         <location filename="../../src/QuizFrame.cpp" line="99"/>
         <location filename="../../src/QuizFrame.cpp" line="128"/>
-        <location filename="../../src/QuizFrame.cpp" line="653"/>
-        <location filename="../../src/QuizFrame.cpp" line="656"/>
+        <location filename="../../src/QuizFrame.cpp" line="635"/>
+        <location filename="../../src/QuizFrame.cpp" line="638"/>
         <source>Word/Expr.</source>
         <translation>Word/Expr.</translation>
     </message>
     <message>
         <location filename="../../src/QuizFrame.cpp" line="126"/>
-        <location filename="../../src/QuizFrame.cpp" line="655"/>
+        <location filename="../../src/QuizFrame.cpp" line="637"/>
         <source>Alt./Phon.</source>
         <translation>Alt./Phon.</translation>
     </message>
     <message>
         <location filename="../../src/QuizFrame.cpp" line="169"/>
-        <location filename="../../src/QuizFrame.cpp" line="660"/>
+        <location filename="../../src/QuizFrame.cpp" line="642"/>
         <source>Examples/Comments</source>
         <translation>Examples/Comments</translation>
     </message>
     <message>
         <location filename="../../src/QuizFrame.cpp" line="197"/>
-        <location filename="../../src/QuizFrame.cpp" line="659"/>
+        <location filename="../../src/QuizFrame.cpp" line="641"/>
         <source>Image</source>
         <translation>Image</translation>
     </message>

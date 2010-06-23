@@ -275,6 +275,16 @@ Overwrite the current assignment?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../src/MainWindow.cpp" line="317"/>
+        <source>NoTermsMarkedForStudy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/MainWindow.cpp" line="322"/>
+        <source>TermsMissing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../src/MainWindow.cpp" line="176"/>
         <source>RestartQuiz</source>
         <translation type="unfinished"></translation>
@@ -286,17 +296,17 @@ Overwrite the current assignment?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="295"/>
+        <location filename="../../src/MainWindow.cpp" line="298"/>
         <source>ConfirmResumeQuiz</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="301"/>
+        <location filename="../../src/MainWindow.cpp" line="304"/>
         <source>Yes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="302"/>
+        <location filename="../../src/MainWindow.cpp" line="305"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
@@ -606,17 +616,17 @@ Overwrite the current assignment?</source>
         <translation>他加祿語</translation>
     </message>
     <message>
-        <location filename="../../src/Controller.cpp" line="144"/>
+        <location filename="../../src/Controller.cpp" line="145"/>
         <source>NewFolder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/Controller.cpp" line="173"/>
+        <location filename="../../src/Controller.cpp" line="174"/>
         <source>NewGlossary</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/Controller.cpp" line="737"/>
+        <location filename="../../src/Controller.cpp" line="738"/>
         <source>MyGlossaries</source>
         <translation type="unfinished"></translation>
     </message>
@@ -668,12 +678,12 @@ Overwrite the current assignment?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/MainWindow.cpp" line="295"/>
-        <location filename="../../src/QuizFrame.cpp" line="283"/>
-        <location filename="../../src/QuizFrame.cpp" line="298"/>
-        <location filename="../../src/QuizFrame.cpp" line="405"/>
-        <location filename="../../src/QuizFrame.cpp" line="775"/>
-        <location filename="../../src/QuizFrame.cpp" line="781"/>
+        <location filename="../../src/MainWindow.cpp" line="298"/>
+        <location filename="../../src/MainWindow.cpp" line="317"/>
+        <location filename="../../src/MainWindow.cpp" line="322"/>
+        <location filename="../../src/QuizFrame.cpp" line="387"/>
+        <location filename="../../src/QuizFrame.cpp" line="757"/>
+        <location filename="../../src/QuizFrame.cpp" line="763"/>
         <source>Information</source>
         <translation type="unfinished"></translation>
     </message>
@@ -704,8 +714,8 @@ Overwrite the current assignment?</source>
     <message>
         <location filename="../../src/QuizFrame.cpp" line="99"/>
         <location filename="../../src/QuizFrame.cpp" line="128"/>
-        <location filename="../../src/QuizFrame.cpp" line="653"/>
-        <location filename="../../src/QuizFrame.cpp" line="656"/>
+        <location filename="../../src/QuizFrame.cpp" line="635"/>
+        <location filename="../../src/QuizFrame.cpp" line="638"/>
         <source>Word/Expr.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -715,45 +725,39 @@ Overwrite the current assignment?</source>
         <location filename="../../src/QuizFrame.cpp" line="149"/>
         <location filename="../../src/QuizFrame.cpp" line="187"/>
         <location filename="../../src/QuizFrame.cpp" line="202"/>
-        <location filename="../../src/QuizFrame.cpp" line="654"/>
-        <location filename="../../src/QuizFrame.cpp" line="657"/>
-        <location filename="../../src/QuizFrame.cpp" line="658"/>
-        <location filename="../../src/QuizFrame.cpp" line="661"/>
+        <location filename="../../src/QuizFrame.cpp" line="636"/>
+        <location filename="../../src/QuizFrame.cpp" line="639"/>
+        <location filename="../../src/QuizFrame.cpp" line="640"/>
+        <location filename="../../src/QuizFrame.cpp" line="643"/>
         <source>???</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/QuizFrame.cpp" line="126"/>
-        <location filename="../../src/QuizFrame.cpp" line="655"/>
+        <location filename="../../src/QuizFrame.cpp" line="637"/>
         <source>Alt./Phon.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/QuizFrame.cpp" line="283"/>
-        <location filename="../../src/QuizFrame.cpp" line="298"/>
-        <source>NoTermsMarkedForStudy</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../src/QuizFrame.cpp" line="169"/>
-        <location filename="../../src/QuizFrame.cpp" line="660"/>
+        <location filename="../../src/QuizFrame.cpp" line="642"/>
         <source>Examples/Comments</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/QuizFrame.cpp" line="405"/>
+        <location filename="../../src/QuizFrame.cpp" line="387"/>
         <source>WellDone</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/QuizFrame.cpp" line="197"/>
-        <location filename="../../src/QuizFrame.cpp" line="659"/>
+        <location filename="../../src/QuizFrame.cpp" line="641"/>
         <source>Image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/QuizFrame.cpp" line="775"/>
-        <location filename="../../src/QuizFrame.cpp" line="781"/>
+        <location filename="../../src/QuizFrame.cpp" line="757"/>
+        <location filename="../../src/QuizFrame.cpp" line="763"/>
         <source>DissociatedWord</source>
         <translation type="unfinished"></translation>
     </message>
