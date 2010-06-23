@@ -1,5 +1,4 @@
 ToDo (This is specific to maemo version.  For general todo, check in zaurus or qt4 branches)
 --------------------------------------------------------------------------------------------
-Review online help.
 Review all code and check for comments.
 Review all strings in all languages.

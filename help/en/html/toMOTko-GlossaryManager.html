@@ -7,10 +7,13 @@
     <body>
         <h1>Glossary Manager</h1>
         <p>
-        The Glossary Manager is the tool that allows you to manage the words you
+        The Glossary Manager is the tool that allows you to input and organize the words you
         want to learn.
         </p><p>
         As shown in the picture below, it is divided in two panels.
+        </p>
+        <p><img src="img/glossaryManager.png" width="600" height="360"/></p>
+        <p>
         The left panel contains Language Selectors on top and a hierarchical structure (a tree)
         including Folders and Glossaries.  The right panel displays either a folder or glossary's details.
         </p><p>
@@ -19,7 +22,6 @@
         empty space just right of the tabpanel header.  To minimize it, double-click in the same area will
         revert it to its previous size.
         </p>
-        <p><img src="img/glossaryManager.png" width="600" height="360"/></p>
         <h2>Tree pane</h2>
         <p>
         The tree of the left panel allows you to organize your glossaries in a way very similar to how files
@@ -63,7 +65,7 @@
         the parent folder's author is "John Smith", the author of the new folder will take the same
         value.  
         </p><p>
-        Other metadata are available for a folder, including its creation and modification date and
+        Other metadata are available for a folder, including its creation and modification dates and
         a small table containing some interesting statistics like : children folder and glossary counts,
         whether they are checked and/or available for quiz, etc.
         </p><p>
@@ -76,25 +78,23 @@
         the parent folder's author is "John Smith", the author of the new glossary will take the same
         value.
         </p><p>
-        Other metadata are available for a glossary, including its creation and modification date and
+        Other metadata are available for a glossary, including its creation and modification dates and
         a small table containing some interesting statistics like : number of words that it contains, 
         that are checked and available for quiz.
         </p><p>
         The second tabpanel displays the list of words the glossary contains (including
         its meanings/readings, if available, in the selected languages).  
         </p><p>
-        For better readability, you can resize the left and right panels dragging the separating bar either left or right.
-        </p><p>
         When a Glossary is created, it's empty.  It doesn't contain any word.
-        To <b>add a new word</b>, you click the White Sheet button (the third one, right of the Word List, in the left panel).
+        To <b>add a new word</b>, you click the White Sheet button (the third one, right of the Word List, in the right panel).
         A dialog window will appear where you will be able to input the word and its meanings.  
         A Comment text field is also available for you to put examples or any information
         that is pertinent to you.  You must click <tt>Ok</tt> on the right side of the dialog to save the modifications.
-        Otherwise, you can click <tt>Cancel</tt> button to cancel the operation.
+        Otherwise, you can click <tt>Cancel</tt> button to abort the operation.
         </p><p>
-        To <b>edit a word</b>, you select it and click the Pencil button (the fourth one, right of the Word List, in the left panel).
+        To <b>edit a word</b>, you select it and click the Pencil button (the fourth one, right of the Word List, in the right panel).
         </p><p>
-        To <b>delete a word</b>, you select it and click the Garbage Can button (the last one, right of the Word List, in the left panel).
+        To <b>delete a word</b>, you select it and click the Garbage Can button (the last one, right of the Word List, in the right panel).
         A confirmation dialog will appear first.  You can select more than one word for deletion.
         A deleted word is lost permanently and cannot be restored.
         If some of the selected words contain more than two translations, a dialog box will ask you to choose
@@ -109,10 +109,9 @@
         </p>
         <h2>Word selection</h2>
         <p>
-        The Glossary Manager also allows you to perform the word selection for the Quiz.
         To <b>select a word</b> that you want to be asked for in the Quiz,
         you must check the box at the left of the chosen word.  You must also check its
-        folder and all its parent folders until you reach the root of the tree (the very first top folder).
+        glossary and all its parent folders until you reach the root of the tree (the very first top folder).
         This defines a kind of path from the root of the tree to the chosen word.
         When you start a new Quiz, the words that will be considered will be those that are checked 
         and reachable from such paths (from the root glossary).
@@ -133,6 +132,10 @@
         (usually, this will be your mother tongue but it could be another language as well) with the left Language
         Selector.  You can choose the target language (that is, the language you are learning) using the right 
         Language Selector.
+        </p><p>
+        Note that the Language Selectors just indicate which languages are being studied.  They should
+        not be used to set up the "direction" of the learning (from English to Japanese or vice versa).  
+        Use the Revealing Sequences in the <a href="toMOTko-Preferences.html">Preferences</a> instead for this.
         </p><p>
         The hierarchical tree will update its content in function of the selected languages.  Only folders and glossaries
         related to the selected languages will be shown.
@@ -158,9 +161,10 @@
         A dialog should indicate if the operation was successful or not.  If the import fails, check 
         your available space and file permissions.
         </p><p>
-        To <b>export a glossary</b> you select either a glossary or a folder in the Glossary Manager.  Then, you select 
-        the <tt>Export Data</tt> item in the application menu.  If you select a folder, all the containing glossaries and folders will
-        be exported.
+        To <b>export a glossary</b> you select either a glossary or a folder in the Glossary Manager.  Before performing the export, 
+        it may be a good idea to enter useful information in the Description field (like its source, the author, etc.)
+        Then, you select the <tt>Export Data</tt> item in the application menu.  If you select a folder, all the containing 
+        glossaries and folders will be exported.
         When glossaries to export contain words in more than 2 languags, a dialog box will ask you to choose which languages you
         want to export.
         A file browser dialog will then appear so you can specify the location and the zip file that will contain the exported data.
@@ -172,7 +176,8 @@
         </p><p>
         The construction of a website dedicated to the sharing of toMOTko glossary files is in planning.
         However, until the website is properly set up, if you would like to make a vocabulary file available 
-        to everybody, send it to toMOTko's author by email.  Please mention your name so he can give you credit for
+        to everybody, send it to toMOTko's author by email (it's written in the About window).  
+        Please mention your name so he can give you credit for
         your contribution, and also, indicate if your email can be disclosed or not, so that other users can contact
         you in case of corrections.  You should also specify this information in the top folder (or glossary)'s description
         and author properties.  The submitted glossary files will be made available on the toMOTko's homepage to everyone's benefit.
