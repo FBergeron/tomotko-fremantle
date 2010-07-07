@@ -1,4 +1,3 @@
-ToDo (This is specific to maemo version.  For general todo, check in zaurus or qt4 branches)
---------------------------------------------------------------------------------------------
-Review all code and check for comments.
-Review all strings in all languages.
+ToDo
+----
+When I select French for interface language, then make a search, then switch to German, and make another search, the buttons are not updated properly.

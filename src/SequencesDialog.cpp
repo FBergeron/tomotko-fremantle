@@ -19,8 +19,6 @@ void SequencesDialog::init() {
     sequencesViewPanelLayout = new QBoxLayout( QBoxLayout::TopToBottom );
     sequencesViewPanelLayout->setContentsMargins( 0, 10, 0, 0 );
     sequencesViewPanel->setLayout( sequencesViewPanelLayout );
-    //revealingOptionsPanelLayout->addWidget( sequencesViewPanel );
-    sequencesPanelLayout->addWidget( sequencesViewPanel );
     sequencesView = new DynamicHeightTreeWidget();
     sequencesView->setHeaderLabel( tr( "Existing Sequences" ) );
     sequencesViewPanelLayout->addWidget( sequencesView );

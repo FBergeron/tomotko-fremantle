@@ -61,8 +61,6 @@ private:
     void initImage( const QString& path );
     void resizeImageBox() const;
 
-//    QMenuBar*               menuBar;
-
     QHBoxLayout*            mainLayout;
 
     QScrollArea*            bodyWrapper;

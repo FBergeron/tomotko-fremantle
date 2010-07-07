@@ -547,7 +547,7 @@ void QuizFrame::reveal() {
                 toggleMaximizeComment( !maximizeCommentButton->isChecked() );
         }
 
-        //QApplication::flushX();
+        QApplication::flush();
     }
 }
 
@@ -556,7 +556,7 @@ void QuizFrame::revealAll() {
     revealAltTerm();
     revealComment();
     revealImage();
-    //QApplication::flushX();
+    QApplication::flush();
 }
 
 void QuizFrame::scrollLeft() {

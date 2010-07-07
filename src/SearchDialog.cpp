@@ -179,6 +179,8 @@ void SearchDialog::retranslateUi() {
     //editResultTermButton->setToolTip( tr( "Edit Term" ) );
     removeResultTermButton->setText( tr( "Remove Term(s)" ) );
     //removeResultTermButton->setToolTip( tr( "Remove Term(s)" ) );
+    closeButton->setText( tr( "Close" ) );
+    //closeButton->setToolTip( tr( "Close" ) );
     goResultVocabButton->adjustSize();
     editResultTermButton->adjustSize();
     removeResultTermButton->adjustSize();
@@ -234,9 +236,6 @@ void SearchDialog::editResultTerm() {
         if( term ) {
             Vocabulary* vocab = controller->getVocabTree()->getVocabulary( term->getVocabId() );
             TermDialog dialog( *vocab, controller, this, *term );
-//#if defined(Q_WS_HILDON)
-//            dialog.showFullScreen();
-//#endif
             int result = dialog.exec();
             if( result ) { 
                 Term newTerm = dialog.getTerm();

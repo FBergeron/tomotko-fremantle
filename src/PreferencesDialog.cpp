@@ -160,7 +160,6 @@ void PreferencesDialog::init() {
     mainLayout = new QHBoxLayout();
 
     bodyWrapper = new QScrollArea();
-    //bodyWrapper->setVerticalScrollBarPolicy( Qt::ScrollBarAlwaysOff );
 
     bodyPanel = new QWidget();
     bodyPanelLayout = new QVBoxLayout();

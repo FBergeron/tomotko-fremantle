@@ -130,7 +130,6 @@ void FontsDialog::initFontOverrides() {
         fontOverrideFamilyComboBoxes.append( fontOverrideFamilyComboBox );
         fontOverrideSizeComboBoxes.append( fontOverrideSizeComboBox );
 
-        //fontOverridesPanelLayout->addWidget( fontOverrideBox, 0 );
         fontsPanelLayout->addWidget( fontOverrideBox, 0 );
     }
 }

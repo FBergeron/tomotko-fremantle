@@ -4,7 +4,7 @@
 ** 
 ** Small application to learn vocabulary on my Zaurus.
 **
-** Author : Frederic Bergeron (c) 2006-209
+** Author : Frederic Bergeron (c) 2006-2010
 **
 ****************************************************************/
 
