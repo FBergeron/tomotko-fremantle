@@ -3,18 +3,14 @@ README
 
 Prerequisites
 -------------
-To build the application, you will need the open-source version of QT4.6 (or better).
-You can download it from TrollTech or Nokia's website or if you're using Linux or MacOS, you 
-probably can get it using the package manager of your operating system.
-
-You will also need a C++ compiler and some other miscellaneous development tools.
-
-The development on Maemo is going too fast to keep this section updated.  Google is your friend.
-
-I'm using Ubuntu 8.10 running inside VirtualBox.
-
 Before compiling and building the application, it's required to install scratchbox, the Maemo SDK, and Xephyr X11-Server.  
+You will also need a C++ compiler and some other miscellaneous development tools.
+The development on Maemo is going too fast to keep this section updated.  Google is your friend.
 This is out of scope of this document.  For more details, read installation documentation on Maemo's website.
+
+I have used Ubuntu 8.10 and Debian 5.0 running inside VirtualBox to port the application on Maemo.
+
+Here are some useful commands (these may vary slightly in function of your linux distro) :
 
 To start scratchbox :
 
@@ -35,7 +31,7 @@ To launch the Xephyr X11-Server (from a new terminal window):
 
 Once that Xephyr is running properly, set up the DISPLAY variable into scratchbox:
 
-> export DISPLAY=:2
+> export DISPLAY=:2 (not needed for Debian)
 
 To launch the Hildon Application Framework, in scratchbox :
 
@@ -72,7 +68,7 @@ To run the application, in scratchbox :
 
 > ./toMOTko
 
-Or even better (so that it looks even more like a real Hildon application):
+Or even better (so that it looks even more like a real Maemo application):
 
 > run-standalone.sh ./toMOTko
 
