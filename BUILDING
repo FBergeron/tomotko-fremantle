@@ -1,5 +1,5 @@
-README
-======
+BUILDING
+========
 
 Prerequisites
 -------------
@@ -106,7 +106,14 @@ To submit the application to Maemo's Extras repository, it must first be submitt
 
 To generate the required files to do so is not an easy task.  I managed to do it once but I'm not even sure I will be able to succeed again.  Here are the steps that are required to perform:
 
-> cp -r trunk $SCRATCHBOX_HOME/tomotko-x.y.z
+During development, I work in a directory that is, in reality, a soft link called tomotko-x.y.z pointing to tomotko-fremantle directory.  The files cannot be generated when using this link.  So I must do that:
+
+> unlink tomotko-x.y.z
+> cp -r tomotko-fremantle tomotko-x.y.z
+
+or, in other words:
+
+> cp -r tomotko-fremantle $SCRATCHBOX_HOME/tomotko-x.y.z
 
 In Scratchbox (no matter the architecture), clean up the source directory.  It must be perfectly clean!!!  Even a hidden file could disturb the procedure.  Pay special attention to .swp files created by vim while editing files:
 
@@ -133,7 +140,25 @@ If everything goes fine, the binary deb files will be built and made available t
 
 If it fails, fix something and repeat the procedure.
 
-The next step is to promote the package to extras.  Look the Maemo documentation for this.
+After the submission is successful, make sure that the working directory is clean and merge the modif in the master branch:
+
+> git checkout master
+> git merge dev
+> git push
+
+And tag the commit:
+
+> git tag -a rel/tomotko-x.y.z-afremantleb
+
+Finally, delete tomotko-x.y.z directory and make a new soft link for future development:
+
+> rm -rf tomotko-x.y.z
+> ln -s tomotko-fremantle tomotko-x.y.z
+
+The next step is to promote the package to extras.  To do this:
+- Go on the tomotko package web page (for armel)
+- Log in
+- Click the "Promote this package" link. 
 
 
 Notes
@@ -241,3 +266,4 @@ QTextStream cerr(stderr, QIODevice::WriteOnly);
 cout << QString("bla bla");
 
 Concerning imagePath for terms.  We must always consider the cases whether the path is absolute and inside toMOTko's internal directory.
+
