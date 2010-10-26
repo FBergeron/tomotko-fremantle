@@ -41,9 +41,13 @@ To extract localized string, in scratchbox (1) :
 
 > lupdate toMOTko.pro
 
+(or /opt/qt4-maemo5/bin/lupdate toMOTko.pro if using an experimental Qt-SDK)
+
 To generate the string files, in scratchbox (1) :
 
 > lrelease toMOTko.pro
+
+(or /opt/qt4-maemo5/bin/lrelease toMOTko.pro if using an experimental Qt-SDK)
 
 These 2 operations should be done at least once before building the Makefile‥
 Otherwise, you will get errors like these when running qmake:
@@ -58,6 +62,10 @@ RCC: Error in 'toMOTko.qrc': Cannot find file 'i18n/de/toMOTko.qm'
 To build the Makefile, in scratchbox (1) :
 
 > qmake toMOTko.pro
+
+When an experimental version of qt is available (installable doing: fakeroot apt-get install libqt4-experimental-dev), the Makefile can be used like this instead:
+
+> /opt/qt4-maemo5-bin/qmake toMOTko.pro
 
 To build the executable, in scratchbox (1) :
 
