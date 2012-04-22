@@ -3,7 +3,7 @@
 const QString Util::languageCodeList[] = { 
     QObject::tr( "en" ), QObject::tr( "fr" ), QObject::tr( "es" ), QObject::tr( "ja" ), QObject::tr( "de" ), 
     QObject::tr( "ar" ), QObject::tr( "bg" ), QObject::tr( "cs" ), QObject::tr( "da" ), QObject::tr( "el" ), 
-    QObject::tr( "eo" ), QObject::tr( "fi" ), QObject::tr( "he" ), QObject::tr( "hi" ), QObject::tr( "it" ),
+    QObject::tr( "eo" ), QObject::tr( "fi" ), QObject::tr( "he" ), QObject::tr( "hi" ), QObject::tr( "hu" ), QObject::tr( "it" ),
     QObject::tr( "ko" ), QObject::tr( "la" ), QObject::tr( "nl" ), QObject::tr( "no" ), QObject::tr( "pt" ), QObject::tr( "rm" ),
     QObject::tr( "ro" ), QObject::tr( "ru" ), QObject::tr( "sv" ), QObject::tr( "sw" ), QObject::tr( "th" ), 
     QObject::tr( "tl" ), QObject::tr( "vi" ), QObject::tr( "zh" )
@@ -12,7 +12,7 @@ const QString Util::languageCodeList[] = {
 const QString Util::studyLanguageList[] = { 
     QString( "en" ), QString( "fr" ), QString( "es" ), QString( "ja" ), QString( "de" ), 
     QString( "ar" ), QString( "bg" ), QString( "cs" ), QString( "da" ), QString( "el" ), 
-    QString( "eo" ), QString( "fi" ), QString( "he" ), QString( "hi" ), QString( "it" ), 
+    QString( "eo" ), QString( "fi" ), QString( "he" ), QString( "hi" ), QString( "hu" ), QString( "it" ), 
     QString( "ko" ), QString( "la" ), QString( "nl" ), QString( "no" ), QString( "pt" ), QString( "rm" ), 
     QString( "ro" ), QString( "ru" ), QString( "sv" ), QString( "sw" ), QString( "th" ), 
     QString( "tl" ), QString( "vi" ), QString( "zh" )

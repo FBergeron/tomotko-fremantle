@@ -353,7 +353,7 @@ quizzes (répétitions)</translation>
         <translation>Dévoilement...</translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="190"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="189"/>
         <source>Preferences...</source>
         <translation>Préférences</translation>
     </message>
@@ -525,6 +525,11 @@ quizzes (répétitions)</translation>
         <translation>Hindî</translation>
     </message>
     <message>
+        <location filename="../../src/Util.cpp" line="6"/>
+        <source>hu</source>
+        <translation>Hongrois</translation>
+    </message>
+    <message>
         <location filename="../../src/Util.cpp" line="7"/>
         <source>ko</source>
         <translation>Koréen</translation>
@@ -656,10 +661,10 @@ quizzes (répétitions)</translation>
         <translation>Un problème est survenu durant la sauvegarde des données. Vérifiez l&apos;espace-disque et les droits d&apos;accès aux fichiers.</translation>
     </message>
     <message>
-        <location filename="../../src/SearchDialog.cpp" line="289"/>
+        <location filename="../../src/SearchDialog.cpp" line="288"/>
         <location filename="../../src/SequenceDialog.cpp" line="200"/>
         <location filename="../../src/SequenceDialog.cpp" line="206"/>
-        <location filename="../../src/SequencesDialog.cpp" line="87"/>
+        <location filename="../../src/SequencesDialog.cpp" line="85"/>
         <location filename="../../src/StudyLanguagesDialog.cpp" line="87"/>
         <location filename="../../src/VocabularyManagerFrame.cpp" line="833"/>
         <location filename="../../src/VocabularyManagerFrame.cpp" line="967"/>
@@ -692,7 +697,7 @@ quizzes (répétitions)</translation>
         <translation>Opération échouée</translation>
     </message>
     <message>
-        <location filename="../../src/Controller.cpp" line="738"/>
+        <location filename="../../src/Controller.cpp" line="737"/>
         <source>MyGlossaries</source>
         <translation>Mes glossaires</translation>
     </message>
@@ -705,12 +710,12 @@ ligne %1, colonne %2.
 %3.</translation>
     </message>
     <message>
-        <location filename="../../src/Controller.cpp" line="145"/>
+        <location filename="../../src/Controller.cpp" line="144"/>
         <source>NewFolder</source>
         <translation>Nouveau dossier</translation>
     </message>
     <message>
-        <location filename="../../src/Controller.cpp" line="174"/>
+        <location filename="../../src/Controller.cpp" line="173"/>
         <source>NewGlossary</source>
         <translation>Nouveau glossaire</translation>
     </message>
@@ -796,7 +801,7 @@ ligne %1, colonne %2.
     </message>
     <message>
         <location filename="../../src/SearchDialog.cpp" line="113"/>
-        <location filename="../../src/SearchDialog.cpp" line="185"/>
+        <location filename="../../src/SearchDialog.cpp" line="187"/>
         <source>Search...</source>
         <translation>Rechercher...</translation>
     </message>
@@ -814,37 +819,38 @@ ligne %1, colonne %2.
     </message>
     <message>
         <location filename="../../src/SearchDialog.cpp" line="88"/>
+        <location filename="../../src/SearchDialog.cpp" line="182"/>
         <source>Close</source>
         <translation>Fermer</translation>
     </message>
     <message>
         <location filename="../../src/SearchDialog.cpp" line="170"/>
-        <location filename="../../src/SearchDialog.cpp" line="206"/>
+        <location filename="../../src/SearchDialog.cpp" line="208"/>
         <source>%1 term(s) found</source>
         <translation>%1 mot(s) trouvé(s)</translation>
     </message>
     <message>
-        <location filename="../../src/SearchDialog.cpp" line="289"/>
+        <location filename="../../src/SearchDialog.cpp" line="288"/>
         <source>ConfirmRemoveSelectedTerms</source>
         <translation>Êtes-vous certain de vouloir effacer le(s) mot(s) sélectionné(s)?</translation>
     </message>
     <message>
-        <location filename="../../src/SearchDialog.cpp" line="295"/>
+        <location filename="../../src/SearchDialog.cpp" line="294"/>
         <source>Yes</source>
         <translation>Oui</translation>
     </message>
     <message>
-        <location filename="../../src/SearchDialog.cpp" line="296"/>
+        <location filename="../../src/SearchDialog.cpp" line="295"/>
         <source>No</source>
         <translation>Non</translation>
     </message>
     <message>
-        <location filename="../../src/SearchDialog.cpp" line="337"/>
+        <location filename="../../src/SearchDialog.cpp" line="336"/>
         <source>MultipleTranslationsDetectedForRemoveTermsCaption</source>
         <translation>Suppression de mots</translation>
     </message>
     <message>
-        <location filename="../../src/SearchDialog.cpp" line="337"/>
+        <location filename="../../src/SearchDialog.cpp" line="336"/>
         <source>MultipleTranslationsDetectedForRemoveTerms</source>
         <translation>Certains des mots sélectionnés contiennent des traductions dans plusieurs langues.  Indiquez les traductions à effacer.</translation>
     </message>
@@ -921,32 +927,32 @@ ligne %1, colonne %2.
 <context>
     <name>SequencesDialog</name>
     <message>
-        <location filename="../../src/SequencesDialog.cpp" line="25"/>
+        <location filename="../../src/SequencesDialog.cpp" line="23"/>
         <source>Existing Sequences</source>
         <translation>Séquences existantes</translation>
     </message>
     <message>
-        <location filename="../../src/SequencesDialog.cpp" line="49"/>
+        <location filename="../../src/SequencesDialog.cpp" line="47"/>
         <source>QuizWindow</source>
         <translation>Fenêtre de Quiz</translation>
     </message>
     <message>
-        <location filename="../../src/SequencesDialog.cpp" line="64"/>
+        <location filename="../../src/SequencesDialog.cpp" line="62"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
     <message>
-        <location filename="../../src/SequencesDialog.cpp" line="66"/>
+        <location filename="../../src/SequencesDialog.cpp" line="64"/>
         <source>Cancel</source>
         <translation>Annuler</translation>
     </message>
     <message>
-        <location filename="../../src/SequencesDialog.cpp" line="80"/>
+        <location filename="../../src/SequencesDialog.cpp" line="78"/>
         <source>RevealingOrders</source>
         <translation>Séquences de dévoilement</translation>
     </message>
     <message>
-        <location filename="../../src/SequencesDialog.cpp" line="87"/>
+        <location filename="../../src/SequencesDialog.cpp" line="85"/>
         <source>RevealingOrderMandatory</source>
         <translation>Vous devez choisir au moins une séquence de dévoilement.  Créez-en une nouvelle au besoin.</translation>
     </message>
