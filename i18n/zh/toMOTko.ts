@@ -339,7 +339,7 @@ Overwrite the current assignment?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/PreferencesDialog.cpp" line="190"/>
+        <location filename="../../src/PreferencesDialog.cpp" line="189"/>
         <source>Preferences...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -551,6 +551,11 @@ Overwrite the current assignment?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../src/Util.cpp" line="6"/>
+        <source>hu</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../src/Util.cpp" line="7"/>
         <source>ko</source>
         <translation type="unfinished"></translation>
@@ -616,17 +621,17 @@ Overwrite the current assignment?</source>
         <translation>他加祿語</translation>
     </message>
     <message>
-        <location filename="../../src/Controller.cpp" line="145"/>
+        <location filename="../../src/Controller.cpp" line="144"/>
         <source>NewFolder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/Controller.cpp" line="174"/>
+        <location filename="../../src/Controller.cpp" line="173"/>
         <source>NewGlossary</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/Controller.cpp" line="738"/>
+        <location filename="../../src/Controller.cpp" line="737"/>
         <source>MyGlossaries</source>
         <translation type="unfinished"></translation>
     </message>
@@ -667,10 +672,10 @@ Overwrite the current assignment?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SearchDialog.cpp" line="289"/>
+        <location filename="../../src/SearchDialog.cpp" line="288"/>
         <location filename="../../src/SequenceDialog.cpp" line="200"/>
         <location filename="../../src/SequenceDialog.cpp" line="206"/>
-        <location filename="../../src/SequencesDialog.cpp" line="87"/>
+        <location filename="../../src/SequencesDialog.cpp" line="85"/>
         <location filename="../../src/StudyLanguagesDialog.cpp" line="87"/>
         <location filename="../../src/VocabularyManagerFrame.cpp" line="833"/>
         <location filename="../../src/VocabularyManagerFrame.cpp" line="967"/>
@@ -802,43 +807,44 @@ Overwrite the current assignment?</source>
     </message>
     <message>
         <location filename="../../src/SearchDialog.cpp" line="88"/>
+        <location filename="../../src/SearchDialog.cpp" line="182"/>
         <source>Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/SearchDialog.cpp" line="113"/>
-        <location filename="../../src/SearchDialog.cpp" line="185"/>
+        <location filename="../../src/SearchDialog.cpp" line="187"/>
         <source>Search...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/SearchDialog.cpp" line="170"/>
-        <location filename="../../src/SearchDialog.cpp" line="206"/>
+        <location filename="../../src/SearchDialog.cpp" line="208"/>
         <source>%1 term(s) found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SearchDialog.cpp" line="289"/>
+        <location filename="../../src/SearchDialog.cpp" line="288"/>
         <source>ConfirmRemoveSelectedTerms</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SearchDialog.cpp" line="295"/>
+        <location filename="../../src/SearchDialog.cpp" line="294"/>
         <source>Yes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SearchDialog.cpp" line="296"/>
+        <location filename="../../src/SearchDialog.cpp" line="295"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SearchDialog.cpp" line="337"/>
+        <location filename="../../src/SearchDialog.cpp" line="336"/>
         <source>MultipleTranslationsDetectedForRemoveTermsCaption</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SearchDialog.cpp" line="337"/>
+        <location filename="../../src/SearchDialog.cpp" line="336"/>
         <source>MultipleTranslationsDetectedForRemoveTerms</source>
         <translation type="unfinished"></translation>
     </message>
@@ -915,32 +921,32 @@ Overwrite the current assignment?</source>
 <context>
     <name>SequencesDialog</name>
     <message>
-        <location filename="../../src/SequencesDialog.cpp" line="25"/>
+        <location filename="../../src/SequencesDialog.cpp" line="23"/>
         <source>Existing Sequences</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SequencesDialog.cpp" line="49"/>
+        <location filename="../../src/SequencesDialog.cpp" line="47"/>
         <source>QuizWindow</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SequencesDialog.cpp" line="64"/>
+        <location filename="../../src/SequencesDialog.cpp" line="62"/>
         <source>Ok</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SequencesDialog.cpp" line="66"/>
+        <location filename="../../src/SequencesDialog.cpp" line="64"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SequencesDialog.cpp" line="80"/>
+        <location filename="../../src/SequencesDialog.cpp" line="78"/>
         <source>RevealingOrders</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SequencesDialog.cpp" line="87"/>
+        <location filename="../../src/SequencesDialog.cpp" line="85"/>
         <source>RevealingOrderMandatory</source>
         <translation type="unfinished"></translation>
     </message>
